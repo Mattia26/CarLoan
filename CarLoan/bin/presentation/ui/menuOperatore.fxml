@@ -14,7 +14,7 @@
       </ImageView>
       <Label fx:id="NomeOperatore" layoutX="7.0" layoutY="135.0" prefHeight="15.0" prefWidth="48.0" text="Nome:" />
       <Label fx:id="MenuOperatoreLabel" layoutX="243.0" layoutY="22.0" prefHeight="15.0" prefWidth="318.0" text="Menu Principale" />
-      <Button layoutX="208.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
+      <Button fx:id="NuovoContratto" layoutX="208.0" layoutY="78.0" mnemonicParsing="false" onAction="#CercaAuto" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
       <Button layoutX="208.0" layoutY="119.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Chiudi Contratto" />
       <Button layoutX="208.0" layoutY="157.0" mnemonicParsing="false" text="Modifica Contratto" />
       <Button layoutX="208.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Annulla Contratto" />

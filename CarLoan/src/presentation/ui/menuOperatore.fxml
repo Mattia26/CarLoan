@@ -12,9 +12,9 @@
             <Image url="@../../../bin/presentation/ui/index.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="NomeOperatore" layoutX="7.0" layoutY="135.0" prefHeight="15.0" prefWidth="138.0" text="Nome:" />
-      <Label fx:id="MenuOperatore" layoutX="243.0" layoutY="22.0" prefHeight="15.0" prefWidth="318.0" text="Menu Principale" />
-      <Button layoutX="208.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
+      <Label fx:id="NomeOperatore" layoutX="7.0" layoutY="135.0" prefHeight="15.0" prefWidth="48.0" text="Nome:" />
+      <Label fx:id="MenuOperatoreLabel" layoutX="243.0" layoutY="22.0" prefHeight="15.0" prefWidth="318.0" text="Menu Principale" />
+      <Button fx:id="NuovoContratto" layoutX="208.0" layoutY="78.0" mnemonicParsing="false" onAction="#CercaAuto" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
       <Button layoutX="208.0" layoutY="119.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Chiudi Contratto" />
       <Button layoutX="208.0" layoutY="157.0" mnemonicParsing="false" text="Modifica Contratto" />
       <Button layoutX="208.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Annulla Contratto" />
@@ -25,8 +25,8 @@
       <Label fx:id="TelefonoOperatore" layoutX="6.0" layoutY="174.0" prefHeight="15.0" prefWidth="138.0" text="Telefono:" />
       <Label fx:id="ModificaProfilo" layoutX="6.0" layoutY="195.0" onMouseClicked="#ModificaProfilo" prefHeight="15.0" prefWidth="168.0" text="Modifica Profilo" />
       <Label fx:id="Logout" layoutX="5.0" layoutY="215.0" onMouseClicked="#Logout" prefHeight="15.0" prefWidth="174.0" text="Logout" />
-      <Label fx:id="NomeOperatoreR" layoutX="53.0" layoutY="149.0" prefHeight="15.0" prefWidth="70.0" />
-      <Label fx:id="CognomeOperatoreR" layoutX="75.0" layoutY="170.0" prefHeight="15.0" prefWidth="70.0" />
-      <Label fx:id="TelefonoOperatoreR" layoutX="68.0" layoutY="191.0" prefHeight="15.0" prefWidth="70.0" />
+      <Label fx:id="NomeOperatoreR" layoutX="51.0" layoutY="136.0" prefHeight="15.0" prefWidth="70.0" />
+      <Label fx:id="CognomeOperatoreR" layoutX="73.0" layoutY="154.0" prefHeight="15.0" prefWidth="70.0" />
+      <Label fx:id="TelefonoOperatoreR" layoutX="67.0" layoutY="175.0" prefHeight="15.0" prefWidth="70.0" />
    </children>
 </Pane>

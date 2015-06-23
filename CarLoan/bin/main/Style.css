@@ -93,3 +93,9 @@
 	-fx-text-fill: black;
 	-fx-effect: null;
 }
+
+#nc,#cc,#cf,#av,#a,#di,#df,#t,#sr,#ch{
+	-fx-font-size: 11px;
+}
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.CercaAutoController">
+   <children>
+      <ListView fx:id="vista" layoutX="3.0" layoutY="159.0" onMouseClicked="#setAvanti" prefHeight="198.0" prefWidth="594.0" />
+      <Label layoutX="117.0" layoutY="45.0" text="Tipo" />
+      <ChoiceBox fx:id="TipoBox" layoutX="160.0" layoutY="41.0" onMouseEntered="#TipeClick" prefHeight="25.0" prefWidth="43.0" />
+      <Label layoutX="299.0" layoutY="11.0" text="Disponibile" />
+      <Label layoutX="300.0" layoutY="44.0" text="Dal" />
+      <Label layoutX="302.0" layoutY="81.0" text="Al" />
+      <Button layoutX="293.0" layoutY="129.0" mnemonicParsing="false" onAction="#Cerca" text="Cerca" />
+      <TextField fx:id="Dal" layoutX="335.0" layoutY="39.0" prefHeight="25.0" prefWidth="157.0" promptText="gg/mm/aaaa" />
+      <TextField fx:id="Al" layoutX="336.0" layoutY="75.0" prefHeight="25.0" prefWidth="157.0" promptText="gg/mm/aaaa" />
+      <Button fx:id="avanti" layoutX="258.0" layoutY="369.0" mnemonicParsing="false" onAction="#Avanti" text="Avanti" visible="false" />
+      <Button layoutX="210.0" layoutY="129.0" mnemonicParsing="false" onAction="#Indietro" text="Indietro" />
+   </children>
+</Pane>

@@ -10,6 +10,7 @@ public class GestioneSessione {
 	private static String nomeOperatore = null;
 	private static String cognomeOperatore = null;
 	private static String telefonoOperatore = null;
+	private static String targaAutoSelezionata = null;
 	
 	public static String getUsername(){
 		return GestioneSessione.username;
@@ -60,11 +61,20 @@ public class GestioneSessione {
 		
 	}
 	
+	public static void setTarga(String targa){
+		GestioneSessione.targaAutoSelezionata = targa;
+	}
+	
+	public static String getTarga(){
+		return GestioneSessione.targaAutoSelezionata;
+	}
+	
 	public static void azzera(){
 		GestioneSessione.username = null;
 		GestioneSessione.password = null;
 		GestioneSessione.nomeOperatore = null;
 		GestioneSessione.cognomeOperatore = null;
 		GestioneSessione.telefonoOperatore = null;
+		GestioneSessione.targaAutoSelezionata = null;
 	}
 }

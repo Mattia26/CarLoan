@@ -14,7 +14,7 @@ public class ModificaDatiOperatore implements Command{
 
 			@Override
 			public Object Execute(ArrayList<String> parameters) {
-				boolean ritorno=false;
+				boolean ritorno=true;
 				GestioneSessione.setNomeOperatore(parameters.get(0));
 				GestioneSessione.setCognomeOperatore(parameters.get(1));
 				GestioneSessione.setTelefonoOperatore(parameters.get(2));

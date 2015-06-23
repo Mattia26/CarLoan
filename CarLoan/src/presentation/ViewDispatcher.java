@@ -4,7 +4,6 @@ package presentation;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -33,7 +32,7 @@ public class ViewDispatcher  {
 			alert.setTitle(title);
 			alert.setContentText(message);
 			alert.setHeaderText(null);
-			alert.show();
+			alert.showAndWait();
 		break;
 		
 		case 1:
@@ -41,7 +40,7 @@ public class ViewDispatcher  {
 			alert.setTitle(title);
 			alert.setContentText(message);
 			alert.setHeaderText(null);
-			alert.show();
+			alert.showAndWait();
 		break;
 		
 		case 2:
@@ -49,7 +48,7 @@ public class ViewDispatcher  {
 			alert.setTitle(title);
 			alert.setContentText(message);
 			alert.setHeaderText(null);
-			alert.show();
+			alert.showAndWait();
 		}
 		
 	}

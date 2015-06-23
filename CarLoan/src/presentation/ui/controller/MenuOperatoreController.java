@@ -37,4 +37,12 @@ public class MenuOperatoreController {
 		FrontController fc = new FrontController();
 		fc.handleRequest("Logout");
 	}
+
+	@FXML
+		public void CercaAuto(Event e){
+			FrontController fc = new FrontController();
+			fc.handleRequest("CercaAuto");
+		}
+	
+	
 }

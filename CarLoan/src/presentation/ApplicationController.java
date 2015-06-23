@@ -2,13 +2,15 @@ package presentation;
 
 import java.util.ArrayList;
 
+import presentation.command.CercaAuto;
 import presentation.command.Command;
 import presentation.command.ModificaDatiOperatore;
+import presentation.command.StipulaContratto;
 
 public class ApplicationController implements ApplicationControllerI {
 	Command command;
 	ViewDispatcher dispatcher;
-	Object ritorno;
+	Object ritorno = null;
 	
 	public Object handleRequest(String request){
 		switch(request){
@@ -27,12 +29,22 @@ public class ApplicationController implements ApplicationControllerI {
 			dispatcher.setInterface("Avvio.fxml");
 		break;
 		
+		case "CercaAuto":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("CercaAuto.fxml");
+		break;
+		
+		case "NuovoContratto":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("NuovoContratto.fxml");
+		break;
+		
 		
 		}
 		
 		
 		
-		return null;
+		return ritorno;
 	}
 	
 	public Object handleRequest(String request,ArrayList<String> parameters){
@@ -61,6 +73,8 @@ public class ApplicationController implements ApplicationControllerI {
 		case "ModificaDatiOperatore":
 			command = new ModificaDatiOperatore();
 			if((boolean)command.Execute(parameters)){
+				dispatcher = new ViewDispatcher();
+				dispatcher.showMessage(0, "Informazione", "Operazione avvenuta con successo");
 				handleRequest("MenuOperatore");
 			}
 			else{
@@ -68,8 +82,20 @@ public class ApplicationController implements ApplicationControllerI {
 				dispatcher.showMessage(1, "Errore", "Non è stato possibile portare a termine la modifica");
 			}
 		break;
+		
+		case "CercaAuto":
+			command = new CercaAuto();
+			ritorno = command.Execute(parameters);
+		break;
+		
+		case "NuovoContratto":
+			command = new StipulaContratto();
+			ritorno = command.Execute(parameters);
+		break;
+		
+		
 		}
-		return null;
+		return ritorno;
 	}
 	
 	private String login(String username, String password){

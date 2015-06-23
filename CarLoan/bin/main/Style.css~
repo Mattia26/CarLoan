@@ -79,14 +79,23 @@
 #NomeOperatoreR {
 	-fx-font-size: 9px;
 	-fx-text-fill: black;
+	-fx-effect: null;
 }
 
 #CognomeOperatoreR {
 	-fx-font-size: 9px;
 	-fx-text-fill: black;
+	-fx-effect: null;
 }
 
 #TelefonoOperatoreR {
 	-fx-font-size: 9px;
 	-fx-text-fill: black;
+	-fx-effect: null;
 }
+
+#nc,#cc,#cf,#av,#a,#di,#df,#t,#ch{
+	-fx-font-size: 9px;
+}
+
+
