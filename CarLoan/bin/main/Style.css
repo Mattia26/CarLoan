@@ -29,13 +29,10 @@
 	-fx-font-size: 32px;
 	-fx-font-family: "Arial Black";
 }
-#MenuOperatoreLabel {
-	-fx-font-size: 32px;
-	-fx-font-family: "Arial Black";
-}
+
 #NomeOperatore {
 	-fx-font-size: 10px;
-	-fx-font-family: "Arial Black";
+	-fx-font-family: "Consolas";
 	-fx-text-fill: #d3d3d3;
 	-fx-effect: null;
 }
@@ -98,4 +95,6 @@
 	-fx-font-size: 11px;
 }
 
-
+#id,#km,#kmPercorsi{
+	-fx-font-size: 11px;
+}

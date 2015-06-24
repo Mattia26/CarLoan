@@ -29,13 +29,10 @@
 	-fx-font-size: 32px;
 	-fx-font-family: "Arial Black";
 }
-#MenuOperatoreLabel {
-	-fx-font-size: 32px;
-	-fx-font-family: "Arial Black";
-}
+
 #NomeOperatore {
 	-fx-font-size: 10px;
-	-fx-font-family: "Arial Black";
+	-fx-font-family: "Consolas";
 	-fx-text-fill: #d3d3d3;
 	-fx-effect: null;
 }
@@ -94,8 +91,10 @@
 	-fx-effect: null;
 }
 
-#nc,#cc,#cf,#av,#a,#di,#df,#t,#ch{
-	-fx-font-size: 9px;
+#nc,#cc,#cf,#av,#a,#di,#df,#t,#sr,#ch{
+	-fx-font-size: 11px;
 }
 
-
+#id,#km,#kmp{
+	-fx-font-size: 11px;
+}

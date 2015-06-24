@@ -11,6 +11,7 @@ public class GestioneSessione {
 	private static String cognomeOperatore = null;
 	private static String telefonoOperatore = null;
 	private static String targaAutoSelezionata = null;
+	private static String contrattoSelezionato = null;
 	
 	public static String getUsername(){
 		return GestioneSessione.username;
@@ -69,6 +70,14 @@ public class GestioneSessione {
 		return GestioneSessione.targaAutoSelezionata;
 	}
 	
+	public static void setId(String id){
+		GestioneSessione.contrattoSelezionato = id;
+	}
+	
+	public static String getId(){
+		return GestioneSessione.contrattoSelezionato;
+	}
+	
 	public static void azzera(){
 		GestioneSessione.username = null;
 		GestioneSessione.password = null;
@@ -76,5 +85,6 @@ public class GestioneSessione {
 		GestioneSessione.cognomeOperatore = null;
 		GestioneSessione.telefonoOperatore = null;
 		GestioneSessione.targaAutoSelezionata = null;
+		GestioneSessione.contrattoSelezionato = null;
 	}
 }

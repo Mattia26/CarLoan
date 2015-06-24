@@ -1,12 +1,16 @@
 package presentation.ui.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import presentation.FrontController;
 import presentation.GestioneSessione;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class MenuOperatoreController {
+public class MenuOperatoreController implements Initializable{
 
 	@FXML
 	private Label NomeOperatoreR;
@@ -18,12 +22,7 @@ public class MenuOperatoreController {
 	private Label TelefonoOperatoreR;
 	
 	
-	@FXML
-	public void show(Event e){
-		NomeOperatoreR.setText(GestioneSessione.getNomeOperatore());
-		CognomeOperatoreR.setText(GestioneSessione.getCognomeOperatore());
-		TelefonoOperatoreR.setText(GestioneSessione.getTelefonoOperatore());
-	}
+	
 	
 	@FXML
 	public void ModificaProfilo(Event e){
@@ -43,6 +42,26 @@ public class MenuOperatoreController {
 			FrontController fc = new FrontController();
 			fc.handleRequest("CercaAuto");
 		}
+	
+	@FXML
+		public void ChiudiContratto(){
+		FrontController fc = new FrontController();
+		fc.handleRequest("ChiudiContratto");
+	}
+	
+	@FXML
+		public void ModificaContratto(){
+		FrontController fc = new FrontController();
+		fc.handleRequest("ModificaId");
+	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		NomeOperatoreR.setText(GestioneSessione.getNomeOperatore());
+		CognomeOperatoreR.setText(GestioneSessione.getCognomeOperatore());
+		TelefonoOperatoreR.setText(GestioneSessione.getTelefonoOperatore());
+		
+	}
+	
 	
 	
 }

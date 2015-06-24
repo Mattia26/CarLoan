@@ -15,4 +15,5 @@ public class ModificaContratto implements Command{
 				//istanziare l'attributo e richiedere il servizio
 				return ritorno;
 			}
+			
 }

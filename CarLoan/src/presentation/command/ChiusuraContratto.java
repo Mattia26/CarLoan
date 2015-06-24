@@ -12,7 +12,7 @@ public class ChiusuraContratto implements Command{
 
 			@Override
 			public Object Execute(ArrayList<String> parameters) {
-				float ritorno= 0;
+				boolean ritorno= true;
 				//istanziare l'attributo e richiedere il servizio
 				return ritorno;
 			}
