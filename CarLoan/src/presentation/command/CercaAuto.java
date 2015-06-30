@@ -1,11 +1,17 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+
+import entity.Auto;
+import business.BusinessDelegate;
 
 public class CercaAuto implements Command{
-	//attributo di tipo Business Delegato
-	
+			
+			BusinessDelegate b;	
+			
 			public Object Execute(String parameter){
 				return null;
 				
@@ -13,11 +19,35 @@ public class CercaAuto implements Command{
 
 			@Override
 			public Object Execute(ArrayList<String> parameters) {
-				ArrayList<String> ritorno = new ArrayList<String>();
-				ritorno.add("111111 Alfa Tipo A 10000km");
-				ritorno.add("222222 Toyota Tipo A 20000km");
+				b = new BusinessDelegate();
+				ArrayList<Auto> auto;
+				ArrayList<String> ritorno = null;
 				
-				//istanziare l'attributo e richiedere il servizio
+				
+					try {
+						ritorno = new ArrayList<String>();
+						auto = (ArrayList<Auto>) b.handleRequest("CercaAuto", parameters);
+						Iterator<Auto> it = auto.iterator();
+						while(it.hasNext()){
+							Auto current = it.next();
+							String automobile = current.getTarga() + current.getNome() + current.getFascia() + current.getUltimoChilometraggio();
+							ritorno.add(automobile);
+						}
+					} catch (ClassNotFoundException | NoSuchMethodException
+							| SecurityException | IllegalAccessException
+							| IllegalArgumentException
+							| InvocationTargetException
+							| InstantiationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+					
+				
+				
+				
+				
 				return ritorno;
 			}
 

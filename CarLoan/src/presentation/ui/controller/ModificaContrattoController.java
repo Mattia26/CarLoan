@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import presentation.FrontController;
 import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
-import utility.InputVerify;
+import utility.InputController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +48,6 @@ public class ModificaContrattoController implements Initializable{
 	
 	@FXML
 	public void Indietro(){
-		System.out.println("adsf");
 		FrontController fc = new FrontController();
 		fc.handleRequest("ModificaId");
 	}
@@ -63,7 +62,7 @@ public class ModificaContrattoController implements Initializable{
 			v.showMessage(1, "Errore", "Completare tutti i campi!");
 		}
 		else{
-			InputVerify i = new InputVerify();
+			InputController i = new InputController();
 			ViewDispatcher w = new ViewDispatcher();
 			
 			if(!i.dateVerify(dataInizio.getText()) || !i.dateVerify(dataFine.getText())){

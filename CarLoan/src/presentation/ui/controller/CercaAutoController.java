@@ -7,7 +7,7 @@ import presentation.FrontController;
 import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
 
-import utility.InputVerify;
+import utility.InputController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,7 +30,7 @@ public class CercaAutoController {
 	@FXML
 	private Button avanti;
 	
-	private InputVerify v;
+	private InputController v;
 	
 	
 	@SuppressWarnings("unchecked")
@@ -46,7 +46,7 @@ public class CercaAutoController {
 	public void Cerca(){
 
 		ViewDispatcher dispatcher = new ViewDispatcher();
-		v = new InputVerify();
+		v = new InputController();
 		
 		
 	
