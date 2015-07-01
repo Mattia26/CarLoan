@@ -1,8 +1,6 @@
 package business.entity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import dao.DaoFactory;
 import dao.AutoDao;
 import entity.Auto;
@@ -19,16 +17,16 @@ public class AutoBusiness {
 			e.printStackTrace();
 		}
 	}
-	public boolean inserisciAuto(String nome, String targa, char fascia, 
+	public boolean inserisciAuto(String modello, String targa, char fascia, 
 			double ultimoChilometraggio) {
 		// TODO Auto-generated method stub
-		return auto.inserisciAuto(nome, targa, fascia, ultimoChilometraggio);
+		return auto.inserisciAuto(modello, targa, fascia, ultimoChilometraggio);
 	}
 
-	public boolean modificaAuto(String targa, boolean disponibile, 
-		boolean inManutenzione, String dataManutenzioneOrdinaria, double ultimoChilometraggio) {
+	public boolean modificaAuto(String targa, boolean inManutenzione, 
+			String dataManutenzioneOrdinaria, double ultimoChilometraggio) {
 		// TODO Auto-generated method stub
-		return auto.modificaAuto(targa, disponibile, inManutenzione, 
+		return auto.modificaAuto(targa, inManutenzione, 
 				dataManutenzioneOrdinaria, ultimoChilometraggio);
 	}
 

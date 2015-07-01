@@ -1,17 +1,17 @@
 package entity;
 
+
 public class Cliente {
 	private final String nome;
 	private final String cognome;
 	private int numeroTelefono;
-	private final String codiceFiscale;
+	private final String codFiscale;
 	
-	public Cliente(String nome, String cognome, int numeroTelefono,String CF) {
+	public Cliente(String nome, String cognome, int numeroTelefono, String codFiscale) {
 		this.nome=nome;
 		this.cognome=cognome;
 		this.numeroTelefono=numeroTelefono;
-		this.codiceFiscale = CF;
-		
+		this.codFiscale=codFiscale;
 	}
 	
 	public String getNome() {
@@ -25,13 +25,12 @@ public class Cliente {
 		return numeroTelefono;
 	}
 	
-	public String getCF() {
-		return codiceFiscale;
+	public String getCodFiscale() {
+		return codFiscale;
 	}
 	
 	public void setNumeroTelefono(int numeroTelefono) {
 		this.numeroTelefono=numeroTelefono;
 	}
-	
 	
 }

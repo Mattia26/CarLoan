@@ -1,8 +1,6 @@
 package business.entity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import dao.DaoFactory;
 import dao.ContrattoDao;
 import entity.Contratto;
@@ -21,23 +19,27 @@ public class ContrattoBusiness {
 	}
 	public int inserisciContratto(String codiceFiscaleCliente, String targaMacchina,
 			String dataInizio, String dataFine, int acconto, char tipologia,
-			char tipoKm, int idDitta) {
+			char tipoKm, String dittaRestituzione) {
 		// TODO Auto-generated method stub
 		return contratto.inserisciContratto(codiceFiscaleCliente, targaMacchina, 
-				dataInizio, dataFine, acconto, tipologia, tipoKm, idDitta);
+				dataInizio, dataFine, acconto, tipologia, tipoKm, dittaRestituzione);
 	}
 
 	public  boolean modificaContratto(int idContratto,
 			String targaMacchina, String dataInizio, String dataFIne,
-			int acconto, char tipologia, char tipoKm, int idDitta) {
+			int acconto, char tipologia, char tipoKm, String dittaRestituzione) {
 		// TODO Auto-generated method stub
 		return contratto.modificaContratto(idContratto, targaMacchina, 
-				dataInizio, dataFIne, acconto, tipologia, tipoKm, idDitta);
+				dataInizio, dataFIne, acconto, tipologia, tipoKm, dittaRestituzione);
 	}
 
 	public boolean cancellaContratto(int idContratto) {
 		// TODO Auto-generated method stub
 		return contratto.cancellaContratto(idContratto);
+	}
+	
+	public boolean chiudiContratto(int idContratto) {
+		return contratto.chiudiContratto(idContratto);
 	}
 
 	public ArrayList<Contratto> getContrattiAttivi() {
@@ -45,7 +47,7 @@ public class ContrattoBusiness {
 		return contratto.getContrattiAttivi();
 	}
 
-	public ArrayList<HashMap<String, String>> getContrattiSistema() {
+	public ArrayList<Contratto> getContrattiSistema() {
 		// TODO Auto-generated method stub
 		return contratto.getContrattiSistema();
 	}

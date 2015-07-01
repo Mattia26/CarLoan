@@ -1,20 +1,32 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import business.BusinessDelegate;
+
 public class StipulaContratto implements Command{
-	//attributo di tipo Business Delegato
 	
-			public Object Execute(String parameter){
-				
-				return null;
-			}
+	BusinessDelegate bd;
+	
+	@Override
+	public Object Execute(String parameter){
+		return null;
+	}
 
-			@Override
-			public Object Execute(ArrayList<String> parameters) {
-				boolean ritorno = true;
-				//istanziare l'attributo e richiedere il servizio
-				return ritorno;
-			}
-
+	@Override
+	public Object Execute(ArrayList<String> parameters) {
+		bd = new BusinessDelegate();
+		boolean stipulato = false;
+		try {
+			stipulato = (boolean) bd.handleRequest("StipulaContratto", parameters);
+		} catch (ClassNotFoundException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| InstantiationException | NoSuchMethodException
+				| SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return stipulato;
+	}
 }

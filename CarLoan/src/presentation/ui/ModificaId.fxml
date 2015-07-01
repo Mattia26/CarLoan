@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.ModificaIdController">
+   <children>
+      <GridPane layoutX="150.0" layoutY="174.0" prefHeight="25.0" prefWidth="339.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="109.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="141.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label layoutX="171.0" layoutY="189.0" text="Id Contratto" />
+            <TextField fx:id="id" layoutX="269.0" layoutY="184.0" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Button layoutX="305.0" layoutY="257.0" mnemonicParsing="false" onAction="#Ok" text="OK" />
+      <Button layoutX="201.0" layoutY="257.0" mnemonicParsing="false" onAction="#Indietro" text="Indietro" />
+   </children>
+</Pane>

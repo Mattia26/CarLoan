@@ -1,7 +1,9 @@
 package entity;
 
+
 public class Contratto {
-	private final String codiceFiscale;
+	private final int id;
+	private final String codFiscaleCliente;
 	private String targaMacchina;
 	private String dataInizio;
 	private String dataFine;
@@ -10,17 +12,17 @@ public class Contratto {
 	private char tipoChilometraggio;
 	private String sedeRestituzione;
 	
-	public Contratto(String CF, String targaMacchina, String dataInizio, 
-			String dataFine, int acconto, char tipo, char tipoKm, String sede) {
-		this.codiceFiscale=CF;
+	public Contratto(int id, String codFiscaleCliente, String targaMacchina, String dataInizio, 
+			String dataFine, int acconto, char tipo, char tipoKm, String sedeRestituzione) {
+		this.id=id;
+		this.codFiscaleCliente=codFiscaleCliente;
 		this.targaMacchina=targaMacchina;
 		this.dataInizio=dataInizio;
 		this.dataFine=dataFine;
 		this.acconto=acconto;
 		this.tipologia=tipo;
 		this.tipoChilometraggio=tipoKm;
-		this.sedeRestituzione=sede;
-	
+		this.sedeRestituzione=sedeRestituzione;
 	}
 	
 	public void setMacchina(String targa) {
@@ -51,7 +53,13 @@ public class Contratto {
 		this.sedeRestituzione=sede;
 	}
 	
+	public int getId() {
+		return this.id;
+	}
 	
+	public String getCliente() {
+		return this.codFiscaleCliente;
+	}
 	
 	public String getTargaMacchina() {
 		return this.targaMacchina;
@@ -79,9 +87,5 @@ public class Contratto {
 	
 	public String sedeRestituzione() {
 		return this.sedeRestituzione;
-	}
-	
-	public String getCF(){
-		return this.codiceFiscale;
 	}
 }

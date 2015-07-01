@@ -1,21 +1,35 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import business.BusinessDelegate;
+import entity.Contratto;
 
 public class CercaContratto implements Command{
-	//attributo di tipo Business Delegato
-	
-			public Object Execute(String parameter){
-				ArrayList<String> ritorno = null;
-				//istanziare l'attributo e richiedere il servizio
-				return ritorno;
-				
-			}
 
-			@Override
-			public Object Execute(ArrayList<String> parameters) {
-				// TODO Auto-generated method stub
-				return null;
-			}
+	BusinessDelegate b;
+	
+	@Override
+	public Object Execute(String parameter){
+		Contratto c;
+		try {
+			b= new BusinessDelegate();
+			c = (Contratto) b.handleRequest("CercaContratto", parameter);
+			return c.toString();
+		} catch (ClassNotFoundException | NoSuchMethodException
+				| SecurityException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Object Execute(ArrayList<String> parameters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

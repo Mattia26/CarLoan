@@ -6,19 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import dao.MySQLDaoFactory;
 import dao.OperatoreDao;
+import entity.Operatore;
 
 public class MySQLOperatoreDao implements OperatoreDao{
 
 	@Override
-	public boolean inserisciOperatore(String nome, String cognome, int età, String nickname) {
+	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
+			int numTelefono, String nickname) {
 		// TODO Auto-generated method stub
 		boolean inserito;
-		String queryInserimento="insert into operators(nome, cognome, eta, nickname) "
-				+ "values(?, ?, ?, ?);";
+		String queryInserimento="insert into operators(nome, cognome, indirizzo, "
+				+ "telefono, nickname) values(?, ?, ?, ?);";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -26,8 +26,9 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			
 			statement.setString(1, nome);
 			statement.setString(2, cognome);
-			statement.setInt(3, età);
-			statement.setString(4, nickname);
+			statement.setString(3, indirizzo);
+			statement.setInt(4, numTelefono);
+			statement.setString(5, nickname);
 			try {
 				if(statement.executeUpdate()==1)	
 					inserito=true;
@@ -49,7 +50,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	}
 
 	@Override
-	public boolean modificaDatiOperatore(String nome, String cognome, int età, String nickname) {
+	public boolean modificaDatiOperatore(String nome, String cognome, 
+			String indirizzo, int numTelefono, String nickname) {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String queryModifica;
@@ -58,11 +60,11 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(queryModifica);
-			
 			statement.setString(1, nome);
 			statement.setString(2, cognome);
-			statement.setInt(3, età);
-			statement.setString(4, nickname);
+			statement.setString(3, indirizzo);
+			statement.setInt(4, numTelefono);
+			statement.setString(5, nickname);
 			if(statement.executeUpdate()==1)
 				modificato=true;
 			else
@@ -76,6 +78,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		return modificato;
 	}
 
+	
+	
 	@Override
 	public boolean rimuoviOperatore(String nickname) {
 		// TODO Auto-generated method stub
@@ -85,7 +89,6 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(queryRimozione);
-			
 			statement.setString(1, nickname);
 			if(statement.executeUpdate()==1)
 				rimosso=true;
@@ -101,10 +104,12 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		return rimosso;
 	}
 
+	
+	
 	@Override
-	public ArrayList<HashMap<String, String>> getOperatori() {
+	public ArrayList<Operatore> getOperatori() {
 		// TODO Auto-generated method stub
-		ArrayList<HashMap<String, String>> result;
+		ArrayList<Operatore> result;
 		String operatori;
 		operatori = "select * from operators;";
 		
@@ -114,14 +119,13 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			if(statement!=null) {
 				try {
 					ResultSet rs=statement.executeQuery(operatori);
-					result = new ArrayList<HashMap<String,String>>();
+					result = new ArrayList<Operatore>();
 					while(rs.next()) {
-						HashMap<String,String> currentTuple = new HashMap<String,String>();
-						currentTuple.put("Nickname: ", rs.getString("nickname"));
-						currentTuple.put("Nome: ", rs.getString("nome"));
-						currentTuple.put("Cognome: ",rs.getString("cognome"));
-						currentTuple.put("Et�: ", rs.getString("eta"));
-						result.add(currentTuple);
+						Operatore o = new Operatore (rs.getString("nome"), 
+						rs.getString("cognome"), rs.getString("indirizzo"),
+						rs.getInt("telefono"), rs.getString("nickname"));
+				
+						result.add(o);
 					}
 					rs.close();
 					statement.close();

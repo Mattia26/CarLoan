@@ -1,15 +1,18 @@
 package entity;
 
+
 public class Operatore {
 	private final String nome;
 	private final String cognome;
-	private int età;
+	private String indirizzo;
+	private int numTelefono;
 	private final String nickname;
 	
-	public Operatore(String nome, String cognome, int età, String nickname) {
+	public Operatore(String nome, String cognome, String indirizzo, int tel, String nickname) {
 		this.nome=nome;
 		this.cognome=cognome;
-		this.età=età;
+		this.indirizzo=indirizzo;
+		this.numTelefono=tel;
 		this.nickname=nickname;
 	}
 	
@@ -21,12 +24,23 @@ public class Operatore {
 		return cognome;
 	}
 	
-	public int getEtà() {
-		return età;
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+	public int getNumTelefono() {
+		return numTelefono;
 	}
 	
 	public String getNickname() {
 		return nickname;
+	}
+	
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo=indirizzo;
+	}
+	
+	public void setNumTelefono(int numTelefono) {
+		this.numTelefono=numTelefono;
 	}
 	
 }

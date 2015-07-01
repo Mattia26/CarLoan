@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import dao.ClienteDao;
 import dao.MySQLDaoFactory;
+import entity.Cliente;
 
 public class MySQLClienteDao implements ClienteDao {
 
@@ -48,6 +47,8 @@ public class MySQLClienteDao implements ClienteDao {
 		return inserito;
 	}
 
+	
+	
 	@Override
 	public boolean modificaCliente(String codFiscale, int numTel) {
 		// TODO Auto-generated method stub
@@ -81,6 +82,8 @@ public class MySQLClienteDao implements ClienteDao {
 		return modificato;
 	}
 
+	
+	
 	@Override
 	public boolean rimuoviCliente(String codFiscale) {
 		// TODO Auto-generated method stub
@@ -91,7 +94,6 @@ public class MySQLClienteDao implements ClienteDao {
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(query_rimozione);
-			
 			statement.setString(1, codFiscale);
 			try {
 				if(statement.executeUpdate()==1)
@@ -113,10 +115,12 @@ public class MySQLClienteDao implements ClienteDao {
 		return rimosso;
 	}
 
+	
+	
 	@Override
-	public ArrayList<HashMap<String, String>> getClienti() {
+	public ArrayList<Cliente> getClienti() {
 		// TODO Auto-generated method stub
-		ArrayList<HashMap<String, String>> result;
+		ArrayList<Cliente> result;
 		String clienti_sistema;
 		clienti_sistema= "select * from clients;";
 		
@@ -126,14 +130,12 @@ public class MySQLClienteDao implements ClienteDao {
 			if(statement!=null) {
 				try{
 					ResultSet rs=statement.executeQuery(clienti_sistema);
-					result = new ArrayList<HashMap<String,String>>();
+					result = new ArrayList<Cliente>();
 					while(rs.next()) {
-						HashMap<String,String> current_tuple = new HashMap<String,String>();
-						current_tuple.put("Nome: ", rs.getString("nome"));
-						current_tuple.put("Cognome: ", rs.getString("cognome"));
-						current_tuple.put("N° di Telefono: ",rs.getString("telefono"));
-						current_tuple.put("Codice Fiscale: ", rs.getString("codice_fiscale"));
-						result.add(current_tuple);
+						Cliente c = new Cliente(rs.getString("nome"), rs.getString("cognome"),
+								rs.getInt("telefono"), rs.getString("codice_fiscale"));
+					
+						result.add(c);
 					}
 					rs.close();
 					statement.close();

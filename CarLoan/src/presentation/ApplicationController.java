@@ -121,7 +121,7 @@ public class ApplicationController implements ApplicationControllerI {
 		
 		case "ChiudiContratto":
 			command = new ChiusuraContratto();
-			ritorno = command.Execute(parameters);
+			ritorno = command.Execute(parameters.get(0));
 		break;
 		
 		case "ModificaContratto":

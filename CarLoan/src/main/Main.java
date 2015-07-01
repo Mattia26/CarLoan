@@ -3,12 +3,15 @@ package main;
 
 import java.io.IOException;
 
+import presentation.FrontController;
 import presentation.GestioneSessione;
+import presentation.ViewDispatcher;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 
 
 
@@ -19,11 +22,13 @@ public class Main extends Application{
 
 	public static void main(String[] args){
 		launch(args);
+		
 	}
 	public void start(Stage stage) throws IOException{
 		
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/presentation/ui/Avvio.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource
+				("/presentation/ui/Avvio.fxml"));
 		
 		Scene sc = new Scene(root,600,400);
 		GestioneSessione.setScene(sc);
@@ -36,8 +41,6 @@ public class Main extends Application{
         stage.setResizable(false);
         stage.show();
 		
-		
-
 		
 		
 	}

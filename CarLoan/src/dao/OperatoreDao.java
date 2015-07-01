@@ -1,11 +1,13 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import entity.Operatore;
 
 public interface OperatoreDao {
-	public boolean inserisciOperatore(String nome, String cognome, int età, String nickname);
-	public boolean modificaDatiOperatore(String nome, String cognome, int età, String nickname);
+	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
+			int numTelefono, String nickname);
+	public boolean modificaDatiOperatore(String nome, String cognome, String indirizzo, 
+			int numTelefono, String nickname);
 	public boolean rimuoviOperatore(String nickname);
-	public ArrayList<HashMap<String, String>> getOperatori();
+	public ArrayList<Operatore> getOperatori();
 }
