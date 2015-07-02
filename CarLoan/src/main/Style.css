@@ -31,7 +31,7 @@
 }
 
 #NomeOperatore {
-	-fx-font-size: 14px;
+	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
 	-fx-text-fill: #d3d3d3;
 	-fx-effect: null;
@@ -52,7 +52,7 @@
 }
 
 #ModificaProfilo {
-	-fx-font-size: 14px;
+	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
 	-fx-text-fill: #dc143c;
 	-fx-effect: null;
@@ -63,7 +63,7 @@
 }
 
 #Logout {
-	-fx-font-size: 14px;
+	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
 	-fx-text-fill: #dc143c;
 	-fx-effect: null;
@@ -71,4 +71,30 @@
 
 #Logout:hover {
 	-fx-text-fill: #ff0000;
+}
+
+#NomeOperatoreR {
+	-fx-font-size: 9px;
+	-fx-text-fill: black;
+	-fx-effect: null;
+}
+
+#CognomeOperatoreR {
+	-fx-font-size: 9px;
+	-fx-text-fill: black;
+	-fx-effect: null;
+}
+
+#TelefonoOperatoreR {
+	-fx-font-size: 9px;
+	-fx-text-fill: black;
+	-fx-effect: null;
+}
+
+#nc,#cc,#cf,#av,#a,#di,#df,#t,#sr,#ch,#telc{
+	-fx-font-size: 11px;
+}
+
+#id,#km,#kmPercorsi{
+	-fx-font-size: 11px;
 }

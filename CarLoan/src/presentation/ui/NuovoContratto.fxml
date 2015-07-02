@@ -29,8 +29,8 @@
             <Label fx:id="df" layoutX="85.0" layoutY="105.0" prefHeight="15.0" prefWidth="167.0" text="Data Fine" GridPane.rowIndex="2" />
             <Label fx:id="ch" layoutX="85.0" layoutY="178.0" prefHeight="15.0" prefWidth="170.0" text="Chilometraggio" GridPane.rowIndex="5" />
             <TextField fx:id="targa" editable="false" GridPane.columnIndex="1" />
-            <TextField fx:id="dataInizio" promptText="gg/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="dataFine" promptText="gg/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="dataInizio" editable="false" promptText="gg/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="dataFine" editable="false" promptText="gg/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="sede" prefHeight="25.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ChoiceBox fx:id="tipo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="chilometraggio" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -46,19 +46,22 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="nc" text="Nome Cliente" />
             <Label fx:id="cc" text="Cognome Cliente" GridPane.rowIndex="1" />
             <Label fx:id="cf" text="Codice Fiscale" GridPane.rowIndex="2" />
             <Label fx:id="av" text="Acconto Versato" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nomeC" GridPane.columnIndex="1" />
+            <TextField fx:id="cognomeC" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="codiceFiscale" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="acconto" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="telc" text="Telefono Cliente" GridPane.rowIndex="4" />
+            <TextField fx:id="telefono" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="indietro" layoutX="127.0" layoutY="316.0" mnemonicParsing="false" text="Indietro" />
-      <Button fx:id="conferma" layoutX="419.0" layoutY="316.0" mnemonicParsing="false" text="Conferma" />
+      <Button fx:id="indietro" layoutX="127.0" layoutY="316.0" mnemonicParsing="false" onAction="#Indietro" text="Indietro" />
+      <Button fx:id="conferma" layoutX="419.0" layoutY="316.0" mnemonicParsing="false" onAction="#Conferma" text="Conferma" />
    </children>
 </Pane>

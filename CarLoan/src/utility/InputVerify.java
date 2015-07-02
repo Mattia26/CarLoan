@@ -1,5 +1,7 @@
 package utility;
 
+import java.time.LocalDate;
+
 
 
 public class InputVerify {
@@ -9,12 +11,21 @@ public class InputVerify {
 	private static final String CODICE_FISCALE_PATTERN =
 			"[a-zA-Z]{6}\\d\\d[a-zA-Z]\\d\\d[a-zA-Z]\\d\\d\\d[a-zA-Z]";
 	
-	public boolean dateVerify(String t) {
-		return t.matches(DATE_PATTERN);
+	public static boolean dateVerify(String t) {
+		boolean ritorno = false;
+		ritorno = t.matches(DATE_PATTERN);
+		System.out.println(ritorno);
+		if(ritorno == true){
+			LocalDate date = InputController.getCalendar(t);
+			System.out.println(date);
+			if(date.isBefore(LocalDate.now()))
+				ritorno = false;
+		}
+		return ritorno;
 		
 	}
 	
-	public boolean codiceFiscaleVerify(String t){
+	public static boolean codiceFiscaleVerify(String t){
 		return t.matches(CODICE_FISCALE_PATTERN);
 	}
 }

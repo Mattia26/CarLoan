@@ -95,6 +95,6 @@
 	-fx-font-size: 11px;
 }
 
-#id,#km,#kmp{
+#id,#km,#kmPercorsi{
 	-fx-font-size: 11px;
 }

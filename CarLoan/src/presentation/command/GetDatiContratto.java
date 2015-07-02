@@ -23,6 +23,7 @@ public class GetDatiContratto implements Command{
 		ritorno.add("Bianchi");
 		ritorno.add("mnnmtt93r26f104d");
 		ritorno.add("50");
+		ritorno.add("333333333");
 		return ritorno;
 	}
 

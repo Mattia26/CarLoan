@@ -11,12 +11,32 @@ public class InputController {
 	private static final String CODICE_FISCALE_PATTERN =
 			"[a-zA-Z]{6}\\d\\d[a-zA-Z]\\d\\d[a-zA-Z]\\d\\d\\d[a-zA-Z]";
 	
-	public boolean dateVerify(String t) {
-		return t.matches(DATE_PATTERN);
+	public static boolean dateVerify(String t) {
+		boolean ritorno = false;
+		ritorno = t.matches(DATE_PATTERN);
+		if(ritorno == true){
+			LocalDate date = InputController.getCalendar(t);
+			if(date.isBefore(LocalDate.now()))
+				ritorno = false;
+		}
+		return ritorno;
 		
 	}
 	
-	public boolean codiceFiscaleVerify(String t){
+	public static boolean dateVerify(String dal, String al){
+		boolean ritorno = false;
+		
+		LocalDate Dal = InputController.getCalendar(dal);
+		LocalDate Al = InputController.getCalendar(al);
+		
+		if(Dal.isBefore(Al) || Dal.isEqual(Al))
+			ritorno = true;
+		
+		return ritorno;
+		
+	}
+	
+	public static boolean codiceFiscaleVerify(String t){
 		return t.matches(CODICE_FISCALE_PATTERN);
 	}
 	

@@ -45,6 +45,9 @@ public class NuovoContrattoController implements Initializable{
 	
 	@FXML
 	private TextField acconto;
+	
+	@FXML
+	private TextField telefono;
 
 	@FXML
 	public void Conferma(){
@@ -56,16 +59,16 @@ public class NuovoContrattoController implements Initializable{
 			v.showMessage(1, "Errore", "Completare tutti i campi!");
 		}
 		else{
-			InputController i = new InputController();
+			
 			ViewDispatcher w = new ViewDispatcher();
 			
-			if(!i.dateVerify(dataInizio.getText()) || !i.dateVerify(dataFine.getText())){
+			if(!InputController.dateVerify(dataInizio.getText()) || !InputController.dateVerify(dataFine.getText())){
 				
 				w.showMessage(1, "Errore", "Le date non sono corrette!");
 					
 						
 			}
-			else if(!i.codiceFiscaleVerify(codiceFiscale.getText()))
+			else if(!InputController.codiceFiscaleVerify(codiceFiscale.getText()))
 				w.showMessage(1, "Errore", "Il codice fiscale non è corretto!");
 			else{
 				ArrayList<String> parameters = new ArrayList<String>();
@@ -79,6 +82,7 @@ public class NuovoContrattoController implements Initializable{
 				parameters.add(cognomeC.getText());
 				parameters.add(codiceFiscale.getText());
 				parameters.add(acconto.getText());
+				parameters.add(telefono.getText());
 				FrontController fc = new FrontController();
 				ViewDispatcher vd = new ViewDispatcher();
 				if((boolean)fc.handleRequest("NuovoContratto",parameters)){
@@ -102,6 +106,8 @@ public class NuovoContrattoController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		targa.setText(GestioneSessione.getTarga());
+		dataInizio.setText(GestioneSessione.getDataInzio());
+		dataFine.setText(GestioneSessione.getDataFine());
 		sede.setItems(FXCollections.observableArrayList("Milano","Brescia","Napoli"));
 		tipo.setItems(FXCollections.observableArrayList("Giornaliera","Settimanale"));
 		chilometraggio.setItems(FXCollections.observableArrayList("Limitato","Illimitato"));

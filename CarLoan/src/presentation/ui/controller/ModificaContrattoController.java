@@ -47,6 +47,9 @@ public class ModificaContrattoController implements Initializable{
 	private TextField acconto;
 	
 	@FXML
+	private TextField TelefonoCliente;
+	
+	@FXML
 	public void Indietro(){
 		FrontController fc = new FrontController();
 		fc.handleRequest("ModificaId");
@@ -118,6 +121,7 @@ public class ModificaContrattoController implements Initializable{
 		cognomeC.setText(dati.get(7));
 		codiceFiscale.setText(dati.get(8));
 		acconto.setText(dati.get(9));
+		TelefonoCliente.setText(dati.get(10));
 	}
 
 }

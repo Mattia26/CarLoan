@@ -13,6 +13,8 @@ public class GestioneSessione {
 	private static String telefonoOperatore = null;
 	private static String targaAutoSelezionata = null;
 	private static String contrattoSelezionato = null;
+	private static String dataInizio = null;
+	private static String dataFine = null;
 	
 	public static String getUsername(){
 		return username;
@@ -86,6 +88,21 @@ public class GestioneSessione {
 		return contrattoSelezionato;
 	}
 	
+	public static void setDataInizio(String dal){
+		dataInizio = dal;
+	}
+	
+	public static String getDataInzio(){
+		return dataInizio;
+	}
+	
+	public static void setDataFine(String al){
+		dataFine = al;
+	}
+	
+	public static String getDataFine(){
+		return dataFine;
+	}
 	public static void azzera(){
 		username = null;
 		password = null;
@@ -95,6 +112,8 @@ public class GestioneSessione {
 		telefonoOperatore = null;
 		targaAutoSelezionata = null;
 		contrattoSelezionato = null;
+		dataInizio = null;
+		dataFine = null;
 	}
 
 }

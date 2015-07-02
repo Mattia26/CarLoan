@@ -30,7 +30,7 @@ public class CercaAutoController {
 	@FXML
 	private Button avanti;
 	
-	private InputController v;
+	
 	
 	
 	@SuppressWarnings("unchecked")
@@ -46,15 +46,13 @@ public class CercaAutoController {
 	public void Cerca(){
 
 		ViewDispatcher dispatcher = new ViewDispatcher();
-		v = new InputController();
-		
 		
 	
-		if(Dal.getText().isEmpty() && Al.getText().isEmpty() && TipoBox.getValue() == null){
+		if(Dal.getText().isEmpty() || Al.getText().isEmpty()){
 			
-			dispatcher.showMessage(1, "Errore", "Inserire almeno un tipo o data di inizio e fine noleggio");
+			dispatcher.showMessage(1, "Errore", "Inserire almeno data di inizio e fine noleggio");
 		}
-		else if(TipoBox.getValue()==null && (!v.dateVerify(Dal.getText()) || !v.dateVerify(Al.getText()))){
+		else if(!InputController.dateVerify(Dal.getText()) || !InputController.dateVerify(Al.getText()) || !InputController.dateVerify(Dal.getText(),Al.getText())){
 			Dal.setText("");
 			Al.setText("");
 			dispatcher.showMessage(1, "Errore", "Le date inserite non sono corrette");
@@ -86,6 +84,8 @@ public class CercaAutoController {
 		String selezione = (String)vista.getSelectionModel().getSelectedItem();
 		String[] targa = selezione.split(" ");
 		GestioneSessione.setTarga(targa[0]);
+		GestioneSessione.setDataInizio(Dal.getText());
+		GestioneSessione.setDataFine(Al.getText());
 		FrontController fc = new FrontController();
 		fc.handleRequest("NuovoContratto");
 		
