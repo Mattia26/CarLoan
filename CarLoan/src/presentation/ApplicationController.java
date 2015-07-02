@@ -61,6 +61,12 @@ public class ApplicationController implements ApplicationControllerI {
 		case "GetDatiContratto":
 			command = new GetDatiContratto();
 			ritorno = command.Execute(GestioneSessione.getId());
+		break;
+		
+		case "AnnullaContratto":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("AnnullaContratto.fxml");
+		break;
 		}
 		
 		
