@@ -17,29 +17,23 @@ public class ContrattoBusiness {
 			e.printStackTrace();
 		}
 	}
-	public int inserisciContratto(String codiceFiscaleCliente, String targaMacchina,
-			String dataInizio, String dataFine, int acconto, char tipologia,
-			char tipoKm, String dittaRestituzione) {
+	public int inserisciContratto(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.inserisciContratto(codiceFiscaleCliente, targaMacchina, 
-				dataInizio, dataFine, acconto, tipologia, tipoKm, dittaRestituzione);
+		return contratto.inserisciContratto(c.getCliente(), c.getTargaMacchina(), 
+		c.getDataInizio(), c.getDataFine(), c.getQuotaAcconto(), c.getTipologia(), 
+		c.getTipoChilometraggio(), c.sedeRestituzione(), c.macchinaRitirata());
 	}
 
-	public  boolean modificaContratto(int idContratto,
-			String targaMacchina, String dataInizio, String dataFIne,
-			int acconto, char tipologia, char tipoKm, String dittaRestituzione) {
+	public  boolean modificaContratto(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.modificaContratto(idContratto, targaMacchina, 
-				dataInizio, dataFIne, acconto, tipologia, tipoKm, dittaRestituzione);
+		return contratto.modificaContratto(c.getId(), c.getTargaMacchina(), c.getDataInizio(), 
+			c.getDataFine(), c.getQuotaAcconto(), c.getTipologia(), c.getTipoChilometraggio(), 
+			c.sedeRestituzione(), c.chiuso(), c.macchinaRitirata());
 	}
 
-	public boolean cancellaContratto(int idContratto) {
+	public boolean cancellaContratto(int id) {
 		// TODO Auto-generated method stub
-		return contratto.cancellaContratto(idContratto);
-	}
-	
-	public boolean chiudiContratto(int idContratto) {
-		return contratto.chiudiContratto(idContratto);
+		return contratto.cancellaContratto(id);
 	}
 
 	public ArrayList<Contratto> getContrattiAttivi() {
@@ -52,10 +46,9 @@ public class ContrattoBusiness {
 		return contratto.getContrattiSistema();
 	}
 
-	public int getId(String targaMacchina, String dataInizio,
-			String dataFIne) {
+	public int getId(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.getId(targaMacchina, dataInizio, dataFIne);
+		return contratto.getId(c.getTargaMacchina(), c.getDataInizio(), c.getDataFine());
 	}
 	
 }

@@ -9,24 +9,26 @@ import business.entity.OperatoreBusiness;
 public class GestisciOperatore {
 	private OperatoreBusiness ob;
 	
-	public Object inserisciNuovoOperatore(ArrayList<String> operatorParameters) {
+	public Object inserisciOperatore(ArrayList<String> operatorParameters) {
 		ob = new OperatoreBusiness();
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
 		int numTelefono=Integer.parseInt(operatorParameters.get(3));
 		String nickname=operatorParameters.get(4);
-		return ob.inserisciOperatore(nome, cognome, indirizzo, numTelefono, nickname);
+		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
+		return ob.inserisciOperatore(o);
 	}
 	
-	public Object modificaDatiOperatore(ArrayList<String> operatorParameters) {
+	public Object modificaOperatore(ArrayList<String> operatorParameters) {
 		ob = new OperatoreBusiness();
 		String nickname=GestioneSessione.getUsername();
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
 		int numTelefono=Integer.parseInt(operatorParameters.get(3));
-		return ob.modificaDatiOperatore(nome, cognome, indirizzo, numTelefono, nickname);
+		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
+		return ob.modificaDatiOperatore(o);
 	}
 	
 	public Object eliminaOperatore(String nickname) {

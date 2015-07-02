@@ -18,16 +18,16 @@ public class OperatoreBusiness {
 		}
 		
 	}
-	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
-			int numTelefono, String nickname) {
+	public boolean inserisciOperatore(Operatore o) {
 		// TODO Auto-generated method stub
-		return operatore.inserisciOperatore(nome, cognome, indirizzo, numTelefono, nickname);
+		return operatore.inserisciOperatore(o.getNome(), o.getCognome(), o.getIndirizzo(), 
+				o.getNumTelefono(), o.getNickname());
 	}
 
-	public boolean modificaDatiOperatore(String nome, String cognome, String indirizzo,
-			int numTelefono, String nickname) {
+	public boolean modificaDatiOperatore(Operatore o) {
 		// TODO Auto-generated method stub
-		return operatore.modificaDatiOperatore(nome, cognome, indirizzo, numTelefono, nickname);
+		return operatore.modificaDatiOperatore(o.getNome(), o.getCognome(), o.getIndirizzo(), 
+				o.getNumTelefono(), o.getNickname());
 	}
 
 	public boolean rimuoviOperatore(String nickname) {

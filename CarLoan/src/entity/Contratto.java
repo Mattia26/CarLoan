@@ -11,9 +11,12 @@ public class Contratto {
 	private char tipologia;
 	private char tipoChilometraggio;
 	private String sedeRestituzione;
+	private boolean chiuso;
+	private boolean macchinaRitirata;
 	
 	public Contratto(int id, String codFiscaleCliente, String targaMacchina, String dataInizio, 
-			String dataFine, int acconto, char tipo, char tipoKm, String sedeRestituzione) {
+			String dataFine, int acconto, char tipo, char tipoKm, String sedeRestituzione,
+			boolean chiuso, boolean macchinaRitirata) {
 		this.id=id;
 		this.codFiscaleCliente=codFiscaleCliente;
 		this.targaMacchina=targaMacchina;
@@ -23,6 +26,8 @@ public class Contratto {
 		this.tipologia=tipo;
 		this.tipoChilometraggio=tipoKm;
 		this.sedeRestituzione=sedeRestituzione;
+		this.chiuso=chiuso;
+		this.macchinaRitirata=macchinaRitirata;
 	}
 	
 	public void setMacchina(String targa) {
@@ -51,6 +56,14 @@ public class Contratto {
 	
 	public void setSedeRestituzione(String sede) {
 		this.sedeRestituzione=sede;
+	}
+	
+	public void setChiuso(boolean chiuso) {
+		this.chiuso=chiuso;
+	}
+	
+	public void setRitirata(boolean ritiro) {
+		this.macchinaRitirata=ritiro;
 	}
 	
 	public int getId() {
@@ -87,5 +100,13 @@ public class Contratto {
 	
 	public String sedeRestituzione() {
 		return this.sedeRestituzione;
+	}
+	
+	public boolean chiuso() {
+		return chiuso;
+	}
+	
+	public boolean macchinaRitirata() {
+		return macchinaRitirata;
 	}
 }
