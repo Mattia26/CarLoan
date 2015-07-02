@@ -17,19 +17,20 @@ public class ClienteBusiness {
 			e.printStackTrace();
 		}
 	}
-	public boolean inserisciCliente(String nome, String cognome, int numTel, String CF){
+	public boolean inserisciCliente(Cliente c){
 		// TODO Auto-generated method stub
-		return cliente.inserisciCliente(nome, cognome, numTel, CF);
+		return cliente.inserisciCliente(c.getCognome(), c.getCognome(), 
+				c.getNumeroTelefono(), c.getCodFiscale());
 	}
 
-	public boolean modificaCliente(String codFiscale, int numTel) {
+	public boolean modificaCliente(Cliente c) {
 		// TODO Auto-generated method stub
-		return cliente.modificaCliente(codFiscale, numTel);
+		return cliente.modificaCliente(c.getCodFiscale(), c.getNumeroTelefono());
 	}
 
-	public boolean rimuoviCliente(String codFiscale) {
+	public boolean rimuoviCliente(String cf) {
 		// TODO Auto-generated method stub
-		return cliente.rimuoviCliente(codFiscale);
+		return cliente.rimuoviCliente(cf);
 	}
 
 	public ArrayList<Cliente> getClienti() {

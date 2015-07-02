@@ -17,17 +17,15 @@ public class AutoBusiness {
 			e.printStackTrace();
 		}
 	}
-	public boolean inserisciAuto(String modello, String targa, char fascia, 
-			double ultimoChilometraggio) {
+	public boolean inserisciAuto(Auto a) {
 		// TODO Auto-generated method stub
-		return auto.inserisciAuto(modello, targa, fascia, ultimoChilometraggio);
+		return auto.inserisciAuto(a.getModello(), a.getTarga(), a.getFascia(), a.getUltimoChilometraggio());
 	}
 
-	public boolean modificaAuto(String targa, boolean inManutenzione, 
-			String dataManutenzioneOrdinaria, double ultimoChilometraggio) {
+	public boolean modificaAuto(Auto a) {
 		// TODO Auto-generated method stub
-		return auto.modificaAuto(targa, inManutenzione, 
-				dataManutenzioneOrdinaria, ultimoChilometraggio);
+		return auto.modificaAuto(a.getTarga(), a.inManutenzione(),
+				a.getDataManutenzione(), a.getUltimoChilometraggio());
 	}
 
 	public boolean rimuoviAuto(String targa) {

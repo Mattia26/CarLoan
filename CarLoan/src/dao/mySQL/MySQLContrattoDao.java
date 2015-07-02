@@ -16,12 +16,13 @@ public class MySQLContrattoDao implements ContrattoDao{
 	@Override
 	public int inserisciContratto(String codFiscaleCliente, String targaMacchina, 
 			String dataInizio, String dataFine, int acconto, char tipologia, 
-			char tipoKm, String ditta) {
+			char tipoKm, String ditta, boolean macchinaRitirata) {
 		// TODO Auto-generated method stub
 		int id;
 		String queryInserimento = "insert into contracts(codice_fiscale_cliente, "
 				+ "targa_macchina, data_inizio, data_fine, acconto, tipologia, "
-				+ "tipo_chilometraggio, sede_restituzione) values(?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "tipo_chilometraggio, sede_restituzione, macchina_ritirata) "
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -34,6 +35,7 @@ public class MySQLContrattoDao implements ContrattoDao{
 			statement.setString(6, ((Character)tipologia).toString());
 			statement.setString(7, ((Character)tipoKm).toString());
 			statement.setString(8, ditta);
+			statement.setBoolean(9, macchinaRitirata);
 			try {
 				if(statement.executeUpdate()==1) {
 					statement.clearParameters();
@@ -75,13 +77,13 @@ public class MySQLContrattoDao implements ContrattoDao{
 	
 	@Override
 	public boolean modificaContratto(int idContratto, 
-			String targaMacchina, String dataInizio, String dataFine, int acconto, 
-			char tipologia, char tipoChilometraggio, String ditta) {
+		String targaMacchina, String dataInizio, String dataFine, int acconto, char tipologia, 
+		char tipoChilometraggio, String ditta, boolean chiuso, boolean macchinaRit) {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String queryModifica="update contracts set targa_macchina= ?, data_inizio= ?,"
 				+ "data_fine= ?, acconto= ?, tipologia= ?, tipo_chilometraggio=?, "
-				+ "sede_restituzione= ? where id= ?;";
+				+ "sede_restituzione= ?, chiuso= ?, macchina_ritirata= ? where id= ?;";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -93,7 +95,9 @@ public class MySQLContrattoDao implements ContrattoDao{
 			statement.setString(5, ((Character)tipologia).toString());
 			statement.setString(6, ((Character)tipoChilometraggio).toString());
 			statement.setString(7, ditta);
-			statement.setInt(8, idContratto);
+			statement.setBoolean(8, chiuso);
+			statement.setBoolean(9, macchinaRit);
+			statement.setInt(10, idContratto);
 			try {
 			if(statement.executeUpdate()==1)
 				modificato=true;
@@ -145,33 +149,7 @@ public class MySQLContrattoDao implements ContrattoDao{
 		return cancellato;
 	}
 	
-	public boolean chiudiContratto(int idContratto) {
-		boolean chiuso;
-		String queryChiusura = "update contracts set chiuso=true where id= ? ;";
-		
-		try {
-			Connection conn=MySQLDaoFactory.initConnection();
-			PreparedStatement statement=conn.prepareStatement(queryChiusura);
-			statement.setInt(1,idContratto);
-			try {
-				if(statement.executeUpdate()==1)
-					chiuso=true;
-				else
-					chiuso=false;
-			}
-			catch (SQLException e) {
-				System.out.println("impossibile effettuare la query");
-				chiuso=false;
-			}
-			statement.close();
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("impossibile stabilire la connessione con il db");
-			chiuso = false;
-		}
-		return chiuso;
-	}
+	
 
 	@Override
 	public ArrayList<Contratto> getContrattiAttivi() {
@@ -199,8 +177,10 @@ public class MySQLContrattoDao implements ContrattoDao{
 								rs.getString("codice_fiscale_cliente"), 
 								rs.getString("targa_macchina"), rs.getString("data_inizio"), 
 								rs.getString("data_fine"), rs.getInt("acconto"),
-								rs.getString("tipologia").charAt(0), rs.getString("tipo_chilometraggio").charAt(0), 
-								rs.getString("sede_restituzione"));
+								rs.getString("tipologia").charAt(0), 
+								rs.getString("tipo_chilometraggio").charAt(0), 
+								rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
+								rs.getBoolean("macchina_ritirata"));
 						
 						result.add(c);
 					}
@@ -244,7 +224,8 @@ public class MySQLContrattoDao implements ContrattoDao{
 						rs.getString("data_fine"), rs.getInt("acconto"),
 						rs.getString("tipologia").charAt(0), 
 						rs.getString("tipo_chilometraggio").charAt(0), 
-						rs.getString("sede_restituzione"));
+						rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
+						rs.getBoolean("macchina_ritirata"));
 					
 						result.add(c);
 					}

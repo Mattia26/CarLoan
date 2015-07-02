@@ -13,18 +13,45 @@ import entity.Contratto;
 public class GestisciAuto {
 	
 	private AutoBusiness car;
-	private ContrattoBusiness contratto;
+	
+	public GestisciAuto() {
+		car = new AutoBusiness();
+	}
+	
+	public Object inserisciAuto(ArrayList<String> parameters) {
+		Auto a;
+		String targa = parameters.get(0);
+		String modello = parameters.get(1);
+		char fascia = parameters.get(2).charAt(0);
+		boolean inManutenzione = Boolean.parseBoolean(parameters.get(3));
+		String dataManutenzioneOrd = parameters.get(4);
+		double ultimoKm = Double.parseDouble(parameters.get(5));
+		a = new Auto(modello, targa, fascia, inManutenzione, dataManutenzioneOrd, ultimoKm);
+		return car.inserisciAuto(a);
+	}
+	
+	public Object modificaAuto(ArrayList<String> parameters) {
+		Auto a;
+		String targa = parameters.get(0);
+		String modello = parameters.get(1);
+		char fascia = parameters.get(2).charAt(0);
+		boolean inManutenzione = Boolean.parseBoolean(parameters.get(3));
+		String dataManutenzioneOrd = parameters.get(4);
+		double ultimoKm = Double.parseDouble(parameters.get(5));
+		a = new Auto(modello, targa, fascia, inManutenzione, dataManutenzioneOrd, ultimoKm);
+		return car.modificaAuto(a);
+	}
+	
+	public Object eliminaAuto(String parameter) {
+		return car.rimuoviAuto(parameter);
+	}
 	
 	public Object cercaAuto(ArrayList<String> parameters){
 		 ArrayList<Auto> auto = new  ArrayList<Auto>();
 		 ArrayList<Contratto> contratti = new ArrayList<Contratto>();
-		car = new AutoBusiness();
-		contratto = new ContrattoBusiness();
-		
+		ContrattoBusiness contratto = new ContrattoBusiness();
 		auto = car.autoSistema();
 		contratti = contratto.getContrattiAttivi();
-		
-		
 		
 			
 			LocalDate dataInizio = InputController.getCalendar(parameters.get(1));
@@ -49,10 +76,10 @@ public class GestisciAuto {
 							auto.remove(corr);
 						    break;
 						}
-					}
-					
+					}		
 				}
 			}
+			
 			if(parameters.get(0) != null){
 				Iterator<Auto> iter = auto.iterator();
 				while(iter.hasNext()){
@@ -65,5 +92,34 @@ public class GestisciAuto {
 		return auto;
 	}
 	
-
+	
+	public Object inserisciInManutenzione(String parameter) {
+		ArrayList<Auto> autoSistema = car.autoDisponibili();
+		Iterator<Auto> it = autoSistema.iterator();
+		while(it.hasNext()) {
+			Auto a = it.next();
+			if(a.getTarga().equals(parameter)) {
+				a.setInManutenzione(true);
+				return car.modificaAuto(a);
+			}
+		}
+		return false;
+	}
+	
+	public Object fineManutenzione(String parameter) {
+		ArrayList<Auto> autoSistema = car.autoSistema();
+		Iterator<Auto> it = autoSistema.iterator();
+		while(it.hasNext()) {
+			Auto a = it.next();
+			if(a.getTarga().equals(parameter)) {
+				a.setInManutenzione(false);
+				return car.modificaAuto(a);
+			}
+		}
+		return false;
+	}
+	
+	public Object getAutoSistema() {
+		return car.autoSistema();
+	}
 }
