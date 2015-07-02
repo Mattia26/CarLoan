@@ -23,17 +23,17 @@ public class GestisciContratto {
 		GestisciCliente gc=new GestisciCliente();
 		ArrayList<String> datiCliente = new ArrayList<String>();
 		
-		String nomeCliente = parameters.get(0);
-		String cognomeCliente = parameters.get(1);
-		String numTelefonoCliente = parameters.get(2);
-		String cfCliente = parameters.get(3);
-		String targaMacchina = parameters.get(4);
-		String dataInizio = parameters.get(5);
-		String dataFine = parameters.get(6);
-		int acconto = Integer.parseInt(parameters.get(7));
+		String nomeCliente = parameters.get(6);
+		String cognomeCliente = parameters.get(7);
+		String numTelefonoCliente = parameters.get(10);
+		String cfCliente = parameters.get(8);
+		String targaMacchina = parameters.get(0);
+		String dataInizio = parameters.get(1);
+		String dataFine = parameters.get(2);
+		int acconto = Integer.parseInt(parameters.get(9));
 		char tipo = parameters.get(4).charAt(0);
 		char tipoKm = parameters.get(5).charAt(0);
-		String dittaRestituzione = parameters.get(10);
+		String dittaRestituzione = parameters.get(3);
 		boolean autoRitirata;
 		if(InputController.getCalendar(dataInizio).equals(LocalDate.now()))
 			autoRitirata=true;
@@ -47,24 +47,25 @@ public class GestisciContratto {
 		gc.inserisciCliente(datiCliente);
 		
 		
-		Contratto c = new Contratto(-1, cfCliente, targaMacchina, dataInizio, dataFine, acconto, 
+		Contratto c = new Contratto(0, cfCliente, targaMacchina, dataInizio, dataFine, acconto, 
 				tipo, tipoKm, dittaRestituzione, false, autoRitirata);
 		return cb.inserisciContratto(c);
 	}
 	
 	public Object modificaContratto(ArrayList<String> parameters) {
 		int id = Integer.parseInt(parameters.get(0));
-		String cfCliente = parameters.get(1);
-		String targaMacchina = parameters.get(2);
-		String dataInizio = parameters.get(3);
-		String dataFine = parameters.get(4);
-		int acconto = Integer.parseInt(parameters.get(5));
-		char tipo = parameters.get(6).charAt(0);
-		char tipoKm = parameters.get(7).charAt(0);
-		String dittaRestituzione = parameters.get(8);
+		String cfCliente = parameters.get(9);
+		String targaMacchina = parameters.get(1);
+		String dataInizio = parameters.get(2);
+		String dataFine = parameters.get(3);
+		int acconto = Integer.parseInt(parameters.get(10));
+		char tipo = parameters.get(5).charAt(0);
+		char tipoKm = parameters.get(6).charAt(0);
+		String dittaRestituzione = parameters.get(4);
 		
 		Contratto c = new Contratto(id, cfCliente, targaMacchina, dataInizio, dataFine, acconto, 
 				tipo, tipoKm, dittaRestituzione, false, false);
+		
 		
 		return cb.modificaContratto(c);
 		

@@ -4,10 +4,10 @@ package entity;
 public class Cliente {
 	private final String nome;
 	private final String cognome;
-	private int numeroTelefono;
+	private String numeroTelefono;
 	private final String codFiscale;
 	
-	public Cliente(String nome, String cognome, int numeroTelefono, String codFiscale) {
+	public Cliente(String nome, String cognome, String numeroTelefono, String codFiscale) {
 		this.nome=nome;
 		this.cognome=cognome;
 		this.numeroTelefono=numeroTelefono;
@@ -21,7 +21,7 @@ public class Cliente {
 	public String getCognome() {
 		return cognome;
 	}
-	public int getNumeroTelefono() {
+	public String getNumeroTelefono() {
 		return numeroTelefono;
 	}
 	
@@ -29,7 +29,7 @@ public class Cliente {
 		return codFiscale;
 	}
 	
-	public void setNumeroTelefono(int numeroTelefono) {
+	public void setNumeroTelefono(String numeroTelefono) {
 		this.numeroTelefono=numeroTelefono;
 	}
 	

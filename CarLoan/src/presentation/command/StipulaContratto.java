@@ -17,9 +17,9 @@ public class StipulaContratto implements Command{
 	@Override
 	public Object Execute(ArrayList<String> parameters) {
 		bd = new BusinessDelegate();
-		boolean stipulato = false;
+		int id = -1;
 		try {
-			stipulato = (boolean) bd.handleRequest("StipulaContratto", parameters);
+			id = (int) bd.handleRequest("StipulaContratto", parameters);
 		} catch (ClassNotFoundException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | NoSuchMethodException
@@ -27,6 +27,6 @@ public class StipulaContratto implements Command{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return stipulato;
+		return id;
 	}
 }

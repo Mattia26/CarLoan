@@ -8,10 +8,14 @@ import business.entity.ClienteBusiness;
 public class GestisciCliente {
 	ClienteBusiness cb;
 	
+	public GestisciCliente() {
+		cb = new ClienteBusiness();
+	}
+	
 	public Object inserisciCliente(ArrayList<String> parameters) {
 		String nome = parameters.get(0);
 		String cognome = parameters.get(1);
-		int numTelefono = Integer.parseInt(parameters.get(2));
+		String numTelefono = parameters.get(2);
 		String cf = parameters.get(3);
 		Cliente c = new Cliente(nome, cognome, numTelefono, cf);
 		return cb.inserisciCliente(c);
@@ -20,7 +24,7 @@ public class GestisciCliente {
 	public Object modificaCliente(ArrayList<String> parameters) {
 		String nome = parameters.get(0);
 		String cognome = parameters.get(1);
-		int numTelefono = Integer.parseInt(parameters.get(2));
+		String numTelefono = parameters.get(2);
 		String cf = parameters.get(3);
 		Cliente c = new Cliente(nome, cognome, numTelefono, cf);
 		return cb.modificaCliente(c);

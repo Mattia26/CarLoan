@@ -53,4 +53,22 @@ public class InputController {
 		
 		return data;
 	}
+	
+	public static String stringTodate(String s){
+		String ritorno;
+		String splitted[] = s.split("/");
+		
+		ritorno = splitted[2] + "-" + splitted[1] + "-" + splitted[0];
+		
+		return ritorno;
+	}
+	
+	public static String dateToString(String s){
+		String ritorno;
+		String splitted[] = s.split("-");
+		
+		ritorno = splitted[2] + "/" + splitted[1] + "/" + splitted[0];
+		
+		return ritorno;
+	}
 }

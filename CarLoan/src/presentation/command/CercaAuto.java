@@ -30,8 +30,8 @@ public class CercaAuto implements Command{
 						Iterator<Auto> it = auto.iterator();
 						while(it.hasNext()){
 							Auto current = it.next();
-							String automobile = current.getTarga() + current.getModello() + 
-									current.getFascia() + current.getUltimoChilometraggio();
+							String automobile = current.getTarga() + "  " + current.getModello() + 
+									"  " + current.getFascia()+ "  " + current.getUltimoChilometraggio();
 							ritorno.add(automobile);
 						}
 					} catch (ClassNotFoundException | NoSuchMethodException

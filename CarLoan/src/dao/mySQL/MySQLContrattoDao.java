@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import utility.InputController;
 import entity.Contratto;
 import dao.ContrattoDao;
 import dao.MySQLDaoFactory;
@@ -61,6 +63,8 @@ public class MySQLContrattoDao implements ContrattoDao{
 			}
 			catch(SQLException e) {
 				System.out.println("impossibile effettuare correttamente la query");
+				System.out.println(statement);
+				System.out.println("fsdasf");
 				return -1;
 			}
 			finally {

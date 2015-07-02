@@ -85,7 +85,7 @@ public class NuovoContrattoController implements Initializable{
 				parameters.add(telefono.getText());
 				FrontController fc = new FrontController();
 				ViewDispatcher vd = new ViewDispatcher();
-				if((boolean)fc.handleRequest("NuovoContratto",parameters)){
+				if((int)fc.handleRequest("NuovoContratto",parameters) != -1){
 					
 					vd.showMessage(0, "Avviso","L'operazione è stata effettuata con successo");
 					fc.handleRequest("MenuOperatore");

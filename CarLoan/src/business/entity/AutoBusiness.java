@@ -1,6 +1,8 @@
 package business.entity;
 
 import java.util.ArrayList;
+
+import utility.InputController;
 import dao.DaoFactory;
 import dao.AutoDao;
 import entity.Auto;
@@ -25,7 +27,7 @@ public class AutoBusiness {
 	public boolean modificaAuto(Auto a) {
 		// TODO Auto-generated method stub
 		return auto.modificaAuto(a.getTarga(), a.inManutenzione(),
-				a.getDataManutenzione(), a.getUltimoChilometraggio());
+				InputController.stringTodate(a.getDataManutenzione()), a.getUltimoChilometraggio());
 	}
 
 	public boolean rimuoviAuto(String targa) {

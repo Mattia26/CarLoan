@@ -1,6 +1,8 @@
 package business.entity;
 
 import java.util.ArrayList;
+
+import utility.InputController;
 import dao.DaoFactory;
 import dao.ContrattoDao;
 import entity.Contratto;
@@ -20,14 +22,14 @@ public class ContrattoBusiness {
 	public int inserisciContratto(Contratto c) {
 		// TODO Auto-generated method stub
 		return contratto.inserisciContratto(c.getCliente(), c.getTargaMacchina(), 
-		c.getDataInizio(), c.getDataFine(), c.getQuotaAcconto(), c.getTipologia(), 
+		InputController.stringTodate(c.getDataInizio()),InputController.stringTodate(c.getDataFine()), c.getQuotaAcconto(), c.getTipologia(), 
 		c.getTipoChilometraggio(), c.sedeRestituzione(), c.macchinaRitirata());
 	}
 
 	public  boolean modificaContratto(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.modificaContratto(c.getId(), c.getTargaMacchina(), c.getDataInizio(), 
-			c.getDataFine(), c.getQuotaAcconto(), c.getTipologia(), c.getTipoChilometraggio(), 
+		return contratto.modificaContratto(c.getId(), c.getTargaMacchina(), InputController.stringTodate(c.getDataInizio()), 
+			InputController.stringTodate(c.getDataFine()),c.getQuotaAcconto(), c.getTipologia(), c.getTipoChilometraggio(), 
 			c.sedeRestituzione(), c.chiuso(), c.macchinaRitirata());
 	}
 
@@ -48,7 +50,7 @@ public class ContrattoBusiness {
 
 	public int getId(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.getId(c.getTargaMacchina(), c.getDataInizio(), c.getDataFine());
+		return contratto.getId(c.getTargaMacchina(), InputController.stringTodate(c.getDataInizio()), InputController.stringTodate(c.getDataFine()));
 	}
 	
 }

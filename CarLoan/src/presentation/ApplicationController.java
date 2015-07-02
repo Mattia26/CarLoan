@@ -2,6 +2,7 @@ package presentation;
 
 import java.util.ArrayList;
 
+import presentation.command.AnnullaContratto;
 import presentation.command.CalcolaSaldo;
 import presentation.command.CercaAuto;
 import presentation.command.ChiusuraContratto;
@@ -133,6 +134,11 @@ public class ApplicationController implements ApplicationControllerI {
 		case "ModificaContratto":
 			command = new ModificaContratto();
 			ritorno = command.Execute(parameters);
+		break;
+		
+		case "AnnullaContratto":
+			command = new AnnullaContratto();
+			ritorno = command.Execute(parameters.get(0));
 		break;
 		
 		}

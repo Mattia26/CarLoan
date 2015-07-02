@@ -19,7 +19,7 @@ public class ClienteBusiness {
 	}
 	public boolean inserisciCliente(Cliente c){
 		// TODO Auto-generated method stub
-		return cliente.inserisciCliente(c.getCognome(), c.getCognome(), 
+		return cliente.inserisciCliente(c.getNome(), c.getCognome(), 
 				c.getNumeroTelefono(), c.getCodFiscale());
 	}
 

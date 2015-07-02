@@ -13,7 +13,7 @@ import entity.Cliente;
 public class MySQLClienteDao implements ClienteDao {
 
 	@Override
-	public boolean inserisciCliente(String nome, String cognome, int numTel, String codFiscale){
+	public boolean inserisciCliente(String nome, String cognome, String numTel, String codFiscale){
 		// TODO Auto-generated method stub
 		
 		boolean inserito;
@@ -26,7 +26,7 @@ public class MySQLClienteDao implements ClienteDao {
 			
 			statement.setString(1, nome);
 			statement.setString(2, cognome);
-			statement.setInt(3, numTel);
+			statement.setString(3, numTel);
 			statement.setString(4, codFiscale);
 			System.out.println(statement);
 			try {
@@ -34,7 +34,7 @@ public class MySQLClienteDao implements ClienteDao {
 				inserito=true;
 			}
 			catch (SQLException e){
-				System.out.println("impossibile effettuare la query");
+				System.out.println("impossibile effettuare la cliente query");
 				inserito=false;
 			}
 			
@@ -50,7 +50,7 @@ public class MySQLClienteDao implements ClienteDao {
 	
 	
 	@Override
-	public boolean modificaCliente(String codFiscale, int numTel) {
+	public boolean modificaCliente(String codFiscale, String numTel) {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String query_modifica;
@@ -60,7 +60,7 @@ public class MySQLClienteDao implements ClienteDao {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(query_modifica);
 
-			statement.setInt(1,numTel);
+			statement.setString(1,numTel);
 			statement.setString(2, codFiscale);
 			try {
 				if(statement.executeUpdate()==1)
@@ -133,7 +133,7 @@ public class MySQLClienteDao implements ClienteDao {
 					result = new ArrayList<Cliente>();
 					while(rs.next()) {
 						Cliente c = new Cliente(rs.getString("nome"), rs.getString("cognome"),
-								rs.getInt("telefono"), rs.getString("codice_fiscale"));
+								rs.getString("telefono"), rs.getString("codice_fiscale"));
 					
 						result.add(c);
 					}
