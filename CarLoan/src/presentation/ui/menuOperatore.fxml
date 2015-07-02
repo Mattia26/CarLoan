@@ -7,26 +7,66 @@
 
 <Pane fx:id="MenuOperatore" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.MenuOperatoreController">
    <children>
-      <ImageView fitHeight="140.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="85.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../bin/presentation/ui/index.jpeg" />
+            <Image url="@index.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="NomeOperatore" layoutX="7.0" layoutY="135.0" prefHeight="15.0" prefWidth="48.0" text="Nome:" />
-      <Label fx:id="MenuOperatoreLabel" layoutX="243.0" layoutY="22.0" prefHeight="15.0" prefWidth="318.0" text="Menu Principale" />
-      <Button fx:id="NuovoContratto" layoutX="208.0" layoutY="78.0" mnemonicParsing="false" onAction="#CercaAuto" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
-      <Button layoutX="208.0" layoutY="119.0" mnemonicParsing="false" onAction="#ChiudiContratto" prefHeight="25.0" prefWidth="138.0" text="Chiudi Contratto" />
-      <Button layoutX="208.0" layoutY="157.0" mnemonicParsing="false" onAction="#ModificaContratto" text="Modifica Contratto" />
-      <Button layoutX="208.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Annulla Contratto" />
-      <Button layoutX="208.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Notifica Ritiro" />
-      <Button layoutX="208.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Cerca Cliente" />
-      <Button layoutX="208.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Manutenzione" />
-      <Label fx:id="CognomeOperatore" layoutX="6.0" layoutY="153.0" prefHeight="15.0" prefWidth="273.0" text="Cognome:" />
-      <Label fx:id="TelefonoOperatore" layoutX="6.0" layoutY="174.0" prefHeight="15.0" prefWidth="138.0" text="Telefono:" />
-      <Label fx:id="ModificaProfilo" layoutX="6.0" layoutY="195.0" onMouseClicked="#ModificaProfilo" prefHeight="15.0" prefWidth="168.0" text="Modifica Profilo" />
-      <Label fx:id="Logout" layoutX="5.0" layoutY="215.0" onMouseClicked="#Logout" prefHeight="15.0" prefWidth="174.0" text="Logout" />
-      <Label fx:id="NomeOperatoreR" layoutX="51.0" layoutY="136.0" prefHeight="15.0" prefWidth="70.0" />
-      <Label fx:id="CognomeOperatoreR" layoutX="73.0" layoutY="154.0" prefHeight="15.0" prefWidth="70.0" />
-      <Label fx:id="TelefonoOperatoreR" layoutX="67.0" layoutY="175.0" prefHeight="15.0" prefWidth="70.0" />
+      <GridPane layoutX="6.0" layoutY="95.0" prefHeight="56.0" prefWidth="140.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="CognomeOperatore" layoutX="6.0" layoutY="153.0" prefHeight="15.0" prefWidth="70.0" text="Cognome:" GridPane.rowIndex="1" />
+            <Label fx:id="TelefonoOperatore" layoutX="6.0" layoutY="174.0" prefHeight="15.0" prefWidth="65.0" text="Telefono:" GridPane.rowIndex="2" />
+            <Label fx:id="TelefonoOperatoreR" layoutX="67.0" layoutY="175.0" prefHeight="15.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="NomeOperatore" layoutX="7.0" layoutY="135.0" prefHeight="15.0" prefWidth="48.0" text="Nome:" />
+            <Label fx:id="NomeOperatoreR" layoutX="51.0" layoutY="136.0" prefHeight="15.0" prefWidth="70.0" GridPane.columnIndex="1" />
+            <Label fx:id="CognomeOperatoreR" layoutX="73.0" layoutY="154.0" prefHeight="15.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label fx:id="MenuOperatoreLabel" layoutX="205.0" layoutY="22.0" prefHeight="15.0" prefWidth="318.0" text="Menu Principale" />
+      <GridPane layoutX="208.0" layoutY="78.0" prefHeight="297.0" prefWidth="139.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button layoutX="208.0" layoutY="119.0" mnemonicParsing="false" onAction="#ChiudiContratto" prefHeight="25.0" prefWidth="138.0" text="Chiudi Contratto" GridPane.rowIndex="1" />
+            <Button layoutX="208.0" layoutY="157.0" mnemonicParsing="false" onAction="#ModificaContratto" text="Modifica Contratto" GridPane.rowIndex="2" />
+            <Button layoutX="208.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Annulla Contratto" GridPane.rowIndex="3" />
+            <Button layoutX="208.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Manutenzione" GridPane.rowIndex="6" />
+            <Button fx:id="NuovoContratto" layoutX="208.0" layoutY="78.0" mnemonicParsing="false" onAction="#CercaAuto" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
+            <Button layoutX="208.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Cerca Cliente" GridPane.rowIndex="5" />
+            <Button layoutX="208.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Notifica Ritiro" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="5.0" layoutY="162.0" prefHeight="38.0" prefWidth="174.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="ModificaProfilo" layoutX="6.0" layoutY="195.0" onMouseClicked="#ModificaProfilo" prefHeight="15.0" prefWidth="168.0" text="Modifica Profilo" />
+            <Label fx:id="Logout" layoutX="5.0" layoutY="215.0" onMouseClicked="#Logout" prefHeight="15.0" prefWidth="174.0" text="Logout" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </Pane>

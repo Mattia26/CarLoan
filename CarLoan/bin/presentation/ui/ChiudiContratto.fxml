@@ -6,7 +6,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#setFields" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.ChiudiContrattoController">
    <children>
-      <GridPane fx:id="kmp" layoutX="139.0" layoutY="85.0" prefHeight="166.0" prefWidth="324.0">
+      <GridPane fx:id="kmp" layoutX="139.0" layoutY="85.0" prefHeight="157.0" prefWidth="324.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
