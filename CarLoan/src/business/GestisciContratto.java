@@ -83,40 +83,36 @@ public class GestisciContratto {
 	}
 	
 	
+	
 	public Object chiudiContratto(String id) {	
-		ArrayList<Contratto> contratti = cb.getContrattiAttivi();
-		System.out.println(contratti.size());
-		Iterator<Contratto> it = contratti.iterator();
-		int idC=Integer.parseInt((String)id);
-		
-		while(it.hasNext()) {
-			Contratto c = it.next();
-			if(c.getId()==idC) {
-				c.setChiuso(true);
-				return cb.modificaContratto(c);
-			}
+		Contratto c;
+		try {
+			c = (Contratto) getDatiContratto(id);
+			c.setChiuso(true);
+			return cb.modificaContratto(c);
+		} catch (ObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+			return false;
 		}
-		return false;
 	}
+	
 	
 	
 	public Object notificaRitiroAuto(String id) {
-		ArrayList<Contratto> contratti = cb.getContrattiAttivi();
-		Iterator<Contratto> it = contratti.iterator();
-		int idC=Integer.parseInt((String)id);
-		
-		while(it.hasNext()) {
-			Contratto c = it.next();
-			if(c.getId()==idC) {
-				c.setRitirata(true);
-				return cb.modificaContratto(c);
-			}
+		Contratto c;
+		try {
+			c = (Contratto) getDatiContratto(id);
+			c.setRitirata(true);
+			return cb.modificaContratto(c);
+		} catch (ObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+			return false;
 		}
-		
-		return false;
 	}
 	
-	public Object getDatiContratto(String id) {
+	
+	
+	public Object getDatiContratto(String id) throws ObjectNotFoundException {
 		int idC = Integer.parseInt(id);
 		ArrayList<Contratto> listaContr = cb.getContrattiAttivi();
 		Iterator<Contratto> it = listaContr.iterator();
@@ -127,7 +123,7 @@ public class GestisciContratto {
 				return cTemp;
 		}
 		
-		return null;	
+		throw new ObjectNotFoundException();
 	}
 	
 	
@@ -141,56 +137,57 @@ public class GestisciContratto {
 
 		String id=parameters.get(0);
 		double nuovoKm=Double.parseDouble(parameters.get(2));
-		Contratto c = (Contratto) getDatiContratto(id);
-		char tipo = c.getTipologia();
-		char tipoKm = c.getTipoChilometraggio();
+		Contratto c;
+		try {
+			c = (Contratto) getDatiContratto(id);
+			char tipo = c.getTipologia();
+			char tipoKm = c.getTipoChilometraggio();
+			GestisciAuto g = new GestisciAuto();
+			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
+			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
+			g.inserisciNuovoChilometraggio(a);
+			
+			lb = new ListinoBusiness();
 		
-		GestisciAuto g = new GestisciAuto();
-		Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
-		kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
-		g.inserisciNuovoChilometraggio(a);
-		
-		lb = new ListinoBusiness();
-	
-		if(tipoKm=='G' && tipo=='L') {
-			costoTipo = lb.getPrezzi().get(0);
-			costoTipoKm = lb.getPrezzi().get(2);
-			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-					, LocalDate.now()).getDays();
-		
+			if(tipoKm=='G' && tipo=='L') {
+				costoTipo = lb.getPrezzi().get(0);
+				costoTipoKm = lb.getPrezzi().get(2);
+				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+						, LocalDate.now()).getDays();
+				
+				return costoTipo*durataContratto + costoTipoKm*33; 
+				// 33 da sostituire con parametro di fascia(es 50 km, 100 km etc.);
+			}
+			else if(tipoKm == 'G' && tipo == 'I') {
+				costoTipo = lb.getPrezzi().get(0);
+				costoTipoKm = lb.getPrezzi().get(3);
+				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+						, LocalDate.now()).getDays();
+				
+				return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
+			}
+				
+			else if(tipo== 'S' && tipoKm == 'L') {
+				costoTipo = lb.getPrezzi().get(1);
+				costoTipoKm = lb.getPrezzi().get(2);
+				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+						, LocalDate.now()).getDays() / 7;
+				
+				return costoTipo*durataContratto + costoTipoKm*33;	
+			}
 			
-			
-			return costoTipo*durataContratto + costoTipoKm*33; 
-			// 33 da sostituire con parametro di fascia(es 50 km, 100 km etc.);
-		}
-		else if(tipoKm == 'G' && tipo == 'I') {
-			costoTipo = lb.getPrezzi().get(0);
-			costoTipoKm = lb.getPrezzi().get(3);
-			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-					, LocalDate.now()).getDays();
-			
-			return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
-		}
-			
-		else if(tipo== 'S' && tipoKm == 'L') {
-			costoTipo = lb.getPrezzi().get(1);
-			costoTipoKm = lb.getPrezzi().get(2);
-			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-					, LocalDate.now()).getDays() / 7;
-			
-			return costoTipo*durataContratto + costoTipoKm*33;
-			
-		}
-		
-		else {
-			costoTipo = lb.getPrezzi().get(1);
-			costoTipoKm = lb.getPrezzi().get(3);
-			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-					, LocalDate.now()).getDays() / 7;
-			return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
-		}
-			
-
+			else {
+				costoTipo = lb.getPrezzi().get(1);
+				costoTipoKm = lb.getPrezzi().get(3);
+				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+						, LocalDate.now()).getDays() / 7;
+				
+				return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
+			}
+		} catch (ObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+			return -1;
+		}	
 	}
 	
 	

@@ -1,22 +1,24 @@
 package presentation.ui.controller;
 
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import presentation.FrontController;
 import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
-
 import utility.InputController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 
-public class CercaAutoController {
+public class CercaAutoController implements Initializable{
 	
 	@FXML
 	private ChoiceBox TipoBox = new ChoiceBox();
@@ -30,13 +32,17 @@ public class CercaAutoController {
 	@FXML
 	private Button avanti;
 	
-	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		TipoBox.setItems(FXCollections.observableArrayList("A","B","C", "Qualsiasi"));
+		TipoBox.setValue("Qualsiasi");
+	}
 	
 	
 	@SuppressWarnings("unchecked")
 	@FXML
 	public void TipeClick(){
-		TipoBox.setItems(FXCollections.observableArrayList("A","B","C"));
+		TipoBox.setItems(FXCollections.observableArrayList("A","B","C", "Qualsiasi"));
 	}
 	
 	
@@ -50,13 +56,19 @@ public class CercaAutoController {
 	
 		if(Dal.getText().isEmpty() || Al.getText().isEmpty()){
 			
-			dispatcher.showMessage(1, "Errore", "Inserire almeno data di inizio e fine noleggio");
+			dispatcher.showMessage(1, "Errore", "Inserire data di inizio e fine noleggio");
 		}
-		else if(!InputController.dateVerify(Dal.getText()) || !InputController.dateVerify(Al.getText()) || !InputController.dateVerify(Dal.getText(),Al.getText())){
+		else if(!InputController.dateVerify(Dal.getText()) || !InputController.dateVerify(Al.getText())){
 			Dal.setText("");
 			Al.setText("");
-			dispatcher.showMessage(1, "Errore", "Le date inserite non sono corrette");
+			dispatcher.showMessage(1, "Errore", "La data di inizio e quella di fine devono essere maggiori di quella attuale");
 		}
+		else if(!InputController.dateVerify(Dal.getText(),Al.getText())) {
+			Dal.setText("");
+			Al.setText("");
+			dispatcher.showMessage(1, "Errore", "La data di inizio deve essere "
+					+ "anteriore rispetto a quella di fine"); }
+		
 		else{
 			
 			FrontController fc = new FrontController();
@@ -67,7 +79,7 @@ public class CercaAutoController {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> result = (ArrayList<String>)fc.handleRequest("CercaAuto", parameters);
 			if(result.isEmpty())
-				dispatcher.showMessage(0, "Nessun risultato!", "Ricontrollare i dati inseriti");
+				dispatcher.showMessage(0, "Nessun risultato!", "Nessun'auto disponibile nell'intervallo di tempo selezionato.");
 			vista.setItems(FXCollections.observableArrayList(result));
 			
 		}

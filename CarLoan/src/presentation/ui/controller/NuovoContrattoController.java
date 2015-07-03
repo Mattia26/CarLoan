@@ -69,7 +69,7 @@ public class NuovoContrattoController implements Initializable{
 						
 			}
 			else if(!InputController.codiceFiscaleVerify(codiceFiscale.getText()))
-				w.showMessage(1, "Errore", "Il codice fiscale non Ã¨ corretto!");
+				w.showMessage(1, "Errore", "Il codice fiscale non è corretto!");
 			else{
 				ArrayList<String> parameters = new ArrayList<String>();
 				parameters.add(targa.getText());
@@ -87,11 +87,11 @@ public class NuovoContrattoController implements Initializable{
 				ViewDispatcher vd = new ViewDispatcher();
 				if((int)fc.handleRequest("NuovoContratto",parameters) != -1){
 					
-					vd.showMessage(0, "Avviso","L'operazione Ã¨ stata effettuata con successo");
+					vd.showMessage(0, "Avviso","L'operazione è stata effettuata con successo");
 					fc.handleRequest("MenuOperatore");
 				}
 				else{
-					vd.showMessage(1, "Errore", "L'operazione non Ã¨ stata effettuata");
+					vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
 				}
 			}
 		}

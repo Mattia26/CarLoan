@@ -32,12 +32,12 @@ public class GestisciAuto {
 	
 	public Object modificaAuto(ArrayList<String> parameters) {
 		Auto a;
-		String targa = parameters.get(0);
+		String targa = parameters.get(0); // non modificabile!
 		String modello = parameters.get(1);
 		char fascia = parameters.get(2).charAt(0);
-		boolean inManutenzione = Boolean.parseBoolean(parameters.get(3));
-		String dataManutenzioneOrd = parameters.get(4);
-		double ultimoKm = Double.parseDouble(parameters.get(5));
+		boolean inManutenzione = Boolean.parseBoolean(parameters.get(3)); //gestito già da inserisciInManutenzione... non modificabile?
+		String dataManutenzioneOrd = parameters.get(4); 
+		double ultimoKm = Double.parseDouble(parameters.get(5)); //metterlo non modificabile?
 		a = new Auto(modello, targa, fascia, inManutenzione, dataManutenzioneOrd, ultimoKm);
 		return car.modificaAuto(a);
 	}
@@ -124,7 +124,7 @@ public class GestisciAuto {
 		return car.modificaAuto(a);
 	}
 	
-	public Object getDatiAuto(String parameter) {
+	public Object getDatiAuto(String parameter) throws ObjectNotFoundException {
 		ArrayList<Auto> autoSistema = car.autoSistema();
 		Iterator<Auto> it = autoSistema.iterator();
 		while(it.hasNext()) {
@@ -133,7 +133,7 @@ public class GestisciAuto {
 				return a;
 			}
 		}
-		return null;
+		throw new ObjectNotFoundException();
 	}
 	
 	public Object getAutoSistema() {

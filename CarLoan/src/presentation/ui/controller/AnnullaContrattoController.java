@@ -30,11 +30,12 @@ public class AnnullaContrattoController {
 			if((boolean)fc.handleRequest("AnnullaContratto",parameters))
 				v.showMessage(0, "Informazione", "Operazione completata con successo");
 			else
-				v.showMessage(1, "Errore", "L'operazione non Ã¨ stata completata");
+				v.showMessage(1, "Errore", "L'operazione non è stata completata. \n"
+						+ "Assicurati di aver inserito l'id correttamente.");
 		}
 		else{
 			
-			v.showMessage(1, "Errore!", "Campo vuoto");
+			v.showMessage(1, "Errore!", "Campo vuoto. Per favore inserisci l'id del contratto");
 			
 		}
 	}

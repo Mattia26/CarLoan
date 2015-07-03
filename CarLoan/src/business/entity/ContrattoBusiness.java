@@ -21,7 +21,6 @@ public class ContrattoBusiness {
 	}
 	public int inserisciContratto(Contratto c) {
 		// TODO Auto-generated method stub
-		System.out.println(InputController.stringTodate(c.getDataInizio()));
 		return contratto.inserisciContratto(c.getCliente(), c.getTargaMacchina(), 
 		InputController.stringTodate(c.getDataInizio()),InputController.stringTodate(c.getDataFine()), c.getQuotaAcconto(), c.getTipologia(), 
 		c.getTipoChilometraggio(), c.sedeRestituzione(), c.macchinaRitirata());

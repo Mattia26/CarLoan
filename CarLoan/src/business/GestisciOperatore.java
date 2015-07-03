@@ -38,7 +38,6 @@ public class GestisciOperatore {
 	
 	
 	public Object eliminaOperatore(String nickname) {
-		
 		return ob.rimuoviOperatore(nickname);
 	}
 	

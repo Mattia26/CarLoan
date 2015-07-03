@@ -1,6 +1,8 @@
 package presentation.ui.controller;
 
 
+import java.util.ArrayList;
+
 import presentation.FrontController;
 import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
@@ -20,16 +22,23 @@ public class ModificaIdController {
 	
 	@FXML
 	public void Ok(){
-		if(id.getText().isEmpty()){
-			ViewDispatcher v = new ViewDispatcher();
-			v.showMessage(1, "Errore", "Campo vuoto");
-		}
-		else{
-	
-			FrontController fc = new FrontController();
+		FrontController fc = new FrontController();
+		ArrayList<String> parameters = new ArrayList<String>();
+		ViewDispatcher v = new ViewDispatcher();
+		
+		if(id.getText() != null){
+			parameters.add(id.getText());
 			GestioneSessione.setId(id.getText());
-			fc.handleRequest("ModificaContratto");
+			if(fc.handleRequest("GetDatiContratto").getClass().equals(Boolean.class))
+				v.showMessage(1, "Errore!" ,
+				"Nessun contratto ritrovato con tale id. "
+				+ "\nAssicurati di aver inserito l'id corretto e riprova");	
+			else
+				fc.handleRequest("ModificaContratto");
+		}
+			
+		else{		
+			v.showMessage(1, "Errore!", "Campo vuoto. Per favore inserisci l'id del contratto");	
 		}
 	}
-
 }

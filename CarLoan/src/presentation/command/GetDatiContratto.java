@@ -7,6 +7,7 @@ import utility.InputController;
 import entity.Cliente;
 import entity.Contratto;
 import business.BusinessDelegate;
+import business.ObjectNotFoundException;
 
 public class GetDatiContratto implements Command{
 	
@@ -26,32 +27,43 @@ public class GetDatiContratto implements Command{
 		Cliente client;
 		try {
 			c = (Contratto)b.handleRequest("GetDatiContratto", parameter);
-			client = (Cliente)b.handleRequest("AccessoDatiCliente", c.getCliente());
-			ritorno.add(c.getTargaMacchina());
-			ritorno.add(c.getDataInizio());
-			ritorno.add(c.getDataFine());
-			ritorno.add(c.sedeRestituzione());
-			if(c.getTipologia() == 'G')
-				ritorno.add("Giornaliera");
-			else
-				ritorno.add("Settimanale");
-			
-			if(c.getTipoChilometraggio() == 'I')
-				ritorno.add("Illimitato");
-			else
-				ritorno.add("Limitato");
-			ritorno.add(client.getNome());
-			ritorno.add(client.getCognome());
-			ritorno.add(client.getCodFiscale());
-			ritorno.add(String.valueOf(c.getQuotaAcconto()));
-			ritorno.add(client.getNumeroTelefono());
-		} catch (ClassNotFoundException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException
-				| InstantiationException | NoSuchMethodException
-				| SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				client = (Cliente)b.handleRequest("AccessoDatiCliente", c.getCliente());
+				ritorno.add(c.getTargaMacchina());
+				ritorno.add(c.getDataInizio());
+				ritorno.add(c.getDataFine());
+				ritorno.add(c.sedeRestituzione());
+				if(c.getTipologia() == 'G')
+					ritorno.add("Giornaliera");
+				else
+					ritorno.add("Settimanale");
+				
+				if(c.getTipoChilometraggio() == 'I')
+					ritorno.add("Illimitato");
+				else
+					ritorno.add("Limitato");
+				
+				ritorno.add(client.getNome());
+				ritorno.add(client.getCognome());
+				ritorno.add(client.getCodFiscale());
+				ritorno.add(String.valueOf(c.getQuotaAcconto()));
+				ritorno.add(client.getNumeroTelefono());
+			}
+			catch (ClassNotFoundException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException 
+					| InstantiationException | NoSuchMethodException | SecurityException e) {
+				// TODO Auto-generated catch block
+				return -1; //DA GESTIRE L'ECCEZIONE DI CLIENTE CON CF GIA' INSERITO MA CON NOME E/O COGNOME E/O NUM TELEFONO DIVERSI DA QUELLI DEL DB!!! CAZZO!!!
+			}
 		}
+		catch (ClassNotFoundException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException
+					| InstantiationException | NoSuchMethodException | SecurityException e) {
+				// TODO Auto-generated catch block
+				return false;
+		}
+		
+		
 		
 		return ritorno;
 	}

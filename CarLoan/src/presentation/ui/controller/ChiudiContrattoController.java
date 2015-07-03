@@ -80,7 +80,8 @@ public class ChiudiContrattoController implements Initializable{
 			fc.handleRequest("MenuOperatore");
 		}
 		else
-			v.showMessage(1, "Errore", "Impossibile completare l'operazione");
+			v.showMessage(1, "Errore", "Impossibile completare l'operazione.\n"
+					+ " Assicurati di aver inserito l'id correttamente");
 		
 			
 	}
