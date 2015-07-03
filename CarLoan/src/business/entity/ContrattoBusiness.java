@@ -21,6 +21,7 @@ public class ContrattoBusiness {
 	}
 	public int inserisciContratto(Contratto c) {
 		// TODO Auto-generated method stub
+		System.out.println(InputController.stringTodate(c.getDataInizio()));
 		return contratto.inserisciContratto(c.getCliente(), c.getTargaMacchina(), 
 		InputController.stringTodate(c.getDataInizio()),InputController.stringTodate(c.getDataFine()), c.getQuotaAcconto(), c.getTipologia(), 
 		c.getTipoChilometraggio(), c.sedeRestituzione(), c.macchinaRitirata());
@@ -28,9 +29,11 @@ public class ContrattoBusiness {
 
 	public  boolean modificaContratto(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.modificaContratto(c.getId(), c.getTargaMacchina(), InputController.stringTodate(c.getDataInizio()), 
-			InputController.stringTodate(c.getDataFine()),c.getQuotaAcconto(), c.getTipologia(), c.getTipoChilometraggio(), 
-			c.sedeRestituzione(), c.chiuso(), c.macchinaRitirata());
+		return contratto.modificaContratto(c.getId(), c.getTargaMacchina(), 
+				InputController.stringTodate(c.getDataInizio()),
+				InputController.stringTodate(c.getDataFine()), c.getQuotaAcconto(), 
+				c.getTipologia(), c.getTipoChilometraggio(), 
+				c.sedeRestituzione(), c.chiuso(), c.macchinaRitirata());
 	}
 
 	public boolean cancellaContratto(int id) {

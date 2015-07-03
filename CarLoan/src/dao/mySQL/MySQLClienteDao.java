@@ -28,13 +28,12 @@ public class MySQLClienteDao implements ClienteDao {
 			statement.setString(2, cognome);
 			statement.setString(3, numTel);
 			statement.setString(4, codFiscale);
-			System.out.println(statement);
 			try {
 				statement.executeUpdate();
 				inserito=true;
 			}
 			catch (SQLException e){
-				System.out.println("impossibile effettuare la cliente query");
+				System.out.println("impossibile effettuare la query");
 				inserito=false;
 			}
 			

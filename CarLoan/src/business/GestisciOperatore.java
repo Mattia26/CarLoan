@@ -9,8 +9,12 @@ import business.entity.OperatoreBusiness;
 public class GestisciOperatore {
 	private OperatoreBusiness ob;
 	
-	public Object inserisciOperatore(ArrayList<String> operatorParameters) {
+	public GestisciOperatore() {
 		ob = new OperatoreBusiness();
+	}
+	
+	
+	public Object inserisciOperatore(ArrayList<String> operatorParameters) {
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
@@ -20,8 +24,9 @@ public class GestisciOperatore {
 		return ob.inserisciOperatore(o);
 	}
 	
+	
 	public Object modificaOperatore(ArrayList<String> operatorParameters) {
-		ob = new OperatoreBusiness();
+		
 		String nickname=GestioneSessione.getUsername();
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
@@ -31,12 +36,14 @@ public class GestisciOperatore {
 		return ob.modificaDatiOperatore(o);
 	}
 	
+	
 	public Object eliminaOperatore(String nickname) {
-		ob=new OperatoreBusiness();
+		
 		return ob.rimuoviOperatore(nickname);
 	}
 	
 	public Object getDatiOperatore() {
+		
 		Operatore o = new Operatore(GestioneSessione.getNomeOperatore(),
 		GestioneSessione.getCognomeOperatore(), GestioneSessione.getIndirizzoOperatore(),
 		Integer.parseInt(GestioneSessione.getTelefonoOperatore()),GestioneSessione.getUsername());

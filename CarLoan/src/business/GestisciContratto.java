@@ -1,14 +1,19 @@
 package business;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import utility.InputController;
+import entity.Auto;
 import entity.Cliente;
 import entity.Contratto;
+import entity.ListinoPrezzi;
+import business.entity.AutoBusiness;
 import business.entity.ClienteBusiness;
 import business.entity.ContrattoBusiness;
+import business.entity.ListinoBusiness;
 
 
 public class GestisciContratto {
@@ -80,6 +85,7 @@ public class GestisciContratto {
 	
 	public Object chiudiContratto(String id) {	
 		ArrayList<Contratto> contratti = cb.getContrattiAttivi();
+		System.out.println(contratti.size());
 		Iterator<Contratto> it = contratti.iterator();
 		int idC=Integer.parseInt((String)id);
 		
@@ -122,6 +128,69 @@ public class GestisciContratto {
 		}
 		
 		return null;	
+	}
+	
+	
+	public Object calcolaImporto(ArrayList<String> parameters) {
+		ListinoBusiness lb;
+		
+		int costoTipo;
+		int costoTipoKm;
+		double kmPercorsi;
+		int durataContratto;
+
+		String id=parameters.get(0);
+		double nuovoKm=Double.parseDouble(parameters.get(2));
+		Contratto c = (Contratto) getDatiContratto(id);
+		char tipo = c.getTipologia();
+		char tipoKm = c.getTipoChilometraggio();
+		
+		GestisciAuto g = new GestisciAuto();
+		Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
+		kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
+		g.inserisciNuovoChilometraggio(a);
+		
+		lb = new ListinoBusiness();
+	
+		if(tipoKm=='G' && tipo=='L') {
+			costoTipo = lb.getPrezzi().get(0);
+			costoTipoKm = lb.getPrezzi().get(2);
+			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+					, LocalDate.now()).getDays();
+		
+			
+			
+			return costoTipo*durataContratto + costoTipoKm*33; 
+			// 33 da sostituire con parametro di fascia(es 50 km, 100 km etc.);
+		}
+		else if(tipoKm == 'G' && tipo == 'I') {
+			costoTipo = lb.getPrezzi().get(0);
+			costoTipoKm = lb.getPrezzi().get(3);
+			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+					, LocalDate.now()).getDays();
+			
+			return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
+		}
+			
+		else if(tipo== 'S' && tipoKm == 'L') {
+			costoTipo = lb.getPrezzi().get(1);
+			costoTipoKm = lb.getPrezzi().get(2);
+			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+					, LocalDate.now()).getDays() / 7;
+			
+			return costoTipo*durataContratto + costoTipoKm*33;
+			
+		}
+		
+		else {
+			costoTipo = lb.getPrezzi().get(1);
+			costoTipoKm = lb.getPrezzi().get(3);
+			durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
+					, LocalDate.now()).getDays() / 7;
+			return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
+		}
+			
+
 	}
 	
 	

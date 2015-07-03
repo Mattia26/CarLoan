@@ -63,8 +63,6 @@ public class MySQLContrattoDao implements ContrattoDao{
 			}
 			catch(SQLException e) {
 				System.out.println("impossibile effettuare correttamente la query");
-				System.out.println(statement);
-				System.out.println("fsdasf");
 				return -1;
 			}
 			finally {
@@ -92,9 +90,10 @@ public class MySQLContrattoDao implements ContrattoDao{
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(queryModifica);
+			
 			statement.setString(1, targaMacchina);
 			statement.setString(2, dataInizio);
-			statement.setString(3, dataFine);
+			statement.setString(3, dataFine);	
 			statement.setInt(4, acconto);
 			statement.setString(5, ((Character)tipologia).toString());
 			statement.setString(6, ((Character)tipoChilometraggio).toString());
@@ -179,8 +178,8 @@ public class MySQLContrattoDao implements ContrattoDao{
 					while(rs.next()) {
 						Contratto c = new Contratto(rs.getInt("id"), 
 								rs.getString("codice_fiscale_cliente"), 
-								rs.getString("targa_macchina"), rs.getString("data_inizio"), 
-								rs.getString("data_fine"), rs.getInt("acconto"),
+								rs.getString("targa_macchina"), InputController.dateToString(rs.getString("data_inizio")), 
+								InputController.dateToString(rs.getString("data_fine")), rs.getInt("acconto"),
 								rs.getString("tipologia").charAt(0), 
 								rs.getString("tipo_chilometraggio").charAt(0), 
 								rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
@@ -224,8 +223,8 @@ public class MySQLContrattoDao implements ContrattoDao{
 					while(rs.next()) {
 						Contratto c = new Contratto(rs.getInt("id"), 
 						rs.getString("codice_fiscale_cliente"), 
-						rs.getString("targa_macchina"), rs.getString("data_inizio"), 
-						rs.getString("data_fine"), rs.getInt("acconto"),
+						rs.getString("targa_macchina"), InputController.dateToString(rs.getString("data_inizio")), 
+						InputController.dateToString(rs.getString("data_fine")), rs.getInt("acconto"),
 						rs.getString("tipologia").charAt(0), 
 						rs.getString("tipo_chilometraggio").charAt(0), 
 						rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),

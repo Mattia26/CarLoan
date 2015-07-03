@@ -36,17 +36,17 @@ public class Lookup implements LookupI{
 			metodo = "cercaAuto";
 			input = ArrayList.class;
 			break;
-		case "ChiusuraContratto":
+		case "ChiudiContratto":
 			classe = "business.GestisciContratto";
 			metodo = "chiudiContratto";
 			input = String.class;
 			break;
-		case "EliminazioneAuto":
+		case "EliminaAuto":
 			classe = "business.GestisciAuto";
 			metodo = "eliminaAuto";
 			input = String.class;
 			break;
-		case "EliminazioneOperatore":
+		case "EliminaOperatore":
 			classe = "business.GestisciOperatore";
 			metodo = "eliminaOperatore";
 			input = String.class;
@@ -56,22 +56,22 @@ public class Lookup implements LookupI{
 			metodo = "getDatiContratto";
 			input = String.class;
 			break;
-		case "InserimentoAuto":
+		case "InserisciAuto":
 			classe = "business.GestisciAuto";
 			metodo = "inserisciAuto";
 			input = ArrayList.class;
 			break;
-		case "InserimentoCliente":
+		case "InserisciCliente":
 			classe = "business.GestisciCliente";
 			metodo = "aggiungiCliente";
 			input = ArrayList.class;
 			break;
-		case "InserimentoManutenzione":
+		case "InserisciManutenzione":
 			classe = "business.GestisciAuto";
 			metodo = "inserisciInManutenzione";
 			input = String.class;
 			break;
-		case "InserimentoOperatore":
+		case "InserisciOperatore":
 			classe = "business.GestisciOperatore";
 			metodo = "inserisciOperatore";
 			input = ArrayList.class;

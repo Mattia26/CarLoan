@@ -61,8 +61,8 @@ public class GestisciAuto {
 			
 			while(it.hasNext()){
 				Contratto corrente = it.next();
-				LocalDate dataInizioContratto = InputController.getCalendarDB(corrente.getDataInizio());
-				LocalDate dataFineContratto = InputController.getCalendarDB(corrente.getDataFine());
+				LocalDate dataInizioContratto = InputController.getCalendar(corrente.getDataInizio());
+				LocalDate dataFineContratto = InputController.getCalendar(corrente.getDataFine());
 				
 				if((dataInizio.isAfter(dataInizioContratto) && dataInizio.isBefore(dataFineContratto)) ||
 					(dataFine.isAfter(dataInizioContratto) && dataFine.isBefore(dataFineContratto) )||
@@ -117,6 +117,23 @@ public class GestisciAuto {
 			}
 		}
 		return false;
+	}
+	
+	
+	public Object inserisciNuovoChilometraggio(Auto a) {
+		return car.modificaAuto(a);
+	}
+	
+	public Object getDatiAuto(String parameter) {
+		ArrayList<Auto> autoSistema = car.autoSistema();
+		Iterator<Auto> it = autoSistema.iterator();
+		while(it.hasNext()) {
+			Auto a = it.next();
+			if(a.getTarga().equals(parameter)) {
+				return a;
+			}
+		}
+		return null;
 	}
 	
 	public Object getAutoSistema() {

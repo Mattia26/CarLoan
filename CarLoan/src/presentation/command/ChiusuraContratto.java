@@ -29,6 +29,7 @@ public class ChiusuraContratto implements Command{
 
 	@Override
 	public Object Execute(ArrayList<String> parameters) {
+		System.out.println("ioooo");
 		return false;
 			}
 
