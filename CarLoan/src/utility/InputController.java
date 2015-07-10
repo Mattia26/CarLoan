@@ -15,7 +15,7 @@ public class InputController {
 		boolean ritorno = false;
 		ritorno = t.matches(DATE_PATTERN);
 		if(ritorno == true){
-			LocalDate date = InputController.getCalendar(t);
+			LocalDate date = InputController.getDate(t);
 			if(date.isBefore(LocalDate.now()))
 				ritorno = false;
 		}
@@ -26,8 +26,8 @@ public class InputController {
 	public static boolean dateVerify(String dal, String al){
 		boolean ritorno = false;
 		
-		LocalDate Dal = InputController.getCalendar(dal);
-		LocalDate Al = InputController.getCalendar(al);
+		LocalDate Dal = InputController.getDate(dal);
+		LocalDate Al = InputController.getDate(al);
 		
 		if(Dal.isBefore(Al) || Dal.isEqual(Al))
 			ritorno = true;
@@ -40,21 +40,14 @@ public class InputController {
 		return t.matches(CODICE_FISCALE_PATTERN);
 	}
 	
-	public static LocalDate getCalendar(String s){
+	public static LocalDate getDate(String s){
 		String[] splittedString = s.split("/");
 		LocalDate data = LocalDate.of(Integer.parseInt(splittedString[2]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[0]));
 		
 		return data;
 	}
 	
-	public static LocalDate getCalendarDB(String s){
-		String[] splittedString = s.split("-");
-		LocalDate data = LocalDate.of(Integer.parseInt(splittedString[0]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[2]));
-		
-		return data;
-	}
-	
-	public static String stringTodate(String s){
+	public static String stringToMySqlDate(String s){
 		String ritorno;
 		String splitted[] = s.split("/");
 		
@@ -63,7 +56,7 @@ public class InputController {
 		return ritorno;
 	}
 	
-	public static String dateToString(String s){
+	public static String mySqlDateToString(String s){
 		String ritorno;
 		String splitted[] = s.split("-");
 		

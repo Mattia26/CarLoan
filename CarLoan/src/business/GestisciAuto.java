@@ -15,61 +15,79 @@ public class GestisciAuto {
 	private AutoBusiness car;
 	
 	public GestisciAuto() {
-		car = new AutoBusiness();
+		try {
+			car = new AutoBusiness();
+		} catch (InstantiationException | IllegalAccessException e) {
+			car = null;
+		}
 	}
 	
 	public Object inserisciAuto(ArrayList<String> parameters) {
+		if(car.equals(null))
+			return false;
+		
 		Auto a;
 		String targa = parameters.get(0);
 		String modello = parameters.get(1);
 		char fascia = parameters.get(2).charAt(0);
-		boolean inManutenzione = Boolean.parseBoolean(parameters.get(3));
 		String dataManutenzioneOrd = parameters.get(4);
 		double ultimoKm = Double.parseDouble(parameters.get(5));
-		a = new Auto(modello, targa, fascia, inManutenzione, dataManutenzioneOrd, ultimoKm);
+		a = new Auto(modello, targa, fascia, "", dataManutenzioneOrd, ultimoKm);
 		return car.inserisciAuto(a);
 	}
 	
 	public Object modificaAuto(ArrayList<String> parameters) {
+		if(car.equals(null))
+			return false;
+		
 		Auto a;
 		String targa = parameters.get(0); // non modificabile!
 		String modello = parameters.get(1);
 		char fascia = parameters.get(2).charAt(0);
-		boolean inManutenzione = Boolean.parseBoolean(parameters.get(3)); //gestito già da inserisciInManutenzione... non modificabile?
+		String dataManutenzioneStraord = parameters.get(3); //gestito giï¿½ da inserisciInManutenzione... non modificabile?
 		String dataManutenzioneOrd = parameters.get(4); 
 		double ultimoKm = Double.parseDouble(parameters.get(5)); //metterlo non modificabile?
-		a = new Auto(modello, targa, fascia, inManutenzione, dataManutenzioneOrd, ultimoKm);
+		a = new Auto(modello, targa, fascia, dataManutenzioneStraord, dataManutenzioneOrd, 
+				ultimoKm);
 		return car.modificaAuto(a);
 	}
 	
 	public Object eliminaAuto(String parameter) {
+		if(car.equals(null))
+			return false;
+		
 		return car.rimuoviAuto(parameter);
 	}
 	
 	public Object cercaAuto(ArrayList<String> parameters){
-		 ArrayList<Auto> auto = new  ArrayList<Auto>();
-		 ArrayList<Contratto> contratti = new ArrayList<Contratto>();
-		ContrattoBusiness contratto = new ContrattoBusiness();
-		auto = car.autoSistema();
-		contratti = contratto.getContrattiAttivi();
+		if(car.equals(null))
+			return new ArrayList<Auto>();
 		
-			
-			LocalDate dataInizio = InputController.getCalendar(parameters.get(1));
-			LocalDate dataFine = InputController.getCalendar(parameters.get(2));
+		 ArrayList<Auto> auto = new  ArrayList<Auto>();
+		
+		try {
+			ContrattoBusiness contratto = new ContrattoBusiness();
+			ArrayList<Contratto> contratti = new ArrayList<Contratto>();
+			auto = car.autoSistema();
+			contratti = contratto.getContrattiAttivi();
+				
+			LocalDate dataInizio = InputController.getDate(parameters.get(1));
+			LocalDate dataFine = InputController.getDate(parameters.get(2));
 			
 			Iterator<Contratto> it = contratti.iterator();
-			
 			while(it.hasNext()){
 				Contratto corrente = it.next();
-				LocalDate dataInizioContratto = InputController.getCalendar(corrente.getDataInizio());
-				LocalDate dataFineContratto = InputController.getCalendar(corrente.getDataFine());
+				LocalDate dataInizioContratto = InputController.getDate(corrente.getDataInizio());
+				LocalDate dataFineContratto = InputController.getDate(corrente.getDataFine());
 				
-				if((dataInizio.isAfter(dataInizioContratto) && dataInizio.isBefore(dataFineContratto)) ||
-					(dataFine.isAfter(dataInizioContratto) && dataFine.isBefore(dataFineContratto) )||
-					(dataInizio.isBefore(dataInizioContratto) && dataFine.isAfter(dataFineContratto))){
+				if((dataInizio.isAfter(dataInizioContratto) && 
+						dataInizio.isBefore(dataFineContratto)) ||
+					(dataFine.isAfter(dataInizioContratto) && 
+							dataFine.isBefore(dataFineContratto)) ||
+					(dataInizio.isBefore(dataInizioContratto) && 
+							dataFine.isAfter(dataFineContratto))) {
 					
 					Iterator<Auto> itr = auto.iterator();
-					
 					while(itr.hasNext()){
 						Auto corr = itr.next();
 						if(corr.getTarga().equals(corrente.getTargaMacchina())){
@@ -80,7 +98,7 @@ public class GestisciAuto {
 				}
 			}
 			
-			if(parameters.get(0) != null){
+			if(parameters.get(0) != "Qualsiasi"){
 				Iterator<Auto> iter = auto.iterator();
 				while(iter.hasNext()){
 					Auto current = iter.next();
@@ -88,43 +106,46 @@ public class GestisciAuto {
 						auto.remove(current);
 				}
 			}
-		
-		return auto;
+			return auto;
+		}
+		catch (InstantiationException | IllegalAccessException e) {
+			return new ArrayList<Auto>();
+		}
 	}
 	
 	
 	public Object inserisciInManutenzione(String parameter) {
-		ArrayList<Auto> autoSistema = car.autoDisponibili();
-		Iterator<Auto> it = autoSistema.iterator();
-		while(it.hasNext()) {
-			Auto a = it.next();
-			if(a.getTarga().equals(parameter)) {
-				a.setInManutenzione(true);
-				return car.modificaAuto(a);
-			}
-		}
-		return false;
-	}
-	
-	public Object fineManutenzione(String parameter) {
+		boolean ritorno = false;
+		
+		if(car.equals(null))
+			return ritorno;
+		
 		ArrayList<Auto> autoSistema = car.autoSistema();
 		Iterator<Auto> it = autoSistema.iterator();
 		while(it.hasNext()) {
 			Auto a = it.next();
 			if(a.getTarga().equals(parameter)) {
-				a.setInManutenzione(false);
-				return car.modificaAuto(a);
+				String dataAttuale = LocalDate.now().toString();
+				a.setDataManutenzioneStraordinaria(dataAttuale);
+				ritorno = car.modificaAuto(a);
+				return ritorno;
 			}
 		}
-		return false;
+		return ritorno;
 	}
 	
 	
 	public Object inserisciNuovoChilometraggio(Auto a) {
+		if(car.equals(null))
+			return false;
+		
 		return car.modificaAuto(a);
 	}
 	
 	public Object getDatiAuto(String parameter) throws ObjectNotFoundException {
+		if(car.equals(null))
+			return null;
+		
 		ArrayList<Auto> autoSistema = car.autoSistema();
 		Iterator<Auto> it = autoSistema.iterator();
 		while(it.hasNext()) {
@@ -137,6 +158,9 @@ public class GestisciAuto {
 	}
 	
 	public Object getAutoSistema() {
+		if(car.equals(null))
+			return new ArrayList<Auto>();
+		
 		return car.autoSistema();
 	}
 }

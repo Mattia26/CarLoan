@@ -7,9 +7,13 @@ import presentation.command.CalcolaSaldo;
 import presentation.command.CercaAuto;
 import presentation.command.ChiusuraContratto;
 import presentation.command.Command;
+import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
+import presentation.command.InserimentoManutenzione;
 import presentation.command.ModificaContratto;
+import presentation.command.ModificaDatiCliente;
 import presentation.command.ModificaDatiOperatore;
+import presentation.command.NotificaRitiro;
 import presentation.command.StipulaContratto;
 
 public class ApplicationController implements ApplicationControllerI {
@@ -67,6 +71,21 @@ public class ApplicationController implements ApplicationControllerI {
 		case "AnnullaContratto":
 			dispatcher = new ViewDispatcher();
 			dispatcher.setInterface("AnnullaContratto.fxml");
+		break;
+		
+		case "NotificaRitiro":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("NotificaRitiro.fxml");
+		break;
+		
+		case "CercaCliente":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("CercaCliente.fxml");
+		break;
+		
+		case "Manutenzione":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("Manutenzione.fxml");
 		break;
 		}
 		
@@ -140,6 +159,25 @@ public class ApplicationController implements ApplicationControllerI {
 			command = new AnnullaContratto();
 			ritorno = command.Execute(parameters.get(0));
 		break;
+		
+		case "NotificaRitiro":
+			command = new NotificaRitiro();
+			ritorno = command.Execute(parameters.get(0));
+		break;
+			
+		case "CercaCliente":
+			command = new GetDatiCliente();
+			ritorno = command.Execute(parameters.get(0));
+		break;
+		
+		case "ModificaDatiCliente":
+			command = new ModificaDatiCliente();
+			ritorno = command.Execute(parameters);
+		break;
+		
+		case "InserisciManutenzione":
+			command = new InserimentoManutenzione();
+			ritorno = command.Execute(parameters.get(0));
 		
 		}
 		return ritorno;

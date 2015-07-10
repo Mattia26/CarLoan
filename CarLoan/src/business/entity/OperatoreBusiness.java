@@ -1,6 +1,7 @@
 package business.entity;
 
 import java.util.ArrayList;
+
 import dao.OperatoreDao;
 import dao.DaoFactory;
 import entity.Operatore;
@@ -9,15 +10,10 @@ public class OperatoreBusiness {
 
 	private OperatoreDao operatore;
 	
-	public OperatoreBusiness() {
-		try {
-			operatore=DaoFactory.getDaoFactory(DaoFactory.MySQL).getOperatoreDao();
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	public OperatoreBusiness() throws InstantiationException, IllegalAccessException {
+		operatore=DaoFactory.getDaoFactory(DaoFactory.MySQL).getOperatoreDao();
 	}
+	
 	public boolean inserisciOperatore(Operatore o) {
 		// TODO Auto-generated method stub
 		return operatore.inserisciOperatore(o.getNome(), o.getCognome(), o.getIndirizzo(), 

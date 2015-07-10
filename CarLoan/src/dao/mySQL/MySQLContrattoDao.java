@@ -177,13 +177,14 @@ public class MySQLContrattoDao implements ContrattoDao{
 					result = new ArrayList<Contratto>();
 					while(rs.next()) {
 						Contratto c = new Contratto(rs.getInt("id"), 
-								rs.getString("codice_fiscale_cliente"), 
-								rs.getString("targa_macchina"), InputController.dateToString(rs.getString("data_inizio")), 
-								InputController.dateToString(rs.getString("data_fine")), rs.getInt("acconto"),
-								rs.getString("tipologia").charAt(0), 
-								rs.getString("tipo_chilometraggio").charAt(0), 
-								rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
-								rs.getBoolean("macchina_ritirata"));
+							rs.getString("codice_fiscale_cliente"), 
+							rs.getString("targa_macchina"), 
+							InputController.mySqlDateToString(rs.getString("data_inizio")), 
+							InputController.mySqlDateToString(rs.getString("data_fine")), 
+							rs.getInt("acconto"), rs.getString("tipologia").charAt(0), 
+							rs.getString("tipo_chilometraggio").charAt(0), 
+							rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
+							rs.getBoolean("macchina_ritirata"));
 						
 						result.add(c);
 					}
@@ -222,13 +223,14 @@ public class MySQLContrattoDao implements ContrattoDao{
 					result = new ArrayList<Contratto>();
 					while(rs.next()) {
 						Contratto c = new Contratto(rs.getInt("id"), 
-						rs.getString("codice_fiscale_cliente"), 
-						rs.getString("targa_macchina"), InputController.dateToString(rs.getString("data_inizio")), 
-						InputController.dateToString(rs.getString("data_fine")), rs.getInt("acconto"),
-						rs.getString("tipologia").charAt(0), 
-						rs.getString("tipo_chilometraggio").charAt(0), 
-						rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
-						rs.getBoolean("macchina_ritirata"));
+								rs.getString("codice_fiscale_cliente"), 
+								rs.getString("targa_macchina"), 
+								InputController.mySqlDateToString(rs.getString("data_inizio")), 
+								InputController.mySqlDateToString(rs.getString("data_fine")), 
+								rs.getInt("acconto"), rs.getString("tipologia").charAt(0), 
+								rs.getString("tipo_chilometraggio").charAt(0), 
+								rs.getString("sede_restituzione"), rs.getBoolean("chiuso"),
+								rs.getBoolean("macchina_ritirata"));
 					
 						result.add(c);
 					}

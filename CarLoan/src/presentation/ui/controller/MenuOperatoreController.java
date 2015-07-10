@@ -61,6 +61,24 @@ public class MenuOperatoreController implements Initializable{
 		FrontController fc = new FrontController();
 		fc.handleRequest("AnnullaContratto");
 	}
+	
+	@FXML
+		public void notificaRitiro(){
+		FrontController fc = new FrontController();
+		fc.handleRequest("NotificaRitiro");
+	}
+	
+	@FXML
+		public void cercaCliente(){
+		FrontController fc = new FrontController();
+		fc.handleRequest("CercaCliente");
+	}
+	
+	@FXML
+		public void manutenzione(){
+		FrontController fc = new FrontController();
+		fc.handleRequest("Manutenzione");
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		NomeOperatoreR.setText(GestioneSessione.getNomeOperatore());

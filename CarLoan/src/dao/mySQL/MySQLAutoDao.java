@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import dao.AutoDao;
 import dao.MySQLDaoFactory;
 import entity.Auto;
@@ -19,10 +20,9 @@ public class MySQLAutoDao implements AutoDao{
 		// TODO Auto-generated method stub
 		String queryInserimento;
 		boolean inserito;
-		queryInserimento = "insert into cars(modello, targa, fascia, ultimo_km, in_manutenzione,"
+		queryInserimento = "insert into cars(modello, targa, fascia, ultimo_km, "
 				+ " data_manutenzione_ordinaria) values(?, ?, ?, ?, ?, ?, ?);";
 		
-		boolean inManutenzione=false;
 		String dataManutenzioneOrdinaria;
 		Calendar cal = Calendar.getInstance();
 		Integer day = cal.get(Calendar.DATE);
@@ -38,8 +38,7 @@ public class MySQLAutoDao implements AutoDao{
 			statement.setString(2,targa);
 			statement.setString(3, ((Character)fascia).toString());
 			statement.setDouble(4,km);
-			statement.setBoolean(5,inManutenzione);
-			statement.setString(6, dataManutenzioneOrdinaria);
+			statement.setString(5, dataManutenzioneOrdinaria);
 			try {
 				if(statement.executeUpdate()==1)
 					inserito=true;
@@ -63,18 +62,21 @@ public class MySQLAutoDao implements AutoDao{
 	
 	
 	@Override
-	public boolean modificaAuto(String targa, boolean inManutenzione, 
+	public boolean modificaAuto(String targa, String inizioManutenzioneStraordinaria, 
 			String dataManutenzioneOrdinaria, double km) {
 		// TODO Auto-generated method stub
 		boolean modificato;
-		String queryModifica = "update cars set ultimo_km= ? , in_manutenzione= ? "
-				+ ", data_manutenzione_ordinaria= ? where targa= ?;";
 		
+			
+		String queryModifica = "update cars set ultimo_km= ? , "
+			+ "data_inizio_manutenzione_straordinaria= ? "
+			+ ", data_manutenzione_ordinaria= ? where targa= ?;";
+			
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(queryModifica);
 			statement.setDouble(1, km);
-			statement.setBoolean(2, inManutenzione);
+			statement.setString(2, inizioManutenzioneStraordinaria);
 			statement.setString(3, dataManutenzioneOrdinaria);
 			statement.setString(4, targa);
 			try {
@@ -87,13 +89,14 @@ public class MySQLAutoDao implements AutoDao{
 				System.out.println("impossibile effettuare la query");
 				modificato=false;
 			}
-			
-			statement.close();
+				
+				statement.close();
 		}
 		catch (SQLException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
 		}
+		System.out.println(modificato);
 		return modificato;
 	}
 	
@@ -136,7 +139,8 @@ public class MySQLAutoDao implements AutoDao{
 	public ArrayList<Auto> getAutoDisponibili() {
 		// TODO Auto-generated method stub
 		ArrayList<Auto> result;
-		String queryAuto = "select * from cars where in_manutenzione=false;";
+		String queryAuto = "select * from cars where data_inizio_manutenzione_straordinaria="
+				+ "'0000-00-00';";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -145,9 +149,16 @@ public class MySQLAutoDao implements AutoDao{
 				try{
 					ResultSet rs=statement.executeQuery(queryAuto);
 					result = new ArrayList<Auto>();
+					String dataManStr;
+					try {
+						dataManStr = rs.getString("data_inizio_manutenzione_straordinaria");
+					}
+					catch (SQLException e) {
+						dataManStr = "";
+					}
 					while(rs.next()) {
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
-						rs.getString("fascia").charAt(0), rs.getBoolean("in_manutenzione"),
+						rs.getString("fascia").charAt(0), dataManStr,
 						rs.getString("data_manutenzione_ordinaria"), rs.getDouble("ultimo_km"));
 
 						result.add(a);
@@ -188,9 +199,16 @@ public class MySQLAutoDao implements AutoDao{
 				try {
 					ResultSet rs=statement.executeQuery(queryAutoSistema);
 					result = new ArrayList<Auto>();
+					String dataManStr;
+					try {
+						dataManStr = rs.getString("data_inizio_manutenzione_straordinaria");
+					}
+					catch (SQLException e) {
+						dataManStr = "";
+					}
 					while(rs.next()) {
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
-						rs.getString("fascia").charAt(0), rs.getBoolean("in_manutenzione"),
+						rs.getString("fascia").charAt(0), dataManStr,
 						rs.getString("data_manutenzione_ordinaria"), rs.getDouble("ultimo_km"));
 						result.add(a);
 					}	

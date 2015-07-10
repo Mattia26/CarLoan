@@ -11,26 +11,24 @@ public class ContrattoBusiness {
 
 	private static ContrattoDao contratto;
 	
-	public ContrattoBusiness() {
-		try {
-			contratto=DaoFactory.getDaoFactory(DaoFactory.MySQL).getContrattoDao();
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ContrattoBusiness() throws InstantiationException, IllegalAccessException {
+		contratto=DaoFactory.getDaoFactory(DaoFactory.MySQL).getContrattoDao();
 	}
+	
 	public int inserisciContratto(Contratto c) {
 		// TODO Auto-generated method stub
 		return contratto.inserisciContratto(c.getCliente(), c.getTargaMacchina(), 
-		InputController.stringTodate(c.getDataInizio()),InputController.stringTodate(c.getDataFine()), c.getQuotaAcconto(), c.getTipologia(), 
-		c.getTipoChilometraggio(), c.sedeRestituzione(), c.macchinaRitirata());
+		InputController.stringToMySqlDate(c.getDataInizio()),
+		InputController.stringToMySqlDate(c.getDataFine()), c.getQuotaAcconto(), 
+		c.getTipologia(), c.getTipoChilometraggio(), c.sedeRestituzione(), 
+		c.macchinaRitirata());
 	}
 
 	public  boolean modificaContratto(Contratto c) {
 		// TODO Auto-generated method stub
 		return contratto.modificaContratto(c.getId(), c.getTargaMacchina(), 
-				InputController.stringTodate(c.getDataInizio()),
-				InputController.stringTodate(c.getDataFine()), c.getQuotaAcconto(), 
+				InputController.stringToMySqlDate(c.getDataInizio()),
+				InputController.stringToMySqlDate(c.getDataFine()), c.getQuotaAcconto(), 
 				c.getTipologia(), c.getTipoChilometraggio(), 
 				c.sedeRestituzione(), c.chiuso(), c.macchinaRitirata());
 	}
@@ -52,7 +50,9 @@ public class ContrattoBusiness {
 
 	public int getId(Contratto c) {
 		// TODO Auto-generated method stub
-		return contratto.getId(c.getTargaMacchina(), InputController.stringTodate(c.getDataInizio()), InputController.stringTodate(c.getDataFine()));
+		return contratto.getId(c.getTargaMacchina(), 
+				InputController.stringToMySqlDate(c.getDataInizio()), 
+				InputController.stringToMySqlDate(c.getDataFine()));
 	}
 	
 }

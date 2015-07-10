@@ -10,11 +10,18 @@ public class GestisciOperatore {
 	private OperatoreBusiness ob;
 	
 	public GestisciOperatore() {
-		ob = new OperatoreBusiness();
+		try {
+			ob = new OperatoreBusiness();
+		} catch (InstantiationException | IllegalAccessException e) {
+			ob = null;
+		}
 	}
 	
 	
 	public Object inserisciOperatore(ArrayList<String> operatorParameters) {
+		if(ob.equals(null))
+			return false;
+		
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
@@ -26,6 +33,8 @@ public class GestisciOperatore {
 	
 	
 	public Object modificaOperatore(ArrayList<String> operatorParameters) {
+		if(ob.equals(null))
+			return false;
 		
 		String nickname=GestioneSessione.getUsername();
 		String nome=operatorParameters.get(0);
@@ -38,10 +47,15 @@ public class GestisciOperatore {
 	
 	
 	public Object eliminaOperatore(String nickname) {
+		if(ob.equals(null))
+			return false;
+		
 		return ob.rimuoviOperatore(nickname);
 	}
 	
 	public Object getDatiOperatore() {
+		if(ob.equals(null))
+			return null;
 		
 		Operatore o = new Operatore(GestioneSessione.getNomeOperatore(),
 		GestioneSessione.getCognomeOperatore(), GestioneSessione.getIndirizzoOperatore(),

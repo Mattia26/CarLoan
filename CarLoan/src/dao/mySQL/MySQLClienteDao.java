@@ -49,18 +49,20 @@ public class MySQLClienteDao implements ClienteDao {
 	
 	
 	@Override
-	public boolean modificaCliente(String codFiscale, String numTel) {
+	public boolean modificaCliente(String codFiscale, String numTel, String nome, String cognome) {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String query_modifica;
-		query_modifica= "update clients set telefono= ? where codice_fiscale= ?;";			
+		query_modifica= "update clients set telefono= ?, nome= ?, cognome= ?  where codice_fiscale= ?;";			
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(query_modifica);
 
 			statement.setString(1,numTel);
-			statement.setString(2, codFiscale);
+			statement.setString(2, nome);
+			statement.setString(3, cognome);
+			statement.setString(4, codFiscale);
 			try {
 				if(statement.executeUpdate()==1)
 					modificato=true;

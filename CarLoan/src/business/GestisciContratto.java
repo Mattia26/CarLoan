@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.time.temporal.ChronoUnit;
 
 import utility.InputController;
 import entity.Auto;
@@ -21,10 +22,17 @@ public class GestisciContratto {
 	private ContrattoBusiness cb;
 	
 	public GestisciContratto() {
-		cb = new ContrattoBusiness();
+		try {
+			cb = new ContrattoBusiness();
+		} catch (InstantiationException | IllegalAccessException e) {
+			cb = null;
+		}
 	}
 	
 	public Object nuovoContratto(ArrayList<String> parameters) {
+		if(cb.equals(null))
+			return -1;
+		
 		GestisciCliente gc=new GestisciCliente();
 		ArrayList<String> datiCliente = new ArrayList<String>();
 		
@@ -40,7 +48,7 @@ public class GestisciContratto {
 		char tipoKm = parameters.get(5).charAt(0);
 		String dittaRestituzione = parameters.get(3);
 		boolean autoRitirata;
-		if(InputController.getCalendar(dataInizio).equals(LocalDate.now()))
+		if(InputController.getDate(dataInizio).equals(LocalDate.now()))
 			autoRitirata=true;
 		else
 			autoRitirata=false;
@@ -51,25 +59,30 @@ public class GestisciContratto {
 		datiCliente.add(cfCliente);
 		gc.inserisciCliente(datiCliente);
 		
-		
-		Contratto c = new Contratto(0, cfCliente, targaMacchina, dataInizio, dataFine, acconto, 
-				tipo, tipoKm, dittaRestituzione, false, autoRitirata);
+		Contratto c = new Contratto(0, cfCliente, targaMacchina, dataInizio, dataFine, 
+				acconto, tipo, tipoKm, dittaRestituzione, false, autoRitirata);
 		return cb.inserisciContratto(c);
 	}
 	
 	public Object modificaContratto(ArrayList<String> parameters) {
+		if(cb.equals(null))
+			return false;
+		String dataInizio = parameters.get(2);
+		
+		if(ChronoUnit.DAYS.between(LocalDate.now(),InputController.getDate(dataInizio)) < 3)
+			return false;
+		
 		int id = Integer.parseInt(parameters.get(0));
 		String cfCliente = parameters.get(9);
 		String targaMacchina = parameters.get(1);
-		String dataInizio = parameters.get(2);
 		String dataFine = parameters.get(3);
 		int acconto = Integer.parseInt(parameters.get(10));
 		char tipo = parameters.get(5).charAt(0);
 		char tipoKm = parameters.get(6).charAt(0);
 		String dittaRestituzione = parameters.get(4);
 		
-		Contratto c = new Contratto(id, cfCliente, targaMacchina, dataInizio, dataFine, acconto, 
-				tipo, tipoKm, dittaRestituzione, false, false);
+		Contratto c = new Contratto(id, cfCliente, targaMacchina, dataInizio, dataFine, 
+				acconto, tipo, tipoKm, dittaRestituzione, false, false);
 		
 		
 		return cb.modificaContratto(c);
@@ -78,16 +91,29 @@ public class GestisciContratto {
 	
 	
 	public Object annullaContratto(String id) {
-		int idC = Integer.parseInt(id);
-		return cb.cancellaContratto(idC);
+		if(cb.equals(null))
+			return false;
+		
+		try {
+			getDatiContratto(id);
+			int idC = Integer.parseInt(id);
+			return cb.cancellaContratto(idC);
+		} 
+		catch (ObjectNotFoundException e) {
+			// contratto con id non presente nel db tra i contratti attivi
+			return false;
+		}
+		
 	}
 	
 	
 	
 	public Object chiudiContratto(String id) {	
-		Contratto c;
+		if(cb.equals(null))
+			return false;
+		
 		try {
-			c = (Contratto) getDatiContratto(id);
+			Contratto c = (Contratto) getDatiContratto(id);
 			c.setChiuso(true);
 			return cb.modificaContratto(c);
 		} catch (ObjectNotFoundException e) {
@@ -99,9 +125,15 @@ public class GestisciContratto {
 	
 	
 	public Object notificaRitiroAuto(String id) {
+		if(cb.equals(null))
+			return false;
+		
 		Contratto c;
 		try {
 			c = (Contratto) getDatiContratto(id);
+			if(c.macchinaRitirata())
+				return false;
+			
 			c.setRitirata(true);
 			return cb.modificaContratto(c);
 		} catch (ObjectNotFoundException e) {
@@ -113,6 +145,9 @@ public class GestisciContratto {
 	
 	
 	public Object getDatiContratto(String id) throws ObjectNotFoundException {
+		if(cb.equals(null))
+			return null;
+		
 		int idC = Integer.parseInt(id);
 		ArrayList<Contratto> listaContr = cb.getContrattiAttivi();
 		Iterator<Contratto> it = listaContr.iterator();
@@ -128,12 +163,15 @@ public class GestisciContratto {
 	
 	
 	public Object calcolaImporto(ArrayList<String> parameters) {
+		if(cb.equals(null))
+			return -1;
+		
 		ListinoBusiness lb;
 		
 		int costoTipo;
 		int costoTipoKm;
 		double kmPercorsi;
-		int durataContratto;
+		long durataContratto;
 
 		String id=parameters.get(0);
 		double nuovoKm=Double.parseDouble(parameters.get(2));
@@ -144,6 +182,7 @@ public class GestisciContratto {
 			char tipoKm = c.getTipoChilometraggio();
 			GestisciAuto g = new GestisciAuto();
 			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
+			char fascia = a.getFascia();
 			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
 			g.inserisciNuovoChilometraggio(a);
 			
@@ -152,8 +191,8 @@ public class GestisciContratto {
 			if(tipoKm=='G' && tipo=='L') {
 				costoTipo = lb.getPrezzi().get(0);
 				costoTipoKm = lb.getPrezzi().get(2);
-				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-						, LocalDate.now()).getDays();
+				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
+						InputController.getDate(c.getDataInizio()));
 				
 				return costoTipo*durataContratto + costoTipoKm*33; 
 				// 33 da sostituire con parametro di fascia(es 50 km, 100 km etc.);
@@ -161,8 +200,8 @@ public class GestisciContratto {
 			else if(tipoKm == 'G' && tipo == 'I') {
 				costoTipo = lb.getPrezzi().get(0);
 				costoTipoKm = lb.getPrezzi().get(3);
-				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-						, LocalDate.now()).getDays();
+				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
+						InputController.getDate(c.getDataInizio()));
 				
 				return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
 			}
@@ -170,8 +209,8 @@ public class GestisciContratto {
 			else if(tipo== 'S' && tipoKm == 'L') {
 				costoTipo = lb.getPrezzi().get(1);
 				costoTipoKm = lb.getPrezzi().get(2);
-				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-						, LocalDate.now()).getDays() / 7;
+				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
+						InputController.getDate(c.getDataInizio()));
 				
 				return costoTipo*durataContratto + costoTipoKm*33;	
 			}
@@ -179,8 +218,8 @@ public class GestisciContratto {
 			else {
 				costoTipo = lb.getPrezzi().get(1);
 				costoTipoKm = lb.getPrezzi().get(3);
-				durataContratto = Period.between(InputController.getCalendar(c.getDataInizio())
-						, LocalDate.now()).getDays() / 7;
+				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
+						InputController.getDate(c.getDataInizio()));
 				
 				return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
 			}
@@ -192,13 +231,16 @@ public class GestisciContratto {
 	
 	
 	public Object notificheSistema() {
+		if(cb.equals(null))
+			return false;
+		
 		ArrayList<Contratto> contratti = cb.getContrattiAttivi();
 		ArrayList<Contratto> contrattiFiniti = new ArrayList<Contratto>();
 		Iterator<Contratto> it=contratti.iterator();
 		while(it.hasNext()) {
 			Contratto c = it.next();
-			LocalDate dataInizio = InputController.getCalendarDB(c.getDataInizio());
-			LocalDate dataFine = InputController.getCalendarDB(c.getDataFine());
+			LocalDate dataInizio = InputController.getDate(c.getDataInizio());
+			LocalDate dataFine = InputController.getDate(c.getDataFine());
 			if(dataInizio.isBefore(LocalDate.now()) && !c.macchinaRitirata()) {
 				c.setDataFine(LocalDate.now().toString());
 				c.setChiuso(true);

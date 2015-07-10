@@ -11,14 +11,10 @@ public class AutoBusiness {
 
 	private static AutoDao auto;
 	
-	public AutoBusiness() {
-		try {
+	public AutoBusiness() throws InstantiationException, IllegalAccessException {
 			auto=DaoFactory.getDaoFactory(DaoFactory.MySQL).getAutoDao();
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
+	
 	public boolean inserisciAuto(Auto a) {
 		// TODO Auto-generated method stub
 		return auto.inserisciAuto(a.getModello(), a.getTarga(), a.getFascia(), a.getUltimoChilometraggio());
@@ -26,8 +22,8 @@ public class AutoBusiness {
 
 	public boolean modificaAuto(Auto a) {
 		// TODO Auto-generated method stub
-		return auto.modificaAuto(a.getTarga(), a.inManutenzione(),
-				InputController.stringTodate(a.getDataManutenzione()), a.getUltimoChilometraggio());
+		return auto.modificaAuto(a.getTarga(), a.getDataManutenzioneStraordinaria(),
+				a.getDataManutenzioneOrdinaria(), a.getUltimoChilometraggio());
 	}
 
 	public boolean rimuoviAuto(String targa) {

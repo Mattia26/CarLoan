@@ -4,18 +4,24 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
+import entity.Cliente;
 
-public class InserimentoManutenzione implements Command{
-
+public class GetDatiCliente implements Command{
+		
 		private BusinessDelegate b;
 	
+	
 			public Object Execute(String parameter){
+				ArrayList<String> ritorno = new ArrayList<String>();
+				Cliente c;
+				b  = new BusinessDelegate();
 				
-				boolean ritorno = false;
-				b = new BusinessDelegate();
-
 				try {
-					ritorno = (boolean)b.handleRequest("InserisciManutenzione", parameter);
+					c = (Cliente)b.handleRequest("AccessoDatiCliente", parameter);
+					
+					ritorno.add(c.getNome());
+					ritorno.add(c.getCognome());
+					ritorno.add(c.getNumeroTelefono());
 				} catch (ClassNotFoundException | IllegalAccessException
 						| IllegalArgumentException | InvocationTargetException
 						| InstantiationException | NoSuchMethodException
@@ -23,13 +29,13 @@ public class InserimentoManutenzione implements Command{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				
 				return ritorno;
 				
 			}
 
-			@Override
 			public Object Execute(ArrayList<String> parameters) {
-				// TODO Auto-generated method stub
 				return null;
 			}
 

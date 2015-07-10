@@ -16,7 +16,7 @@ public class InputVerify {
 		ritorno = t.matches(DATE_PATTERN);
 		System.out.println(ritorno);
 		if(ritorno == true){
-			LocalDate date = InputController.getCalendar(t);
+			LocalDate date = InputController.getDate(t);
 			System.out.println(date);
 			if(date.isBefore(LocalDate.now()))
 				ritorno = false;

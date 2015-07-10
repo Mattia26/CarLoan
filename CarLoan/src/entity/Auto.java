@@ -1,54 +1,45 @@
 package entity;
 
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ArrayList;
+
+import utility.InputController;
 
 public class Auto {
 	private final String modello;
 	private final String targa;
 	private char fascia;
-	private boolean inManutenzione;
+	private String dataInizioManutenzioneStraordinaria;
 	private String dataManutenzioneOrdinaria;
 	private double ultimoChilometraggio;
 	
-	public Auto(String modello, String targa, char fascia, boolean inManutenzione, 
-			String dataManutenzioneOrdinaria, double ultimoKm) {	
+	
+	public Auto(String modello, String targa, char fascia, String dataManutenzione, 
+			String dataManutenzioneOrdinaria, double ultimoKm) {
 		this.modello=modello;
 		this.targa=targa;
 		this.fascia=fascia;
-		this.inManutenzione=inManutenzione;
+		this.dataInizioManutenzioneStraordinaria=dataManutenzione;
 		this.dataManutenzioneOrdinaria=dataManutenzioneOrdinaria;
 		this.ultimoChilometraggio=ultimoKm;
-		
 	}
 	
-	public Auto(ArrayList<HashMap<String,String>> a, String targa) {
-		int i=0;
-		while(a.get(i).get("targa") != targa && i<a.size()) {
-			i++;
-		}
-		this.targa=targa;
-		this.modello=a.get(i).get("modello");
-		this.fascia=(char) (Object) a.get(i).get("fascia");
-		this.inManutenzione= (boolean) ((Object) a.get(i).get("inManutenzione"));
-		this.dataManutenzioneOrdinaria=a.get(i).get("dataManutenzioneOrdinaria");
-		this.ultimoChilometraggio=(double) (Object) a.get(i).get("ultimoChilometraggio");
-	}
 	
 	public void setFascia(char fascia) {
 		this.fascia=fascia;
 	}
 	
-	public void setInManutenzione(boolean inManutenzione) {
-		this.inManutenzione=inManutenzione;
+	public void setDataManutenzioneStraordinaria(String dataManutenzione) {
+		dataInizioManutenzioneStraordinaria=dataManutenzione;
 	}
 	
 	public void setUltimoChilometraggio(double ultimoKm) {
 		this.ultimoChilometraggio=ultimoKm;
 	}
 	
-	public void setDataManutenzione(String data) {
+	public void setDataManutenzioneOrdinaria(String data) {
 		this.dataManutenzioneOrdinaria=data;
 	}
 	
@@ -64,12 +55,16 @@ public class Auto {
 		return this.fascia;
 	}
 
-	public String getDataManutenzione() {
+	public String getDataManutenzioneOrdinaria() {
 		return this.dataManutenzioneOrdinaria;
 	}
 	
-	public boolean inManutenzione() {
-		return this.inManutenzione;
+	public String getDataManutenzioneStraordinaria() {
+		return this.dataInizioManutenzioneStraordinaria;
+	}
+	
+	public String inManutenzioneStraordinaria() {
+		return this.dataInizioManutenzioneStraordinaria;
 	}
 	
 	public double getUltimoChilometraggio() {

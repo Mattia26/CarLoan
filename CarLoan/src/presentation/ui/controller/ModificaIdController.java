@@ -29,7 +29,7 @@ public class ModificaIdController {
 		if(id.getText() != null){
 			parameters.add(id.getText());
 			GestioneSessione.setId(id.getText());
-			if(fc.handleRequest("GetDatiContratto").getClass().equals(Boolean.class))
+			if(((ArrayList<String>)fc.handleRequest("GetDatiContratto")).isEmpty())
 				v.showMessage(1, "Errore!" ,
 				"Nessun contratto ritrovato con tale id. "
 				+ "\nAssicurati di aver inserito l'id corretto e riprova");	

@@ -60,7 +60,7 @@ public class GetDatiContratto implements Command{
 					| IllegalArgumentException | InvocationTargetException
 					| InstantiationException | NoSuchMethodException | SecurityException e) {
 				// TODO Auto-generated catch block
-				return false;
+	
 		}
 		
 		

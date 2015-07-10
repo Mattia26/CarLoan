@@ -49,10 +49,10 @@
             <Button layoutX="208.0" layoutY="119.0" mnemonicParsing="false" onAction="#ChiudiContratto" prefHeight="25.0" prefWidth="138.0" text="Chiudi Contratto" GridPane.rowIndex="1" />
             <Button layoutX="208.0" layoutY="157.0" mnemonicParsing="false" onAction="#ModificaContratto" text="Modifica Contratto" GridPane.rowIndex="2" />
             <Button layoutX="208.0" layoutY="196.0" mnemonicParsing="false" onAction="#annullaContratto" prefHeight="25.0" prefWidth="138.0" text="Annulla Contratto" GridPane.rowIndex="3" />
-            <Button layoutX="208.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Manutenzione" GridPane.rowIndex="6" />
+            <Button layoutX="208.0" layoutY="315.0" mnemonicParsing="false" onAction="#manutenzione" prefHeight="25.0" prefWidth="138.0" text="Manutenzione" GridPane.rowIndex="6" />
             <Button fx:id="NuovoContratto" layoutX="208.0" layoutY="78.0" mnemonicParsing="false" onAction="#CercaAuto" prefHeight="25.0" prefWidth="138.0" text="Nuovo Contratto" />
-            <Button layoutX="208.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Cerca Cliente" GridPane.rowIndex="5" />
-            <Button layoutX="208.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Notifica Ritiro" GridPane.rowIndex="4" />
+            <Button layoutX="208.0" layoutY="275.0" mnemonicParsing="false" onAction="#cercaCliente" prefHeight="25.0" prefWidth="138.0" text="Cerca Cliente" GridPane.rowIndex="5" />
+            <Button layoutX="208.0" layoutY="235.0" mnemonicParsing="false" onAction="#notificaRitiro" prefHeight="25.0" prefWidth="138.0" text="Notifica Ritiro" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutX="5.0" layoutY="162.0" prefHeight="38.0" prefWidth="174.0">
