@@ -105,6 +105,11 @@ public class Lookup implements LookupI{
 			metodo = "nuovoContratto";
 			input = ArrayList.class;
 			break;
+		case "Initialize":
+			classe = "business.GestisciContratto";
+			metodo = "Initialize";
+			input = String.class;
+		break;
 			
 		}
 		

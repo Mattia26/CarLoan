@@ -42,9 +42,20 @@ public class InputController {
 	
 	public static LocalDate getDate(String s){
 		String[] splittedString = s.split("/");
-		LocalDate data = LocalDate.of(Integer.parseInt(splittedString[2]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[0]));
+		LocalDate data;
+		if(splittedString.length == 1){
+			splittedString = s.split("-");
+			data = LocalDate.of(Integer.parseInt(splittedString[0]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[2]));
+		}
+		
+		else
+			data = LocalDate.of(Integer.parseInt(splittedString[2]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[0]));
 		
 		return data;
+	}
+	
+	public static String getString(LocalDate date){
+		return Integer.toString(date.getDayOfMonth()) + "/" + Integer.toString(date.getMonthValue()) + "/" + Integer.toString(date.getYear());
 	}
 	
 	public static String stringToMySqlDate(String s){

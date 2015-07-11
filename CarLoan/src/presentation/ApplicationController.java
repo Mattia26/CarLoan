@@ -9,6 +9,7 @@ import presentation.command.ChiusuraContratto;
 import presentation.command.Command;
 import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
+import presentation.command.Initialize;
 import presentation.command.InserimentoManutenzione;
 import presentation.command.ModificaContratto;
 import presentation.command.ModificaDatiCliente;
@@ -86,6 +87,11 @@ public class ApplicationController implements ApplicationControllerI {
 		case "Manutenzione":
 			dispatcher = new ViewDispatcher();
 			dispatcher.setInterface("Manutenzione.fxml");
+		break;
+		
+		case "Initialize":
+			command = new Initialize();
+			ritorno = command.Execute("");
 		break;
 		}
 		

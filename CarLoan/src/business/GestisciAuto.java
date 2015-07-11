@@ -22,6 +22,31 @@ public class GestisciAuto {
 		}
 	}
 	
+	public void Initialize(){
+		ArrayList<Auto> auto = new ArrayList<Auto>();
+		LocalDate today = LocalDate.now();
+		
+		auto = car.autoSistema();
+		Iterator<Auto> it = auto.iterator();
+		
+		while(it.hasNext()){
+			Auto current = it.next();
+			LocalDate manutenzioneO =  InputController.getDate(current.getDataManutenzioneOrdinaria()).plusDays(3);
+			LocalDate manutenzioneS = InputController.getDate(current.getDataManutenzioneOrdinaria()).plusDays(3);
+			if( manutenzioneO.equals(today)){
+				current.setDataManutenzioneOrdinaria(InputController.stringToMySqlDate(InputController.getString(InputController.getDate(current.getDataManutenzioneOrdinaria()).plusYears(1))));
+				car.modificaAuto(current);
+			
+			}
+			if(manutenzioneS.equals(today)){
+				current.setDataManutenzioneStraordinaria(null);
+				car.modificaAuto(current);
+			}
+		}
+		
+		
+	}
+	
 	public Object inserisciAuto(ArrayList<String> parameters) {
 		if(car.equals(null))
 			return false;

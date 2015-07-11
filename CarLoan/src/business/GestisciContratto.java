@@ -29,6 +29,33 @@ public class GestisciContratto {
 		}
 	}
 	
+	public Object Initialize(String s){
+		
+		
+		LocalDate yesterday = LocalDate.now().minusDays(1);
+		ArrayList<Contratto> ritorno = new ArrayList<Contratto>();
+		
+		if(!cb.equals(null)){
+			ArrayList<Contratto> contratti = cb.getContrattiSistema();
+			Iterator<Contratto> it = contratti.iterator();
+			
+			while(it.hasNext()){
+				Contratto current = it.next();
+
+				if(InputController.getDate(current.getDataFine()).equals(yesterday) && !current.chiuso()){
+					ritorno.add(current);
+				}
+			}
+			
+			GestisciAuto g = new GestisciAuto();
+			g.Initialize();
+			
+		}
+		
+		return ritorno;
+		
+	}
+	
 	public Object nuovoContratto(ArrayList<String> parameters) {
 		if(cb.equals(null))
 			return -1;

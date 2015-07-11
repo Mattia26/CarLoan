@@ -24,9 +24,12 @@ public class ViewDispatcher  {
 	
 	
 	public void showMessage(int code, String title, String message){
-		Alert alert = new Alert(null);//http://code.makery.ch/blog/javafx-dialogs-official/
+		Alert alert = new Alert(null);
+	
+		
 		switch(code){
 		case 0:
+			alert.getDialogPane().setPrefSize(380, 220);
 			alert.setAlertType(AlertType.INFORMATION);
 			alert.setTitle(title);
 			alert.setContentText(message);
