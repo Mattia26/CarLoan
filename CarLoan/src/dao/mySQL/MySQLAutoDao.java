@@ -67,6 +67,9 @@ public class MySQLAutoDao implements AutoDao{
 		// TODO Auto-generated method stub
 		boolean modificato;
 		
+		if(inizioManutenzioneStraordinaria == "")
+			inizioManutenzioneStraordinaria = null;
+		
 			
 		String queryModifica = "update cars set ultimo_km= ? , "
 			+ "data_inizio_manutenzione_straordinaria= ? "
@@ -139,8 +142,8 @@ public class MySQLAutoDao implements AutoDao{
 	public ArrayList<Auto> getAutoDisponibili() {
 		// TODO Auto-generated method stub
 		ArrayList<Auto> result;
-		String queryAuto = "select * from cars where data_inizio_manutenzione_straordinaria="
-				+ "'0000-00-00';";
+		String queryAuto = "select * from cars where data_inizio_manutenzione_straordinaria is"
+				+ "null;";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();

@@ -28,7 +28,7 @@ public class Lookup implements LookupI{
 			break;
 		case "CalcolaSaldo":
 			classe = "business.GestisciContratto";
-			metodo = "calcolaSaldo";
+			metodo = "calcolaImporto";
 			input = ArrayList.class;
 			break;
 		case "CercaAuto":

@@ -36,11 +36,7 @@ public class CercaClienteController {
 	@FXML
 	private TextField campotel;
 	
-	@FXML
-	private TextField campocogn;
 	
-	@FXML
-	private TextField camponom;
 	
 	private ArrayList<String> cliente;
 	
@@ -76,12 +72,10 @@ public class CercaClienteController {
     
     @FXML
     public void modifica(){
-    	camponom.setText(cliente.get(0));
-    	campocogn.setText(cliente.get(1));
+    	
     	campotel.setText(cliente.get(2));
     	
-    	camponom.setVisible(true);
-    	campocogn.setVisible(true);
+    	
     	campotel.setVisible(true);
     	
     	mdf.setVisible(false);
@@ -91,13 +85,13 @@ public class CercaClienteController {
     @FXML
     public void conferma(){
     	
-    	if(camponom.getText().isEmpty() || campocogn.getText().isEmpty() || campotel.getText().isEmpty())
+    	if(campotel.getText().isEmpty())
     		v.showMessage(0, "Errore", "Riempire tutti i campi");
     	else{
     		ArrayList<String> parameters = new ArrayList<String>();
     		
-    		parameters.add(camponom.getText());
-    		parameters.add(campocogn.getText());
+    		parameters.add(nome.getText());
+    		parameters.add(cognome.getText());
     		parameters.add(campotel.getText());
     		parameters.add(cf.getText());
     		
@@ -106,8 +100,7 @@ public class CercaClienteController {
     			
     			conf.setVisible(false);
     			mdf.setVisible(false);
-    			camponom.setVisible(false);
-    			campocogn.setVisible(false);
+    			
     			campotel.setVisible(false);
     			
     			nome.setText("");
@@ -115,8 +108,10 @@ public class CercaClienteController {
     			telefono.setText("");
     			cf.setText("");
     		}
-    		else
+    		else{
     			v.showMessage(1, "Errore!", "Operazione non completata!\n Riprovare!");
+    			fc.handleRequest("MenuOperatore");
+    		}
     		
     			
     	}

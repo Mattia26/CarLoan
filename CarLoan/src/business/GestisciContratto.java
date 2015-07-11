@@ -174,7 +174,7 @@ public class GestisciContratto {
 		long durataContratto;
 
 		String id=parameters.get(0);
-		double nuovoKm=Double.parseDouble(parameters.get(2));
+		double nuovoKm=Double.parseDouble(parameters.get(1));
 		Contratto c;
 		try {
 			c = (Contratto) getDatiContratto(id);
@@ -184,18 +184,18 @@ public class GestisciContratto {
 			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
 			char fascia = a.getFascia();
 			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
+			a.setUltimoChilometraggio(nuovoKm);
 			g.inserisciNuovoChilometraggio(a);
-			
 			lb = new ListinoBusiness();
 		
 			if(tipoKm=='G' && tipo=='L') {
 				costoTipo = lb.getPrezzi().get(0);
 				costoTipoKm = lb.getPrezzi().get(2);
+				
 				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*33; 
-				// 33 da sostituire con parametro di fascia(es 50 km, 100 km etc.);
+				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50); 
 			}
 			else if(tipoKm == 'G' && tipo == 'I') {
 				costoTipo = lb.getPrezzi().get(0);
@@ -212,7 +212,7 @@ public class GestisciContratto {
 				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*33;	
+				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50);	
 			}
 			
 			else {

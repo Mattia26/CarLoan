@@ -1,12 +1,28 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import business.BusinessDelegate;
+
 public class CalcolaSaldo implements Command{
+	
+	BusinessDelegate b;
 
 	@Override
 	public Object Execute(ArrayList<String> parameters) {
-		double ritorno = 100.12;
+		double ritorno = -1;
+		b = new BusinessDelegate();
+		
+		try {
+			ritorno = (double)b.handleRequest("CalcolaSaldo", parameters);
+		} catch (ClassNotFoundException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| InstantiationException | NoSuchMethodException
+				| SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return ritorno;
 	}
 
