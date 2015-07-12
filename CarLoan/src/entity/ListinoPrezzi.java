@@ -1,6 +1,8 @@
 package entity;
 
-public class ListinoPrezzi {
+import java.io.Serializable;
+
+public class ListinoPrezzi implements Serializable{
 	private int costoGiornaliero;
 	private int costoSettimanale;
 	private int costoChilometraggioLimitato;

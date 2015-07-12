@@ -100,15 +100,6 @@ public class ApplicationController implements ApplicationControllerI {
 		break;
 		
 		case "NuovoOperatore":
-<<<<<<< HEAD
-			dispatcher = new ViewDispatcher();
-			dispatcher.setInterface("NuovoOperatore.fxml");
-		break;
-		
-		case "MenuAmministratore":
-			dispatcher = new ViewDispatcher();
-			dispatcher.setInterface("menuAmministratore.fxml");
-=======
 						dispatcher = new ViewDispatcher();
 						dispatcher.setInterface("NuovoOperatore.fxml");
 		break;
@@ -116,7 +107,6 @@ public class ApplicationController implements ApplicationControllerI {
 		case "MenuAmministratore":
 					dispatcher = new ViewDispatcher();
 					dispatcher.setInterface("menuAmministratore.fxml");
->>>>>>> 13e0fa4d9649716c09e0047e0e822848b7700a6d
 		break;
 		
 		case "EliminaOperatore":
@@ -230,11 +220,7 @@ public class ApplicationController implements ApplicationControllerI {
 			command = new InserimentoManutenzione();
 			ritorno = command.Execute(parameters.get(0));
 		break;
-<<<<<<< HEAD
-		
-=======
 			
->>>>>>> 13e0fa4d9649716c09e0047e0e822848b7700a6d
 		case "NuovoOperatore":
 			command = new InserimentoOperatore();
 			ritorno = command.Execute(parameters);
@@ -260,8 +246,6 @@ public class ApplicationController implements ApplicationControllerI {
 			ritorno = command.Execute(parameters);
 		break;
 		}
-		
-		
 		return ritorno;
 	}
 	
@@ -269,7 +253,7 @@ public class ApplicationController implements ApplicationControllerI {
 		GestioneSessione.setNomeOperatore("Mario");
 		GestioneSessione.setCognomeOperatore("Rossi");
 		GestioneSessione.setTelefonoOperatore("3333333333");
-		return "amministratore";
+		return "operatore";
 	}
 
 }

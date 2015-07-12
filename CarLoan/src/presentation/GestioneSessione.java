@@ -105,10 +105,7 @@ public class GestioneSessione {
 		return dataFine;
 	}
 	
-<<<<<<< HEAD
-=======
 
->>>>>>> 13e0fa4d9649716c09e0047e0e822848b7700a6d
 	public static boolean getAggiornato(){
 		return aggiornato;
 	}

@@ -119,10 +119,12 @@ public class GestisciAuto {
 			ContrattoBusiness contratto = new ContrattoBusiness();
 			ArrayList<Contratto> contratti = new ArrayList<Contratto>();
 			auto = car.autoSistema();
+			System.out.println(auto);
 			contratti = contratto.getContrattiAttivi();
 			LocalDate dataInizio = InputController.getDate(parameters.get(1));
 			LocalDate dataFine = InputController.getDate(parameters.get(2));
 			Iterator<Contratto> it = contratti.iterator();
+			Iterator<Auto> itr = auto.iterator();
 			
 			while(it.hasNext()){
 				Contratto corrente = it.next();
@@ -136,7 +138,7 @@ public class GestisciAuto {
 					(dataInizio.isBefore(dataInizioContratto) && 
 							dataFine.isAfter(dataFineContratto)) ) {
 					
-					Iterator<Auto> itr = auto.iterator();
+					
 					while(itr.hasNext()){
 						Auto corr = itr.next();
 						if(corr.getTarga().equals(corrente.getTargaMacchina())){
@@ -147,20 +149,33 @@ public class GestisciAuto {
 				}
 			}
 			
-				if(parameters.get(0) != "Qualsiasi"){
-					Iterator<Auto> iter = auto.iterator();
-					while(iter.hasNext()){
-						Auto current = iter.next();
-						if(current.getFascia() != parameters.get(0).charAt(0))
-							auto.remove(current);
-					}
+			while(itr.hasNext()) {
+				Auto corr = itr.next();
+				LocalDate dataManOrd = InputController.getDate
+						(corr.getDataManutenzioneOrdinaria());
+				LocalDate dataManStr = InputController.getDate
+						(corr.getDataManutenzioneStraordinaria());
+				if(dataInizio.isBefore(dataManOrd) && dataFine.isAfter(dataManOrd))
+					auto.remove(corr);
+				else if(dataInizio.isBefore(dataManStr) && dataFine.isAfter(dataManStr))
+					auto.remove(corr);
+			}
+			
+			if(parameters.get(0) != "Qualsiasi"){
+				Iterator<Auto> iter = auto.iterator();
+				while(iter.hasNext()){
+					Auto current = iter.next();
+					if(current.getFascia() != parameters.get(0).charAt(0))
+						auto.remove(current);
 				}
-				return auto;
+			}
 				
-			}
-			catch (DatabaseInstantiationException | NullPointerException e) {
-				return new ArrayList<Auto>();
-			}
+			return auto;
+				
+		}
+		catch (DatabaseInstantiationException | NullPointerException e) {
+			return new ArrayList<Auto>();
+		}
 	}
 	
 	

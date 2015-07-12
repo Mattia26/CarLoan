@@ -29,7 +29,6 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.setString(3, indirizzo);
 			statement.setString(4, numTelefono);
 			statement.setString(5, nickname);
-			
 			try {
 				if(statement.executeUpdate() == 1)	
 					inserito=true;
@@ -57,8 +56,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String queryModifica;
-		queryModifica = "update operators set nome= ?, cognome= ?, indirizzo = ?, telefono = ?"
-				+ " where nickname= ?;";
+		queryModifica = "update operators set nome= ?, cognome= ?, eta = ? where nickname= ?;";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();

@@ -128,13 +128,21 @@ public class GestisciContratto {
 	
 	public Object annullaContratto(String id) {
 		
-		int idC = Integer.parseInt(id);
 		try {
-			return cb.cancellaContratto(idC);
+			try {
+				getDatiContratto(id);
+				int idC = Integer.parseInt(id);
+				return cb.cancellaContratto(idC);
+			} 
+			catch (ObjectNotFoundException e) {
+				// contratto con id non presente nel db tra i contratti attivi
+				return false;
+			}
 		}
 		catch(NullPointerException e) {
 			return false;
 		}
+		
 	}
 	
 	

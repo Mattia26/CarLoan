@@ -154,18 +154,19 @@ public class MySQLAutoDao implements AutoDao{
 					
 					while(rs.next()) {
 						try {
-							dataManStr = rs.getString("data_man_strao");
+							dataManStr = 
+									InputController.mySqlDateToString(
+											rs.getString("data_man_strao"));
 						}
-						catch (SQLException e) {
-							dataManStr = "2000-01-01";
+						catch (SQLException | NullPointerException e) {
+							dataManStr = "01/01/2000";
 						}
+						
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
-						rs.getString("fascia").charAt(0), 
-						InputController.mySqlDateToString(dataManStr),
-						InputController.mySqlDateToString(
-							rs.getString("data_manutenzione_ordinaria")), 
+						rs.getString("fascia").charAt(0), dataManStr,
+						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
 						rs.getDouble("ultimo_km"));
-
+						
 						result.add(a);
 					}
 					rs.close();
@@ -210,14 +211,15 @@ public class MySQLAutoDao implements AutoDao{
 					while(rs.next()) {
 						try {
 							dataManStr = 
-									rs.getString("data_man_strao");
+									InputController.mySqlDateToString(
+											rs.getString("data_man_strao"));
 						}
-						catch (SQLException e) {
-							dataManStr = "2000-01-01";
+						catch (SQLException | NullPointerException e) {
+							dataManStr = "01/01/2000";
 						}
+						
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
-						rs.getString("fascia").charAt(0), 
-						InputController.mySqlDateToString(dataManStr),
+						rs.getString("fascia").charAt(0), dataManStr,
 						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
 						rs.getDouble("ultimo_km"));
 						result.add(a);
