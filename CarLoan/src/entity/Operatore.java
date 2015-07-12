@@ -5,14 +5,15 @@ public class Operatore {
 	private final String nome;
 	private final String cognome;
 	private String indirizzo;
-	private int numTelefono;
+	private String numTelefono;
 	private final String nickname;
 	
-	public Operatore(String nome, String cognome, String indirizzo, int tel, String nickname) {
+	public Operatore(String nome, String cognome, String indirizzo, 
+			String numTelefono, String nickname) {
 		this.nome=nome;
 		this.cognome=cognome;
 		this.indirizzo=indirizzo;
-		this.numTelefono=tel;
+		this.numTelefono=numTelefono;
 		this.nickname=nickname;
 	}
 	
@@ -27,7 +28,7 @@ public class Operatore {
 	public String getIndirizzo() {
 		return indirizzo;
 	}
-	public int getNumTelefono() {
+	public String getNumTelefono() {
 		return numTelefono;
 	}
 	
@@ -39,7 +40,7 @@ public class Operatore {
 		this.indirizzo=indirizzo;
 	}
 	
-	public void setNumTelefono(int numTelefono) {
+	public void setNumTelefono(String numTelefono) {
 		this.numTelefono=numTelefono;
 	}
 	

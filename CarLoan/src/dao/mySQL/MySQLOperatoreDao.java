@@ -14,11 +14,11 @@ public class MySQLOperatoreDao implements OperatoreDao{
 
 	@Override
 	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
-			int numTelefono, String nickname) {
+			String numTelefono, String nickname) {
 		// TODO Auto-generated method stub
 		boolean inserito;
 		String queryInserimento="insert into operators(nome, cognome, indirizzo, "
-				+ "telefono, nickname) values(?, ?, ?, ?);";
+				+ "telefono, nickname) values(?, ?, ?, ?, ?);";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -27,8 +27,9 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.setString(1, nome);
 			statement.setString(2, cognome);
 			statement.setString(3, indirizzo);
-			statement.setInt(4, numTelefono);
+			statement.setString(4, numTelefono);
 			statement.setString(5, nickname);
+			
 			try {
 				if(statement.executeUpdate()==1)	
 					inserito=true;
@@ -51,11 +52,12 @@ public class MySQLOperatoreDao implements OperatoreDao{
 
 	@Override
 	public boolean modificaDatiOperatore(String nome, String cognome, 
-			String indirizzo, int numTelefono, String nickname) {
+			String indirizzo, String numTelefono, String nickname) {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String queryModifica;
-		queryModifica = "update operators set nome= ?, cognome= ?, eta = ? where nickname= ?;";
+		queryModifica = "update operators set nome= ?, cognome= ?, indirizzo = ?, telefono = ?"
+				+ " where nickname= ?;";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -63,7 +65,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.setString(1, nome);
 			statement.setString(2, cognome);
 			statement.setString(3, indirizzo);
-			statement.setInt(4, numTelefono);
+			statement.setString(4, numTelefono);
 			statement.setString(5, nickname);
 			if(statement.executeUpdate()==1)
 				modificato=true;
@@ -123,7 +125,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 					while(rs.next()) {
 						Operatore o = new Operatore (rs.getString("nome"), 
 						rs.getString("cognome"), rs.getString("indirizzo"),
-						rs.getInt("telefono"), rs.getString("nickname"));
+						rs.getString("telefono"), rs.getString("nickname"));
 				
 						result.add(o);
 					}
