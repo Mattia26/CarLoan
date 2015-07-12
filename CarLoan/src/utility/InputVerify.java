@@ -1,5 +1,6 @@
 package utility;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 
@@ -14,12 +15,18 @@ public class InputVerify {
 	public static boolean dateVerify(String t) {
 		boolean ritorno = false;
 		ritorno = t.matches(DATE_PATTERN);
-		System.out.println(ritorno);
-		if(ritorno == true){
+
+		if(ritorno){
+			try {
 			LocalDate date = InputController.getDate(t);
-			System.out.println(date);
+			
 			if(date.isBefore(LocalDate.now()))
 				ritorno = false;
+			}
+			catch(DateTimeException | NullPointerException e) {
+				return false;
+			}
+			
 		}
 		return ritorno;
 		

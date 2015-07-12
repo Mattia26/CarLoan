@@ -1,5 +1,6 @@
 package utility;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 
@@ -11,19 +12,20 @@ public class InputController {
 	private static final String CODICE_FISCALE_PATTERN =
 			"[a-zA-Z]{6}\\d\\d[a-zA-Z]\\d\\d[a-zA-Z]\\d\\d\\d[a-zA-Z]";
 	
-	public static boolean dateVerify(String t) {
+	public static boolean dateVerify(String t) throws DateTimeException{
+		
 		boolean ritorno = false;
 		ritorno = t.matches(DATE_PATTERN);
-		if(ritorno == true){
+		if(ritorno){
 			LocalDate date = InputController.getDate(t);
+				
 			if(date.isBefore(LocalDate.now()))
 				ritorno = false;
-		}
+			}
 		return ritorno;
-		
 	}
 	
-	public static boolean dateVerify(String dal, String al){
+	public static boolean dateVerify(String dal, String al) throws DateTimeException{
 		boolean ritorno = false;
 		
 		LocalDate Dal = InputController.getDate(dal);
@@ -40,16 +42,12 @@ public class InputController {
 		return t.matches(CODICE_FISCALE_PATTERN);
 	}
 	
-	public static LocalDate getDate(String s){
+	public static LocalDate getDate(String s) throws DateTimeException{
 		String[] splittedString = s.split("/");
 		LocalDate data;
-		if(splittedString.length == 1){
-			splittedString = s.split("-");
-			data = LocalDate.of(Integer.parseInt(splittedString[0]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[2]));
-		}
 		
-		else
-			data = LocalDate.of(Integer.parseInt(splittedString[2]),Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[0]));
+		data = LocalDate.of(Integer.parseInt(splittedString[2]),
+				Integer.parseInt(splittedString[1]), Integer.parseInt(splittedString[0]));
 		
 		return data;
 	}

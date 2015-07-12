@@ -2,6 +2,7 @@ package presentation.ui.controller;
 
 
 import java.net.URL;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -58,31 +59,57 @@ public class CercaAutoController implements Initializable{
 			
 			dispatcher.showMessage(1, "Errore", "Inserire data di inizio e fine noleggio");
 		}
-		else if(!InputController.dateVerify(Dal.getText()) || !InputController.dateVerify(Al.getText())){
-			Dal.setText("");
-			Al.setText("");
-			dispatcher.showMessage(1, "Errore", "La data di inizio e quella di fine devono essere maggiori di quella attuale");
+		else {
+			try {
+				boolean correctDataInizio = InputController.dateVerify(Dal.getText());
+				try {
+					boolean correctDataFine = InputController.dateVerify(Dal.getText());
+					if(! correctDataInizio || ! correctDataFine){
+						Dal.setText("");
+						Al.setText("");
+						dispatcher.showMessage(1, "Errore",
+								"La data di inizio e quella di fine devono essere "
+								+ "posteriori a quella attuale");
+					}
+					
+					else if(!InputController.dateVerify(Dal.getText(),Al.getText())) {
+						Dal.setText("");
+						Al.setText("");
+						dispatcher.showMessage(1, "Errore", "La data di inizio deve essere "
+							+ "non posteriore rispetto a quella di fine"); 
+					}
+				
+					else {
+						FrontController fc = new FrontController();
+						ArrayList<String> parameters = new ArrayList<String>();
+						parameters.add((String)TipoBox.getValue());
+						parameters.add(Dal.getText());
+						parameters.add(Al.getText());
+						@SuppressWarnings("unchecked")
+						ArrayList<String> result = (ArrayList<String>)fc.handleRequest("CercaAuto", parameters);
+						if(result.isEmpty())
+							dispatcher.showMessage(0, "Nessun risultato!", "Nessun'auto disponibile nell'intervallo di tempo selezionato.");
+						vista.setItems(FXCollections.observableArrayList(result));
+					}
+				}
+				catch (DateTimeException e) {
+					dispatcher.showMessage(1, "Errore", "La data di fine inserita è inesistente.");
+					Al.setText("");
+				}
+			}
+			catch (DateTimeException e) {
+				Dal.setText("");
+				try {
+					InputController.dateVerify(Al.getText());
+					dispatcher.showMessage(1, "Errore", "La data di inizio inserita è inesistente.");
+				}	
+				catch (DateTimeException e2) {
+					Al.setText("");
+					dispatcher.showMessage(1, "Errore", "Entrambe le date inserite sono inesistenti.");
+				}
+			}
 		}
-		else if(!InputController.dateVerify(Dal.getText(),Al.getText())) {
-			Dal.setText("");
-			Al.setText("");
-			dispatcher.showMessage(1, "Errore", "La data di inizio deve essere "
-					+ "anteriore rispetto a quella di fine"); }
-		
-		else{
 			
-			FrontController fc = new FrontController();
-			ArrayList<String> parameters = new ArrayList<String>();
-			parameters.add((String)TipoBox.getValue());
-			parameters.add(Dal.getText());
-			parameters.add(Al.getText());
-			@SuppressWarnings("unchecked")
-			ArrayList<String> result = (ArrayList<String>)fc.handleRequest("CercaAuto", parameters);
-			if(result.isEmpty())
-				dispatcher.showMessage(0, "Nessun risultato!", "Nessun'auto disponibile nell'intervallo di tempo selezionato.");
-			vista.setItems(FXCollections.observableArrayList(result));
-			
-		}
 	}
 	
 	@FXML
