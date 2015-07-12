@@ -15,6 +15,7 @@ public class GestioneSessione {
 	private static String contrattoSelezionato = null;
 	private static String dataInizio = null;
 	private static String dataFine = null;
+	private static boolean aggiornato = false;
 	
 	public static String getUsername(){
 		return username;
@@ -102,6 +103,14 @@ public class GestioneSessione {
 	
 	public static String getDataFine(){
 		return dataFine;
+	}
+	
+	public static boolean getAggiornato(){
+		return aggiornato;
+	}
+	
+	public static void setAggiornato(boolean a){
+		aggiornato = a;
 	}
 	public static void azzera(){
 		username = null;

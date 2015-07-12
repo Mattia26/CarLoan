@@ -11,6 +11,7 @@ import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
 import presentation.command.Initialize;
 import presentation.command.InserimentoManutenzione;
+import presentation.command.InserimentoOperatore;
 import presentation.command.ModificaContratto;
 import presentation.command.ModificaDatiCliente;
 import presentation.command.ModificaDatiOperatore;
@@ -92,6 +93,16 @@ public class ApplicationController implements ApplicationControllerI {
 		case "Initialize":
 			command = new Initialize();
 			ritorno = command.Execute("");
+		break;
+		
+		case "NuovoOperatore":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("NuovoOperatore.fxml");
+		break;
+		
+		case "MenuAmministratore":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("menuAmministratore.fxml");
 		break;
 		}
 		
@@ -184,8 +195,15 @@ public class ApplicationController implements ApplicationControllerI {
 		case "InserisciManutenzione":
 			command = new InserimentoManutenzione();
 			ritorno = command.Execute(parameters.get(0));
+		break;
 		
+		case "NuovoOperatore":
+			command = new InserimentoOperatore();
+			ritorno = command.Execute(parameters);
+		break;
 		}
+		
+		
 		return ritorno;
 	}
 	

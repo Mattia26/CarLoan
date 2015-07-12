@@ -28,7 +28,7 @@ public class GetDatiCliente implements Command{
 						| InstantiationException | NoSuchMethodException
 						| SecurityException  e) {
 					// TODO Auto-generated catch block
-					return new ArrayList<String>();
+					return ritorno;
 				}
 				
 				

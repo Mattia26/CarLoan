@@ -141,8 +141,8 @@ public class GestisciContratto {
 			Contratto c = (Contratto) getDatiContratto(id);
 			c.setChiuso(true);
 			return cb.modificaContratto(c);
-		} 
-		catch (ObjectNotFoundException e) {
+		} catch (ObjectNotFoundException e) {
+			// TODO Auto-generated catch block
 			return false;
 		}
 	}

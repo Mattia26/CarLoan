@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.MenuAmministratoreController">
+   <children>
+      <Label fx:id="amministrazione" layoutX="205.0" layoutY="38.0" prefHeight="15.0" prefWidth="269.0" text="Amministrazione" />
+      <GridPane layoutX="222.0" layoutY="87.0" prefHeight="249.0" prefWidth="143.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button layoutX="270.0" layoutY="168.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Nuova Auto" GridPane.rowIndex="2" />
+            <Button layoutX="268.0" layoutY="134.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Elimina Operatore" GridPane.rowIndex="1" />
+            <Button layoutX="264.0" layoutY="85.0" mnemonicParsing="false" onAction="#nuovoOperatore" prefHeight="25.0" prefWidth="165.0" text="Nuovo Operatore" />
+            <Button layoutX="261.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Elimina Auto" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Modifica Prezzi" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+   </children>
+</Pane>

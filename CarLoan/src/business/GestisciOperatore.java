@@ -25,7 +25,7 @@ public class GestisciOperatore {
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
-		int numTelefono=Integer.parseInt(operatorParameters.get(3));
+		String numTelefono=operatorParameters.get(3);
 		String nickname=operatorParameters.get(4);
 		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
 		return ob.inserisciOperatore(o);
@@ -40,7 +40,7 @@ public class GestisciOperatore {
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
-		int numTelefono=Integer.parseInt(operatorParameters.get(3));
+		String numTelefono=operatorParameters.get(3);
 		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
 		return ob.modificaDatiOperatore(o);
 	}
@@ -59,7 +59,7 @@ public class GestisciOperatore {
 		
 		Operatore o = new Operatore(GestioneSessione.getNomeOperatore(),
 		GestioneSessione.getCognomeOperatore(), GestioneSessione.getIndirizzoOperatore(),
-		Integer.parseInt(GestioneSessione.getTelefonoOperatore()),GestioneSessione.getUsername());
+		GestioneSessione.getTelefonoOperatore(),GestioneSessione.getUsername());
 		return o;
 	}
 }

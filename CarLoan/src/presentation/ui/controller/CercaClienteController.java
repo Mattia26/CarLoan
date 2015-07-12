@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import presentation.FrontController;
 import presentation.ViewDispatcher;
-import utility.InputController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,23 +51,22 @@ public class CercaClienteController {
     	}
     	else{
     		parameter.add(cf.getText());
-    		if(!InputController.codiceFiscaleVerify(cf.getText()))
-				v.showMessage(1, "Errore", "Il codice fiscale non è corretto!");
+    		cliente = (ArrayList<String>)fc.handleRequest("CercaCliente",parameter);
     		
-    		else {
-    			cliente = (ArrayList<String>)fc.handleRequest("CercaCliente",parameter);
-    			if(cliente.isEmpty()) {
-    				v.showMessage(1, "Errore", "Cliente non trovato, riprovare!");
-    			}
+    		if(cliente.isEmpty()){
+        		v.showMessage(1, "Errore", "Cliente non trovato, riprovare!");
+        	}
     		
-    			else {
-    				nome.setText(cliente.get(0));
-    				cognome.setText(cliente.get(1));
-    				telefono.setText(cliente.get(2));
-    				mdf.setVisible(true);
-    			}
+    		else{
+    			nome.setText(cliente.get(0));
+    			cognome.setText(cliente.get(1));
+    			telefono.setText(cliente.get(2));
+    			mdf.setVisible(true);
     		}
-    	} 	
+        	
+    	}
+    	
+    	
     	
     }
     
