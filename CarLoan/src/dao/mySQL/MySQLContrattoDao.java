@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 import utility.InputController;
 import entity.Contratto;
+import entity.Operatore;
 import dao.ContrattoDao;
 import dao.MySQLDaoFactory;
 
@@ -69,7 +70,7 @@ public class MySQLContrattoDao implements ContrattoDao{
 				statement.close();
 			}	
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			return -1;
 		}
@@ -113,7 +114,7 @@ public class MySQLContrattoDao implements ContrattoDao{
 			}
 			statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
 		}
@@ -144,7 +145,7 @@ public class MySQLContrattoDao implements ContrattoDao{
 			}
 			statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
 			cancellato = false;
@@ -195,15 +196,15 @@ public class MySQLContrattoDao implements ContrattoDao{
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					System.out.println("impossibile eseguire la query correttamente");
-					return null;
+					return new ArrayList<Contratto>();
 				}
 			else
-				return null;
+				return new ArrayList<Contratto>();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
-			return null;
+			return new ArrayList<Contratto>();
 		}
 	}
 
@@ -241,15 +242,15 @@ public class MySQLContrattoDao implements ContrattoDao{
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					System.out.println("impossibile eseguire la query correttamente");
-					return null;
+					return new ArrayList<Contratto>();
 				}
 			else
-				return null;
+				return new ArrayList<Contratto>();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
-			return null;
+			return new ArrayList<Contratto>();
 		}
 	}
 
@@ -285,7 +286,7 @@ public class MySQLContrattoDao implements ContrattoDao{
 			else 
 				return -1;
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
 			return -1;

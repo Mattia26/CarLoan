@@ -78,15 +78,20 @@ public class MenuOperatoreController implements Initializable{
 		NomeOperatoreR.setText(GestioneSessione.getNomeOperatore());
 		CognomeOperatoreR.setText(GestioneSessione.getCognomeOperatore());
 		TelefonoOperatoreR.setText(GestioneSessione.getTelefonoOperatore());
+		String messaggi;
 		
-		if(!GestioneSessione.getAggiornato()){
-			String messaggi = (String)fc.handleRequest("Initialize");
-			GestioneSessione.setAggiornato(true);
-			if(messaggi != ""){
-				ViewDispatcher v = new ViewDispatcher();
-				v.showMessage(0, "Informazione di servizio", messaggi);
-			}
+		try {
+		messaggi = (String)fc.handleRequest("Initialize");
 		}
+		catch (NullPointerException e) {
+			messaggi = "";
+		}
+		
+		if(messaggi != ""){
+			ViewDispatcher v = new ViewDispatcher();
+			v.showMessage(0, "Informazione di servizio", messaggi);
+		}
+		
 	}
 	
 	

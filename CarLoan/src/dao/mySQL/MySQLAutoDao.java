@@ -12,6 +12,7 @@ import utility.InputController;
 import dao.AutoDao;
 import dao.MySQLDaoFactory;
 import entity.Auto;
+import entity.Contratto;
 
 public class MySQLAutoDao implements AutoDao{
 
@@ -53,7 +54,7 @@ public class MySQLAutoDao implements AutoDao{
 			
 			statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			inserito=false;
 		}
@@ -66,7 +67,7 @@ public class MySQLAutoDao implements AutoDao{
 	public boolean modificaAuto(String targa, String inizioManutenzioneStraordinaria, 
 			String dataManutenzioneOrdinaria, double km) {
 		// TODO Auto-generated method stub
-		boolean modificato;
+		boolean modificato=false;
 		
 		if(inizioManutenzioneStraordinaria.equals(""))
 			inizioManutenzioneStraordinaria = null;
@@ -97,11 +98,11 @@ public class MySQLAutoDao implements AutoDao{
 				
 				statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
 		}
-		System.out.println(modificato);
+		
 		return modificato;
 	}
 	
@@ -130,7 +131,7 @@ public class MySQLAutoDao implements AutoDao{
 			
 			statement.close();
 		} 
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
 			cancellata = false;
@@ -180,16 +181,16 @@ public class MySQLAutoDao implements AutoDao{
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					System.out.println("impossibile eseguire correttamente la query");
-					return null;
+					return new ArrayList<Auto>();
 				}
 			}
 			else
-				return null;
+				return new ArrayList<Auto>();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 				// TODO Auto-generated catch block
 				System.out.println("impossibile stabilire la connessione con il db");
-				return null;
+				return new ArrayList<Auto>();
 		}
 	}
 	
@@ -234,16 +235,16 @@ public class MySQLAutoDao implements AutoDao{
 				catch (SQLException e) {
 				// TODO Auto-generated catch block
 				System.out.println("impossibile eseguire correttamente la query");
-				return null;
+				return new ArrayList<Auto>();
 				}
 			}
 			else
-				return null;
+				return new ArrayList<Auto>();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
-			return null;
+			return new ArrayList<Auto>();
 		}
 	}
 }

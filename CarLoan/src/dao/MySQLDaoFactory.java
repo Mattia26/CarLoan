@@ -17,19 +17,19 @@ public class MySQLDaoFactory extends DaoFactory{
 	private static Connection conn;
 
 	
-	public static Connection initConnection() { 
+	public static Connection initConnection() throws DatabaseConnectionException { 
 		// Inizializza la connessione.
 		try { // Caricamento del driver: possibile eccezione di tipo ClassNotFound
 		Class.forName(DRIVER_CLASS_NAME);
 		}
 		catch(ClassNotFoundException e){
-			System.out.println("errore conn1");
+			throw new DatabaseConnectionException();
 		}
 		try { // Tentativo di inizializzare la connessione: possibile eccezione sqlException
 			conn = DriverManager.getConnection((DBMS+"://"+SERVER+":"+PORT+"/"+DB), USER, PASSWORD);
 		} 
 		catch (SQLException e) {
-			System.out.println("errore conn2");
+			throw new DatabaseConnectionException();
 		}
 		return conn;
 		

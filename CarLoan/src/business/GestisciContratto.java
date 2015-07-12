@@ -14,6 +14,7 @@ import entity.ListinoPrezzi;
 import business.entity.AutoBusiness;
 import business.entity.ClienteBusiness;
 import business.entity.ContrattoBusiness;
+import business.entity.DatabaseInstantiationException;
 import business.entity.ListinoBusiness;
 
 
@@ -24,7 +25,8 @@ public class GestisciContratto {
 	public GestisciContratto() {
 		try {
 			cb = new ContrattoBusiness();
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (DatabaseInstantiationException e) {
+			// TODO Auto-generated catch block
 			cb = null;
 		}
 	}
@@ -35,7 +37,7 @@ public class GestisciContratto {
 		LocalDate yesterday = LocalDate.now().minusDays(1);
 		ArrayList<Contratto> ritorno = new ArrayList<Contratto>();
 		
-		if(!cb.equals(null)){
+		try{
 			ArrayList<Contratto> contratti = cb.getContrattiSistema();
 			Iterator<Contratto> it = contratti.iterator();	
 			while(it.hasNext()){
@@ -51,81 +53,93 @@ public class GestisciContratto {
 			g.Initialize();
 		}
 		
+		catch(NullPointerException e) {
+			return new ArrayList<Contratto>();
+		}
+		
 		return ritorno;
 	}
 	
 	public Object nuovoContratto(ArrayList<String> parameters) {
-		if(cb.equals(null))
-			return -1;
 		
-		GestisciCliente gc=new GestisciCliente();
-		ArrayList<String> datiCliente = new ArrayList<String>();
+		try {
+			GestisciCliente gc=new GestisciCliente();
+			ArrayList<String> datiCliente = new ArrayList<String>();
 		
-		String nomeCliente = parameters.get(6);
-		String cognomeCliente = parameters.get(7);
-		String numTelefonoCliente = parameters.get(10);
-		String cfCliente = parameters.get(8);
-		String targaMacchina = parameters.get(0);
-		String dataInizio = parameters.get(1);
-		String dataFine = parameters.get(2);
-		int acconto = Integer.parseInt(parameters.get(9));
-		char tipo = parameters.get(4).charAt(0);
-		char tipoKm = parameters.get(5).charAt(0);
-		String dittaRestituzione = parameters.get(3);
-		boolean autoRitirata;
-		if(InputController.getDate(dataInizio).equals(LocalDate.now()))
-			autoRitirata=true;
-		else
-			autoRitirata=false;
+			String nomeCliente = parameters.get(6);
+			String cognomeCliente = parameters.get(7);
+			String numTelefonoCliente = parameters.get(10);
+			String cfCliente = parameters.get(8);
+			String targaMacchina = parameters.get(0);
+			String dataInizio = parameters.get(1);
+			String dataFine = parameters.get(2);
+			int acconto = Integer.parseInt(parameters.get(9));
+			char tipo = parameters.get(4).charAt(0);
+			char tipoKm = parameters.get(5).charAt(0);
+			String dittaRestituzione = parameters.get(3);
+			boolean autoRitirata;
+			if(InputController.getDate(dataInizio).equals(LocalDate.now()))
+				autoRitirata=true;
+			else
+				autoRitirata=false;
 		
-		datiCliente.add(nomeCliente);
-		datiCliente.add(cognomeCliente);
-		datiCliente.add(numTelefonoCliente);
-		datiCliente.add(cfCliente);
-		gc.inserisciCliente(datiCliente);
+			datiCliente.add(nomeCliente);
+			datiCliente.add(cognomeCliente);
+			datiCliente.add(numTelefonoCliente);
+			datiCliente.add(cfCliente);
+			gc.inserisciCliente(datiCliente);
 		
-		Contratto c = new Contratto(0, cfCliente, targaMacchina, dataInizio, dataFine, 
-				acconto, tipo, tipoKm, dittaRestituzione, false, autoRitirata);
-		return cb.inserisciContratto(c);
+			Contratto c = new Contratto(0, cfCliente, targaMacchina, dataInizio, dataFine, 
+					acconto, tipo, tipoKm, dittaRestituzione, false, autoRitirata);
+			return cb.inserisciContratto(c);
+		}
+			catch(NullPointerException e) {
+				return -1;
+			}
 	}
 	
 	public Object modificaContratto(ArrayList<String> parameters) {
-		if(cb.equals(null))
-			return false;
-		String dataInizio = parameters.get(2);
+		try {
+			String dataInizio = parameters.get(2);
 		
-		if(ChronoUnit.DAYS.between(LocalDate.now(),InputController.getDate(dataInizio)) < 3)
-			return false;
+			if(ChronoUnit.DAYS.between(LocalDate.now(),InputController.getDate(dataInizio)) < 3)
+				return false;
 		
-		int id = Integer.parseInt(parameters.get(0));
-		String cfCliente = parameters.get(9);
-		String targaMacchina = parameters.get(1);
-		String dataFine = parameters.get(3);
-		int acconto = Integer.parseInt(parameters.get(10));
-		char tipo = parameters.get(5).charAt(0);
-		char tipoKm = parameters.get(6).charAt(0);
-		String dittaRestituzione = parameters.get(4);
+			int id = Integer.parseInt(parameters.get(0));
+			String cfCliente = parameters.get(9);
+			String targaMacchina = parameters.get(1);
+			String dataFine = parameters.get(3);
+			int acconto = Integer.parseInt(parameters.get(10));
+			char tipo = parameters.get(5).charAt(0);
+			char tipoKm = parameters.get(6).charAt(0);
+			String dittaRestituzione = parameters.get(4);
 		
-		Contratto c = new Contratto(id, cfCliente, targaMacchina, dataInizio, dataFine, 
+			Contratto c = new Contratto(id, cfCliente, targaMacchina, dataInizio, dataFine, 
 				acconto, tipo, tipoKm, dittaRestituzione, false, false);
-		
-		
-		return cb.modificaContratto(c);
+			return cb.modificaContratto(c);
+		}
+		catch(NullPointerException e) {
+			
+			return false;
+		}
 		
 	}
 	
 	
 	public Object annullaContratto(String id) {
-		if(cb.equals(null))
-			return false;
 		
 		try {
-			getDatiContratto(id);
-			int idC = Integer.parseInt(id);
-			return cb.cancellaContratto(idC);
-		} 
-		catch (ObjectNotFoundException e) {
-			// contratto con id non presente nel db tra i contratti attivi
+			try {
+				getDatiContratto(id);
+				int idC = Integer.parseInt(id);
+				return cb.cancellaContratto(idC);
+			} 
+			catch (ObjectNotFoundException e) {
+				// contratto con id non presente nel db tra i contratti attivi
+				return false;
+			}
+		}
+		catch(NullPointerException e) {
 			return false;
 		}
 		
@@ -134,15 +148,17 @@ public class GestisciContratto {
 	
 	
 	public Object chiudiContratto(String id) {	
-		if(cb.equals(null))
-			return false;
-		
 		try {
-			Contratto c = (Contratto) getDatiContratto(id);
-			c.setChiuso(true);
-			return cb.modificaContratto(c);
-		} catch (ObjectNotFoundException e) {
-			// TODO Auto-generated catch block
+			try {
+				Contratto c = (Contratto) getDatiContratto(id);
+				c.setChiuso(true);
+				return cb.modificaContratto(c);
+			} 
+			catch (ObjectNotFoundException e) {
+				return false;
+			}
+		}
+		catch(NullPointerException e) {
 			return false;
 		}
 	}
@@ -150,19 +166,23 @@ public class GestisciContratto {
 	
 	
 	public Object notificaRitiroAuto(String id) {
-		if(cb.equals(null))
-			return false;
 		
-		Contratto c;
 		try {
-			c = (Contratto) getDatiContratto(id);
-			if(c.macchinaRitirata())
-				return false;
+			Contratto c;
+			try {
+				c = (Contratto) getDatiContratto(id);
+				if(c.macchinaRitirata())
+					return false;
 			
-			c.setRitirata(true);
-			return cb.modificaContratto(c);
-		} catch (ObjectNotFoundException e) {
+				c.setRitirata(true);
+				return cb.modificaContratto(c);
+			} 
+			catch (ObjectNotFoundException e) {
 			// TODO Auto-generated catch block
+				return false;
+			}
+		}
+		catch(NullPointerException e) {
 			return false;
 		}
 	}
@@ -170,123 +190,127 @@ public class GestisciContratto {
 	
 	
 	public Object getDatiContratto(String id) throws ObjectNotFoundException {
-		if(cb.equals(null))
-			return null;
+		try {
+			int idC = Integer.parseInt(id);
+			ArrayList<Contratto> listaContr = cb.getContrattiAttivi();
+			Iterator<Contratto> it = listaContr.iterator();
 		
-		int idC = Integer.parseInt(id);
-		ArrayList<Contratto> listaContr = cb.getContrattiAttivi();
-		Iterator<Contratto> it = listaContr.iterator();
+			while(it.hasNext()) {
+				Contratto cTemp=it.next();
+				if(idC==cTemp.getId())
+					return cTemp;
+			}
 		
-		while(it.hasNext()) {
-			Contratto cTemp=it.next();
-			if(idC==cTemp.getId())
-				return cTemp;
+			throw new ObjectNotFoundException();
 		}
-		
-		throw new ObjectNotFoundException();
+		catch(NullPointerException e) {
+			return null;
+		}
 	}
 	
 	
 	public Object calcolaImporto(ArrayList<String> parameters) {
-		if(cb.equals(null))
-			return -1;
 		
-		ListinoBusiness lb;
-		
-		int costoTipo;
-		int costoTipoKm;
-		double kmPercorsi;
-		long durataContratto;
-
-		String id=parameters.get(0);
-		double nuovoKm=Double.parseDouble(parameters.get(1));
-		Contratto c;
 		try {
-			c = (Contratto) getDatiContratto(id);
-			if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
-				return -1.0;
+			ListinoBusiness lb;	
+			int costoTipo;
+			int costoTipoKm;
+			double kmPercorsi;
+			long durataContratto;
+
+			String id=parameters.get(0);
+			double nuovoKm=Double.parseDouble(parameters.get(1));
+			Contratto c;
+			try {
+				c = (Contratto) getDatiContratto(id);
+				if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
+					return -1.0;
 			
-			Character tipo = c.getTipologia();
-			Character tipoKm = c.getTipoChilometraggio();
-			GestisciAuto g = new GestisciAuto();
-			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
-			Character fascia = a.getFascia();
-			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
-			a.setUltimoChilometraggio(nuovoKm);
-			g.inserisciNuovoChilometraggio(a);
-			lb = new ListinoBusiness();
+				Character tipo = c.getTipologia();
+				Character tipoKm = c.getTipoChilometraggio();
+				GestisciAuto g = new GestisciAuto();
+				Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
+				Character fascia = a.getFascia();
+				kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
+				a.setUltimoChilometraggio(nuovoKm);
+				g.inserisciNuovoChilometraggio(a);
+				lb = new ListinoBusiness();
 		
-			if(tipo.equals('G') && tipoKm.equals('L')) {
-				costoTipo = lb.getPrezzi().get(0);
-				costoTipoKm = lb.getPrezzi().get(2);
-				
-				durataContratto = ChronoUnit.DAYS.between(
+				if(tipo.equals('G') && tipoKm.equals('L')) {
+					costoTipo = lb.getPrezzi().get(0);
+					costoTipoKm = lb.getPrezzi().get(2);
+					durataContratto = ChronoUnit.DAYS.between(
 						InputController.getDate(c.getDataInizio()), LocalDate.now() );
-				System.out.println("tipo: " + costoTipo);
-				System.out.println("tipokm: " + costoTipoKm);
 				
-				System.out.println("durata: " + durataContratto);
-				System.out.println("km " + kmPercorsi);
-				
-				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50) - c.getQuotaAcconto(); 
+					return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50) 
+							- c.getQuotaAcconto(); 
 			}
-			else if(tipo.equals('G') && tipoKm.equals('I')) {
-				costoTipo = lb.getPrezzi().get(0);
-				costoTipoKm = lb.getPrezzi().get(3);
-				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
+				else if(tipo.equals('G') && tipoKm.equals('I')) {
+					costoTipo = lb.getPrezzi().get(0);
+					costoTipoKm = lb.getPrezzi().get(3);
+					durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*kmPercorsi - c.getQuotaAcconto();
+					return costoTipo*durataContratto + costoTipoKm*kmPercorsi 
+							- c.getQuotaAcconto();
 			}
 				
-			else if(tipo.equals('S') && tipoKm.equals('L')) {
-				costoTipo = lb.getPrezzi().get(1);
-				costoTipoKm = lb.getPrezzi().get(2);
-				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
+				else if(tipo.equals('S') && tipoKm.equals('L')) {
+					costoTipo = lb.getPrezzi().get(1);
+					costoTipoKm = lb.getPrezzi().get(2);
+					durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				
-				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50) - c.getQuotaAcconto();	
+					return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50)
+							- c.getQuotaAcconto();	
 			}
 			
-			else {
-				System.out.println("mavafangul");
-				costoTipo = lb.getPrezzi().get(1);
-				costoTipoKm = lb.getPrezzi().get(3);
-				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
-						InputController.getDate(c.getDataInizio()));
+				else {
+					costoTipo = lb.getPrezzi().get(1);
+					costoTipoKm = lb.getPrezzi().get(3);
+					durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
+							InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*kmPercorsi - c.getQuotaAcconto();
-			}
-		} catch (ObjectNotFoundException e) {
+					return costoTipo*durataContratto + costoTipoKm*kmPercorsi 
+							- c.getQuotaAcconto();
+				}
+			} catch (ObjectNotFoundException | NullPointerException e) {
 			// TODO Auto-generated catch block
-			
 			return -1.0;
-		}	
+			}
+		
+		}
+		catch(NullPointerException e) {
+			return -1.0;
+		}
+		
 	}
 	
 	
 	public Object notificheSistema() {
-		if(cb.equals(null))
-			return false;
+		try {
 		
-		ArrayList<Contratto> contratti = cb.getContrattiAttivi();
-		ArrayList<Contratto> contrattiFiniti = new ArrayList<Contratto>();
-		Iterator<Contratto> it=contratti.iterator();
-		while(it.hasNext()) {
-			Contratto c = it.next();
-			LocalDate dataInizio = InputController.getDate(c.getDataInizio());
-			LocalDate dataFine = InputController.getDate(c.getDataFine());
-			if(dataInizio.isBefore(LocalDate.now()) && !c.macchinaRitirata()) {
-				c.setDataFine(LocalDate.now().toString());
-				c.setChiuso(true);
-				cb.modificaContratto(c);
-			}
-			else if(dataFine.isBefore(LocalDate.now()) && !c.chiuso())
+			ArrayList<Contratto> contratti = cb.getContrattiAttivi();
+			ArrayList<Contratto> contrattiFiniti = new ArrayList<Contratto>();
+			Iterator<Contratto> it=contratti.iterator();
+			while(it.hasNext()) {
+				Contratto c = it.next();
+				LocalDate dataInizio = InputController.getDate(c.getDataInizio());
+				LocalDate dataFine = InputController.getDate(c.getDataFine());
+				if(dataInizio.isBefore(LocalDate.now()) && !c.macchinaRitirata()) {
+					c.setDataFine(LocalDate.now().toString());
+					c.setChiuso(true);
+					cb.modificaContratto(c);
+				}
+				else if(dataFine.isBefore(LocalDate.now()) && !c.chiuso())
 					contrattiFiniti.add(c);
 			}
 		
-		return contrattiFiniti;
+			return contrattiFiniti;
+		
+		}
+		catch(NullPointerException e) {
+			return new ArrayList();
+		}
 	}
-	
 }

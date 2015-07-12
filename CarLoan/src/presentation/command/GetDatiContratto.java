@@ -53,13 +53,13 @@ public class GetDatiContratto implements Command{
 					| IllegalArgumentException | InvocationTargetException 
 					| InstantiationException | NoSuchMethodException | SecurityException e) {
 				// TODO Auto-generated catch block
-				return -1; //DA GESTIRE L'ECCEZIONE DI CLIENTE CON CF GIA' INSERITO MA CON NOME E/O COGNOME E/O NUM TELEFONO DIVERSI DA QUELLI DEL DB!!! CAZZO!!!
+				return new ArrayList<String>(); //DA GESTIRE L'ECCEZIONE DI CLIENTE CON CF GIA' INSERITO MA CON NOME E/O COGNOME E/O NUM TELEFONO DIVERSI DA QUELLI DEL DB!!! CAZZO!!!
 			}
 		}
 		catch (ClassNotFoundException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException
-					| InstantiationException | NoSuchMethodException | SecurityException e) {
-				// TODO Auto-generated catch block
+				| IllegalArgumentException | InvocationTargetException | InstantiationException 
+				| NoSuchMethodException | SecurityException | NullPointerException  e) {
+				return new ArrayList<String>(); // TODO Auto-generated catch block
 	
 		}
 		

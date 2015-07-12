@@ -12,7 +12,6 @@ public class ViewDispatcher  {
 	
 	Alert alert;
 	
-	
 	public void setInterface(String fxml){
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("ui/"+fxml));

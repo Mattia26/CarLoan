@@ -4,62 +4,75 @@ import java.util.ArrayList;
 
 import presentation.GestioneSessione;
 import entity.Operatore;
+import business.entity.DatabaseInstantiationException;
 import business.entity.OperatoreBusiness;
 
 public class GestisciOperatore {
 	private OperatoreBusiness ob;
 	
 	public GestisciOperatore() {
-		try {
-			ob = new OperatoreBusiness();
-		} catch (InstantiationException | IllegalAccessException e) {
-			ob = null;
-		}
+			try {
+				ob = new OperatoreBusiness();
+			} catch (DatabaseInstantiationException e) {
+				// TODO Auto-generated catch block
+				ob = null;
+			}
 	}
 	
 	
 	public Object inserisciOperatore(ArrayList<String> operatorParameters) {
-		if(ob.equals(null))
-			return false;
 		
-		String nome=operatorParameters.get(0);
-		String cognome=operatorParameters.get(1);
-		String indirizzo=operatorParameters.get(2);
-		String numTelefono=operatorParameters.get(3);
-		String nickname=operatorParameters.get(4);
-		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
-		return ob.inserisciOperatore(o);
+		try {
+			String nome=operatorParameters.get(0);
+			String cognome=operatorParameters.get(1);
+			String indirizzo=operatorParameters.get(2);
+			int numTelefono=Integer.parseInt(operatorParameters.get(3));
+			String nickname=operatorParameters.get(4);
+			Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
+			return ob.inserisciOperatore(o);
+		}
+		catch(NullPointerException e) {
+			return false;
+		}
 	}
 	
 	
 	public Object modificaOperatore(ArrayList<String> operatorParameters) {
-		if(ob.equals(null))
-			return false;
 		
+		try {
 		String nickname=GestioneSessione.getUsername();
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
 		String indirizzo=operatorParameters.get(2);
-		String numTelefono=operatorParameters.get(3);
+		int numTelefono=Integer.parseInt(operatorParameters.get(3));
 		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
 		return ob.modificaDatiOperatore(o);
+		}
+		catch(NullPointerException e) {
+			return false;
+		}
 	}
 	
 	
 	public Object eliminaOperatore(String nickname) {
-		if(ob.equals(null))
+		try {
+			return ob.rimuoviOperatore(nickname);
+		}
+		catch(NullPointerException e) {
 			return false;
-		
-		return ob.rimuoviOperatore(nickname);
+		}
 	}
 	
 	public Object getDatiOperatore() {
-		if(ob.equals(null))
-			return null;
 		
+		try {
 		Operatore o = new Operatore(GestioneSessione.getNomeOperatore(),
 		GestioneSessione.getCognomeOperatore(), GestioneSessione.getIndirizzoOperatore(),
-		GestioneSessione.getTelefonoOperatore(),GestioneSessione.getUsername());
+		Integer.parseInt(GestioneSessione.getTelefonoOperatore()),GestioneSessione.getUsername());
 		return o;
+		}
+		catch(NullPointerException e) {
+			return null;
+		}
 	}
 }

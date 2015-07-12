@@ -30,7 +30,7 @@ public class Initialize implements Command{
 				| InstantiationException | NoSuchMethodException
 				| SecurityException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return new ArrayList<Contratto>();
 		}
 		if(!contratti.isEmpty()){
 			ritorno = "I seguenti contratti non stati chiusi e l'auto non è stata restituita:\n\n";

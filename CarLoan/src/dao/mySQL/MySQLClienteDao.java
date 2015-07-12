@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import dao.ClienteDao;
 import dao.MySQLDaoFactory;
 import entity.Cliente;
+import entity.Contratto;
 
 public class MySQLClienteDao implements ClienteDao {
 
@@ -39,7 +41,7 @@ public class MySQLClienteDao implements ClienteDao {
 			
 			statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			inserito=false;
 		}
@@ -76,7 +78,7 @@ public class MySQLClienteDao implements ClienteDao {
 			
 			statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
 		}
@@ -108,7 +110,7 @@ public class MySQLClienteDao implements ClienteDao {
 			}
 			statement.close();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
 			System.out.println("impossibile stabilire la connessione con il db");
 			rimosso = false;
@@ -145,16 +147,16 @@ public class MySQLClienteDao implements ClienteDao {
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					System.out.println("impossibile eseguire correttamente la query");
-					return null;
+					return new ArrayList<Cliente>();
 				}
 			}
 			else
-				return null;
+				return new ArrayList<Cliente>();
 		}
-		catch (SQLException e) {
+		catch (SQLException | DatabaseConnectionException e) {
 				// TODO Auto-generated catch block
 				System.out.println("impossibile stabilire la connessione con il db");
-				return null;
+				return new ArrayList<Cliente>();
 		}
 	}
 }
