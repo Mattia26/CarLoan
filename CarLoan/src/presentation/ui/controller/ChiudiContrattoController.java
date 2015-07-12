@@ -58,9 +58,10 @@ public class ChiudiContrattoController{
 			}
 			else{
 				saldo.setText(Double.toString(conto));
+				conferma.setVisible(true);
 			}
 			
-			conferma.setVisible(true);
+			
 		}
 	}
 	
