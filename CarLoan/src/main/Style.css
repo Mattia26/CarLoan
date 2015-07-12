@@ -98,3 +98,7 @@
 #id,#km,#kmPercorsi{
 	-fx-font-size: 11px;
 }
+
+#amministrazione,#nuovoOp {
+	-fx-font-size: 20px;
+} 

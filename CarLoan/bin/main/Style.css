@@ -99,7 +99,6 @@
 	-fx-font-size: 11px;
 }
 
-#amministrazione{
+#amministrazione,#nuovoOp {
 	-fx-font-size: 20px;
-}
-
+} 

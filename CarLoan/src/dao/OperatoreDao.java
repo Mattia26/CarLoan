@@ -5,9 +5,9 @@ import entity.Operatore;
 
 public interface OperatoreDao {
 	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
-			int numTelefono, String nickname);
+			String numTelefono, String nickname);
 	public boolean modificaDatiOperatore(String nome, String cognome, String indirizzo, 
-			int numTelefono, String nickname);
+			String numTelefono, String nickname);
 	public boolean rimuoviOperatore(String nickname);
 	public ArrayList<Operatore> getOperatori();
 }
