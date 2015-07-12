@@ -1,12 +1,18 @@
 package presentation.ui.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
+
+
 import presentation.FrontController;
+import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
+import utility.InputController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,17 +56,31 @@ public class ChiudiContrattoController{
 			parameters = new ArrayList<String>();
 			parameters.add(idContratto.getText());
 			parameters.add(chilometri.getText());
+			GestioneSessione.setId(idContratto.getText());
+			ArrayList<String> datiContratto = 
+					(ArrayList<String>)fc.handleRequest("GetDatiContratto");
 			
-			double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
-			
-			if(conto == -1){
-				v.showMessage(0, "Errore", "Operazione fallita.\n Controllare i campi e riprovare.");
+			if(datiContratto.isEmpty())
+				v.showMessage(1, "Errore!" ,
+				"Nessun contratto ritrovato con tale id. "
+				+ "\nAssicurati di aver inserito l'id corretto e riprova");	
+			else if (ChronoUnit.DAYS.between(LocalDate.now(),
+					InputController.getDate(datiContratto.get(1))) > 0)
+				v.showMessage(1, "Errore!" ,
+						"Impossibile chiudere un contratto non ancora iniziato. "
+						+ "\nEsso inizierà il: " + datiContratto.get(1));	
+			else {
+				double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
+				
+				if(conto == -1){
+					v.showMessage(0, "Errore", "Impossibile calcolare l'importo da saldare.\n "
+							+ "Controllare i campi e riprovare.");
+				}
+				else{
+					saldo.setText(Double.toString(conto));
+					conferma.setVisible(true);
+				}	
 			}
-			else{
-				saldo.setText(Double.toString(conto));
-				conferma.setVisible(true);
-			}
-			
 			
 		}
 	}

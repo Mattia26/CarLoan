@@ -99,6 +99,13 @@
 	-fx-font-size: 11px;
 }
 
+<<<<<<< HEAD
 #amministrazione,#nuovoOp,#nuovaAuto,#eliminaAuto {
 	-fx-font-size: 20px;
 } 
+=======
+#amministrazione,#nuovoOp{
+	-fx-font-size: 20px;
+}
+
+>>>>>>> 6a877fa9ac8d652b77388c6abde5e73141da4112

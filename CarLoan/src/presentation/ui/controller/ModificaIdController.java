@@ -40,6 +40,12 @@ public class ModificaIdController {
 				"Nessun contratto ritrovato con tale id. "
 				+ "\nAssicurati di aver inserito l'id corretto e riprova");	
 			else if (ChronoUnit.DAYS.between(LocalDate.now(),
+					InputController.getDate(datiContratto.get(1))) <= 0)
+				v.showMessage(1, "Errore!" ,
+						"Impossibile modificare il contratto. "
+						+ "\nEsso è già iniziato il: " + datiContratto.get(1) + ". E' possibile "
+						+ "modificare un contratto solo fino a 3 giorni prima del suo inizio");
+			else if (ChronoUnit.DAYS.between(LocalDate.now(),
 					InputController.getDate(datiContratto.get(1))) < 3)
 				v.showMessage(1, "Errore!" ,
 						"Impossibile modificare il contratto. "

@@ -8,11 +8,16 @@ public class Operatore {
 	private String numTelefono;
 	private final String nickname;
 	
+<<<<<<< HEAD
+	public Operatore(String nome, String cognome, String indirizzo, 
+			String numTelefono, String nickname) {
+=======
 	public Operatore(String nome, String cognome, String indirizzo, String tel, String nickname) {
+>>>>>>> 13e0fa4d9649716c09e0047e0e822848b7700a6d
 		this.nome=nome;
 		this.cognome=cognome;
 		this.indirizzo=indirizzo;
-		this.numTelefono=tel;
+		this.numTelefono=numTelefono;
 		this.nickname=nickname;
 	}
 	

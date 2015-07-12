@@ -99,6 +99,17 @@
 	-fx-font-size: 11px;
 }
 
+<<<<<<< HEAD
 #amministrazione,#nuovoOp,#nuovaAuto,#eliminaAuto,#ModificaList {
+=======
+<<<<<<< HEAD
+#amministrazione,#nuovoOp{
+	-fx-font-size: 20px;
+}
+
+=======
+#amministrazione,#nuovoOp {
+>>>>>>> 6a877fa9ac8d652b77388c6abde5e73141da4112
 	-fx-font-size: 20px;
 } 
+>>>>>>> 13e0fa4d9649716c09e0047e0e822848b7700a6d
