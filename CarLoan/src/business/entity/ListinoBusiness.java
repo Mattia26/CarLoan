@@ -22,35 +22,22 @@ public class ListinoBusiness {
 		}
 	}
 	
-	public boolean inserisciNuovoListino(int costoGiornaliero, int costoSettimanale, 
-			int costoKmLimitato, int costoKmIllimitato) {
-		l.setCostoGiornaliero(costoGiornaliero);
-		l.setCostoSettimanale(costoSettimanale);
-		l.setCostoKmLimitato(costoKmLimitato);
-		l.setCostoKmIllimitato(costoKmIllimitato);
+	public boolean inserisciNuovoListino(ArrayList<String> parameters) {
+		l.setCostoGiornaliero(Integer.parseInt(parameters.get(2)));
+		l.setCostoSettimanale(Integer.parseInt(parameters.get(3)));
+		l.setCostoKmLimitato(Integer.parseInt(parameters.get(1)));
+		l.setCostoKmIllimitato(Integer.parseInt(parameters.get(0)));
 		try {
 			salva();
 			return true;
 		} catch (IOException e) {
+			e.printStackTrace();
 			// TODO Auto-generated catch block
 			return false;
 		}
 	}
 	
-	public boolean modificaPrezzi(int costoGiornaliero, int costoSettimanale, 
-			int costoKmLimitato, int costoKmIllimitato) {
-		l.setCostoGiornaliero(costoGiornaliero);
-		l.setCostoSettimanale(costoSettimanale);
-		l.setCostoKmLimitato(costoKmLimitato);
-		l.setCostoKmIllimitato(costoKmIllimitato);
-		try {
-			salva();
-			return true;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			return false;
-		}
-	}
+	
 	
 	public ArrayList<Integer> getPrezzi() {
 		ArrayList<Integer> prezzi = new ArrayList<Integer>();

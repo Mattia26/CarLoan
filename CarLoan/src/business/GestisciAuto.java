@@ -69,8 +69,8 @@ public class GestisciAuto {
 			String targa = parameters.get(0);
 			String modello = parameters.get(1);
 			char fascia = parameters.get(2).charAt(0);
-			String dataManutenzioneOrd = parameters.get(4);
-			double ultimoKm = Double.parseDouble(parameters.get(5));
+			String dataManutenzioneOrd = parameters.get(3);
+			double ultimoKm = Double.parseDouble(parameters.get(4));
 			a = new Auto(modello, targa, fascia, "", dataManutenzioneOrd, ultimoKm);
 			
 			return car.inserisciAuto(a);
@@ -103,6 +103,7 @@ public class GestisciAuto {
 	}
 	
 	public Object eliminaAuto(String parameter) {
+		System.out.println("dfdas");
 		try {
 		return car.rimuoviAuto(parameter);
 		}

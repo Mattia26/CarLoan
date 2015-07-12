@@ -5,16 +5,17 @@ import java.util.ArrayList;
 
 import business.BusinessDelegate;
 
-public class InserimentoAuto implements Command {
+public class InserisciListinoPrezzi implements Command {
+
+	private BusinessDelegate b;
 	
-	BusinessDelegate b;
-	
-	public Object Execute(ArrayList<String> parameters){
+	@Override
+	public Object Execute(ArrayList<String> parameters) {
 		boolean ritorno = false;
 		b = new BusinessDelegate();
 		
 		try {
-			ritorno = (boolean)b.handleRequest("InserisciAuto", parameters);
+			ritorno = (boolean)b.handleRequest("InserisciListino", parameters);
 		} catch (ClassNotFoundException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | NoSuchMethodException
@@ -25,7 +26,6 @@ public class InserimentoAuto implements Command {
 		
 		
 		return ritorno;
-		
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class AutoBusiness {
 	}
 	
 	public boolean inserisciAuto(Auto a) {
-		return auto.inserisciAuto(a.getModello(), a.getTarga(), a.getFascia(), a.getUltimoChilometraggio());
+		return auto.inserisciAuto(a.getModello(), a.getTarga(),a.getDataManutenzioneOrdinaria(), a.getFascia(), a.getUltimoChilometraggio());
 	}
 
 	public boolean modificaAuto(Auto a) {

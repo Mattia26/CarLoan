@@ -7,11 +7,15 @@ import presentation.command.CalcolaSaldo;
 import presentation.command.CercaAuto;
 import presentation.command.ChiusuraContratto;
 import presentation.command.Command;
+import presentation.command.EliminazioneAuto;
+import presentation.command.EliminazioneOperatore;
 import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
 import presentation.command.Initialize;
+import presentation.command.InserimentoAuto;
 import presentation.command.InserimentoManutenzione;
 import presentation.command.InserimentoOperatore;
+import presentation.command.InserisciListinoPrezzi;
 import presentation.command.ModificaContratto;
 import presentation.command.ModificaDatiCliente;
 import presentation.command.ModificaDatiOperatore;
@@ -103,6 +107,26 @@ public class ApplicationController implements ApplicationControllerI {
 		case "MenuAmministratore":
 					dispatcher = new ViewDispatcher();
 					dispatcher.setInterface("menuAmministratore.fxml");
+		break;
+		
+		case "EliminaOperatore":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("EliminaOperatore.fxml");
+		break;
+		
+		case "NuovaAuto":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("NuovaAuto.fxml");
+		break;
+		
+		case "EliminaAuto":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("EliminaAuto.fxml");
+		break;
+		
+		case "ModificaPrezzi":
+			dispatcher = new ViewDispatcher();
+			dispatcher.setInterface("ModificaListino.fxml");
 		break;
 		}
 		
@@ -199,6 +223,26 @@ public class ApplicationController implements ApplicationControllerI {
 			
 		case "NuovoOperatore":
 			command = new InserimentoOperatore();
+			ritorno = command.Execute(parameters);
+		break;
+		
+		case "EliminaOperatore":
+			command = new EliminazioneOperatore();
+			ritorno = command.Execute(parameters.get(0));
+		break;
+		
+		case "NuovaAuto":
+			command = new InserimentoAuto();
+			ritorno = command.Execute(parameters);
+		break;
+		
+		case "EliminaAuto":
+			command = new EliminazioneAuto();
+			ritorno = command.Execute(parameters.get(0));
+		break;
+		
+		case "ModificaListino":
+			command = new InserisciListinoPrezzi();
 			ritorno = command.Execute(parameters);
 		break;
 		}

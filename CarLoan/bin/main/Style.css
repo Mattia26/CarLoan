@@ -99,6 +99,6 @@
 	-fx-font-size: 11px;
 }
 
-#amministrazione,#nuovoOp {
+#amministrazione,#nuovoOp,#nuovaAuto,#eliminaAuto,#ModificaList {
 	-fx-font-size: 20px;
 } 

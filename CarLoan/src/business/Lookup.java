@@ -110,6 +110,12 @@ public class Lookup implements LookupI{
 			metodo = "Initialize";
 			input = String.class;
 		break;
+		
+		case "InserisciListino":
+			classe = "business.entity.ListinoBusiness";
+			metodo = "inserisciNuovoListino";
+			input = ArrayList.class;
+		break;
 			
 		}
 		

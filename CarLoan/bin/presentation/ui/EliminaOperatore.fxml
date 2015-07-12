@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.EliminaOperatoreController">
+   <children>
+      <Label layoutX="229.0" layoutY="93.0" text="Elilmina Operatore" />
+      <Label layoutX="188.0" layoutY="176.0" text="Nickname" />
+      <TextField fx:id="nick" layoutX="282.0" layoutY="171.0" />
+      <Button layoutX="408.0" layoutY="277.0" mnemonicParsing="false" onAction="#conferma" text="Conferma" />
+      <Button layoutX="131.0" layoutY="277.0" mnemonicParsing="false" onAction="#indietro" text="Indietro" />
+   </children>
+</Pane>

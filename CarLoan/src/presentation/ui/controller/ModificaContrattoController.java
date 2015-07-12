@@ -60,22 +60,16 @@ public class ModificaContrattoController implements Initializable{
 		if(targa.getText().isEmpty() || dataInizio.getText().isEmpty() || dataFine.getText().isEmpty()
 				|| sede.getValue() == null || tipo.getValue() == null || chilometraggio.getValue() == null
 				|| nomeC.getText().isEmpty() || cognomeC.getText().isEmpty() || codiceFiscale.getText().isEmpty()
-				|| acconto.getText().isEmpty()){
+				|| acconto.getText().isEmpty() || TelefonoCliente.getText().isEmpty()){
 			ViewDispatcher v = new ViewDispatcher();
 			v.showMessage(1, "Errore", "Completare tutti i campi!");
 		}
+		
 		else{
-			InputController i = new InputController();
 			ViewDispatcher w = new ViewDispatcher();
 			
-			if(!i.dateVerify(dataInizio.getText()) || !i.dateVerify(dataFine.getText())){
-				
-				w.showMessage(1, "Errore", "Le date non sono corrette!");
-					
-						
-			}
-			else if(!i.codiceFiscaleVerify(codiceFiscale.getText()))
-				w.showMessage(1, "Errore", "Il codice fiscale non è corretto!");
+			if(!InputController.telVerify(TelefonoCliente.getText()))
+					w.showMessage(1, "Errore", "Il numero di telefono non è valido");
 			else{
 				ArrayList<String> parameters = new ArrayList<String>();
 				parameters.add(GestioneSessione.getId());
@@ -93,11 +87,11 @@ public class ModificaContrattoController implements Initializable{
 				ViewDispatcher vd = new ViewDispatcher();
 				if((boolean)fc.handleRequest("ModificaContratto",parameters)){
 					
-					vd.showMessage(0, "Avviso","L'operazione � stata effettuata con successo");
+					vd.showMessage(0, "Avviso","L'operazione è stata effettuata con successo");
 					fc.handleRequest("MenuOperatore");
 				}
 				else{
-					vd.showMessage(1, "Errore", "L'operazione non � stata effettuata");
+					vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
 				}
 			}
 		}

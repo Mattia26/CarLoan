@@ -91,10 +91,14 @@
 	-fx-effect: null;
 }
 
-#nc,#cc,#cf,#av,#a,#di,#df,#t,#sr,#ch{
+#nc,#cc,#cf,#av,#a,#di,#df,#t,#sr,#ch,#telc{
 	-fx-font-size: 11px;
 }
 
 #id,#km,#kmPercorsi{
 	-fx-font-size: 11px;
 }
+
+#amministrazione,#nuovoOp,#nuovaAuto,#eliminaAuto {
+	-fx-font-size: 20px;
+} 

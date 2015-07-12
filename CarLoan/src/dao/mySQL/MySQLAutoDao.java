@@ -17,21 +17,15 @@ import entity.Contratto;
 public class MySQLAutoDao implements AutoDao{
 
 	@Override
-	public boolean inserisciAuto(String modello, String targa, char fascia,
+	public boolean inserisciAuto(String modello, String targa,String data_man_ord, char fascia,
 			double km) {
 		// TODO Auto-generated method stub
 		String queryInserimento;
 		boolean inserito;
 		queryInserimento = "insert into cars(modello, targa, fascia, ultimo_km, "
-				+ " data_manutenzione_ordinaria) values(?, ?, ?, ?, ?, ?, ?);";
+				+ " data_manutenzione_ordinaria) values(?, ?, ?, ?, ?);";
 		
-		String dataManutenzioneOrdinaria;
-		Calendar cal = Calendar.getInstance();
-		Integer day = cal.get(Calendar.DATE);
-		Integer month = cal.get(Calendar.MONTH) + 1;
-		Integer year = cal.get(Calendar.YEAR) + 1;
-		dataManutenzioneOrdinaria= year.toString() + "-" + month.toString() 
-				+ "-" + day.toString() + ";";
+		
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -40,7 +34,7 @@ public class MySQLAutoDao implements AutoDao{
 			statement.setString(2,targa);
 			statement.setString(3, ((Character)fascia).toString());
 			statement.setDouble(4,km);
-			statement.setString(5, dataManutenzioneOrdinaria);
+			statement.setString(5, InputController.stringToMySqlDate(data_man_ord));
 			try {
 				if(statement.executeUpdate()==1)
 					inserito=true;
@@ -49,6 +43,7 @@ public class MySQLAutoDao implements AutoDao{
 			}
 			catch (SQLException e) {
 				System.out.println("impossibile effettuare la query");
+				System.out.println(statement);
 				inserito=false;
 			}
 			

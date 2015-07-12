@@ -19,11 +19,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button layoutX="270.0" layoutY="168.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Nuova Auto" GridPane.rowIndex="2" />
-            <Button layoutX="268.0" layoutY="134.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Elimina Operatore" GridPane.rowIndex="1" />
+            <Button layoutX="270.0" layoutY="168.0" mnemonicParsing="false" onAction="#nuovaAuto" prefHeight="25.0" prefWidth="161.0" text="Nuova Auto" GridPane.rowIndex="2" />
+            <Button layoutX="268.0" layoutY="134.0" mnemonicParsing="false" onAction="#eliminaOperatore" prefHeight="25.0" prefWidth="176.0" text="Elimina Operatore" GridPane.rowIndex="1" />
             <Button layoutX="264.0" layoutY="85.0" mnemonicParsing="false" onAction="#nuovoOperatore" prefHeight="25.0" prefWidth="165.0" text="Nuovo Operatore" />
-            <Button layoutX="261.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Elimina Auto" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Modifica Prezzi" GridPane.rowIndex="4" />
+            <Button layoutX="261.0" layoutY="203.0" mnemonicParsing="false" onAction="#eliminaAuto" prefHeight="25.0" prefWidth="160.0" text="Elimina Auto" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#modificaPrezzi" prefHeight="25.0" prefWidth="156.0" text="Modifica Prezzi" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>

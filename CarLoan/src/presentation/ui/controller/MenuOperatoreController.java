@@ -88,7 +88,7 @@ public class MenuOperatoreController implements Initializable{
 		}
 		
 		if(messaggi != ""){
-			ViewDispatcher v = new ViewDispatcher();
+			ViewDispatcher v = new ViewDispatcher(true);
 			v.showMessage(0, "Informazione di servizio", messaggi);
 		}
 		

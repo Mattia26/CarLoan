@@ -1,13 +1,29 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import business.BusinessDelegate;
+
 public class EliminazioneOperatore implements Command{
-	//attributo di tipo Business Delegato
+
+		private BusinessDelegate b;
+	
 	
 			public Object Execute(String parameter){
-				boolean ritorno = true;
-				//istanziare l'attributo e richiedere il servizio
+				boolean ritorno = false;
+				b = new BusinessDelegate();
+				
+				try {
+					ritorno = (boolean)b.handleRequest("EliminaOperatore", parameter);
+				} catch (ClassNotFoundException | IllegalAccessException
+						| IllegalArgumentException | InvocationTargetException
+						| InstantiationException | NoSuchMethodException
+						| SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				return ritorno;
 				
 			}
