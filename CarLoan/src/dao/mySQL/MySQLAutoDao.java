@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import utility.InputController;
 import dao.AutoDao;
 import dao.MySQLDaoFactory;
 import entity.Auto;
@@ -67,12 +68,12 @@ public class MySQLAutoDao implements AutoDao{
 		// TODO Auto-generated method stub
 		boolean modificato;
 		
-		if(inizioManutenzioneStraordinaria == "")
+		if(inizioManutenzioneStraordinaria.equals(""))
 			inizioManutenzioneStraordinaria = null;
 		
 			
 		String queryModifica = "update cars set ultimo_km= ? , "
-			+ "data_inizio_manutenzione_straordinaria= ? "
+			+ "data_man_strao= ? "
 			+ ", data_manutenzione_ordinaria= ? where targa= ?;";
 			
 		try {
@@ -82,6 +83,7 @@ public class MySQLAutoDao implements AutoDao{
 			statement.setString(2, inizioManutenzioneStraordinaria);
 			statement.setString(3, dataManutenzioneOrdinaria);
 			statement.setString(4, targa);
+			
 			try {
 				if(statement.executeUpdate()==1)
 					modificato=true;
@@ -153,16 +155,20 @@ public class MySQLAutoDao implements AutoDao{
 					ResultSet rs=statement.executeQuery(queryAuto);
 					result = new ArrayList<Auto>();
 					String dataManStr;
-					try {
-						dataManStr = rs.getString("data_inizio_manutenzione_straordinaria");
-					}
-					catch (SQLException e) {
-						dataManStr = "";
-					}
+					
 					while(rs.next()) {
+						try {
+							dataManStr = rs.getString("data_man_strao");
+						}
+						catch (SQLException e) {
+							dataManStr = "2000-01-01";
+						}
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
-						rs.getString("fascia").charAt(0), dataManStr,
-						rs.getString("data_manutenzione_ordinaria"), rs.getDouble("ultimo_km"));
+						rs.getString("fascia").charAt(0), 
+						InputController.mySqlDateToString(dataManStr),
+						InputController.mySqlDateToString(
+							rs.getString("data_manutenzione_ordinaria")), 
+						rs.getDouble("ultimo_km"));
 
 						result.add(a);
 					}
@@ -203,16 +209,21 @@ public class MySQLAutoDao implements AutoDao{
 					ResultSet rs=statement.executeQuery(queryAutoSistema);
 					result = new ArrayList<Auto>();
 					String dataManStr;
-					try {
-						dataManStr = rs.getString("data_inizio_manutenzione_straordinaria");
-					}
-					catch (SQLException e) {
-						dataManStr = "";
-					}
+					
+					
 					while(rs.next()) {
+						try {
+							dataManStr = 
+									rs.getString("data_man_strao");
+						}
+						catch (SQLException e) {
+							dataManStr = "2000-01-01";
+						}
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
-						rs.getString("fascia").charAt(0), dataManStr,
-						rs.getString("data_manutenzione_ordinaria"), rs.getDouble("ultimo_km"));
+						rs.getString("fascia").charAt(0), 
+						InputController.mySqlDateToString(dataManStr),
+						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
+						rs.getDouble("ultimo_km"));
 						result.add(a);
 					}	
 					rs.close();

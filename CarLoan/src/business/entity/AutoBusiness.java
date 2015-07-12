@@ -22,8 +22,9 @@ public class AutoBusiness {
 
 	public boolean modificaAuto(Auto a) {
 		// TODO Auto-generated method stub
-		return auto.modificaAuto(a.getTarga(), a.getDataManutenzioneStraordinaria(),
-				a.getDataManutenzioneOrdinaria(), a.getUltimoChilometraggio());
+		return auto.modificaAuto(a.getTarga(), InputController.stringToMySqlDate(
+				a.getDataManutenzioneStraordinaria()), InputController.stringToMySqlDate(
+				a.getDataManutenzioneOrdinaria()), a.getUltimoChilometraggio());
 	}
 
 	public boolean rimuoviAuto(String targa) {

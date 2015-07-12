@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
+import business.ObjectNotFoundException;
 import entity.Cliente;
 
 public class GetDatiCliente implements Command{
@@ -25,9 +26,9 @@ public class GetDatiCliente implements Command{
 				} catch (ClassNotFoundException | IllegalAccessException
 						| IllegalArgumentException | InvocationTargetException
 						| InstantiationException | NoSuchMethodException
-						| SecurityException e) {
+						| SecurityException  e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					return ritorno;
 				}
 				
 				

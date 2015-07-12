@@ -37,23 +37,21 @@ public class GestisciContratto {
 		
 		if(!cb.equals(null)){
 			ArrayList<Contratto> contratti = cb.getContrattiSistema();
-			Iterator<Contratto> it = contratti.iterator();
-			
+			Iterator<Contratto> it = contratti.iterator();	
 			while(it.hasNext()){
+				
 				Contratto current = it.next();
-
-				if(InputController.getDate(current.getDataFine()).equals(yesterday) && !current.chiuso()){
+				if(InputController.getDate(current.getDataFine()).equals(yesterday) 
+						&& !current.chiuso()) {
 					ritorno.add(current);
 				}
 			}
 			
 			GestisciAuto g = new GestisciAuto();
 			g.Initialize();
-			
 		}
 		
 		return ritorno;
-		
 	}
 	
 	public Object nuovoContratto(ArrayList<String> parameters) {
@@ -205,54 +203,65 @@ public class GestisciContratto {
 		Contratto c;
 		try {
 			c = (Contratto) getDatiContratto(id);
-			char tipo = c.getTipologia();
-			char tipoKm = c.getTipoChilometraggio();
+			if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
+				return -1.0;
+			
+			Character tipo = c.getTipologia();
+			Character tipoKm = c.getTipoChilometraggio();
 			GestisciAuto g = new GestisciAuto();
 			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
-			char fascia = a.getFascia();
+			Character fascia = a.getFascia();
 			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
 			a.setUltimoChilometraggio(nuovoKm);
 			g.inserisciNuovoChilometraggio(a);
 			lb = new ListinoBusiness();
 		
-			if(tipoKm=='G' && tipo=='L') {
+			if(tipo.equals('G') && tipoKm.equals('L')) {
 				costoTipo = lb.getPrezzi().get(0);
 				costoTipoKm = lb.getPrezzi().get(2);
 				
-				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
-						InputController.getDate(c.getDataInizio()));
+				durataContratto = ChronoUnit.DAYS.between(
+						InputController.getDate(c.getDataInizio()), LocalDate.now() );
+				System.out.println("tipo: " + costoTipo);
+				System.out.println("tipokm: " + costoTipoKm);
 				
-				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50); 
+				System.out.println("durata: " + durataContratto);
+				System.out.println("km " + kmPercorsi);
+				
+				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50) - c.getQuotaAcconto(); 
 			}
-			else if(tipoKm == 'G' && tipo == 'I') {
+			else if(tipo.equals('G') && tipoKm.equals('I')) {
 				costoTipo = lb.getPrezzi().get(0);
 				costoTipoKm = lb.getPrezzi().get(3);
 				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
+				return costoTipo*durataContratto + costoTipoKm*kmPercorsi - c.getQuotaAcconto();
 			}
 				
-			else if(tipo== 'S' && tipoKm == 'L') {
+			else if(tipo.equals('S') && tipoKm.equals('L')) {
 				costoTipo = lb.getPrezzi().get(1);
 				costoTipoKm = lb.getPrezzi().get(2);
 				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50);	
+				
+				return costoTipo*durataContratto + costoTipoKm*(kmPercorsi/50) - c.getQuotaAcconto();	
 			}
 			
 			else {
+				System.out.println("mavafangul");
 				costoTipo = lb.getPrezzi().get(1);
 				costoTipoKm = lb.getPrezzi().get(3);
 				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*kmPercorsi;
+				return costoTipo*durataContratto + costoTipoKm*kmPercorsi - c.getQuotaAcconto();
 			}
 		} catch (ObjectNotFoundException e) {
 			// TODO Auto-generated catch block
-			return -1;
+			
+			return -1.0;
 		}	
 	}
 	

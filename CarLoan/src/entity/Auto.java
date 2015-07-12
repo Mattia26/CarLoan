@@ -16,12 +16,12 @@ public class Auto {
 	private double ultimoChilometraggio;
 	
 	
-	public Auto(String modello, String targa, char fascia, String dataManutenzione, 
+	public Auto(String modello, String targa, char fascia, String dataManutenzioneStraordinaria, 
 			String dataManutenzioneOrdinaria, double ultimoKm) {
 		this.modello=modello;
 		this.targa=targa;
 		this.fascia=fascia;
-		this.dataInizioManutenzioneStraordinaria=dataManutenzione;
+		this.dataInizioManutenzioneStraordinaria=dataManutenzioneStraordinaria;
 		this.dataManutenzioneOrdinaria=dataManutenzioneOrdinaria;
 		this.ultimoChilometraggio=ultimoKm;
 	}
@@ -31,16 +31,16 @@ public class Auto {
 		this.fascia=fascia;
 	}
 	
-	public void setDataManutenzioneStraordinaria(String dataManutenzione) {
-		dataInizioManutenzioneStraordinaria=dataManutenzione;
+	public void setDataManutenzioneStraordinaria(String dataInizio) {
+		dataInizioManutenzioneStraordinaria=dataInizio;
 	}
 	
 	public void setUltimoChilometraggio(double ultimoKm) {
 		this.ultimoChilometraggio=ultimoKm;
 	}
 	
-	public void setDataManutenzioneOrdinaria(String data) {
-		this.dataManutenzioneOrdinaria=data;
+	public void setDataManutenzioneOrdinaria(String dataInizio) {
+		this.dataManutenzioneOrdinaria=dataInizio;
 	}
 	
 	public String getTarga() {

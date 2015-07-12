@@ -74,10 +74,7 @@ public class CercaClienteController {
     public void modifica(){
     	
     	campotel.setText(cliente.get(2));
-    	
-    	
     	campotel.setVisible(true);
-    	
     	mdf.setVisible(false);
     	conf.setVisible(true);
     }

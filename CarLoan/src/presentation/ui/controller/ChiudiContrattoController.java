@@ -53,7 +53,7 @@ public class ChiudiContrattoController{
 			
 			double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
 			
-			if(conto <= 0){
+			if(conto == -1){
 				v.showMessage(0, "Errore", "Operazione fallita\n Controllare i campi e riprovare");
 			}
 			else{

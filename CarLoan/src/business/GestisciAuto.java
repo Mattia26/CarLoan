@@ -1,6 +1,7 @@
 package business;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -30,22 +31,24 @@ public class GestisciAuto {
 		Iterator<Auto> it = auto.iterator();
 		
 		while(it.hasNext()){
-			Auto current = it.next();
-			LocalDate manutenzioneO =  InputController.getDate(current.getDataManutenzioneOrdinaria()).plusDays(3);
-			LocalDate manutenzioneS = InputController.getDate(current.getDataManutenzioneOrdinaria()).plusDays(3);
-			if( manutenzioneO.equals(today)){
-				current.setDataManutenzioneOrdinaria(InputController.stringToMySqlDate(InputController.getString(InputController.getDate(current.getDataManutenzioneOrdinaria()).plusYears(1))));
-				car.modificaAuto(current);
+			Auto a = it.next();
+			LocalDate manutenzioneO =  InputController.getDate
+					(a.getDataManutenzioneOrdinaria());
+			LocalDate manutenzioneS = InputController.getDate
+					(a.getDataManutenzioneOrdinaria());
+			if( manutenzioneO.plusDays(2).equals(today)){
+				a.setDataManutenzioneOrdinaria(
+						InputController.getString(InputController.getDate(a.getDataManutenzioneOrdinaria()).plusYears(1)));
+				car.modificaAuto(a);
 			
 			}
-			if(manutenzioneS.equals(today)){
-				current.setDataManutenzioneStraordinaria(null);
-				car.modificaAuto(current);
+			if(manutenzioneS.plusDays(2).equals(today)){
+				a.setDataManutenzioneStraordinaria(null);
+				car.modificaAuto(a);
 			}
 		}
-		
-		
 	}
+	
 	
 	public Object inserisciAuto(ArrayList<String> parameters) {
 		if(car.equals(null))
@@ -140,23 +143,28 @@ public class GestisciAuto {
 	
 	
 	public Object inserisciInManutenzione(String parameter) {
-		boolean ritorno = false;
+		boolean successo;
 		
 		if(car.equals(null))
-			return ritorno;
+			return false;
 		
 		ArrayList<Auto> autoSistema = car.autoSistema();
 		Iterator<Auto> it = autoSistema.iterator();
 		while(it.hasNext()) {
 			Auto a = it.next();
 			if(a.getTarga().equals(parameter)) {
-				String dataAttuale = LocalDate.now().toString();
+				if( ChronoUnit.DAYS.between
+					(InputController.getDate(a.getDataManutenzioneStraordinaria()),
+							LocalDate.now()) < 2)
+						return false;
+				
+				String dataAttuale = InputController.getString(LocalDate.now());
 				a.setDataManutenzioneStraordinaria(dataAttuale);
-				ritorno = car.modificaAuto(a);
-				return ritorno;
+				successo = car.modificaAuto(a);
+				return successo;
 			}
 		}
-		return ritorno;
+		return false;
 	}
 	
 	
@@ -188,4 +196,18 @@ public class GestisciAuto {
 		
 		return car.autoSistema();
 	}
+	
+	public void chiudiManutenzione() {
+		if(!car.equals(null)) {
+			ArrayList<Auto> autoSistema = car.autoSistema();
+			Iterator<Auto> it = autoSistema.iterator();
+			while(it.hasNext()) {
+				Auto a = it.next();
+				if(ChronoUnit.DAYS.between(LocalDate.now(),
+						InputController.getDate(a.getDataManutenzioneStraordinaria())) == 2 )
+					a.setDataManutenzioneStraordinaria("");
+			}
+		}
+	}
+	
 }
