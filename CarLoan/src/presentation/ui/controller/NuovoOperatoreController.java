@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
 import utility.InputController;
+import utility.LoginUtility;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class NuovoOperatoreController {
@@ -21,6 +23,9 @@ public class NuovoOperatoreController {
 	
 	@FXML
 	private TextField nick;
+	
+	@FXML
+	private PasswordField password;
 	
 	@FXML
 	private TextField indirizzo;
@@ -47,12 +52,15 @@ public class NuovoOperatoreController {
 			parameters.add(indirizzo.getText());
 			parameters.add(telefono.getText());
 			parameters.add(nick.getText());
+			parameters.add(password.getText());
 			
 			if(!InputController.telVerify(telefono.getText()))
 				v.showMessage(1, "Errore", "Numero di telefono inesistente");
 			
 			else if((boolean)fc.handleRequest("NuovoOperatore",parameters)){
 				v.showMessage(0, "Informazione", "Operazione completata con successo");
+				LoginUtility l = new LoginUtility();
+				l.insertUser("operatore" + nick.getText(), password.getText());
 				fc.handleRequest("MenuAmministratore");
 			}
 			else

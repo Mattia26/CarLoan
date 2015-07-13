@@ -12,15 +12,16 @@
             <Image url="@../../../bin/presentation/ui/index.jpeg" />
          </image>
       </ImageView>
-      <GridPane layoutX="6.0" layoutY="95.0" prefHeight="56.0" prefWidth="140.0">
+      <GridPane layoutX="6.0" layoutY="95.0" prefHeight="85.0" prefWidth="174.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="10.0" prefWidth="69.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="105.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="23.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label fx:id="CognomeOperatore" layoutX="6.0" layoutY="153.0" prefHeight="15.0" prefWidth="70.0" text="Cognome:" GridPane.rowIndex="1" />
@@ -29,6 +30,8 @@
             <Label fx:id="NomeOperatore" layoutX="7.0" layoutY="135.0" prefHeight="15.0" prefWidth="48.0" text="Nome:" />
             <Label fx:id="NomeOperatoreR" layoutX="51.0" layoutY="136.0" prefHeight="15.0" prefWidth="70.0" GridPane.columnIndex="1" />
             <Label fx:id="CognomeOperatoreR" layoutX="73.0" layoutY="154.0" prefHeight="15.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="indirizzoC" text="Indirizzo:" GridPane.rowIndex="3" />
+            <Label fx:id="indirizzo" prefHeight="15.0" prefWidth="81.0" text="             " GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Label fx:id="MenuOperatoreLabel" layoutX="205.0" layoutY="22.0" prefHeight="15.0" prefWidth="318.0" text="Menu Principale" />
@@ -55,7 +58,7 @@
             <Button layoutX="208.0" layoutY="235.0" mnemonicParsing="false" onAction="#notificaRitiro" prefHeight="25.0" prefWidth="138.0" text="Notifica Ritiro" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <GridPane layoutX="5.0" layoutY="162.0" prefHeight="38.0" prefWidth="174.0">
+      <GridPane layoutX="4.0" layoutY="220.0" prefHeight="38.0" prefWidth="174.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>

@@ -44,7 +44,7 @@
 	-fx-effect: null;
 }
 
-#TelefonoOperatore {
+#TelefonoOperatore,#indirizzoC {
 	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
 	-fx-text-fill: #d3d3d3;
@@ -85,7 +85,7 @@
 	-fx-effect: null;
 }
 
-#TelefonoOperatoreR {
+#TelefonoOperatoreR,#indirizzo {
 	-fx-font-size: 9px;
 	-fx-text-fill: black;
 	-fx-effect: null;

@@ -1,13 +1,39 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import business.BusinessDelegate;
+import entity.Operatore;
+
 public class AccessoDatiOperatore implements Command{
-	//attributo di tipo BusinessDelegate
 	
-			public Object Execute(String parameter){
-				ArrayList<String> ritorno = null;
-				//istanziare l'attributo e richiedere il servizio
+	BusinessDelegate b;
+	
+	public Object Execute(String parameter){
+		ArrayList<String> ritorno = new ArrayList<String>();
+		Operatore o;
+		b  = new BusinessDelegate();
+				
+		try {
+			o = (Operatore)b.handleRequest("AccessoDatiOperatore", parameter);
+					
+			ritorno.add(o.getNome());
+			ritorno.add(o.getCognome());
+			ritorno.add(o.getIndirizzo());
+			ritorno.add(o.getNumTelefono());
+			ritorno.add(o.getNickname());
+		} 
+		catch (ClassNotFoundException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException
+					| InstantiationException | NoSuchMethodException
+					| SecurityException | NullPointerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return new ArrayList<String>();
+				}
+				
+				
 				return ritorno;
 				
 			}

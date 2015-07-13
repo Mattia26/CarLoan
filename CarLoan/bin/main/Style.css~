@@ -51,7 +51,7 @@
 	-fx-effect: null;
 }
 
-#ModificaProfilo {
+#ModificaProfilo,#indirizzoC {
 	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
 	-fx-text-fill: #dc143c;
@@ -85,7 +85,7 @@
 	-fx-effect: null;
 }
 
-#TelefonoOperatoreR {
+#TelefonoOperatoreR,#indirizzo {
 	-fx-font-size: 9px;
 	-fx-text-fill: black;
 	-fx-effect: null;
@@ -99,13 +99,6 @@
 	-fx-font-size: 11px;
 }
 
-<<<<<<< HEAD
-#amministrazione,#nuovoOp,#nuovaAuto,#eliminaAuto {
+#amministrazione,#nuovoOp,#nuovaAuto,#eliminaAuto,#ModificaList {
 	-fx-font-size: 20px;
 } 
-=======
-#amministrazione,#nuovoOp{
-	-fx-font-size: 20px;
-}
-
->>>>>>> 6a877fa9ac8d652b77388c6abde5e73141da4112

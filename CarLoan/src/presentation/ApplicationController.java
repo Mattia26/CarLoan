@@ -2,6 +2,7 @@ package presentation;
 
 import java.util.ArrayList;
 
+import presentation.command.AccessoDatiOperatore;
 import presentation.command.AnnullaContratto;
 import presentation.command.CalcolaSaldo;
 import presentation.command.CercaAuto;
@@ -13,6 +14,7 @@ import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
 import presentation.command.Initialize;
 import presentation.command.InserimentoAuto;
+import presentation.command.InserimentoCliente;
 import presentation.command.InserimentoManutenzione;
 import presentation.command.InserimentoOperatore;
 import presentation.command.InserisciListinoPrezzi;
@@ -21,6 +23,7 @@ import presentation.command.ModificaDatiCliente;
 import presentation.command.ModificaDatiOperatore;
 import presentation.command.NotificaRitiro;
 import presentation.command.StipulaContratto;
+import utility.LoginUtility;
 
 public class ApplicationController implements ApplicationControllerI {
 	Command command;
@@ -150,7 +153,7 @@ public class ApplicationController implements ApplicationControllerI {
 				dispatcher = new ViewDispatcher();
 				dispatcher.setInterface("menuAmministratore.fxml");
 			break;
-			case "":
+			case "errore":
 				dispatcher = new ViewDispatcher();
 				dispatcher.showMessage(1,"Riprovare","Login Errato!");
 			break;
@@ -206,6 +209,11 @@ public class ApplicationController implements ApplicationControllerI {
 			ritorno = command.Execute(parameters.get(0));
 		break;
 			
+		case "InserisciCliente":
+			command = new InserimentoCliente();
+			ritorno = command.Execute(parameters);
+		break;
+		
 		case "CercaCliente":
 			command = new GetDatiCliente();
 			ritorno = command.Execute(parameters.get(0));
@@ -245,15 +253,34 @@ public class ApplicationController implements ApplicationControllerI {
 			command = new InserisciListinoPrezzi();
 			ritorno = command.Execute(parameters);
 		break;
+		
+		case "AccessoDatiOperatore":
+			command = new AccessoDatiOperatore();
+			ritorno = command.Execute(parameters.get(0));
+		break;
 		}
 		return ritorno;
 	}
 	
 	private String login(String username, String password){
-		GestioneSessione.setNomeOperatore("Mario");
-		GestioneSessione.setCognomeOperatore("Rossi");
-		GestioneSessione.setTelefonoOperatore("3333333333");
-		return "operatore";
+		LoginUtility l = new LoginUtility();
+		if(l.correctPassword("operatore" + username, password)) {
+			ArrayList<String> parameter = new ArrayList<String>();
+			parameter.add(username);
+			
+			ArrayList<String> op = (ArrayList<String>)handleRequest("AccessoDatiOperatore",parameter);
+			GestioneSessione.setNomeOperatore(op.get(0));
+			GestioneSessione.setCognomeOperatore(op.get(1));
+			GestioneSessione.setIndirizzoOperatore(op.get(2));
+			GestioneSessione.setTelefonoOperatore(op.get(3));
+			return "operatore";
+			
+			
+		}
+		else if(l.correctPassword(username, password))
+			return "amministratore";
+		else
+			return "";		
 	}
 
 }

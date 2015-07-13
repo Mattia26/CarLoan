@@ -19,7 +19,7 @@ public class Lookup implements LookupI{
 		case "AccessoDatiOperatore":
 			classe = "business.GestisciOperatore";
 			metodo = "getDatiOperatore";
-			input = null;
+			input = String.class;
 			break;
 		case "AnnullaContratto":
 			classe = "business.GestisciContratto";
@@ -63,7 +63,7 @@ public class Lookup implements LookupI{
 			break;
 		case "InserisciCliente":
 			classe = "business.GestisciCliente";
-			metodo = "aggiungiCliente";
+			metodo = "inserisciCliente";
 			input = ArrayList.class;
 			break;
 		case "InserisciManutenzione":
@@ -130,4 +130,4 @@ public class Lookup implements LookupI{
 		return m;
 	}
 
-}
+}	

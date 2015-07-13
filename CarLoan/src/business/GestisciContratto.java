@@ -63,17 +63,13 @@ public class GestisciContratto {
 	public Object nuovoContratto(ArrayList<String> parameters) {
 		
 		try {
-			GestisciCliente gc=new GestisciCliente();
-			ArrayList<String> datiCliente = new ArrayList<String>();
 		
-			String nomeCliente = parameters.get(6);
-			String cognomeCliente = parameters.get(7);
-			String numTelefonoCliente = parameters.get(10);
-			String cfCliente = parameters.get(8);
+			
+			String cfCliente = parameters.get(6);
 			String targaMacchina = parameters.get(0);
 			String dataInizio = parameters.get(1);
 			String dataFine = parameters.get(2);
-			int acconto = Integer.parseInt(parameters.get(9));
+			int acconto = Integer.parseInt(parameters.get(7));
 			char tipo = parameters.get(4).charAt(0);
 			char tipoKm = parameters.get(5).charAt(0);
 			String dittaRestituzione = parameters.get(3);
@@ -83,11 +79,7 @@ public class GestisciContratto {
 			else
 				autoRitirata=false;
 		
-			datiCliente.add(nomeCliente);
-			datiCliente.add(cognomeCliente);
-			datiCliente.add(numTelefonoCliente);
-			datiCliente.add(cfCliente);
-			gc.inserisciCliente(datiCliente);
+			
 		
 			Contratto c = new Contratto(0, cfCliente, targaMacchina, dataInizio, dataFine, 
 					acconto, tipo, tipoKm, dittaRestituzione, false, autoRitirata);

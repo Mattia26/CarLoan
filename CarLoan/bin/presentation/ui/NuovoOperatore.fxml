@@ -4,7 +4,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.NuovoOperatoreController">
    <children>
       <Label fx:id="nuovoOp" layoutX="237.0" layoutY="38.0" text="Nuovo Operatore" />
@@ -19,6 +18,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <TextField fx:id="telefono" layoutX="315.0" layoutY="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -31,6 +31,8 @@
             <Label layoutX="216.0" layoutY="219.0" text="Nickname" GridPane.rowIndex="4" />
             <Label text="Indirizzo" GridPane.rowIndex="3" />
             <TextField fx:id="indirizzo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Password" GridPane.rowIndex="5" />
+            <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button layoutX="410.0" layoutY="332.0" mnemonicParsing="false" onAction="#conferma" text="Conferma" />

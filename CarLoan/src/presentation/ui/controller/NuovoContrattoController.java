@@ -64,9 +64,9 @@ public class NuovoContrattoController implements Initializable{
 			
 			
 			if(!InputController.codiceFiscaleVerify(codiceFiscale.getText()))
-				w.showMessage(1, "Errore", "Il codice fiscale non è corretto!");
+				w.showMessage(1, "Errore", "Il codice fiscale non Ãš corretto!");
 			else if(!InputController.telVerify(telefono.getText()))
-				w.showMessage(1, "Errore", "Il numero di telefono non è corretto!");
+				w.showMessage(1, "Errore", "Il numero di telefono non Ãš corretto!");
 			else{
 				ArrayList<String> parameters = new ArrayList<String>();
 				parameters.add(targa.getText());
@@ -75,14 +75,25 @@ public class NuovoContrattoController implements Initializable{
 				parameters.add(sede.getValue());
 				parameters.add(tipo.getValue());
 				parameters.add(chilometraggio.getValue());
-				parameters.add(nomeC.getText());
-				parameters.add(cognomeC.getText());
 				parameters.add(codiceFiscale.getText());
 				parameters.add(acconto.getText());
-				parameters.add(telefono.getText());
 				FrontController fc = new FrontController();
 				ViewDispatcher vd = new ViewDispatcher();
 				
+				ArrayList<String> parametersC = new ArrayList<String>();
+				parametersC.add(nomeC.getText());
+				parametersC.add(cognomeC.getText());
+				parametersC.add(telefono.getText());
+				parametersC.add(codiceFiscale.getText());
+				
+				if(!(boolean)fc.handleRequest("InserisciCliente",parametersC)) {
+					vd.showMessage(0, "Avviso","C'è già un cliente con tale codice fiscale.\n "
+							+ "I dati del cliente verranno modificati con quelli inseriti.");
+					if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
+					vd.showMessage(1, "Errore", "Impossibile modificare i dati del cliente");
+					return;
+					}
+				}
 				int id = (int)fc.handleRequest("NuovoContratto",parameters);
 				if(id != -1){
 					

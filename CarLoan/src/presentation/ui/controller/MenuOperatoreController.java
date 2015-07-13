@@ -23,6 +23,10 @@ public class MenuOperatoreController implements Initializable{
 	@FXML
 	private Label TelefonoOperatoreR;
 	
+	@FXML
+	private Label indirizzo;
+	
+	
 	private FrontController fc = new FrontController();
 		
 	
@@ -78,6 +82,7 @@ public class MenuOperatoreController implements Initializable{
 		NomeOperatoreR.setText(GestioneSessione.getNomeOperatore());
 		CognomeOperatoreR.setText(GestioneSessione.getCognomeOperatore());
 		TelefonoOperatoreR.setText(GestioneSessione.getTelefonoOperatore());
+		indirizzo.setText(GestioneSessione.getIndirizzoOperatore());
 		String messaggi;
 		
 		try {

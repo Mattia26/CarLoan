@@ -1,6 +1,7 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import presentation.GestioneSessione;
 import entity.Operatore;
@@ -63,13 +64,18 @@ public class GestisciOperatore {
 		}
 	}
 	
-	public Object getDatiOperatore() {
+	public Object getDatiOperatore(String nickname) {
 		
 		try {
-		Operatore o = new Operatore(GestioneSessione.getNomeOperatore(),
-		GestioneSessione.getCognomeOperatore(), GestioneSessione.getIndirizzoOperatore(),
-		GestioneSessione.getTelefonoOperatore(),GestioneSessione.getUsername());
-		return o;
+			ArrayList<Operatore> operatori = ob.getOperatori();
+			Iterator<Operatore> it = operatori.iterator();
+			while(it.hasNext()) {
+				Operatore o=it.next();
+				if(o.getNickname().equals(nickname))
+					return o;
+			}
+			return null;
+			
 		}
 		catch(NullPointerException e) {
 			return null;
