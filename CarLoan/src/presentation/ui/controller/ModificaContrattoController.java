@@ -88,10 +88,20 @@ public class ModificaContrattoController implements Initializable{
 				if((boolean)fc.handleRequest("ModificaContratto",parameters)){
 					
 					vd.showMessage(0, "Avviso","L'operazione è stata effettuata con successo");
-					fc.handleRequest("MenuOperatore");
 				}
 				else{
 					vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
+				}
+				ArrayList<String> parametersC = new ArrayList<String>();
+				parametersC.add(nomeC.getText());
+				parametersC.add(cognomeC.getText());
+				parametersC.add(TelefonoCliente.getText());
+				parametersC.add(codiceFiscale.getText());
+				
+				if((boolean)fc.handleRequest("ModificaDatiCliente", parametersC))
+					fc.handleRequest("MenuOperatore");
+				else{
+					vd.showMessage(1, "Errore", "Controllare i dati del cliente");
 				}
 			}
 		}

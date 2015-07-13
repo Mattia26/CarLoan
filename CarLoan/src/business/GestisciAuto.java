@@ -103,7 +103,26 @@ public class GestisciAuto {
 	}
 	
 	public Object eliminaAuto(String parameter) {
-		System.out.println("dfdas");
+
+		try {
+			ContrattoBusiness contratto = new ContrattoBusiness();
+			ArrayList<Contratto> contratti = new ArrayList<Contratto>();
+			
+			contratti = contratto.getContrattiAttivi();
+			
+			Iterator<Contratto> it = contratti.iterator();
+			
+			while(it.hasNext()){
+				Contratto current = it.next();
+				if(current.getTargaMacchina().equals(parameter))
+					return false;
+			}
+		} catch (DatabaseInstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+		
 		try {
 		return car.rimuoviAuto(parameter);
 		}
