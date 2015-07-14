@@ -45,7 +45,7 @@ public class ModificaIdController {
 						"Impossibile modificare il contratto. "
 						+ "\nLa data di inizio è: " + datiContratto.get(1) + ". E' possibile "
 						+ "modificare un contratto solo fino a 3 giorni prima del suo inizio");	
-			else
+			else 
 				fc.handleRequest("ModificaContratto");
 		}
 			

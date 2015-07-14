@@ -3,6 +3,7 @@ package presentation.ui.controller;
 import java.util.ArrayList;
 
 import presentation.FrontController;
+import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
 import utility.InputController;
 import javafx.fxml.FXML;
@@ -86,7 +87,10 @@ public class CercaClienteController {
     	
     	if(campotel.getText().isEmpty())
     		v.showMessage(1, "Errore", "Riempire tutti i campi");
-    	else{
+    	else if(campotel.getText().equals(GestioneSessione.getTelefonoCliente()) )
+    		v.showMessage(2, "Informazione", "I dati inseriti sono gli stessi già presenti nel sistema");
+    	
+    	else {
     		ArrayList<String> parameters = new ArrayList<String>();
     		
     		parameters.add(nome.getText());
