@@ -18,7 +18,7 @@ public class MySQLAutoDao implements AutoDao{
 
 	@Override
 	public boolean inserisciAuto(String modello, String targa,String data_man_ord, char fascia,
-			double km) {
+			double km) { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		String queryInserimento;
 		boolean inserito;
@@ -42,16 +42,15 @@ public class MySQLAutoDao implements AutoDao{
 					inserito=false;
 			}
 			catch (SQLException e) {
-				System.out.println("impossibile effettuare la query");
-				System.out.println(statement);
 				inserito=false;
+				//throw new ExecuteQueryException();	
 			}
 			
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("impossibile stabilire la connessione con il database");
 			inserito=false;
+			//throw new DatabaseConnectionException();
 		}
 	return inserito;
 	}
@@ -60,7 +59,7 @@ public class MySQLAutoDao implements AutoDao{
 	
 	@Override
 	public boolean modificaAuto(String targa, String inizioManutenzioneStraordinaria, 
-			String dataManutenzioneOrdinaria, double km) {
+			String dataManutenzioneOrdinaria, double km) { //throws DatabaseConnectionException, ExecuteQueryException {
 		// TODO Auto-generated method stub
 		boolean modificato=false;
 		
@@ -87,15 +86,15 @@ public class MySQLAutoDao implements AutoDao{
 					modificato=false;
 			}
 			catch (SQLException e) {
-				System.out.println("impossibile effettuare la query");
 				modificato=false;
+			//	throw new ExecuteQueryException();
 			}
 				
 				statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
+		//	throw new DatabaseConnectionException();
 		}
 		
 		return modificato;
@@ -104,7 +103,7 @@ public class MySQLAutoDao implements AutoDao{
 
 	
 	@Override
-	public boolean rimuoviAuto(String targa) {
+	public boolean rimuoviAuto(String targa) {// throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		boolean cancellata;
 		String queryRimozione = "delete from cars where targa= ?;";
@@ -120,16 +119,16 @@ public class MySQLAutoDao implements AutoDao{
 					cancellata=false;
 			}
 			catch(SQLException e) {
-				System.out.println("impossibile effettuare la query");
 				cancellata=false;
+				//throw new ExecuteQueryException();
 			}
 			
 			statement.close();
 		} 
 		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
-			System.out.println("impossibile stabilire la connessione con il db");
 			cancellata = false;
+			//throw new DatabaseConnectionException();
 		}
 		return cancellata;
 	}
@@ -137,10 +136,10 @@ public class MySQLAutoDao implements AutoDao{
 	
 
 	@Override
-	public ArrayList<Auto> getAutoDisponibili() {
+	public ArrayList<Auto> getAutoDisponibili() { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		ArrayList<Auto> result;
-		String queryAuto = "select * from cars where data_inizio_manutenzione_straordinaria is"
+		String queryAuto = "select * from cars where data_man_strao is"
 				+ "null;";
 		
 		try {
@@ -176,7 +175,7 @@ public class MySQLAutoDao implements AutoDao{
 				} 
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
-					System.out.println("impossibile eseguire correttamente la query");
+					//throw new ExecuteQueryException();
 					return new ArrayList<Auto>();
 				}
 			}
@@ -185,15 +184,15 @@ public class MySQLAutoDao implements AutoDao{
 		}
 		catch (SQLException | DatabaseConnectionException e) {
 				// TODO Auto-generated catch block
-				System.out.println("impossibile stabilire la connessione con il db");
-				return new ArrayList<Auto>();
+			return new ArrayList<Auto>();
+				//throw new DatabaseConnectionException();
 		}
 	}
 	
 	
 
 	@Override
-	public ArrayList<Auto> getAutoSistema() {
+	public ArrayList<Auto> getAutoSistema() { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		ArrayList<Auto> result;
 		String queryAutoSistema="select * from cars;";
@@ -231,8 +230,8 @@ public class MySQLAutoDao implements AutoDao{
 				} 
 				catch (SQLException e) {
 				// TODO Auto-generated catch block
-				System.out.println("impossibile eseguire correttamente la query");
-				return new ArrayList<Auto>();
+					return new ArrayList<Auto>();
+				//throw new ExecuteQueryException();
 				}
 			}
 			else
@@ -240,8 +239,8 @@ public class MySQLAutoDao implements AutoDao{
 		}
 		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
-			System.out.println("impossibile stabilire la connessione con il db");
 			return new ArrayList<Auto>();
+			// throw new DatabaseConnectionException();
 		}
 	}
 }

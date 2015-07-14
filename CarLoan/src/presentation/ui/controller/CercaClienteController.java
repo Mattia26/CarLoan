@@ -85,7 +85,7 @@ public class CercaClienteController {
     public void conferma(){
     	
     	if(campotel.getText().isEmpty())
-    		v.showMessage(0, "Errore", "Riempire tutti i campi");
+    		v.showMessage(1, "Errore", "Riempire tutti i campi");
     	else{
     		ArrayList<String> parameters = new ArrayList<String>();
     		

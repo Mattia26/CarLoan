@@ -153,7 +153,7 @@ public class ApplicationController implements ApplicationControllerI {
 				dispatcher = new ViewDispatcher();
 				dispatcher.setInterface("menuAmministratore.fxml");
 			break;
-			case "errore":
+			case "":
 				dispatcher = new ViewDispatcher();
 				dispatcher.showMessage(1,"Riprovare","Login Errato!");
 			break;
@@ -265,18 +265,26 @@ public class ApplicationController implements ApplicationControllerI {
 	private String login(String username, String password){
 		LoginUtility l = new LoginUtility();
 		if(l.correctPassword("operatore" + username, password)) {
-			ArrayList<String> parameter = new ArrayList<String>();
-			parameter.add(username);
+			GestioneSessione.setUsername(username);
+			ArrayList<String> parameters = new ArrayList<String>();
+			parameters.add(username);
 			
-			ArrayList<String> op = (ArrayList<String>)handleRequest("AccessoDatiOperatore",parameter);
-			GestioneSessione.setNomeOperatore(op.get(0));
-			GestioneSessione.setCognomeOperatore(op.get(1));
-			GestioneSessione.setIndirizzoOperatore(op.get(2));
-			GestioneSessione.setTelefonoOperatore(op.get(3));
+			ArrayList<String> datiOperatore = (ArrayList<String>)
+					handleRequest("AccessoDatiOperatore",parameters);
+			
+			if(datiOperatore.get(0).equals("") && datiOperatore.get(1).equals("") && 
+					datiOperatore.get(2).equals("") && datiOperatore.get(3).equals("")) {
+				ViewDispatcher v = new ViewDispatcher();
+				v.showMessage(2, "Attenzione", "Impossibile caricare i dati personali. \n"
+				+ "Il login è stato comunque effettuato correttamente con il nickname: " + username);			
+				}
+			GestioneSessione.setNomeOperatore(datiOperatore.get(0));
+			GestioneSessione.setCognomeOperatore(datiOperatore.get(1));
+			GestioneSessione.setIndirizzoOperatore(datiOperatore.get(2));
+			GestioneSessione.setTelefonoOperatore(datiOperatore.get(3));
 			return "operatore";
-			
-			
 		}
+		
 		else if(l.correctPassword(username, password))
 			return "amministratore";
 		else

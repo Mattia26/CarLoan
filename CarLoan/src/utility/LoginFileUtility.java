@@ -10,19 +10,15 @@ import java.util.HashMap;
 
 public class LoginFileUtility{
 	static final String NAMEFILE="Login Carloan"; 
-	//attributo statico e non modificabile: indica il nome del file in cui sarà salvata 
-	// la map contenente username e password di operatori e amministratore
 	
-
-	
-	static void salva(HashMap<String,String> f) throws FileNotFoundException, IOException{ // salva la map
+	static void salva(HashMap<String,String> f) throws FileNotFoundException, IOException{
 			FileOutputStream fileToSave = new FileOutputStream(NAMEFILE);
 			ObjectOutputStream fileSaved = new ObjectOutputStream (fileToSave);
 			fileSaved.writeObject(f);
 			fileSaved.close();
 		}
 
-	static HashMap<String,String> carica() // carica la map
+	static HashMap<String,String> carica()
 			throws IOException,ClassNotFoundException{ 
 		FileInputStream inputFile = new FileInputStream(NAMEFILE);
 		ObjectInputStream fileToLoad = new ObjectInputStream(inputFile);

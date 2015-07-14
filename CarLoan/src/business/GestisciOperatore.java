@@ -44,8 +44,9 @@ public class GestisciOperatore {
 		String nickname=GestioneSessione.getUsername();
 		String nome=operatorParameters.get(0);
 		String cognome=operatorParameters.get(1);
-		String indirizzo=operatorParameters.get(2);
-		String numTelefono=operatorParameters.get(3);
+		String numTelefono=operatorParameters.get(2);
+		String indirizzo=operatorParameters.get(3);
+		
 		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
 		return ob.modificaDatiOperatore(o);
 		}
@@ -74,11 +75,11 @@ public class GestisciOperatore {
 				if(o.getNickname().equals(nickname))
 					return o;
 			}
-			return null;
+			return new Operatore("","","","",nickname);
 			
 		}
 		catch(NullPointerException e) {
-			return null;
+			return new Operatore("","","","",nickname);
 		}
 	}
 }

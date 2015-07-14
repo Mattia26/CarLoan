@@ -1,11 +1,14 @@
 package presentation.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import business.BusinessDelegate;
 import presentation.GestioneSessione;
 
 public class ModificaDatiOperatore implements Command{
-	//attributo di tipo Business Delegato
+	
+	BusinessDelegate b;
 	
 			public Object Execute(String parameter){
 				return null;
@@ -14,11 +17,25 @@ public class ModificaDatiOperatore implements Command{
 
 			@Override
 			public Object Execute(ArrayList<String> parameters) {
-				boolean ritorno=true;
-				GestioneSessione.setNomeOperatore(parameters.get(0));
-				GestioneSessione.setCognomeOperatore(parameters.get(1));
-				GestioneSessione.setTelefonoOperatore(parameters.get(2));
-				//istanziare il BusinessDelegate e richiedere il servizio
+				boolean ritorno=false;
+				b = new BusinessDelegate();
+				
+				try {
+					ritorno = (boolean)b.handleRequest("ModificaDatiOperatore", parameters);
+					if(ritorno) {
+						GestioneSessione.setNomeOperatore(parameters.get(0));
+						GestioneSessione.setCognomeOperatore(parameters.get(1));
+						GestioneSessione.setTelefonoOperatore(parameters.get(2));
+						GestioneSessione.setIndirizzoOperatore(parameters.get(3));
+					}
+				} catch (ClassNotFoundException | IllegalAccessException
+						| IllegalArgumentException | InvocationTargetException
+						| InstantiationException | NoSuchMethodException
+						| SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				return ritorno;
 			}
 

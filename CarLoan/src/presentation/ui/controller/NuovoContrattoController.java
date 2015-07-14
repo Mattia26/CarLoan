@@ -2,6 +2,7 @@ package presentation.ui.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import presentation.FrontController;
@@ -11,6 +12,7 @@ import utility.InputController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -87,26 +89,33 @@ public class NuovoContrattoController implements Initializable{
 				parametersC.add(codiceFiscale.getText());
 				
 				if(!(boolean)fc.handleRequest("InserisciCliente",parametersC)) {
-					vd.showMessage(0, "Avviso","C'è già un cliente con tale codice fiscale.\n "
+					Optional<ButtonType> confirm =  vd.showMessage(2, "Attenzione", 
+							"C'è già un cliente con tale codice fiscale.\n "
 							+ "I dati del cliente verranno modificati con quelli inseriti.");
-					if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
-					vd.showMessage(1, "Errore", "Impossibile modificare i dati del cliente");
-					return;
+
+					if(confirm.isPresent() && confirm.get() == ButtonType.OK){
+						if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
+							vd.showMessage(1, "Errore", 
+									"Impossibile modificare i dati del cliente");
+							return;
+						}
+						
+						int id = (int)fc.handleRequest("NuovoContratto",parameters);
+						if(id != -1){
+								vd.showMessage(0, "Avviso","Contratto stipulato con successo. \n"
+									+ "Id contratto: " + id);
+							fc.handleRequest("MenuOperatore");
+						}
+						else{
+							vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
+						}
+				
 					}
-				}
-				int id = (int)fc.handleRequest("NuovoContratto",parameters);
-				if(id != -1){
-					
-					vd.showMessage(0, "Avviso","Contratto stipulato con successo. \n"
-							+ "Id contratto: " + id);
-					fc.handleRequest("MenuOperatore");
-				}
-				else{
-					vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
 				}
 			}
 		}
 	}
+	
 	
 	@FXML
 	public void Indietro(){
@@ -117,7 +126,7 @@ public class NuovoContrattoController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		targa.setText(GestioneSessione.getTarga());
-		dataInizio.setText(GestioneSessione.getDataInzio());
+		dataInizio.setText(GestioneSessione.getDataInizio());
 		dataFine.setText(GestioneSessione.getDataFine());
 		sede.setItems(FXCollections.observableArrayList("Milano","Brescia","Napoli"));
 		tipo.setItems(FXCollections.observableArrayList("Giornaliera","Settimanale"));

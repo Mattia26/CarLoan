@@ -12,6 +12,7 @@ public class InputController {
 	private static final String CODICE_FISCALE_PATTERN =
 			"[a-zA-Z]{6}\\d\\d[a-zA-Z]\\d\\d[a-zA-Z]\\d\\d\\d[a-zA-Z]";
 	private static final String NUM_TEL_PATTERN = "^3\\d{9}$";
+	private static final String TARGA_PATTERN = "[a-zA-Z]{2}\\d{3,4}[a-zA-Z]{2}$";
 	
 	public static boolean dateVerify(String t) throws DateTimeException{
 		
@@ -45,6 +46,10 @@ public class InputController {
 	
 	public static boolean telVerify(String t) {
 		return t.matches(NUM_TEL_PATTERN);
+	}
+	
+	public static boolean targaVerify(String t) {
+		return t.matches(TARGA_PATTERN);
 	}
 	
 	public static LocalDate getDate(String s) throws DateTimeException{

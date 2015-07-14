@@ -58,10 +58,10 @@ public class NuovoOperatoreController {
 				v.showMessage(1, "Errore", "Numero di telefono inesistente");
 			
 			else if((boolean)fc.handleRequest("NuovoOperatore",parameters)){
-				v.showMessage(0, "Informazione", "Operazione completata con successo");
 				LoginUtility l = new LoginUtility();
 				l.insertUser("operatore" + nick.getText(), password.getText());
 				fc.handleRequest("MenuAmministratore");
+				v.showMessage(0, "Informazione", "Operazione completata con successo");
 			}
 			else
 				v.showMessage(1, "Errore", "L'operazione non è stata completata");

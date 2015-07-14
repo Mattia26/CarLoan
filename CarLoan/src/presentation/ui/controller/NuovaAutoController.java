@@ -42,7 +42,9 @@ public class NuovaAutoController implements Initializable{
 			v.showMessage(1, "Errore", "Riempire tutti i campi!");
 		else{
 			try {
-				if(!InputController.dateVerify(manutenzione.getText()))
+				if(!InputController.targaVerify(targa.getText()))
+					v.showMessage(1, "Errore", "La targa inserita non è valida!");
+				else if(!InputController.dateVerify(manutenzione.getText()))
 					v.showMessage(1, "Errore", "La data di manutenzione inserita non è valida!");
 				else{
 					try{

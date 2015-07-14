@@ -14,7 +14,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 
 	@Override
 	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
-			String numTelefono, String nickname) {
+			String numTelefono, String nickname) { // throws DatabaseConnectionException, ExecuteQueryException {
 		// TODO Auto-generated method stub
 		boolean inserito;
 		String queryInserimento="insert into operators(nome, cognome, indirizzo, "
@@ -36,16 +36,15 @@ public class MySQLOperatoreDao implements OperatoreDao{
 					inserito=false;
 			}
 			catch (SQLException e) {
-				System.out.println("impossibile effettuare la query");
 				inserito=false;
+				//throw new ExecuteQueryException();
 			}
 			
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("impossibile stabilire la connessione con il database");
-			e.printStackTrace();
 			inserito=false;
+		//	throw new DatabaseConnectionException();
 		}
 		return inserito;
 	}
@@ -53,6 +52,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	@Override
 	public boolean modificaDatiOperatore(String nome, String cognome, 
 			String indirizzo, String numTelefono, String nickname) {
+			//		throws DatabaseConnectionException, ExecuteQueryException {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String queryModifica;
@@ -66,15 +66,22 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.setString(3, indirizzo);
 			statement.setString(4, numTelefono);
 			statement.setString(5, nickname);
-			if(statement.executeUpdate()==1)
-				modificato=true;
-			else
+			try {
+				if(statement.executeUpdate() == 1)	
+					modificato=true;
+				else
+					modificato=false;
+			}
+			catch (SQLException e) {
 				modificato=false;
+			//	throw new ExecuteQueryException();
+			}
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
+		//	throw new DatabaseConnectionException();
+			
 		}
 		return modificato;
 	}
@@ -82,7 +89,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	
 	
 	@Override
-	public boolean rimuoviOperatore(String nickname) {
+	public boolean rimuoviOperatore(String nickname) { // throws DatabaseConnectionException, ExecuteQueryException {
 		// TODO Auto-generated method stub
 		boolean rimosso;
 		String queryRimozione = "delete from operators where nickname= ?;";
@@ -91,16 +98,24 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(queryRimozione);
 			statement.setString(1, nickname);
-			if(statement.executeUpdate()==1)
-				rimosso=true;
-			else
+			try {
+				if(statement.executeUpdate() == 1)	
+					rimosso=true;
+				else
+					rimosso=false;
+			}
+			catch (SQLException e) {
 				rimosso=false;
+			//	throw new ExecuteQueryException();
+			}
+			
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
-			System.out.println("impossibile stabilire la connessione con il db");
 			rimosso = false;
+			//throw new DatabaseConnectionException();
+			
 		}
 		return rimosso;
 	}
@@ -108,7 +123,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	
 	
 	@Override
-	public ArrayList<Operatore> getOperatori() {
+	public ArrayList<Operatore> getOperatori() {// throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		ArrayList<Operatore> result;
 		String operatori;
@@ -134,7 +149,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 				} 
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
-					System.out.println("impossibile eseguire correttamente la query");
+					//throw new ExecuteQueryException();
 					return null;
 				}
 			}
@@ -143,7 +158,7 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		}
 		catch (SQLException | DatabaseConnectionException e) {
 				// TODO Auto-generated catch block
-				System.out.println("impossibile stabilire la connessione con il db");
+				//throw new DatabaseConnectionException();
 				return null;
 		}
 	}

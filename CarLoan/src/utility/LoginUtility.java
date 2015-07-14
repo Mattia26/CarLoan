@@ -10,27 +10,34 @@ import java.util.HashMap;
 
 public class LoginUtility implements Serializable{
 
-	static HashMap<String, String> i=getCurrentUserList(); // contiene la map contenente 
-		// username, password e indirizzi email degli utenti registrati
+	static HashMap<String, String> i=getCurrentUserList(); 
 	
 	public void insertUser(String username, String password) { 
-		// aggiunge un utente indicando username e password, quindi salva la map nel file
 	i.put(username, cryptPassword(password));
 	salva();
 	}
 
 	public boolean containsUser(String username) { 
-		//verifica se l'user in input è già contenuto nella map
 		return i.containsKey(username);
+	}
+	
+	public boolean deleteUser(String username) {
+		try {
+			if(i.remove(username).equals(""))
+				return false;
+			else 
+				return true;
+		}
+		catch (NullPointerException e) {
+			return false;
+		}
 	}
 
 	private String getPassword(String username) { 
-		// restituisce un vettore contenente la password dell'username in input
 		return i.get(username); 
 	}
 
 	public boolean correctPassword(String username, String password) { 
-		// verifica la correttezza della password ricevuta, per l'username in input
 		if(this.containsUser(username))   
 			return (cryptPassword(password).equals(this.getPassword(username)));
 		else return false;
@@ -56,16 +63,15 @@ public class LoginUtility implements Serializable{
 	   }
 
 	private static HashMap<String, String> getCurrentUserList() {
-			// carica il file se esiste
 		try {
 			return LoginFileUtility.carica();
 		}
-		catch(ClassNotFoundException | IOException e) { // altrimenti crea una nuova map
+		catch(ClassNotFoundException | IOException e) { 
 			return new HashMap<String, String>();
 		}
 	}
 
-	private boolean salva() { // salva il file
+	private boolean salva() {
 		try {
 			LoginFileUtility.salva(i);
 			return true;

@@ -3,6 +3,7 @@ package presentation.command;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import presentation.GestioneSessione;
 import utility.InputController;
 import entity.Cliente;
 import entity.Contratto;
@@ -29,6 +30,14 @@ public class GetDatiContratto implements Command{
 			c = (Contratto)b.handleRequest("GetDatiContratto", parameter);
 			try {
 				client = (Cliente)b.handleRequest("AccessoDatiCliente", c.getCliente());
+				
+				GestioneSessione.setTarga(c.getTargaMacchina());
+				GestioneSessione.setAcconto(c.getQuotaAcconto());
+				GestioneSessione.setTelefonoCliente(client.getNumeroTelefono());
+				GestioneSessione.setSedeRestituzione(c.sedeRestituzione());
+				GestioneSessione.setTipoContratto(c.getTipologia());
+				GestioneSessione.setTipoKmContratto(c.getTipoChilometraggio());
+				
 				ritorno.add(c.getTargaMacchina());
 				ritorno.add(c.getDataInizio());
 				ritorno.add(c.getDataFine());

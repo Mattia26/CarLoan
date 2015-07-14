@@ -2,8 +2,8 @@ package presentation.ui.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
-
 
 import presentation.FrontController;
 import presentation.ViewDispatcher;
@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -68,20 +69,21 @@ public class ChiudiContrattoController{
 	@FXML
 	public void Conferma(){
 		
-
-		if((boolean)fc.handleRequest("ChiudiContratto", parameters)){
-			v.showMessage(0, "Informazione", "Operazione completata con successo");
-			fc.handleRequest("MenuOperatore");
-		}
-		else
-			v.showMessage(1, "Errore", "Impossibile completare l'operazione.\n"
-					+ " Assicurati di aver inserito l'id correttamente");
+		Optional<ButtonType> confirm =  v.showMessage(2, "Attenzione", 
+				"Sei sicuro di voler continuare?");
 		
+		if(confirm.isPresent() && confirm.get() == ButtonType.OK) {
 			
+			if((boolean)fc.handleRequest("ChiudiContratto", parameters)){
+				v.showMessage(0, "Informazione", "Operazione completata con successo");
+				fc.handleRequest("MenuOperatore");
+			}
+		
+			else
+				v.showMessage(1, "Errore", "Impossibile completare l'operazione.\n"
+						+ " Assicurati di aver inserito l'id correttamente");
+			
+		}
 	}
-
-
-	
-
 
 }

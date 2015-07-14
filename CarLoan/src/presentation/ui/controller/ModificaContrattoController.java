@@ -87,7 +87,7 @@ public class ModificaContrattoController implements Initializable{
 				ViewDispatcher vd = new ViewDispatcher();
 				if((boolean)fc.handleRequest("ModificaContratto",parameters)){
 					
-					vd.showMessage(0, "Avviso","L'operazione è stata effettuata con successo");
+					vd.showMessage(2, "Avviso","L'operazione è stata effettuata con successo");
 				}
 				else{
 					vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");

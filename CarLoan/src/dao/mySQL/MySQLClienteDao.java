@@ -15,7 +15,8 @@ import entity.Contratto;
 public class MySQLClienteDao implements ClienteDao {
 
 	@Override
-	public boolean inserisciCliente(String nome, String cognome, String numTel, String codFiscale){
+	public boolean inserisciCliente(String nome, String cognome, String numTel, 
+			String codFiscale) {// throws ExecuteQueryException, DatabaseConnectionException{
 		// TODO Auto-generated method stub
 		
 		boolean inserito;
@@ -35,15 +36,15 @@ public class MySQLClienteDao implements ClienteDao {
 				inserito=true;
 			}
 			catch (SQLException e){
-				System.out.println("impossibile effettuare la query");
 				inserito=false;
+				//throw new ExecuteQueryException();
 			}
 			
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("impossibile stabilire la connessione con il database");
 			inserito=false;
+			//throw new DatabaseConnectionException();
 		}
 		return inserito;
 	}
@@ -51,7 +52,8 @@ public class MySQLClienteDao implements ClienteDao {
 	
 	
 	@Override
-	public boolean modificaCliente(String codFiscale, String numTel, String nome, String cognome) {
+	public boolean modificaCliente(String codFiscale, String numTel, String nome, 
+			String cognome) { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String query_modifica;
@@ -72,15 +74,15 @@ public class MySQLClienteDao implements ClienteDao {
 					modificato=false;
 			}
 			catch (SQLException e){
-				System.out.println("impossibile effettuare la query");
 				modificato=false;
+				//throw new ExecuteQueryException();
 			}
 			
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("impossibile stabilire la connessione con il database");
 			modificato=false;
+			//throw new DatabaseConnectionException();	
 		}
 		return modificato;
 	}
@@ -88,7 +90,7 @@ public class MySQLClienteDao implements ClienteDao {
 	
 	
 	@Override
-	public boolean rimuoviCliente(String codFiscale) {
+	public boolean rimuoviCliente(String codFiscale) { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		boolean rimosso;
 		String query_rimozione;
@@ -105,15 +107,17 @@ public class MySQLClienteDao implements ClienteDao {
 					rimosso=false;
 			}
 			catch (SQLException e){
-				System.out.println("impossibile effettuare la query");
 				rimosso=false;
+			//	throw new ExecuteQueryException();
+			
 			}
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
 			// TODO Auto-generated catch block
-			System.out.println("impossibile stabilire la connessione con il db");
 			rimosso = false;
+			//throw new DatabaseConnectionException();
+			
 		}
 		return rimosso;
 	}
@@ -122,6 +126,7 @@ public class MySQLClienteDao implements ClienteDao {
 	
 	@Override
 	public ArrayList<Cliente> getClienti() {
+		//	throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		ArrayList<Cliente> result;
 		String clienti_sistema;
@@ -146,8 +151,8 @@ public class MySQLClienteDao implements ClienteDao {
 				} 
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
-					System.out.println("impossibile eseguire correttamente la query");
 					return new ArrayList<Cliente>();
+					//throw new ExecuteQueryException();
 				}
 			}
 			else
@@ -155,8 +160,8 @@ public class MySQLClienteDao implements ClienteDao {
 		}
 		catch (SQLException | DatabaseConnectionException e) {
 				// TODO Auto-generated catch block
-				System.out.println("impossibile stabilire la connessione con il db");
-				return new ArrayList<Cliente>();
+			return new ArrayList<Cliente>();
+				//throw new DatabaseConnectionException(); 
 		}
 	}
 }

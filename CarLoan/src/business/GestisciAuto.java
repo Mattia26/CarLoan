@@ -138,7 +138,6 @@ public class GestisciAuto {
 			ContrattoBusiness contratto = new ContrattoBusiness();
 			ArrayList<Contratto> contratti = new ArrayList<Contratto>();
 			auto = car.autoSistema();
-			System.out.println(auto);
 			contratti = contratto.getContrattiAttivi();
 			LocalDate dataInizio = InputController.getDate(parameters.get(1));
 			LocalDate dataFine = InputController.getDate(parameters.get(2));

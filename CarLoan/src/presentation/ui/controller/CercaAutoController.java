@@ -88,7 +88,7 @@ public class CercaAutoController implements Initializable{
 						@SuppressWarnings("unchecked")
 						ArrayList<String> result = (ArrayList<String>)fc.handleRequest("CercaAuto", parameters);
 						if(result.isEmpty())
-							dispatcher.showMessage(0, "Nessun risultato!", "Nessun'auto disponibile nell'intervallo di tempo selezionato.");
+							dispatcher.showMessage(2, "Nessun risultato!", "Nessun'auto disponibile nell'intervallo di tempo selezionato.");
 						vista.setItems(FXCollections.observableArrayList(result));
 					}
 				}

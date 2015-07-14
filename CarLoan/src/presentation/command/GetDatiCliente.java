@@ -3,6 +3,7 @@ package presentation.command;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import presentation.GestioneSessione;
 import business.BusinessDelegate;
 import business.ObjectNotFoundException;
 import entity.Cliente;
@@ -19,6 +20,11 @@ public class GetDatiCliente implements Command{
 				
 				try {
 					c = (Cliente)b.handleRequest("AccessoDatiCliente", parameter);
+					
+					GestioneSessione.setCFCliente(c.getCodFiscale());
+					GestioneSessione.setNomeCliente(c.getNome());
+					GestioneSessione.setCognomeCliente(c.getCognome());
+					GestioneSessione.setTelefonoCliente(c.getNumeroTelefono());
 					
 					ritorno.add(c.getNome());
 					ritorno.add(c.getCognome());

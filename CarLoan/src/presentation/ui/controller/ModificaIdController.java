@@ -31,7 +31,7 @@ public class ModificaIdController {
 		
 		if(id.getText() != null){
 			parameters.add(id.getText());
-			GestioneSessione.setId(id.getText());
+			GestioneSessione.setId(Integer.parseInt(id.getText()));
 			ArrayList<String> datiContratto = 
 					(ArrayList<String>)fc.handleRequest("GetDatiContratto");
 			
