@@ -9,7 +9,11 @@ import utility.InputController;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia EliminaAuto
+ * @author mattia
+ *
+ */
 public class EliminaAutoController {
 	
 	@FXML
@@ -19,7 +23,9 @@ public class EliminaAutoController {
 	
 	private ViewDispatcher v = new ViewDispatcher();
 	
-	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		
@@ -48,7 +54,9 @@ public class EliminaAutoController {
 		}
 	}
 	
-	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		fc.handleRequest("MenuAmministratore");

@@ -7,7 +7,11 @@ import presentation.GestioneSessione;
 import business.BusinessDelegate;
 import business.ObjectNotFoundException;
 import entity.Cliente;
-
+/**
+ * Classe che restituisce i dati di un dato cliente
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class GetDatiCliente implements Command{
 		
 		private BusinessDelegate b;

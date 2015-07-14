@@ -8,11 +8,18 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
-
+/**
+ * Classe di controllo per l'interfaccia Manutenzione
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ManutenzioneController {
 	@FXML
 	private TextField targa;
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		ViewDispatcher v = new ViewDispatcher();
@@ -41,7 +48,9 @@ public class ManutenzioneController {
 		
 		
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		FrontController fc = new FrontController();

@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che esegue l'annullamento di un contratto e restituisce l'esito dell'operazione
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class AnnullaContratto implements Command{
 
 	BusinessDelegate bd;

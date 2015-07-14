@@ -6,7 +6,11 @@ import presentation.FrontController;
 import presentation.ViewDispatcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia ModificaListino
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ModificaListinoController {
 	
 	@FXML
@@ -25,6 +29,9 @@ public class ModificaListinoController {
 	
 	private ViewDispatcher v = new ViewDispatcher();
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		if(ChilometraggioI.getText().isEmpty() || ChilometraggioL.getText().isEmpty() ||
@@ -54,7 +61,9 @@ public class ModificaListinoController {
 			}
 		}
 	}
-
+    /**
+     * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+     */
 	@FXML
 	public void indietro(){
 		fc.handleRequest("MenuAmministratore");

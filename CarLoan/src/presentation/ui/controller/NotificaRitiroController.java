@@ -6,16 +6,24 @@ import presentation.FrontController;
 import presentation.ViewDispatcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia NotificaRitiro
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class NotificaRitiroController {
 	
 	@FXML
 	private TextField id;
 	
+	private FrontController fc = new FrontController();
+	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		ViewDispatcher v = new ViewDispatcher();
-		FrontController fc = new FrontController();
 		ArrayList<String> parameters = new ArrayList<String>();
 		
 		if(!id.getText().isEmpty()){
@@ -35,9 +43,11 @@ public class NotificaRitiroController {
 		
 	}
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
-		FrontController fc = new FrontController();
 		fc.handleRequest("MenuOperatore");
 		
 	}

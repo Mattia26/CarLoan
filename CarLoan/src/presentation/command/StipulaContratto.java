@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa dell'inserimento di un nuovo contratto nel database
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class StipulaContratto implements Command{
 	
 	BusinessDelegate bd;

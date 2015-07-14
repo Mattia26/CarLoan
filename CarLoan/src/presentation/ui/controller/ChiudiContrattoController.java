@@ -15,7 +15,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia ChiudiContratto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ChiudiContrattoController{
 	
 	@FXML
@@ -35,13 +39,18 @@ public class ChiudiContrattoController{
 	
 	private FrontController fc = new FrontController();
 	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		fc.handleRequest("MenuOperatore");
 	}
 	
 	
-	
+	/**
+	 * Gestore delle operazioni eseguite all pressione del tasto Calcola
+	 */
 	@FXML
 	public void Calcola(){
 		if( chilometri.getText().isEmpty() || idContratto.getText().isEmpty()  ){
@@ -65,7 +74,9 @@ public class ChiudiContrattoController{
 			
 		}
 	}
-	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void Conferma(){
 		

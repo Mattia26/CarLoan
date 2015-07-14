@@ -4,7 +4,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa dell'inserimento di un'auto nel database
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ *
+ */
 public class InserimentoAuto implements Command {
 	
 	BusinessDelegate b;

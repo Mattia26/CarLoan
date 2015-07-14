@@ -9,7 +9,12 @@ import utility.LoginUtility;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia NuovoOperatore
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ *
+ */
 public class NuovoOperatoreController {
 	
 	@FXML
@@ -34,11 +39,17 @@ public class NuovoOperatoreController {
 	
 	private ViewDispatcher v = new ViewDispatcher();
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		fc.handleRequest("MenuAmministratore");
 	}
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		

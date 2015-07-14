@@ -8,20 +8,33 @@ import presentation.ViewDispatcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo dell'intefaccia AnnullaContratto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class AnnullaContrattoController {
 	
 	@FXML
 	private TextField id;
 	
+	/**
+	 * Gestore delle interfacce
+	 */
 	private ViewDispatcher v = new ViewDispatcher();
 	
+	/**
+	 * Gestore delle operazioni alla pressione del tasto indietro
+	 */
 	@FXML
 	public void indietro(){
 		FrontController fc = new FrontController();
 		fc.handleRequest("MenuOperatore");
 	}
 	
+	/**
+	 * Gestore delle operazioni alla pressione del tasto conferma
+	 */
 	@FXML
 	public void conferma(){
 		

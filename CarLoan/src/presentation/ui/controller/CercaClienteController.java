@@ -10,7 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia CercaCliente
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class CercaClienteController {
 	
 	private ViewDispatcher v = new ViewDispatcher();
@@ -39,9 +43,14 @@ public class CercaClienteController {
 	private TextField campotel;
 	
 	
-	
+	/**
+	 * Lista di attributi riguardanti il cliente cercato
+	 */
 	private ArrayList<String> cliente;
 	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Cerca
+	 */
     @FXML
     public void cerca(){
     	ArrayList<String> parameter = new ArrayList<String>();
@@ -54,7 +63,7 @@ public class CercaClienteController {
     	else{
     		parameter.add(cf.getText());
     		if(!InputController.codiceFiscaleVerify(cf.getText()))
-				v.showMessage(1, "Errore", "Il codice fiscale non è corretto!");
+				v.showMessage(1, "Errore", "Il codice fiscale non ï¿½ corretto!");
     		
     		else {
     			cliente = (ArrayList<String>)fc.handleRequest("CercaCliente",parameter);
@@ -73,6 +82,9 @@ public class CercaClienteController {
     	
     }
     
+    /**
+     * Gestore delle operazioni eseguite alla pressione del tasto Modifica
+     */
     @FXML
     public void modifica(){
     	
@@ -82,13 +94,16 @@ public class CercaClienteController {
     	conf.setVisible(true);
     }
     
+    /**
+     * Gestore delle operazioni eseguite alla pressione del tasto Conferma
+     */
     @FXML
     public void conferma(){
     	
     	if(campotel.getText().isEmpty())
     		v.showMessage(1, "Errore", "Riempire tutti i campi");
     	else if(campotel.getText().equals(GestioneSessione.getTelefonoCliente()) )
-    		v.showMessage(2, "Informazione", "I dati inseriti sono gli stessi già presenti nel sistema");
+    		v.showMessage(2, "Informazione", "I dati inseriti sono gli stessi giï¿½ presenti nel sistema");
     	
     	else {
     		ArrayList<String> parameters = new ArrayList<String>();
@@ -123,7 +138,9 @@ public class CercaClienteController {
     	
     	
     }
-    
+    /**
+     * Gestore delle operazioni eseguite alla pressione del tasto Indietro
+     */
     @FXML
     public void indietro(){
     	fc.handleRequest("MenuOperatore");

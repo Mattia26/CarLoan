@@ -5,7 +5,12 @@ import java.util.ArrayList;
 
 import business.BusinessDelegate;
 import entity.Operatore;
-
+/**
+ * Classe per il recupero dei dati di un operatore e la formattazione 
+ * per la visualizzazione in interfaccia dei sudetti dati
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class AccessoDatiOperatore implements Command{
 	
 	BusinessDelegate b;

@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe per la notifica del ritiro di un auto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class NotificaRitiro implements Command{
 
 	private BusinessDelegate b;

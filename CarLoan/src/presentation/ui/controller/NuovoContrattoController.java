@@ -15,7 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia NuovoContratto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class NuovoContrattoController implements Initializable{
 	
 	@FXML
@@ -50,7 +54,10 @@ public class NuovoContrattoController implements Initializable{
 	
 	@FXML
 	private TextField telefono;
-
+	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void Conferma(){
 		if(targa.getText().isEmpty() || dataInizio.getText().isEmpty() || dataFine.getText().isEmpty()
@@ -116,7 +123,9 @@ public class NuovoContrattoController implements Initializable{
 		}
 	}
 	
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void Indietro(){
 		FrontController fc = new FrontController();

@@ -11,7 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia Login
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class LoginController {
 	
 	@FXML
@@ -20,6 +24,10 @@ public class LoginController {
 	@FXML
 	private PasswordField Password;
 	
+	/**
+	 * Gestore delle operazioni alla pressione del tasto Login
+	 * @param e
+	 */
 	@FXML
 	protected void Accedi(ActionEvent e){
 			FrontController fc = new FrontController();

@@ -24,11 +24,31 @@ import presentation.command.ModificaDatiOperatore;
 import presentation.command.NotificaRitiro;
 import presentation.command.StipulaContratto;
 import utility.LoginUtility;
+/**
+ * Classe di gestione delle richieste da parte dell'utente implementa FrontControllerI
+ * 
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ * @see presentation.FrontControllerI
+ */
 
 public class ApplicationController implements ApplicationControllerI {
+	/**
+	 * Oggetto di tipo Command per l'esecuzione delle operazioni
+	 */
 	Command command;
+	/**
+	 * Oggetto di tipo ViewDispatcher per lo switch delle interfacce
+	 */
 	ViewDispatcher dispatcher;
+	/**
+	 * Oggetto di tipo Object che rappresenta il risultato dell'operazione
+	 * eseguita
+	 */
 	Object ritorno = null;
+	
+	
+	
 	
 	public Object handleRequest(String request){
 		switch(request){
@@ -138,6 +158,7 @@ public class ApplicationController implements ApplicationControllerI {
 		return ritorno;
 	}
 	
+	
 	public Object handleRequest(String request,ArrayList<String> parameters){
 		switch(request){
 		
@@ -163,15 +184,8 @@ public class ApplicationController implements ApplicationControllerI {
 		
 		case "ModificaDatiOperatore":
 			command = new ModificaDatiOperatore();
-			if((boolean)command.Execute(parameters)){
-				dispatcher = new ViewDispatcher();
-				dispatcher.showMessage(0, "Informazione", "Operazione avvenuta con successo");
-				handleRequest("MenuOperatore");
-			}
-			else{
-				dispatcher = new ViewDispatcher();
-				dispatcher.showMessage(1, "Errore", "Non Ã¨ stato possibile portare a termine la modifica");
-			}
+			ritorno = command.Execute(parameters);
+			
 		break;
 		
 		case "CercaAuto":
@@ -261,7 +275,12 @@ public class ApplicationController implements ApplicationControllerI {
 		}
 		return ritorno;
 	}
-	
+	/**
+	 * Metodo di login, utilizza le funzioni di LoginUtility
+	 * @param username Username da validare
+	 * @param password Password associata all'username
+	 * @return Esito del login
+	 */
 	private String login(String username, String password){
 		LoginUtility l = new LoginUtility();
 		if(l.correctPassword("operatore" + username, password)) {
@@ -276,12 +295,13 @@ public class ApplicationController implements ApplicationControllerI {
 					datiOperatore.get(2).equals("") && datiOperatore.get(3).equals("")) {
 				ViewDispatcher v = new ViewDispatcher();
 				v.showMessage(2, "Attenzione", "Impossibile caricare i dati personali. \n"
-				+ "Il login è stato comunque effettuato correttamente con il nickname: " + username);			
+				+ "Il login ï¿½ stato comunque effettuato correttamente con il nickname: " + username);			
 				}
 			GestioneSessione.setNomeOperatore(datiOperatore.get(0));
 			GestioneSessione.setCognomeOperatore(datiOperatore.get(1));
 			GestioneSessione.setIndirizzoOperatore(datiOperatore.get(2));
 			GestioneSessione.setTelefonoOperatore(datiOperatore.get(3));
+			System.out.println(GestioneSessione.getIndirizzoOperatore());
 			return "operatore";
 		}
 		
