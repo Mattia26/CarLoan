@@ -8,8 +8,14 @@ import business.entity.ClienteBusiness;
 import business.entity.DatabaseInstantiationException;
 
 public class GestisciCliente {
+	/**
+	 * Attributo privato di tipo ClienteBusiness
+	 */
 	ClienteBusiness cb;
 	
+	/**
+	 * Costruttore: prova ad istanziare l'attributo cb; altrimenti lo setta a null
+	 */
 	public GestisciCliente() {
 		try {
 			cb = new ClienteBusiness();
@@ -19,39 +25,57 @@ public class GestisciCliente {
 		}
 	}
 	
+	/**
+	 * Metodo per l'inserimento di un cliente
+	 * @param parameters: ArrayList<String> contenente i valori utili per 
+	 * l'inserimento del cliente
+	 * @return true se il cliente è stato inserito correttamente; false altrimenti
+	 */
 	public Object inserisciCliente(ArrayList<String> parameters) {
-
-		try {
-			String nome = parameters.get(0);
-			String cognome = parameters.get(1);
-			String numTelefono = parameters.get(2);
-			String cf = parameters.get(3);
-			Cliente c = new Cliente(nome, cognome, numTelefono, cf);
-			return cb.inserisciCliente(c);
-		}
-		catch(NullPointerException e) {
+		if(cb==null)
 			return false;
-		}
+		
+		String nome = parameters.get(0);
+		String cognome = parameters.get(1);
+		String numTelefono = parameters.get(2);
+		String cf = parameters.get(3);
+		Cliente c = new Cliente(nome, cognome, numTelefono, cf);
+		return cb.inserisciCliente(c);	
 	}
 	
+	/**
+	 * Metodo per la modifica dei dati di un cliente
+	 * @param parameters: ArrayList<String> contenente i valori utili per 
+	 * la modifica del cliente
+	 * @return true se i dati del cliente sono stati modificati correttamente; false altrimenti
+	 */
 	public Object modificaCliente(ArrayList<String> parameters) {
-		
-		try {		
-			String nome = parameters.get(0); //non modificabile(?)
-			String cognome = parameters.get(1); //non modificabile(?)
-			String numTelefono = parameters.get(2);
-			String cf = parameters.get(3); // non modificabile!
-			Cliente c = new Cliente(nome, cognome, numTelefono, cf);
-			return cb.modificaCliente(c);
-		}
-		catch(NullPointerException e) {
+		if(cb==null)
 			return false;
-		}
+				
+		String nome = parameters.get(0); //non modificabile(?)
+		String cognome = parameters.get(1); //non modificabile(?)
+		String numTelefono = parameters.get(2);
+		String cf = parameters.get(3); // non modificabile!
+		
+		Cliente c = new Cliente(nome, cognome, numTelefono, cf);
+		return cb.modificaCliente(c);
+		
 	}
 	
-	public Object getDatiCliente(String CF) throws ObjectNotFoundException {
+	
+	/**
+	 * Metodo che, a partire dalla stringa in input indicante il codice fiscale, 
+	 * restituisce i dati del cliente associato a quel codice fiscale.
+	 * @param parameter di tipo String: indica il codice fiscale del cliente.
+	 * @return Cliente avente codice fiscale uguale alla stringa in input, se è presente
+	 * nel sistema; null altrimenti.
+	 * @throws ObjectNotFoundException
+	 */
+	public Object getDatiCliente(String CF) {
+		if(cb==null)
+			return null;
 		
-		try {
 		ArrayList<Cliente> listaClienti = cb.getClienti();
 		Iterator<Cliente> it = listaClienti.iterator();
 		
@@ -61,9 +85,7 @@ public class GestisciCliente {
 				return c;
 		}
 		return null;
-		}
-		catch(NullPointerException e) {
-			return null;
-		}
-	} 
+		
+	}
+	
 }

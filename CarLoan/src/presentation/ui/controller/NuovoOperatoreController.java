@@ -55,7 +55,7 @@ public class NuovoOperatoreController {
 			parameters.add(password.getText());
 			
 			if(!InputController.telVerify(telefono.getText()))
-				v.showMessage(1, "Errore", "Numero di telefono inesistente");
+				v.showMessage(1, "Errore", "Formato del numero di telefono non valido");
 			
 			else if((boolean)fc.handleRequest("NuovoOperatore",parameters)){
 				LoginUtility l = new LoginUtility();

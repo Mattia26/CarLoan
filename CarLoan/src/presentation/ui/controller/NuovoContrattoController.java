@@ -70,48 +70,54 @@ public class NuovoContrattoController implements Initializable{
 			else if(!InputController.telVerify(telefono.getText()))
 				w.showMessage(1, "Errore", "Il numero di telefono non Ãš corretto!");
 			else{
-				ArrayList<String> parameters = new ArrayList<String>();
-				parameters.add(targa.getText());
-				parameters.add(dataInizio.getText());
-				parameters.add(dataFine.getText());
-				parameters.add(sede.getValue());
-				parameters.add(tipo.getValue());
-				parameters.add(chilometraggio.getValue());
-				parameters.add(codiceFiscale.getText());
-				parameters.add(acconto.getText());
-				FrontController fc = new FrontController();
-				ViewDispatcher vd = new ViewDispatcher();
-				
-				ArrayList<String> parametersC = new ArrayList<String>();
-				parametersC.add(nomeC.getText());
-				parametersC.add(cognomeC.getText());
-				parametersC.add(telefono.getText());
-				parametersC.add(codiceFiscale.getText());
-				
-				if(!(boolean)fc.handleRequest("InserisciCliente",parametersC)) {
-					Optional<ButtonType> confirm =  vd.showMessage(2, "Attenzione", 
-							"C'è già un cliente con tale codice fiscale.\n "
-							+ "I dati del cliente verranno modificati con quelli inseriti.");
+				try {
+					Integer.parseInt(acconto.getText());
+					ArrayList<String> parameters = new ArrayList<String>();
+					parameters.add(targa.getText());
+					parameters.add(dataInizio.getText());
+					parameters.add(dataFine.getText());
+					parameters.add(sede.getValue());
+					parameters.add(tipo.getValue());
+					parameters.add(chilometraggio.getValue());
+					parameters.add(codiceFiscale.getText());
+					parameters.add(acconto.getText());
+					FrontController fc = new FrontController();
+					
+					
+					ArrayList<String> parametersC = new ArrayList<String>();
+					parametersC.add(nomeC.getText());
+					parametersC.add(cognomeC.getText());
+					parametersC.add(telefono.getText());
+					parametersC.add(codiceFiscale.getText());
+					
+					if(!(boolean)fc.handleRequest("InserisciCliente",parametersC)) {
+						Optional<ButtonType> confirm =  w.showMessage(2, "Attenzione", 
+								"C'è già un cliente con tale codice fiscale.\n "
+								+ "I dati del cliente verranno modificati con quelli inseriti.");
 
-					if(confirm.isPresent() && confirm.get() == ButtonType.OK){
-						if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
-							vd.showMessage(1, "Errore", 
-									"Impossibile modificare i dati del cliente");
-							return;
+						if(confirm.isPresent() && confirm.get() == ButtonType.OK){
+							if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
+								w.showMessage(1, "Errore", 
+										"Impossibile modificare i dati del cliente");
+								return;
+							}
+							
+							int id = (int)fc.handleRequest("NuovoContratto",parameters);
+							if(id != -1){
+									w.showMessage(0, "Avviso","Contratto stipulato con successo. \n"
+										+ "Id contratto: " + id);
+								fc.handleRequest("MenuOperatore");
+							}
+							else{
+								w.showMessage(1, "Errore", "L'operazione non è stata effettuata");
+							}
+					
 						}
-						
-						int id = (int)fc.handleRequest("NuovoContratto",parameters);
-						if(id != -1){
-								vd.showMessage(0, "Avviso","Contratto stipulato con successo. \n"
-									+ "Id contratto: " + id);
-							fc.handleRequest("MenuOperatore");
-						}
-						else{
-							vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
-						}
-				
 					}
 				}
+				catch(NumberFormatException e) {
+					w.showMessage(2,"Attenzione!", "L'acconto deve essere un numero intero!");
+					}
 			}
 		}
 	}

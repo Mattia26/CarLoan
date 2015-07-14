@@ -24,16 +24,20 @@ public class Initialize implements Command{
 		String ritorno = "";
 		
 		try {
-			contratti = (ArrayList<Contratto>)b.handleRequest("Initialize", parameter);
-		} catch (ClassNotFoundException | IllegalAccessException
+			contratti = (ArrayList<Contratto>)b.handleRequest("Initialize",parameter);
+		} 
+		catch (NullPointerException e){
+			return "Impossibile connettersi al database";
+		}
+		catch (ClassNotFoundException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | NoSuchMethodException
 				| SecurityException e) {
 			// TODO Auto-generated catch block
-			return new ArrayList<Contratto>();
+			return "";
 		}
 		if(!contratti.isEmpty()){
-			ritorno = "I seguenti contratti non stati chiusi e l'auto non è stata restituita:\n\n";
+			ritorno = "I seguenti contratti sono terminati e l'auto non è stata restituita:\n\n";
 			Iterator<Contratto> it = contratti.iterator();
 			int i = 0;
 			while(it.hasNext()){

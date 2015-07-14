@@ -12,6 +12,9 @@ import entity.Operatore;
 
 public class MySQLOperatoreDao implements OperatoreDao{
 
+	/**
+	 * Inserisce un nuovo operatore nel database mySQL
+	 */
 	@Override
 	public boolean inserisciOperatore(String nome, String cognome, String indirizzo, 
 			String numTelefono, String nickname) { // throws DatabaseConnectionException, ExecuteQueryException {
@@ -49,6 +52,10 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		return inserito;
 	}
 
+	/**
+	 * Modifica l' operatore identificato dal nickname in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean modificaDatiOperatore(String nome, String cognome, 
 			String indirizzo, String numTelefono, String nickname) {
@@ -87,7 +94,10 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	}
 
 	
-	
+	/**
+	 * Rimuove l'operatore identificato dal nickname in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean rimuoviOperatore(String nickname) { // throws DatabaseConnectionException, ExecuteQueryException {
 		// TODO Auto-generated method stub
@@ -121,7 +131,9 @@ public class MySQLOperatoreDao implements OperatoreDao{
 	}
 
 	
-	
+	/**
+	 * Prende dal database mySQL tutti gli operatori presenti in esso
+	 */
 	@Override
 	public ArrayList<Operatore> getOperatori() {// throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub

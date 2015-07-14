@@ -17,10 +17,10 @@ import presentation.command.InserimentoAuto;
 import presentation.command.InserimentoCliente;
 import presentation.command.InserimentoManutenzione;
 import presentation.command.InserimentoOperatore;
-import presentation.command.InserisciListinoPrezzi;
 import presentation.command.ModificaContratto;
 import presentation.command.ModificaDatiCliente;
 import presentation.command.ModificaDatiOperatore;
+import presentation.command.ModificaListinoPrezzi;
 import presentation.command.NotificaRitiro;
 import presentation.command.StipulaContratto;
 import utility.LoginUtility;
@@ -250,7 +250,7 @@ public class ApplicationController implements ApplicationControllerI {
 		break;
 		
 		case "ModificaListino":
-			command = new InserisciListinoPrezzi();
+			command = new ModificaListinoPrezzi();
 			ritorno = command.Execute(parameters);
 		break;
 		

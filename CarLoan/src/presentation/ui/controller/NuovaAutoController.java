@@ -2,6 +2,7 @@ package presentation.ui.controller;
 
 import java.net.URL;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -41,11 +42,16 @@ public class NuovaAutoController implements Initializable{
 				|| manutenzione.getText().isEmpty() || km.getText().isEmpty())
 			v.showMessage(1, "Errore", "Riempire tutti i campi!");
 		else{
+			
 			try {
 				if(!InputController.targaVerify(targa.getText()))
 					v.showMessage(1, "Errore", "La targa inserita non è valida!");
-				else if(!InputController.dateVerify(manutenzione.getText()))
+				
+				else if(!InputController.dateVerify(manutenzione.getText()) ||
+					InputController.getDate(manutenzione.getText()).isAfter
+					(LocalDate.now().plusYears(1)))
 					v.showMessage(1, "Errore", "La data di manutenzione inserita non è valida!");
+				
 				else{
 					try{
 						Double.parseDouble(km.getText());

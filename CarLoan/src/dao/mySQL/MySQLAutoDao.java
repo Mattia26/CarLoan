@@ -16,6 +16,9 @@ import entity.Contratto;
 
 public class MySQLAutoDao implements AutoDao{
 
+	/**
+	 * Inserisce una nuova auto nel database mySQL
+	 */
 	@Override
 	public boolean inserisciAuto(String modello, String targa,String data_man_ord, char fascia,
 			double km) { //throws ExecuteQueryException, DatabaseConnectionException {
@@ -56,7 +59,10 @@ public class MySQLAutoDao implements AutoDao{
 	}
 
 	
-	
+	/**
+	 * Modifica l'auto identificata dalla targa in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean modificaAuto(String targa, String inizioManutenzioneStraordinaria, 
 			String dataManutenzioneOrdinaria, double km) { //throws DatabaseConnectionException, ExecuteQueryException {
@@ -96,12 +102,13 @@ public class MySQLAutoDao implements AutoDao{
 			modificato=false;
 		//	throw new DatabaseConnectionException();
 		}
-		
 		return modificato;
 	}
 	
 
-	
+	/**
+	 * Rimuove l'auto dal database mySQL
+	 */
 	@Override
 	public boolean rimuoviAuto(String targa) {// throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
@@ -134,13 +141,15 @@ public class MySQLAutoDao implements AutoDao{
 	}
 	
 	
-
+	/**
+	 * Prende dal database mySQL tutte le auto disponibili al momento della query
+	 */
 	@Override
 	public ArrayList<Auto> getAutoDisponibili() { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		ArrayList<Auto> result;
 		String queryAuto = "select * from cars where data_man_strao is"
-				+ "null;";
+				+ "null && data_;";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
@@ -158,7 +167,7 @@ public class MySQLAutoDao implements AutoDao{
 											rs.getString("data_man_strao"));
 						}
 						catch (SQLException | NullPointerException e) {
-							dataManStr = "01/01/2000";
+							dataManStr = "";
 						}
 						
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
@@ -167,6 +176,7 @@ public class MySQLAutoDao implements AutoDao{
 						rs.getDouble("ultimo_km"));
 						
 						result.add(a);
+						
 					}
 					rs.close();
 					statement.close();
@@ -190,7 +200,9 @@ public class MySQLAutoDao implements AutoDao{
 	}
 	
 	
-
+	/**
+	 * Prende dal database mySQL tutte le auto presenti
+	 */
 	@Override
 	public ArrayList<Auto> getAutoSistema() { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
@@ -214,7 +226,7 @@ public class MySQLAutoDao implements AutoDao{
 											rs.getString("data_man_strao"));
 						}
 						catch (SQLException | NullPointerException e) {
-							dataManStr = "01/01/2000";
+							dataManStr = "";
 						}
 						
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
@@ -222,6 +234,7 @@ public class MySQLAutoDao implements AutoDao{
 						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
 						rs.getDouble("ultimo_km"));
 						result.add(a);
+						System.out.println(a.getDataManutenzioneStraordinaria());
 					}	
 					rs.close();
 					statement.close();

@@ -19,12 +19,19 @@ public class NotificaRitiroController {
 		ArrayList<String> parameters = new ArrayList<String>();
 		
 		if(!id.getText().isEmpty()){
-			parameters.add(id.getText());
-			if((boolean)fc.handleRequest("NotificaRitiro",parameters))
-				v.showMessage(0, "Informazione", "Operazione completata con successo");
-			else
-				v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
-						+ "Assicurati di aver inserito l'id correttamente.");
+			try {
+				Integer.parseInt(id.getText());
+				parameters.add(id.getText());
+				if((boolean)fc.handleRequest("NotificaRitiro",parameters))
+					v.showMessage(0, "Informazione", "Operazione completata con successo");
+				else
+					v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
+							+ "Assicurati di aver inserito l'id correttamente.");
+			}
+			catch(NumberFormatException e) {
+				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero!");
+				}
+			
 		}
 		else{
 			

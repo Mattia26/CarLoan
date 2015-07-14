@@ -1,6 +1,7 @@
 package presentation.ui.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -73,82 +74,89 @@ public class ModificaContrattoController implements Initializable{
 					w.showMessage(1, "Errore", "Il numero di telefono non è valido");
 			else {
 				
-				if( sede.getValue().equals(GestioneSessione.getSedeRestituzione()) &&
-					tipo.getValue().charAt(0) == GestioneSessione.getTipoContratto().charAt(0) &&
-					chilometraggio.getValue().charAt(0) == GestioneSessione.getTipologiaKmContratto().charAt(0) &&
-					acconto.getText().equals(GestioneSessione.getAcconto())) {
-					ViewDispatcher vd = new ViewDispatcher();
-					FrontController fc = new FrontController();
-					
-					if(TelefonoCliente.getText().equals(GestioneSessione.getTelefonoCliente()))
-						vd.showMessage(2, "Attenzione", "Nessuna modifica apportata al contratto."
-							+ "\n I dati inseriti sono gli stessi gi� presenti nel sistema.");
-					else {
-						ArrayList<String> parametersC = new ArrayList<String>();
-						parametersC.add(nomeC.getText());
-						parametersC.add(cognomeC.getText());
-						parametersC.add(TelefonoCliente.getText());
-						parametersC.add(codiceFiscale.getText());
-						if((boolean)fc.handleRequest("ModificaDatiCliente", parametersC)) {
-							vd.showMessage(2, "Informazione", "Nessuna modifica apportata al contratto."
-							+ "\n Modifica apportata solo al numero di telefono del cliente.");
-							fc.handleRequest("MenuOperatore");
+				try {
+					Integer.parseInt(acconto.getText());
+					if( sede.getValue().equals(GestioneSessione.getSedeRestituzione()) &&
+							tipo.getValue().charAt(0) == GestioneSessione.getTipoContratto().charAt(0) &&
+							chilometraggio.getValue().charAt(0) == GestioneSessione.getTipologiaKmContratto().charAt(0) &&
+							acconto.getText().equals(GestioneSessione.getAcconto())) {
+							ViewDispatcher vd = new ViewDispatcher();
+							FrontController fc = new FrontController();
+							
+							if(TelefonoCliente.getText().equals(GestioneSessione.getTelefonoCliente()))
+								vd.showMessage(2, "Attenzione", "Nessuna modifica apportata al contratto."
+									+ "\n I dati inseriti sono gli stessi gi� presenti nel sistema.");
+							else {
+								ArrayList<String> parametersC = new ArrayList<String>();
+								parametersC.add(nomeC.getText());
+								parametersC.add(cognomeC.getText());
+								parametersC.add(TelefonoCliente.getText());
+								parametersC.add(codiceFiscale.getText());
+								if((boolean)fc.handleRequest("ModificaDatiCliente", parametersC)) {
+									vd.showMessage(2, "Informazione", "Nessuna modifica apportata al contratto."
+									+ "\n Modifica apportata solo al numero di telefono del cliente.");
+									fc.handleRequest("MenuOperatore");
+								}
+								else
+									vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
+							}
+							return;
 						}
-						else
-							vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");
-					}
-					return;
-				}
-						
-				else {	
-					ArrayList<String> parameters = new ArrayList<String>();
-					parameters.add(GestioneSessione.getId());
-					parameters.add(targa.getText());
-					parameters.add(dataInizio.getText());
-					parameters.add(dataFine.getText());
-					parameters.add(sede.getValue());
-					parameters.add(tipo.getValue());
-					parameters.add(chilometraggio.getValue());
-					parameters.add(nomeC.getText());
-					parameters.add(cognomeC.getText());
-					parameters.add(codiceFiscale.getText());
-					parameters.add(acconto.getText());
-					
-					FrontController fc = new FrontController();
-					ViewDispatcher vd = new ViewDispatcher();
-					
-					if((boolean)fc.handleRequest("ModificaContratto",parameters)) {
-						if(TelefonoCliente.getText().equals(GestioneSessione.getTelefonoCliente()) ) {
-							vd.showMessage(0, "Avviso",
-									"L'operazione è stata effettuata con successo");
-							fc.handleRequest("MenuOperatore");
-						}
-						
-						else {
-							ArrayList<String> parametersC = new ArrayList<String>();
-							parametersC.add(nomeC.getText());
-							parametersC.add(cognomeC.getText());
-							parametersC.add(TelefonoCliente.getText());
-							parametersC.add(codiceFiscale.getText());
-							if((boolean)fc.handleRequest("ModificaDatiCliente", parametersC))
-								vd.showMessage(0, "Avviso",
-										"L'operazione è stata effettuata con successo");
-							else
-								vd.showMessage(2, "Attenzione", "Impossibile modificare "
-										+ "il numero di telefonodel cliente.\n" +
-										"I dati del contratto sono stati comunque modificati");
 								
-							fc.handleRequest("MenuOperatore");
-						}	
+						else {	
+							ArrayList<String> parameters = new ArrayList<String>();
+							parameters.add(GestioneSessione.getId());
+							parameters.add(targa.getText());
+							parameters.add(dataInizio.getText());
+							parameters.add(dataFine.getText());
+							parameters.add(sede.getValue());
+							parameters.add(tipo.getValue());
+							parameters.add(chilometraggio.getValue());
+							parameters.add(nomeC.getText());
+							parameters.add(cognomeC.getText());
+							parameters.add(codiceFiscale.getText());
+							parameters.add(acconto.getText());
+							
+							FrontController fc = new FrontController();
+							ViewDispatcher vd = new ViewDispatcher();
+							
+							if((boolean)fc.handleRequest("ModificaContratto",parameters)) {
+								if(TelefonoCliente.getText().equals(GestioneSessione.getTelefonoCliente()) ) {
+									vd.showMessage(0, "Avviso",
+											"L'operazione è stata effettuata con successo");
+									fc.handleRequest("MenuOperatore");
+								}
+								
+								else {
+									ArrayList<String> parametersC = new ArrayList<String>();
+									parametersC.add(nomeC.getText());
+									parametersC.add(cognomeC.getText());
+									parametersC.add(TelefonoCliente.getText());
+									parametersC.add(codiceFiscale.getText());
+									if((boolean)fc.handleRequest("ModificaDatiCliente", parametersC))
+										vd.showMessage(0, "Avviso",
+												"L'operazione è stata effettuata con successo");
+									else
+										vd.showMessage(2, "Attenzione", "Impossibile modificare "
+												+ "il numero di telefonodel cliente.\n" +
+												"I dati del contratto sono stati comunque modificati");
+										
+									fc.handleRequest("MenuOperatore");
+								}	
+								
+								
+							}
+							else 
+								vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");	
 						
+						}
 						
 					}
-					else 
-						vd.showMessage(1, "Errore", "L'operazione non è stata effettuata");	
-				
+				catch(NumberFormatException e) {
+					w.showMessage(1,"Errore!", "L'acconto deve essere un numero intero!");
+					}
 				}
 				
-			}
 		}
 	}
 

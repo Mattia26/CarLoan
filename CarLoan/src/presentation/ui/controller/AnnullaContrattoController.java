@@ -26,20 +26,28 @@ public class AnnullaContrattoController {
 	public void conferma(){
 		
 		if(!id.getText().isEmpty()){
-			Optional<ButtonType> confirm =  v.showMessage(2, "Attenzione", "Le modifiche saranno "
-					+ "permanenti, si è sicuri di voler continuare?");
-			
-			if(confirm.isPresent() && confirm.get() == ButtonType.OK){
-				FrontController fc = new FrontController();
-				ArrayList<String> parameters = new ArrayList<String>();
-				parameters.add(id.getText());
+			try {
+				Integer.parseInt(id.getText());
+				Optional<ButtonType> confirm =  v.showMessage(2, "Attenzione", "Le modifiche saranno "
+						+ "permanenti, si è sicuri di voler continuare?");
 				
-				if((boolean)fc.handleRequest("AnnullaContratto",parameters))
-					v.showMessage(0, "Informazione", "Operazione completata con successo");
-				else
-					v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
-							+ "Assicurati di aver inserito l'id correttamente.");
+				if(confirm.isPresent() && confirm.get() == ButtonType.OK){
+					FrontController fc = new FrontController();
+					ArrayList<String> parameters = new ArrayList<String>();
+					parameters.add(id.getText());
+					
+					if((boolean)fc.handleRequest("AnnullaContratto",parameters))
+						v.showMessage(0, "Informazione", "Operazione completata con successo");
+					else
+						v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
+								+ "Assicurati di aver inserito l'id correttamente.");
+				}
+				
 			}
+			catch(NumberFormatException e) {
+				v.showMessage(1,"Errore!", "L'id deve essere un numero intero!");
+				}
+			
 		}
 			
 		else

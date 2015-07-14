@@ -80,6 +80,7 @@ public class Lookup implements LookupI{
 			classe = "business.GestisciAuto";
 			metodo = "modificaAuto";
 			input = ArrayList.class;
+			break;
 		case "ModificaContratto":
 			classe = "business.GestisciContratto";
 			metodo = "modificaContratto";
@@ -109,13 +110,12 @@ public class Lookup implements LookupI{
 			classe = "business.GestisciContratto";
 			metodo = "Initialize";
 			input = String.class;
-		break;
-		
-		case "InserisciListino":
+			break;
+		case "ModificaListino":
 			classe = "business.entity.ListinoBusiness";
-			metodo = "inserisciNuovoListino";
+			metodo = "modificaPrezzi";
 			input = ArrayList.class;
-		break;
+			break;
 			
 		}
 		

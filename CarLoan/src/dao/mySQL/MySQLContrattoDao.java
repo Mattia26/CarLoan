@@ -16,6 +16,10 @@ import dao.MySQLDaoFactory;
 
 public class MySQLContrattoDao implements ContrattoDao{
 
+	
+	/**
+	 * Inserisce un nuovo contratto nel database mySQL
+	 */
 	@Override
 	public int inserisciContratto(String codFiscaleCliente, String targaMacchina, 
 			String dataInizio, String dataFine, int acconto, char tipologia, 
@@ -77,7 +81,9 @@ public class MySQLContrattoDao implements ContrattoDao{
 	}
 	
 	
-	
+	/**Modifica il contratto identificato dall'id in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean modificaContratto(int idContratto, 
 		String targaMacchina, String dataInizio, String dataFine, int acconto, char tipologia, 
@@ -122,7 +128,9 @@ public class MySQLContrattoDao implements ContrattoDao{
 	}
 
 	
-
+	/** Rimuove il contratto identificato dall'id in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean cancellaContratto(int idContratto) {
 		// TODO Auto-generated method stub
@@ -154,7 +162,9 @@ public class MySQLContrattoDao implements ContrattoDao{
 	}
 	
 	
-
+	/**
+	 * Prende dal database mySQL tutti i contratti aperti al momento della query
+	 */
 	@Override
 	public ArrayList<Contratto> getContrattiAttivi() {
 		// TODO Auto-generated method stub
@@ -208,6 +218,9 @@ public class MySQLContrattoDao implements ContrattoDao{
 		}
 	}
 
+	/**
+	 * Prende dal database mySQL tutti i contratti presenti al momento della query
+	 */
 	@Override
 	public ArrayList<Contratto> getContrattiSistema() {
 		// TODO Auto-generated method stub
@@ -254,6 +267,9 @@ public class MySQLContrattoDao implements ContrattoDao{
 		}
 	}
 
+	/**
+	 * Restituisce l'id del contratto presente nel database mySQL 
+	 */
 	@Override
 	public int getId(String targaMacchina, String dataInizio, String dataFine) {
 		// TODO Auto-generated method stub

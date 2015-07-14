@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import presentation.FrontController;
 import presentation.GestioneSessione;
 import presentation.ViewDispatcher;
+import utility.InputController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -44,14 +45,18 @@ public class ModificaProfiloController {
 			v.showMessage(2, "Informazione", 
 					"I dati inseriti sono gli stessi già presenti nel sistema");
 		else {
-			parameters.add(NomeField.getText());
-			parameters.add(CognomeField.getText());
-			parameters.add(TelefonoField.getText());
-			parameters.add(IndirizzoField.getText());
-			if( (boolean)fc.handleRequest("ModificaDatiOperatore",parameters))
-				v.showMessage(0, "Informazione", "Modifica dati avvenuta con successo");
+			if(InputController.telVerify(TelefonoField.getText())) {
+				parameters.add(NomeField.getText());
+				parameters.add(CognomeField.getText());
+				parameters.add(TelefonoField.getText());
+				parameters.add(IndirizzoField.getText());
+				if( (boolean)fc.handleRequest("ModificaDatiOperatore",parameters))
+					v.showMessage(0, "Informazione", "Modifica dati avvenuta con successo");
+				else
+					v.showMessage(1, "Errore", "Purtroppo la modifica dei dati non è riuscita");
+			}
 			else
-				v.showMessage(1, "Errore", "Purtroppo la modifica dei dati non è riuscita");
+				v.showMessage(2, "Attenzione", "Formato del numero di telefono non valido");
 			
 		}	
 			

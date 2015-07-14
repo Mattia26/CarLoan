@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import presentation.FrontController;
 import presentation.ViewDispatcher;
+import utility.InputController;
 
 public class ManutenzioneController {
 	@FXML
@@ -20,20 +21,26 @@ public class ManutenzioneController {
 		ArrayList<String> parameters = new ArrayList<String>();
 		
 		if(!targa.getText().isEmpty()){
-			Optional<ButtonType> confirm =  v.showMessage(2, "Attenzione", 
+			if(InputController.targaVerify(targa.getText())) {
+				Optional<ButtonType> confirm =  v.showMessage(2, "Attenzione", 
 					"Sei sicuro di voler continuare?");
 			
-			if(confirm.isPresent() && confirm.get() == ButtonType.OK) {
-				parameters.add(targa.getText());
+				if(confirm.isPresent() && confirm.get() == ButtonType.OK) {
+					parameters.add(targa.getText());
 
-				if((boolean)fc.handleRequest("InserisciManutenzione",parameters)) {
-					v.showMessage(0, "Informazione", "Operazione completata con successo");
-					fc.handleRequest("MenuOperatore");
+					if((boolean)fc.handleRequest("InserisciManutenzione",parameters)) {
+						v.showMessage(0, "Informazione", "Operazione completata con successo");
+						fc.handleRequest("MenuOperatore");
+					}
+					else
+						v.showMessage(1, "Errore", "L'operazione non è stata completata. \n"
+								+ "Assicurati di aver inserito ll targa corretta.\n"
+								+ "E' possibile che l'auto identificata da targa: " 
+								+ targa.getText() + " sia in noleggio");
 				}
-				else
-					v.showMessage(1, "Errore", "L'operazione non ï¿½ stata completata. \n"
-							+ "Assicurati di aver inserito ll targa corretta.");
 			}
+			else
+				v.showMessage(1, "Errore", "Formato targa non valido");
 		}
 		else
 			v.showMessage(1, "Errore!", "Campo vuoto. Per favore inserisci la targa dell'auto");

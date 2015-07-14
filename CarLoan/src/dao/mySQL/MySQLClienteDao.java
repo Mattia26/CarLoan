@@ -14,6 +14,9 @@ import entity.Contratto;
 
 public class MySQLClienteDao implements ClienteDao {
 
+	/**
+	 * Inserisce un nuovo cliente nel database mySQL
+	 */
 	@Override
 	public boolean inserisciCliente(String nome, String cognome, String numTel, 
 			String codFiscale) {// throws ExecuteQueryException, DatabaseConnectionException{
@@ -50,7 +53,10 @@ public class MySQLClienteDao implements ClienteDao {
 	}
 
 	
-	
+	/**
+	 * Modifica il cliente identificato dal codice fiscale in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean modificaCliente(String codFiscale, String numTel, String nome, 
 			String cognome) { //throws ExecuteQueryException, DatabaseConnectionException {
@@ -88,7 +94,10 @@ public class MySQLClienteDao implements ClienteDao {
 	}
 
 	
-	
+	/**
+	 * Rimuove il cliente identificato dal codice fiscale in input 
+	 * ed i relativi dati nel database mySQL
+	 */
 	@Override
 	public boolean rimuoviCliente(String codFiscale) { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
@@ -123,7 +132,9 @@ public class MySQLClienteDao implements ClienteDao {
 	}
 
 	
-	
+	/**
+	 * Prende dal database mySQL tutti i clienti presenti in esso
+	 */
 	@Override
 	public ArrayList<Cliente> getClienti() {
 		//	throws ExecuteQueryException, DatabaseConnectionException {

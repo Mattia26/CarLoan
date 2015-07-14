@@ -47,20 +47,35 @@ public class ChiudiContrattoController{
 		if( chilometri.getText().isEmpty() || idContratto.getText().isEmpty()  ){
 			v.showMessage(1,"Errore!", "Completare tutti i campi!");
 		}
-		else{
-			parameters = new ArrayList<String>();
-			parameters.add(idContratto.getText());
-			parameters.add(chilometri.getText());
-			
-			double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
-			
-			if(conto == -1){
-				v.showMessage(0, "Errore", "Operazione fallita.\n Controllare i campi e riprovare.");
+		else {
+			try {
+				Integer.parseInt(idContratto.getText());
+		
+				try {
+					Double.parseDouble(chilometri.getText());
+					parameters = new ArrayList<String>();
+					parameters.add(idContratto.getText());
+					parameters.add(chilometri.getText());
+					
+					double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
+				
+					if(conto == -1)
+						v.showMessage(1, "Errore", "Operazione fallita.\n "
+								+ "Controllare i campi e riprovare.");
+					
+					else{
+						saldo.setText("€ " + Double.toString(conto));
+						conferma.setVisible(true);
+					}
+				}
+				catch(NumberFormatException e) {
+				v.showMessage(2,"Attenzione!", "Nuovo chilometraggio non valido! Esso deve "
+						+ "essere di tipo numerico");
+				}
 			}
-			else{
-				saldo.setText(Double.toString(conto));
-				conferma.setVisible(true);
-			}
+			catch(NumberFormatException e) {
+				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero!");
+				}
 			
 			
 		}
