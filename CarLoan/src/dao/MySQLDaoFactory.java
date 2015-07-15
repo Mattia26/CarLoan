@@ -54,6 +54,9 @@ public class MySQLDaoFactory extends DaoFactory{
 	 */
 	public static Connection initConnection() throws DatabaseConnectionException { 
 		// Inizializza la connessione.
+		if(conn!=null)
+			return conn;
+		
 		try { // Caricamento del driver: possibile eccezione di tipo ClassNotFound
 		Class.forName(DRIVER_CLASS_NAME);
 		}

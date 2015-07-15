@@ -12,9 +12,15 @@ public class LoginUtility implements Serializable{
 
 	static HashMap<String, String> i=getCurrentUserList(); 
 	
-	public void insertUser(String username, String password) { 
-	i.put(username, cryptPassword(password));
-	salva();
+	public boolean insertUser(String username, String password) { 
+		if(!containsUser(username)) {
+			i.put(username, cryptPassword(password));
+			if(salva())
+				return true;
+			else 
+				return false;
+		}
+		else return false;
 	}
 
 	public boolean containsUser(String username) { 

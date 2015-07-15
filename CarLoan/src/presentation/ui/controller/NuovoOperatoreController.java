@@ -57,6 +57,7 @@ public class NuovoOperatoreController {
 				|| nick.getText().isEmpty() || indirizzo.getText().isEmpty())
 			v.showMessage(1, "Errore", "Riempire tutti i campi");
 		else{
+			LoginUtility l = new LoginUtility();
 			ArrayList<String> parameters = new ArrayList<String>();
 			parameters.add(nome.getText());
 			parameters.add(cognome.getText());
@@ -66,15 +67,21 @@ public class NuovoOperatoreController {
 			
 			if(!InputController.telVerify(telefono.getText()))
 				v.showMessage(1, "Errore", "Formato del numero di telefono non valido");
-			
-			else if((boolean)fc.handleRequest("NuovoOperatore",parameters)){
-				LoginUtility l = new LoginUtility();
-				l.insertUser("operatore" + nick.getText(), password.getText());
-				fc.handleRequest("MenuAmministratore");
-				v.showMessage(0, "Informazione", "Operazione completata con successo");
+			else if(l.insertUser("operatore" + nick.getText(), password.getText())) {
+				if((boolean)fc.handleRequest("NuovoOperatore",parameters)){
+					fc.handleRequest("MenuAmministratore");
+					v.showMessage(0, "Informazione", "Operazione completata con successo");
+				}
+				else {
+					v.showMessage(1, "Attenzione", "Impossibile inserire correttamente "
+							+ "i dati dell'operatore. Sarà comunque possibile effettuare "
+							+ "l'accesso con nickname e password inseriti e cambiare i dati"
+							+ "personali in seguito.");
+					fc.handleRequest("MenuAmministratore");
+				}
 			}
 			else
-				v.showMessage(1, "Errore", "L'operazione non Ã¨ stata completata");
+				v.showMessage(1, "Errore", "Esiste già un utente con tale nickname");
 			
 		}
 	}

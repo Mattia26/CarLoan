@@ -108,8 +108,7 @@ public class ChiudiContrattoController{
 			}
 		
 			else
-				v.showMessage(1, "Errore", "Impossibile completare l'operazione.\n"
-						+ " Assicurati di aver inserito l'id correttamente");
+				v.showMessage(1, "Errore", "Siamo spiacenti. Operazione non riuscita. Riprova.");
 			
 		}
 	}

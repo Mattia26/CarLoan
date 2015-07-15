@@ -40,21 +40,33 @@ public class EliminaOperatoreController {
 				parameters.add(nick.getText());
 				
 				LoginUtility l = new LoginUtility();
-
-				if(l.deleteUser("operatore" + parameters.get(0))) {
-					if((boolean)fc.handleRequest("EliminaOperatore",parameters)){
+				
+				if((boolean)fc.handleRequest("EliminaOperatore",parameters)){
+					
+					if(l.deleteUser("operatore" + parameters.get(0))) {
 						v.showMessage(0, "Informazione", "Operazione completata con successo!");
 						fc.handleRequest("MenuAmministratore");
-					}	
+					}
 					else
-						v.showMessage(1, "Errore", "Operazione non completata!\n"
-								+ "controllare il nickname e riprovare!");
+						v.showMessage(0, "Informazione", "Operazione completata con successo!");
+						fc.handleRequest("MenuAmministratore");
 				}
-				else
-					v.showMessage(1, "Errore", "Operazione non completata!\n"
-							+ "Nessun operatore associato a tale nickname.");
-			
-			}
+					
+				else {
+						if(l.deleteUser("operatore" + parameters.get(0))) {
+							v.showMessage(0, "Attenzione", "Impossibile rimuovere i dati personali"
+								+ " associati al nickname.\n Non sarà comunque più possibile "
+								+ "effettuare il login con il nickname dell'operatore rimosso!");
+							fc.handleRequest("MenuAmministratore");
+						}
+						else
+							v.showMessage(1, "Errore", "Nessun operatore esistente con nickname:"
+									+ nick.getText());
+				}
+				
+							
+			}	
+						
 		}	
 		
 	}

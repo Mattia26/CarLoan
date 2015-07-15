@@ -291,16 +291,19 @@ public class ApplicationController implements ApplicationControllerI {
 			ArrayList<String> datiOperatore = (ArrayList<String>)
 					handleRequest("AccessoDatiOperatore",parameters);
 			
-			if(datiOperatore.get(0).equals("") && datiOperatore.get(1).equals("") && 
-					datiOperatore.get(2).equals("") && datiOperatore.get(3).equals("")) {
+			if(datiOperatore.isEmpty() ||
+					(datiOperatore.get(0).equals("") && datiOperatore.get(1).equals("") && 
+					datiOperatore.get(2).equals("") && datiOperatore.get(3).equals(""))) {
 				ViewDispatcher v = new ViewDispatcher();
 				v.showMessage(2, "Attenzione", "Impossibile caricare i dati personali. \n"
 				+ "Il login � stato comunque effettuato correttamente con il nickname: " + username);			
 				}
-			GestioneSessione.setNomeOperatore(datiOperatore.get(0));
-			GestioneSessione.setCognomeOperatore(datiOperatore.get(1));
-			GestioneSessione.setIndirizzoOperatore(datiOperatore.get(2));
-			GestioneSessione.setTelefonoOperatore(datiOperatore.get(3));
+			else {
+				GestioneSessione.setNomeOperatore(datiOperatore.get(0));
+				GestioneSessione.setCognomeOperatore(datiOperatore.get(1));
+				GestioneSessione.setIndirizzoOperatore(datiOperatore.get(2));
+				GestioneSessione.setTelefonoOperatore(datiOperatore.get(3));
+			}
 			
 			return "operatore";
 		}
