@@ -30,8 +30,10 @@ public class NotificaRitiroController {
 			try {
 				Integer.parseInt(id.getText());
 				parameters.add(id.getText());
-				if((boolean)fc.handleRequest("NotificaRitiro",parameters))
+				if((boolean)fc.handleRequest("NotificaRitiro",parameters)) {
 					v.showMessage(0, "Informazione", "Operazione completata con successo");
+					fc.handleRequest("MenuOperatore");
+				}
 				else
 					v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
 							+ "Assicurati di aver inserito l'id correttamente.");

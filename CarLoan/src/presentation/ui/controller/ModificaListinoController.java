@@ -39,23 +39,29 @@ public class ModificaListinoController {
 			v.showMessage(1, "Errore", "Riempire tutti i campi!");
 		else{
 			try{
-				Integer.parseInt(ChilometraggioI.getText());
-				Integer.parseInt(ChilometraggioL.getText());
-				Integer.parseInt(TariffaG.getText());
-				Integer.parseInt(TariffaS.getText());
+				int kmI = Integer.parseInt(ChilometraggioI.getText()); 
+				int kmL = Integer.parseInt(ChilometraggioL.getText());
+				int prezzoG = Integer.parseInt(TariffaG.getText());
+				int prezzoS = Integer.parseInt(TariffaS.getText());
 				
-				ArrayList<String> parameters = new ArrayList<String>();
-				parameters.add(ChilometraggioI.getText());
-				parameters.add(ChilometraggioL.getText());
-				parameters.add(TariffaG.getText());
-				parameters.add(TariffaS.getText());
+				if(kmI > 0 && kmL > 0 && prezzoG > 0 && prezzoS > 0) {
+					ArrayList<String> parameters = new ArrayList<String>();
+					parameters.add(ChilometraggioI.getText());
+					parameters.add(ChilometraggioL.getText());
+					parameters.add(TariffaG.getText());
+					parameters.add(TariffaS.getText());
 				
-				if((boolean)fc.handleRequest("ModificaListino",parameters)){
-					v.showMessage(0, "Informazione", "Operazione completata con successo!");
-					fc.handleRequest("MenuAmministratore");
+					if((boolean)fc.handleRequest("ModificaListino",parameters)){
+						v.showMessage(0, "Informazione", "Operazione completata con successo!");
+						fc.handleRequest("MenuAmministratore");
+					}
+					else
+						v.showMessage(1, "Errore", "Operazione non riuscita!");
+				
 				}
 				else
-					v.showMessage(1, "Errore", "Operazione non riuscita!");
+					v.showMessage(1, "Attenzione", "Per favore inserire dei valori positivi");
+			
 			}catch(NumberFormatException e){
 				v.showMessage(1, "Errore", "Per favore inserire degli interi");
 			}

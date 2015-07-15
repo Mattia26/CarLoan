@@ -39,7 +39,7 @@ public class Lookup implements LookupI{
 		case "ChiudiContratto":
 			classe = "business.GestisciContratto";
 			metodo = "chiudiContratto";
-			input = String.class;
+			input = ArrayList.class;
 			break;
 		case "EliminaAuto":
 			classe = "business.GestisciAuto";

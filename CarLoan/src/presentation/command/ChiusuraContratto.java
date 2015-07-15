@@ -16,10 +16,15 @@ public class ChiusuraContratto implements Command{
 	
 	@Override
 	public Object Execute(String parameter) {
+		return false;
+	}
+
+	@Override
+	public Object Execute(ArrayList<String> parameters) {
 		boolean chiuso;
 		try {
 			b= new BusinessDelegate();
-			chiuso = (boolean) b.handleRequest("ChiudiContratto", parameter);
+			chiuso = (boolean) b.handleRequest("ChiudiContratto", parameters);
 			return chiuso;
 		} catch (ClassNotFoundException | NoSuchMethodException
 				| SecurityException | IllegalAccessException
@@ -30,10 +35,4 @@ public class ChiusuraContratto implements Command{
 			return false;
 		}
 	}
-
-	@Override
-	public Object Execute(ArrayList<String> parameters) {
-		return false;
-			}
-
 }

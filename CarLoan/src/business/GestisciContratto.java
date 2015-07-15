@@ -163,15 +163,23 @@ public class GestisciContratto {
 	 * @param id di tipo String: indica l'id del contratto da annullare
 	 * @return true se il contratto è stato annullato correttamente; false altrimenti
 	 */
-	public Object chiudiContratto(String id) {	
+	public Object chiudiContratto(ArrayList<String> parameters) {	
 		
 		if(cb==null)
 			return false;
 		
 		try {
-			Contratto c = (Contratto) getDatiContratto(id);
-			c.setChiuso(true);
-			return cb.modificaContratto(c);
+			Contratto c = (Contratto) getDatiContratto(parameters.get(0));
+			GestisciAuto g = new GestisciAuto();
+			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
+			
+			if((boolean)g.inserisciNuovoChilometraggio(a, Double.parseDouble(parameters.get(1)))) {
+				c.setDataFine(InputController.getString(LocalDate.now()));
+				c.setChiuso(true);
+				return cb.modificaContratto(c);
+			}
+			else
+				return false;
 		} 
 		catch (ObjectNotFoundException e) {
 			return false;
@@ -256,7 +264,7 @@ public class GestisciContratto {
 			
 			c = (Contratto) getDatiContratto(id);
 			if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
-				return -1.0;
+				return -2.0;
 			
 			Character tipo = c.getTipologia();
 			Character tipoKm = c.getTipoChilometraggio();
@@ -264,7 +272,6 @@ public class GestisciContratto {
 			Auto a = (Auto) g.getDatiAuto(c.getTargaMacchina());
 			Character fascia = a.getFascia();
 			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
-			g.inserisciNuovoChilometraggio(a, nuovoKm);
 			lb = new ListinoBusiness();
 		
 			if(tipo.equals('G') && tipoKm.equals('L')) {

@@ -77,7 +77,7 @@ public class InputController {
 	}
 	
 	public static String stringToMySqlDate(String s){
-		if(s==null)
+		if(s==null || s.equals(""))
 			return "";
 		
 		String ritorno;
@@ -88,7 +88,7 @@ public class InputController {
 	}
 	
 	public static String mySqlDateToString(String s){
-		if(s==null)
+		if(s==null || s.equals(""))
 			return "";
 		
 		String ritorno;

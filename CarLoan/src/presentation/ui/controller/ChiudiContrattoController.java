@@ -70,8 +70,10 @@ public class ChiudiContrattoController{
 				
 					if(conto == -1)
 						v.showMessage(1, "Errore", "Operazione fallita.\n "
-								+ "Controllare i campi e riprovare.");
-					
+								+ "Controllare l'id inserito e riprovare.");
+					else if(conto == -2)
+						v.showMessage(1, "Errore", "Nessun contratto attualmente in corso"
+								+ " ritrovato con tale id.");
 					else{
 						saldo.setText("€ " + Double.toString(conto));
 						conferma.setVisible(true);
