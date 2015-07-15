@@ -14,7 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia NuovaAuto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class NuovaAutoController implements Initializable{
 	
 	@FXML
@@ -36,6 +40,9 @@ public class NuovaAutoController implements Initializable{
 	
 	private ViewDispatcher v = new ViewDispatcher();
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		if(targa.getText().isEmpty() || modello.getText().isEmpty() || fascia.getValue().isEmpty()
@@ -83,7 +90,9 @@ public class NuovaAutoController implements Initializable{
 		
 		}
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		fc.handleRequest("MenuAmministratore");

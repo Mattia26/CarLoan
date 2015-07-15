@@ -7,7 +7,11 @@ import java.util.Iterator;
 
 import entity.Auto;
 import business.BusinessDelegate;
-
+/**
+ * Classe che recupera i dati relativi a una data auto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class CercaAuto implements Command{
 			
 			BusinessDelegate b;	

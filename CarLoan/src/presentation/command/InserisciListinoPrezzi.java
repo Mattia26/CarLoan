@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa della modifica del listino dei prezzi
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class InserisciListinoPrezzi implements Command {
 
 	private BusinessDelegate b;

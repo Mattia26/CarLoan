@@ -17,8 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
-
+/**
+ * Classe di controllo per l'interfaccia CercaAuto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class CercaAutoController implements Initializable{
 	
 	@FXML
@@ -33,13 +36,17 @@ public class CercaAutoController implements Initializable{
 	@FXML
 	private Button avanti;
 	
+	/**
+	 * (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TipoBox.setItems(FXCollections.observableArrayList("A","B","C", "Qualsiasi"));
 		TipoBox.setValue("Qualsiasi");
 	}
 	
-	
+
 	@SuppressWarnings("unchecked")
 	@FXML
 	public void TipeClick(){
@@ -49,6 +56,9 @@ public class CercaAutoController implements Initializable{
 	
 	
 	@SuppressWarnings("unchecked")
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Cerca
+	 */
 	@FXML
 	public void Cerca(){
 
@@ -93,7 +103,7 @@ public class CercaAutoController implements Initializable{
 					}
 				}
 				catch (DateTimeException e) {
-					dispatcher.showMessage(1, "Errore", "La data di fine inserita è inesistente.");
+					dispatcher.showMessage(1, "Errore", "La data di fine inserita ï¿½ inesistente.");
 					Al.setText("");
 				}
 			}
@@ -101,7 +111,7 @@ public class CercaAutoController implements Initializable{
 				Dal.setText("");
 				try {
 					InputController.dateVerify(Al.getText());
-					dispatcher.showMessage(1, "Errore", "La data di inizio inserita è inesistente.");
+					dispatcher.showMessage(1, "Errore", "La data di inizio inserita ï¿½ inesistente.");
 				}	
 				catch (DateTimeException e2) {
 					Al.setText("");
@@ -112,12 +122,19 @@ public class CercaAutoController implements Initializable{
 			
 	}
 	
+	/**
+	 * Metodo che rende visibile il tasto Avanti alla selezione di un auto
+	 * dopo la ricerca
+	 */
 	@FXML
 	public void setAvanti(){
 		if(vista.getSelectionModel().getSelectedItem() != null)
 			avanti.setVisible(true);	
 	}
 	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Avanti
+	 */
 	@FXML
 	public void Avanti(){
 		String selezione = (String)vista.getSelectionModel().getSelectedItem();
@@ -130,6 +147,9 @@ public class CercaAutoController implements Initializable{
 		
 	}
 	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto indietro
+	 */
 	@FXML
 	public void Indietro(){
 		FrontController fc = new FrontController();

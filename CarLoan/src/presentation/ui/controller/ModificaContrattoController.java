@@ -14,7 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia ModificaContratto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ModificaContrattoController implements Initializable{
 	
 	@FXML
@@ -50,12 +54,17 @@ public class ModificaContrattoController implements Initializable{
 	@FXML
 	private TextField TelefonoCliente;
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void Indietro(){
 		FrontController fc = new FrontController();
 		fc.handleRequest("ModificaId");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void Conferma(){
 		
@@ -159,7 +168,10 @@ public class ModificaContrattoController implements Initializable{
 				
 		}
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		FrontController fc = new FrontController();

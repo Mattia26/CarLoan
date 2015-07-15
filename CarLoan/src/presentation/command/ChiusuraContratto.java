@@ -5,7 +5,11 @@ import java.util.ArrayList;
 
 import business.BusinessDelegate;
 import entity.Contratto;
-
+/**
+ * Classe che effettua la chiusura di un contratto
+ * @author Mattia Menna
+ *
+ */
 public class ChiusuraContratto implements Command{
 	//attributo di tipo Business Delegato
 	BusinessDelegate b;

@@ -10,10 +10,18 @@ import presentation.FrontController;
 import presentation.ViewDispatcher;
 import utility.InputController;
 
+/**
+ * Classe di controllo per l'interfaccia Manutenzione
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ManutenzioneController {
 	@FXML
 	private TextField targa;
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		ViewDispatcher v = new ViewDispatcher();
@@ -46,9 +54,10 @@ public class ManutenzioneController {
 			v.showMessage(1, "Errore!", "Campo vuoto. Per favore inserisci la targa dell'auto");
 		
 		
-		
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		FrontController fc = new FrontController();

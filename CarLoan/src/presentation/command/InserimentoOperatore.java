@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa dell'inserimento di un operatore nel database e nella lista utenti
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class InserimentoOperatore implements Command{
 
 	BusinessDelegate b;

@@ -11,18 +11,28 @@ import presentation.ViewDispatcher;
 import utility.InputController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia ModificaId
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ *
+ */
 public class ModificaIdController {
 	
 	@FXML
 	private TextField id;
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Indietro
+	 */
 	@FXML
 	public void Indietro(){
 		FrontController fc = new FrontController();
 		fc.handleRequest("MenuOperatore");
 	}
 	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Ok
+	 */
 	@FXML
 	public void Ok(){
 		FrontController fc = new FrontController();

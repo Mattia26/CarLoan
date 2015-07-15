@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa dell'eliminazione di un operatore
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class EliminazioneOperatore implements Command{
 
 		private BusinessDelegate b;

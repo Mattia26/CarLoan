@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import business.BusinessDelegate;
 import entity.Contratto;
-
+/**
+ * Classe che restituisce i dati relativi a un dato contratto
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class CercaContratto implements Command{
 
 	BusinessDelegate b;

@@ -5,7 +5,11 @@ import java.util.ArrayList;
 
 import business.BusinessDelegate;
 import presentation.GestioneSessione;
-
+/**
+ * Classe che si occupa della modifica dei dati di un operatore nel database
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ModificaDatiOperatore implements Command{
 	
 	BusinessDelegate b;

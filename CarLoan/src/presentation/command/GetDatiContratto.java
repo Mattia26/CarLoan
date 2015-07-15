@@ -9,7 +9,11 @@ import entity.Cliente;
 import entity.Contratto;
 import business.BusinessDelegate;
 import business.ObjectNotFoundException;
-
+/**
+ * Classe che pone i dati di un dato contratto in GestioneSessione
+ * @author mattia
+ *
+ */
 public class GetDatiContratto implements Command{
 	
 	BusinessDelegate b;

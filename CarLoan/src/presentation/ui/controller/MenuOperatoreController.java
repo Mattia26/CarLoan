@@ -11,7 +11,11 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
+/**
+ * Classe di controllo per l'interfaccia menuOperatore
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class MenuOperatoreController implements Initializable{
 
 	@FXML
@@ -31,52 +35,74 @@ public class MenuOperatoreController implements Initializable{
 		
 	
 	
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione della label Modifica Profilo
+	 */
 	@FXML
-	public void ModificaProfilo(Event e){
+	public void ModificaProfilo(){
 		fc.handleRequest("ModificaProfilo");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione della label Logout
+	 */
 	@FXML
-	public void Logout(Event e){
+	public void Logout(){
 		GestioneSessione.azzera();
 		fc.handleRequest("Logout");
 	}
-
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Nuovo Contratto
+	 */
 	@FXML
-		public void CercaAuto(Event e){
+		public void CercaAuto(){
 			fc.handleRequest("CercaAuto");
 		}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Chiudi Contratto
+	 */
 	@FXML
 		public void ChiudiContratto(){
 		fc.handleRequest("ChiudiContratto");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Modifica Contratto
+	 */
 	@FXML
 		public void ModificaContratto(){
 		fc.handleRequest("ModificaId");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Annulla Contratto
+	 */
 	@FXML
 		public void annullaContratto(){
 		fc.handleRequest("AnnullaContratto");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Notifica Ritiro
+	 */
 	@FXML
 		public void notificaRitiro(){
 		fc.handleRequest("NotificaRitiro");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Cerca Cliente
+	 */
 	@FXML
 		public void cercaCliente(){
 		fc.handleRequest("CercaCliente");
 	}
-	
+	/**
+	 * Gestore per le operazioni eseguite alla pressione del tasto Manutenzione
+	 */
 	@FXML
 		public void manutenzione(){
 		fc.handleRequest("Manutenzione");
 	}
+	/**
+	 * (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		NomeOperatoreR.setText(GestioneSessione.getNomeOperatore());

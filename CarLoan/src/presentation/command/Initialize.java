@@ -6,7 +6,11 @@ import java.util.Iterator;
 
 import entity.Contratto;
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa delle operazioni di inizializzazione del programma
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class Initialize implements Command{
 	
 	BusinessDelegate b;

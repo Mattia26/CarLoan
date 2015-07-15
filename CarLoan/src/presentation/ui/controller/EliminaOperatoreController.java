@@ -9,7 +9,11 @@ import utility.LoginUtility;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-
+/**
+ * Classe di controllo per l'interfaccia EliminaOperatore
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class EliminaOperatoreController {
 	
 	@FXML
@@ -19,6 +23,9 @@ public class EliminaOperatoreController {
 	
 	private ViewDispatcher v = new ViewDispatcher();
 	
+	/**
+	 * Gestore per l'esecuzione delle operazioni alla pressione del tasto Conferma
+	 */
 	@FXML
 	public void conferma(){
 		
@@ -34,7 +41,6 @@ public class EliminaOperatoreController {
 				
 				LoginUtility l = new LoginUtility();
 				if(l.deleteUser(parameters.get(0))) {
-					System.out.println("ma pcchè?!?");
 					if((boolean)fc.handleRequest("EliminaOperatore",parameters)){
 						v.showMessage(0, "Informazione", "Operazione completata con successo!");
 						fc.handleRequest("MenuAmministratore");
@@ -52,7 +58,9 @@ public class EliminaOperatoreController {
 		
 	}
 	
-	
+	/**
+	 * Gestore per le operazioni all'esecuzione del tasto Indietro
+	 */
 	@FXML
 	public void indietro(){
 		fc.handleRequest("MenuAmministratore");

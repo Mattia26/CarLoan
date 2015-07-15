@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe per il calcolo del saldo di un contratto concluso
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class CalcolaSaldo implements Command{
 	
 	BusinessDelegate b;

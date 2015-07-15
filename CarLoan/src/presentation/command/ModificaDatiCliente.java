@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa della modifica dei dati di un cliente nel database
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ModificaDatiCliente implements Command{
 
 	private BusinessDelegate b;

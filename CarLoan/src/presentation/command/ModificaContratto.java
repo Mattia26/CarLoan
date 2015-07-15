@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import business.BusinessDelegate;
-
+/**
+ * Classe che si occupa della modifica di un dato contratto già esistente
+ * @author Mattia Menna
+ * @author Giuseppe Onesto
+ */
 public class ModificaContratto implements Command{
 			
 		BusinessDelegate b;
