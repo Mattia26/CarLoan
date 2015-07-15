@@ -103,8 +103,9 @@ public class CercaClienteController {
     	if(campotel.getText().isEmpty())
     		v.showMessage(1, "Errore", "Riempire tutti i campi");
     	else if(campotel.getText().equals(GestioneSessione.getTelefonoCliente()) )
-    		v.showMessage(2, "Informazione", "I dati inseriti sono gli stessi gi� presenti nel sistema");
-    	
+    		v.showMessage(0, "Informazione", "I dati inseriti sono gli stessi gi� presenti nel sistema");
+    	else if(! InputController.telVerify(campotel.getText()))
+    		v.showMessage(1, "Attenzione", "Formato del numero di telefono non valido");
     	else {
     		ArrayList<String> parameters = new ArrayList<String>();
     		
@@ -116,20 +117,16 @@ public class CercaClienteController {
     		if((boolean)fc.handleRequest("ModificaDatiCliente",parameters)){
     			v.showMessage(0, "Informazione", "Operazione completata con successo!");
     			
+    			telefono.setText(campotel.getText());
     			conf.setVisible(false);
     			mdf.setVisible(false);
-    			
     			campotel.setVisible(false);
-    			
-    			nome.setText("");
-    			cognome.setText("");
-    			telefono.setText("");
-    			cf.setText("");
     		}
-    		else{
+    		
+    		else
     			v.showMessage(1, "Errore!", "Operazione non completata!\n Riprovare!");
-    			fc.handleRequest("MenuOperatore");
-    		}
+    			
+    		
     		
     			
     	}

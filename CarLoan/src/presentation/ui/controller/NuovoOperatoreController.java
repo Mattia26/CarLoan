@@ -63,7 +63,6 @@ public class NuovoOperatoreController {
 			parameters.add(indirizzo.getText());
 			parameters.add(telefono.getText());
 			parameters.add(nick.getText());
-			parameters.add(password.getText());
 			
 			if(!InputController.telVerify(telefono.getText()))
 				v.showMessage(1, "Errore", "Formato del numero di telefono non valido");

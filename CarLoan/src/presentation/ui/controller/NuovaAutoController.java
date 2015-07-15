@@ -54,11 +54,12 @@ public class NuovaAutoController implements Initializable{
 				if(!InputController.targaVerify(targa.getText()))
 					v.showMessage(1, "Errore", "La targa inserita non è valida!");
 				
-				else if(!InputController.dateVerify(manutenzione.getText()) ||
-					InputController.getDate(manutenzione.getText()).isAfter
-					(LocalDate.now().plusYears(1)))
+				else if(!InputController.dateVerify(manutenzione.getText()))
 					v.showMessage(1, "Errore", "La data di manutenzione inserita non è valida!");
-				
+				else if(InputController.getDate(manutenzione.getText()).isAfter
+					(LocalDate.now().plusYears(1)))
+					v.showMessage(1, "Attenzione", "La data di manutenzione inserita non è valida!"
+						+ "Essa deve essere entro il: " + LocalDate.now().plusYears(1));
 				else{
 					try{
 						Double.parseDouble(km.getText());

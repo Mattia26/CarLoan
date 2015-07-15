@@ -301,7 +301,7 @@ public class ApplicationController implements ApplicationControllerI {
 			GestioneSessione.setCognomeOperatore(datiOperatore.get(1));
 			GestioneSessione.setIndirizzoOperatore(datiOperatore.get(2));
 			GestioneSessione.setTelefonoOperatore(datiOperatore.get(3));
-			System.out.println(GestioneSessione.getIndirizzoOperatore());
+			
 			return "operatore";
 		}
 		

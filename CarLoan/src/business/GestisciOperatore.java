@@ -65,7 +65,16 @@ public class GestisciOperatore {
 		String indirizzo=operatorParameters.get(3);
 		
 		Operatore o=new Operatore(nome,cognome,indirizzo,numTelefono,nickname);
-		return ob.modificaDatiOperatore(o);
+		if(
+				((Operatore)getDatiOperatore(nickname)).getNome().equals("") &&
+				((Operatore)getDatiOperatore(nickname)).getCognome().equals("") &&
+				((Operatore)getDatiOperatore(nickname)).getIndirizzo().equals("") &&
+				((Operatore)getDatiOperatore(nickname)).getNumTelefono().equals("") ) 
+			
+			return ob.inserisciOperatore(o);
+		
+		else
+			return ob.modificaDatiOperatore(o);
 		
 	}
 	

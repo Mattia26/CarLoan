@@ -34,28 +34,26 @@ public class ModificaProfiloController implements Initializable{
 	private TextField indirizzo;
 	
 	
-	/**
-	 * Gestore delle operazioni eseguite alla pressione del tasto Modifica
-	 */
 	@FXML
-	public void Modifica(){
-		@FXML
 	public void setFields(Event e){
 		NomeField.setText(GestioneSessione.getNomeOperatore());
 		CognomeField.setText(GestioneSessione.getCognomeOperatore());
 		TelefonoField.setText(GestioneSessione.getTelefonoOperatore());
-		IndirizzoField.setText(GestioneSessione.getIndirizzoOperatore());
+		indirizzo.setText(GestioneSessione.getIndirizzoOperatore());
 	}
 	
+	/**
+	 * Gestore delle operazioni eseguite alla pressione del tasto Modifica
+	 */
 	@FXML
 	public void Modifica(Event e){
 		ArrayList<String> parameters = new ArrayList<String>();
 		FrontController fc = new FrontController();
 		ViewDispatcher v = new ViewDispatcher();
-		if(NomeField.getText().getText().isEmpty() || CognomeField.getText().isEmpty() ||
-		TelefonoField.getText().isEmpty() || indirizzo.getText().isEmpty()
+		if(NomeField.getText().isEmpty() || CognomeField.getText().isEmpty() ||
+		TelefonoField.getText().isEmpty() || indirizzo.getText().isEmpty() )
 			v.showMessage(1, "Attenzione", "Per favore riempire tutti i campi");
-		if(NomeField.getText().equals(GestioneSessione.getNomeOperatore()) &&
+		else if(NomeField.getText().equals(GestioneSessione.getNomeOperatore()) &&
 			CognomeField.getText().equals(GestioneSessione.getCognomeOperatore()) &&
 			TelefonoField.getText().equals(GestioneSessione.getTelefonoOperatore()) &&
 			indirizzo.getText().equals(GestioneSessione.getIndirizzoOperatore()) ) 
@@ -67,8 +65,11 @@ public class ModificaProfiloController implements Initializable{
 				parameters.add(CognomeField.getText());
 				parameters.add(TelefonoField.getText());
 				parameters.add(indirizzo.getText());
-				if( (boolean)fc.handleRequest("ModificaDatiOperatore",parameters))
+				
+				if( (boolean)fc.handleRequest("ModificaDatiOperatore",parameters)) {
 					v.showMessage(0, "Informazione", "Modifica dati avvenuta con successo");
+					fc.handleRequest("MenuOperatore");
+				}
 				else
 					v.showMessage(1, "Errore", "Purtroppo la modifica dei dati non è riuscita");
 			}

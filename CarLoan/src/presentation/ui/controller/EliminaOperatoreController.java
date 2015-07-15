@@ -40,7 +40,8 @@ public class EliminaOperatoreController {
 				parameters.add(nick.getText());
 				
 				LoginUtility l = new LoginUtility();
-				if(l.deleteUser(parameters.get(0))) {
+
+				if(l.deleteUser("operatore" + parameters.get(0))) {
 					if((boolean)fc.handleRequest("EliminaOperatore",parameters)){
 						v.showMessage(0, "Informazione", "Operazione completata con successo!");
 						fc.handleRequest("MenuAmministratore");

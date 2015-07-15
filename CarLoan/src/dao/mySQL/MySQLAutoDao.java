@@ -234,7 +234,6 @@ public class MySQLAutoDao implements AutoDao{
 						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
 						rs.getDouble("ultimo_km"));
 						result.add(a);
-						System.out.println(a.getDataManutenzioneStraordinaria());
 					}	
 					rs.close();
 					statement.close();

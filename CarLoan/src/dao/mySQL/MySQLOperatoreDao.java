@@ -63,7 +63,8 @@ public class MySQLOperatoreDao implements OperatoreDao{
 		// TODO Auto-generated method stub
 		boolean modificato;
 		String queryModifica;
-		queryModifica = "update operators set nome= ?, cognome= ?, eta = ? where nickname= ?;";
+		queryModifica = "update operators set nome= ?, cognome= ?, indirizzo = ?,"
+				+ "telefono = ? where nickname= ?;";
 		
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
