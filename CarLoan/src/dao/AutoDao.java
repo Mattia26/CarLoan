@@ -19,7 +19,7 @@ public interface AutoDao {
 	 * 
 	 */
 	public boolean inserisciAuto(String modello, String targa,String data_man_ord, char fascia, 
-			double km); // throws ExecuteQueryException, DatabaseConnectionException;
+			int ultimoKm); // throws ExecuteQueryException, DatabaseConnectionException;
 	
 	/**
 	 * Modifica nel database l'auto avente targa uguale alla targa in input
@@ -34,7 +34,7 @@ public interface AutoDao {
 	 * 
 	 */
 	public boolean modificaAuto(String targa, String inizioManutenzioneStraordinaria,
-			String dataManutenzioneOrdinaria, double km);
+			String dataManutenzioneOrdinaria, int ultimoKm);
 				//	throws ExecuteQueryException, DatabaseConnectionException;
 	/**
 	 * Rimuove dal database l'auto avente targa uguale alla targa in input

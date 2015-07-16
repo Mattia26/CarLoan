@@ -116,6 +116,10 @@ public class Lookup implements LookupI{
 			metodo = "modificaPrezzi";
 			input = ArrayList.class;
 			break;
+		case "GetPrezziListino":
+			classe = "business.entity.ListinoBusiness";
+			metodo = "getPrezzi";
+			input = String.class;
 			
 		}
 		

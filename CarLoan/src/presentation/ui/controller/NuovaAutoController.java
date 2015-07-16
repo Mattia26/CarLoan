@@ -62,7 +62,7 @@ public class NuovaAutoController implements Initializable{
 						+ "Essa deve essere entro il: " + LocalDate.now().plusYears(1));
 				else{
 					try{
-						Double.parseDouble(km.getText());
+						Integer.parseInt(km.getText());
 				
 						ArrayList<String> parameters = new ArrayList<String>();
 						parameters.add(targa.getText());
@@ -79,7 +79,7 @@ public class NuovaAutoController implements Initializable{
 							v.showMessage(1, "Errore", "L'operazione non è riuscita");
 					}
 					catch(NumberFormatException e){
-					v.showMessage(1, "Errore", "Il valore del chilometraggio non è valido!");
+					v.showMessage(1, "Errore", "Il valore del chilometraggio deve essere un intero!");
 					}
 				}
 				

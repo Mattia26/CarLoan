@@ -57,11 +57,21 @@ public class ChiudiContrattoController{
 			v.showMessage(1,"Errore!", "Completare tutti i campi!");
 		}
 		else {
+			
 			try {
-				Integer.parseInt(idContratto.getText());
+				if(Integer.parseInt(idContratto.getText())<0) {
+					v.showMessage(2,"Attenzione!", "Id non valido! Esso deve "
+							+ "essere un intero positivo");
+					return;
+				}
 		
 				try {
-					Double.parseDouble(chilometri.getText());
+					if(Integer.parseInt(chilometri.getText())<0) {
+						v.showMessage(2,"Attenzione!", "Ultimo chilometraggio non valido!"
+								+ " Esso deve essere un intero positivo");
+						return;
+					}
+					
 					parameters = new ArrayList<String>();
 					parameters.add(idContratto.getText());
 					parameters.add(chilometri.getText());
@@ -74,6 +84,9 @@ public class ChiudiContrattoController{
 					else if(conto == -2)
 						v.showMessage(1, "Errore", "Nessun contratto attualmente in corso"
 								+ " ritrovato con tale id.");
+					else if(conto == -3)
+						v.showMessage(1, "Errore", "L'ultimo chilometraggio inserito è errato:"
+								+ "esso è minore dell'ultimo chilometraggio registrato!");
 					else{
 						saldo.setText("€ " + Double.toString(conto));
 						conferma.setVisible(true);
@@ -81,11 +94,11 @@ public class ChiudiContrattoController{
 				}
 				catch(NumberFormatException e) {
 				v.showMessage(2,"Attenzione!", "Nuovo chilometraggio non valido! Esso deve "
-						+ "essere di tipo numerico");
+						+ "essere un intero positivo");
 				}
 			}
 			catch(NumberFormatException e) {
-				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero!");
+				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero positivo!");
 				}
 			
 			

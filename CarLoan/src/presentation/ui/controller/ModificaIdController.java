@@ -41,7 +41,12 @@ public class ModificaIdController {
 		
 		if(id.getText() != null){
 			try {
-				Integer.parseInt(id.getText());
+				if(Integer.parseInt(id.getText())<0) {
+					v.showMessage(2,"Attenzione!", "Id non valido!"
+							+ " Esso deve essere un intero positivo");
+					return;
+				}
+				
 				parameters.add(id.getText());
 				GestioneSessione.setId(Integer.parseInt(id.getText()));
 				ArrayList<String> datiContratto = 

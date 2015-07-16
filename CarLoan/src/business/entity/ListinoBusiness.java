@@ -60,17 +60,18 @@ public class ListinoBusiness {
 	
 	/**
 	 * Prende i prezzi attualmente in vigore
-	 * @return ArrayList<Integer>: Lista di prezzi per le varie tipologie di noleggio
+	 * @return ListinoPrezzi attualmente salvato nel sistema o un nuovo ListinoPrezzi con i 
+	 * prezzi di default, se non è salvato alcun Listino.
 	 */
-	public ArrayList<Integer> getPrezzi() {
-		ArrayList<Integer> prezzi = new ArrayList<Integer>();
+	public ListinoPrezzi getPrezzi(String s) {
 		
-		prezzi.add(l.getCostoGiornaliero());
-		prezzi.add(l.getCostoSettimanale());
-		prezzi.add(l.getCostoKmLimitato());
-		prezzi.add(l.getCostoKmIllimitato());
-		
-		return prezzi;		
+		try {
+			return carica();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			return new ListinoPrezzi();
+		}
+				
 	}
 	
 	/**

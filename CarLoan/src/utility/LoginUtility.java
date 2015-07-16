@@ -29,11 +29,15 @@ public class LoginUtility implements Serializable{
 	
 	public boolean deleteUser(String username) {
 		try {
+			
 			if(i.remove(username).equals(""))
 				return false;
-			else 
+			else {
+				salva();
 				return true;
+			}
 		}
+		
 		catch (NullPointerException e) {
 			return false;
 		}

@@ -29,9 +29,9 @@ public class Auto {
 	 */
 	private String dataManutenzioneOrdinaria;
 	/**
-	 * Attributo private di tipo double: indica l'ultimo chilometraggio dell'auto
+	 * Attributo private di tipo int: indica l'ultimo chilometraggio dell'auto
 	 */
-	private double ultimoChilometraggio;
+	private int ultimoChilometraggio;
 	
 	/**
 	 * Costruttore: istanzia un'auto a partire dai parametri in input
@@ -45,7 +45,7 @@ public class Auto {
 	 * @param ultimoKm di tipo double: indica l'ultimo chilometraggio dell'auto da instanziare
 	 */
 	public Auto(String modello, String targa, char fascia, String dataManutenzioneStraordinaria, 
-			String dataManutenzioneOrdinaria, double ultimoKm) {
+			String dataManutenzioneOrdinaria, int ultimoKm) {
 		this.modello=modello;
 		this.targa=targa;
 		this.fascia=fascia;
@@ -75,7 +75,7 @@ public class Auto {
 	 * Avvalora l'attributo ultimoChilometraggio legato all'auto con il double in input
 	 * @param ultimoKm di tipo double.
 	 */
-	public void setUltimoChilometraggio(double ultimoKm) {
+	public void setUltimoChilometraggio(int ultimoKm) {
 		this.ultimoChilometraggio=ultimoKm;
 	}
 	
@@ -135,7 +135,7 @@ public class Auto {
 	 * legato all'auto
 	 * @return double: valore dell'ultimo chilometraggio dell'auto
 	 */
-	public double getUltimoChilometraggio() {
+	public int getUltimoChilometraggio() {
 		return this.ultimoChilometraggio;
 	}
 	

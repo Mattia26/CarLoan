@@ -21,7 +21,7 @@ public class MySQLAutoDao implements AutoDao{
 	 */
 	@Override
 	public boolean inserisciAuto(String modello, String targa,String data_man_ord, char fascia,
-			double km) { //throws ExecuteQueryException, DatabaseConnectionException {
+			int ultimoKm) { //throws ExecuteQueryException, DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		String queryInserimento;
 		boolean inserito;
@@ -36,7 +36,7 @@ public class MySQLAutoDao implements AutoDao{
 			statement.setString(1,modello);
 			statement.setString(2,targa);
 			statement.setString(3, ((Character)fascia).toString());
-			statement.setDouble(4,km);
+			statement.setDouble(4, ultimoKm);
 			statement.setString(5, InputController.stringToMySqlDate(data_man_ord));
 			try {
 				if(statement.executeUpdate()==1)
@@ -65,7 +65,7 @@ public class MySQLAutoDao implements AutoDao{
 	 */
 	@Override
 	public boolean modificaAuto(String targa, String inizioManutenzioneStraordinaria, 
-			String dataManutenzioneOrdinaria, double km) { //throws DatabaseConnectionException, ExecuteQueryException {
+			String dataManutenzioneOrdinaria, int ultimoKm) { //throws DatabaseConnectionException, ExecuteQueryException {
 		// TODO Auto-generated method stub
 		boolean modificato=false;
 		
@@ -80,7 +80,7 @@ public class MySQLAutoDao implements AutoDao{
 		try {
 			Connection conn=MySQLDaoFactory.initConnection();
 			PreparedStatement statement=conn.prepareStatement(queryModifica);
-			statement.setDouble(1, km);
+			statement.setInt(1, ultimoKm);
 			statement.setString(2, inizioManutenzioneStraordinaria);
 			statement.setString(3, dataManutenzioneOrdinaria);
 			statement.setString(4, targa);
@@ -173,7 +173,7 @@ public class MySQLAutoDao implements AutoDao{
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
 						rs.getString("fascia").charAt(0), dataManStr,
 						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
-						rs.getDouble("ultimo_km"));
+						rs.getInt("ultimo_km"));
 						
 						result.add(a);
 						
@@ -232,7 +232,7 @@ public class MySQLAutoDao implements AutoDao{
 						Auto a = new Auto(rs.getString("modello"), rs.getString("targa"), 
 						rs.getString("fascia").charAt(0), dataManStr,
 						InputController.mySqlDateToString(rs.getString("data_manutenzione_ordinaria")),
-						rs.getDouble("ultimo_km"));
+						rs.getInt("ultimo_km"));
 						result.add(a);
 					}	
 					rs.close();

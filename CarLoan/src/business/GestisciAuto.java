@@ -89,7 +89,7 @@ public class GestisciAuto {
 		String modello = parameters.get(1);
 		char fascia = parameters.get(2).charAt(0);
 		String dataManutenzioneOrd = parameters.get(3);
-		double ultimoKm = Double.parseDouble(parameters.get(4));
+		int ultimoKm = Integer.parseInt(parameters.get(4));
 		
 		a = new Auto(modello, targa, fascia, "", dataManutenzioneOrd, ultimoKm);
 		return car.inserisciAuto(a);
@@ -113,7 +113,7 @@ public class GestisciAuto {
 			char fascia = parameters.get(2).charAt(0);
 			String dataManutenzioneStraord = parameters.get(3); //gestito giï¿½ da inserisciInManutenzione... non modificabile?
 			String dataManutenzioneOrd = parameters.get(4); 
-			double ultimoKm = Double.parseDouble(parameters.get(5)); //metterlo non modificabile?
+			int ultimoKm = Integer.parseInt(parameters.get(5)); //metterlo non modificabile?
 			
 			a = new Auto(modello, targa, fascia, dataManutenzioneStraord, 
 					dataManutenzioneOrd, ultimoKm);
@@ -277,7 +277,7 @@ public class GestisciAuto {
 	 * @return true se l'auto è stata modificata correttamente inserendo il nuovo
 	 * ultimo chilometraggio; false altrimenti
 	 */
-	public Object inserisciNuovoChilometraggio(Auto a, double ultimoKm) {
+	public Object inserisciNuovoChilometraggio(Auto a, int ultimoKm) {
 		
 		if(car==null)
 			return false;

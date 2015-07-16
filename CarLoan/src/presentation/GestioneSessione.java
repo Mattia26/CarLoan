@@ -86,6 +86,14 @@ public class GestioneSessione {
 	 * Sede di restituzione del contratto selezionato
 	 */
 	private static String sedeRestituzione = null;
+	
+	private static String costoGiornaliero = null;
+	
+	private static String costoSettimanale = null;
+	
+	private static String costoKmLimitato = null;
+	
+	private static String costoKmIllimitato = null;
 	/**
 	 * Flag per l'aggiornamento periodico del database
 	 */
@@ -380,6 +388,71 @@ public class GestioneSessione {
 	public static String getSedeRestituzione() {
 		return sedeRestituzione;
 	}
+	
+	/**
+	 * Setta il costo per un giorno di noleggio in base ai prezzi attualmente in vigore
+	 * @param costo: importo da versare per ogni giorno di noleggio
+	 */
+	public static void setCostoGiornaliero(int costo) {
+		costoGiornaliero = String.valueOf(costo);
+	}
+	
+	/**
+	 * 
+	 * @return costoGiornaliero
+	 */
+	public static String getCostoGiornaliero() {
+		return costoGiornaliero;
+	}
+
+	/**
+	 * Setta il costo per una settimana di noleggio in base ai prezzi attualmente in vigore
+	 * @param costo: importo da versare per ogni settimana di noleggio
+	 */
+	public static void setCostoSettimanale(int costo) {
+		costoSettimanale = String.valueOf(costo);
+	}
+	
+	/**
+	 * 
+	 * @return costoSettimanale
+	 */
+	public static String getCostoSettimanale() {
+		return costoSettimanale;
+	}
+	
+	/**
+	 * Setta il costo per ogni 50 km di corsa in base ai prezzi attualmente in vigore
+	 * @param costo: importo da versare per ogni 50 km di corsa
+	 */
+	public static void setCostoKmLimitato(int costo) {
+		costoKmLimitato = String.valueOf(costo);
+	}
+	
+	/**
+	 * 
+	 * @return costoKmLimitato
+	 */
+	public static String getCostoKmLimitato() {
+		return costoKmLimitato;
+	}
+
+	/**
+	 * Setta il costo per ogni km di corsa in base ai prezzi attualmente in vigore
+	 * @param costo: importo da versare per ogni km di corsa
+	 */
+	public static void setCostoKmIllimitato(int costo) {
+		costoKmIllimitato = String.valueOf(costo);
+	}
+	
+	/**
+	 * 
+	 * @return costoKmIllimitato
+	 */
+	public static String getCostoKmIllimitato() {
+		return costoKmIllimitato;
+	}
+
 	
 	/**
 	 * 

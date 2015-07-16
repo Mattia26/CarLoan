@@ -49,13 +49,16 @@ public class MySQLDaoFactory extends DaoFactory{
 	 * Metodo di classe per inizializzare una connessione tramite: nome driver, dbms,
 	 * indirizzo del server mySQL e relativo numero di porta, database a cui connettersi,
 	 * username e password con cui effettuare la connessione.
+	 * Se la connessione è già stata avviata, restituisce la connessione attuale e non ne 
+	 * inizializza una nuova.
 	 * @return java.sql.Connection
 	 * @throws DatabaseConnectionException
 	 */
 	public static Connection initConnection() throws DatabaseConnectionException { 
 		// Inizializza la connessione.
-		if(conn!=null)
+		if(conn!=null && conn instanceof com.mysql.jdbc.Connection) {
 			return conn;
+		}
 		
 		try { // Caricamento del driver: possibile eccezione di tipo ClassNotFound
 		Class.forName(DRIVER_CLASS_NAME);

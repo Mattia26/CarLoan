@@ -43,7 +43,11 @@ public class AnnullaContrattoController {
 		
 		if(!id.getText().isEmpty()){
 			try {
-				Integer.parseInt(id.getText());
+				if(Integer.parseInt(id.getText())<0) {
+					v.showMessage(2,"Attenzione!", "Id non valido!"
+							+ " Esso deve essere un intero positivo");
+					return;
+				}
 				FrontController fc = new FrontController();
 				ArrayList<String> parameters = new ArrayList<String>();
 				

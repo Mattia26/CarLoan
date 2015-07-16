@@ -12,6 +12,7 @@ import presentation.command.EliminazioneAuto;
 import presentation.command.EliminazioneOperatore;
 import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
+import presentation.command.GetPrezziAttuali;
 import presentation.command.Initialize;
 import presentation.command.InserimentoAuto;
 import presentation.command.InserimentoCliente;
@@ -145,6 +146,10 @@ public class ApplicationController implements ApplicationControllerI {
 		case "EliminaAuto":
 			dispatcher = new ViewDispatcher();
 			dispatcher.setInterface("EliminaAuto.fxml");
+		break;
+		case "GetPrezziAttuali":
+			command = new GetPrezziAttuali();
+			ritorno = command.Execute("");
 		break;
 		
 		case "ModificaPrezzi":

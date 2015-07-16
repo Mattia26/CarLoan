@@ -46,7 +46,6 @@ public class MySQLOperatoreDao implements OperatoreDao{
 			statement.close();
 		}
 		catch (SQLException | DatabaseConnectionException e) {
-			System.out.println("cia");
 			inserito=false;
 		//	throw new DatabaseConnectionException();
 		}
