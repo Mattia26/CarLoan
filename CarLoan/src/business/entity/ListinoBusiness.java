@@ -10,6 +10,12 @@ import java.util.ArrayList;
 
 import entity.ListinoPrezzi;
 
+/**
+ * Classe per la gestione di richieste da livello di business a livello inferiore(in questo caso
+ * per le operazioni sul file di listino) sulle operazioni relative al listino prezzi.
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public class ListinoBusiness {
 	/**
 	 * Attributo final e private di tipo String: indica il nome del file che conterrà

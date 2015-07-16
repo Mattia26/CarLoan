@@ -12,6 +12,13 @@ import business.entity.DatabaseInstantiationException;
 import entity.Auto;
 import entity.Contratto;
 
+/**
+* Classe che permette la gestione di tutte le operazioni possibili sulle auto, a livello
+* di business.
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*
+*/
 public class GestisciAuto {
 	/**
 	 * Attributo privato di tipo AutoBusiness
@@ -66,7 +73,7 @@ public class GestisciAuto {
 				}
 			}
 			catch(NullPointerException e) {
-				
+				return;
 			}
 		}
 		
@@ -107,16 +114,16 @@ public class GestisciAuto {
 		if(car==null)
 			return false;
 		
-			Auto a;
-			String targa = parameters.get(0); // non modificabile!
-			String modello = parameters.get(1);
-			char fascia = parameters.get(2).charAt(0);
-			String dataManutenzioneStraord = parameters.get(3); //gestito gi� da inserisciInManutenzione... non modificabile?
-			String dataManutenzioneOrd = parameters.get(4); 
-			int ultimoKm = Integer.parseInt(parameters.get(5)); //metterlo non modificabile?
-			
-			a = new Auto(modello, targa, fascia, dataManutenzioneStraord, 
-					dataManutenzioneOrd, ultimoKm);
+		Auto a;
+		String targa = parameters.get(0); 
+		String modello = parameters.get(1);
+		char fascia = parameters.get(2).charAt(0);
+		String dataManutenzioneStraord = parameters.get(3); 
+		String dataManutenzioneOrd = parameters.get(4); 
+		int ultimoKm = Integer.parseInt(parameters.get(5));
+		
+		a = new Auto(modello, targa, fascia, dataManutenzioneStraord, 
+				dataManutenzioneOrd, ultimoKm);
 		return car.modificaAuto(a);	
 		
 	}

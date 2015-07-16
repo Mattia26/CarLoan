@@ -6,11 +6,17 @@ import dao.OperatoreDao;
 import dao.DaoFactory;
 import entity.Operatore;
 
+/**
+ * Classe per la gestione di richieste da livello di business a livello di dao 
+ * sulle operazioni relative agli operatori
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public class OperatoreBusiness {
 	/**
 	 * Attributo di classe, private di tipo OperatoreDao.
 	 */
-	private OperatoreDao operatore;
+	private static OperatoreDao operatore;
 	
 	/**
 	 * Costruttore: prova ad avvalorare l'attributo operatore, altrimenti genera un'eccezione 

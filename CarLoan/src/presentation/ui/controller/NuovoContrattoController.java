@@ -76,6 +76,15 @@ public class NuovoContrattoController implements Initializable{
 				w.showMessage(1, "Errore", "Il codice fiscale non √É≈° corretto!");
 			else if(!InputController.telVerify(telefono.getText()))
 				w.showMessage(1, "Errore", "Il numero di telefono non √É≈° corretto!");
+			else if(!InputController.accontoVerify(acconto.getText()))
+				w.showMessage(1, "Errore", "Valore dell'acconto non corretto! "
+						+ "Deve essere un intero positivo");
+			else if(!InputController.nomeVerify(nomeC.getText()))
+				w.showMessage(1, "Attenzione", "Lunghezza del nome non valida.\n"
+						+ "Il nome deve essere tra 4 e 20 caratteri.");
+			else if(!InputController.cognomeVerify(cognomeC.getText()))
+				w.showMessage(1, "Attenzione", "Lunghezza del nome non valida.\n"
+						+ "Il cognome deve essere tra 4 e 30 caratteri.");
 			else{
 				try {
 					Integer.parseInt(acconto.getText());
@@ -140,12 +149,20 @@ public class NuovoContrattoController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		FrontController fc = new FrontController();
 		targa.setText(GestioneSessione.getTarga());
 		dataInizio.setText(GestioneSessione.getDataInizio());
 		dataFine.setText(GestioneSessione.getDataFine());
-		sede.setItems(FXCollections.observableArrayList("Milano","Brescia","Napoli"));
+		ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
+		if(! citt‡.isEmpty()) 
+			sede.setItems(FXCollections.observableArrayList(citt‡));
+		else
+			sede.setItems(FXCollections.observableArrayList("Bari"));
 		tipo.setItems(FXCollections.observableArrayList("Giornaliera","Settimanale"));
 		chilometraggio.setItems(FXCollections.observableArrayList("Limitato","Illimitato"));
+		
+		
+		
 		
 	}
 }

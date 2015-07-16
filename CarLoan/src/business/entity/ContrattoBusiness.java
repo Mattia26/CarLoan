@@ -7,6 +7,12 @@ import dao.DaoFactory;
 import dao.ContrattoDao;
 import entity.Contratto;
 
+/**
+ * Classe per la gestione di richieste da livello di business a livello di dao 
+ * sulle operazioni relative ai contratti
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public class ContrattoBusiness {
 	/**
 	 * Attributo di classe, private di tipo ContrattoDao.

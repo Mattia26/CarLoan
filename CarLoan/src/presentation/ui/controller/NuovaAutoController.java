@@ -50,45 +50,38 @@ public class NuovaAutoController implements Initializable{
 			v.showMessage(1, "Errore", "Riempire tutti i campi!");
 		else{
 			
-			try {
-				if(!InputController.targaVerify(targa.getText()))
-					v.showMessage(1, "Errore", "La targa inserita non è valida!");
+			if(!InputController.targaVerify(targa.getText()))
+				v.showMessage(1, "Attenzione", "La targa inserita non è valida!");
 				
-				else if(!InputController.dateVerify(manutenzione.getText()))
-					v.showMessage(1, "Errore", "La data di manutenzione inserita non è valida!");
-				else if(InputController.getDate(manutenzione.getText()).isAfter
+			else if(!InputController.dateVerify(manutenzione.getText()))
+				v.showMessage(1, "Attenzione", "La data di manutenzione inserita non è valida!");
+			else if(InputController.getDate(manutenzione.getText()).isAfter
 					(LocalDate.now().plusYears(1)))
-					v.showMessage(1, "Attenzione", "La data di manutenzione inserita non è valida!"
-						+ "Essa deve essere entro il: " + LocalDate.now().plusYears(1));
-				else{
-					try{
-						Integer.parseInt(km.getText());
-				
-						ArrayList<String> parameters = new ArrayList<String>();
-						parameters.add(targa.getText());
-						parameters.add(modello.getText());
-						parameters.add(fascia.getValue());
-						parameters.add(manutenzione.getText());
-						parameters.add(km.getText());
-				
-						if((boolean)fc.handleRequest("NuovaAuto",parameters)){
-							v.showMessage(0, "Informazione", "Operazione completata con successo");
-							fc.handleRequest("MenuAmministratore");
-						}
-						else
-							v.showMessage(1, "Errore", "L'operazione non Ã¨ riuscita");
-					}
-					catch(NumberFormatException e){
-					v.showMessage(1, "Errore", "Il valore del chilometraggio deve essere un intero!");
-					}
-				}
-				
-			}
-			catch (DateTimeException e) {
-				v.showMessage(1, "Errore", "La data di manutenzione inserita è inesistente.");
-				manutenzione.setText("");
-			}
+				v.showMessage(1, "Attenzione", "La data di manutenzione inserita non è valida!"
+					+ "Essa deve essere entro il: " + LocalDate.now().plusYears(1));
+			else if(!InputController.modelloVerify(modello.getText())) 
+				v.showMessage(1, "Attenzione", "La lunghezza del campo modello non è valida\n" +
+			"Esso deve contenere tra 4 e 20 caratteri.");
+			else if(!InputController.ultimoKmVerify(km.getText()))
+				v.showMessage(1, "Attenzione", "Ultimo chilometraggio non valido! Deve essere"
+						+ "un intero positivo.");
+			
+			else{
+				ArrayList<String> parameters = new ArrayList<String>();
+				parameters.add(targa.getText());
+				parameters.add(modello.getText());
+				parameters.add(fascia.getValue());
+				parameters.add(manutenzione.getText());
+				parameters.add(km.getText());
 		
+				if((boolean)fc.handleRequest("NuovaAuto",parameters)){
+					v.showMessage(0, "Informazione", "Operazione completata con successo");
+					fc.handleRequest("MenuAmministratore");
+				}
+				else
+					v.showMessage(1, "Errore", "L'operazione non Ã¨ riuscita");
+			}		
+			
 		}
 	}
 	/**

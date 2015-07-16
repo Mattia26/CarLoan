@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import presentation.FrontController;
 import presentation.ViewDispatcher;
+import utility.InputController;
 import utility.LoginUtility;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
@@ -31,6 +32,9 @@ public class EliminaOperatoreController {
 		
 		if(nick.getText().isEmpty())
 			v.showMessage(1, "Errore", "Riempire tutti i campi");
+		else if(!InputController.usernameVerify(nick.getText()))
+			v.showMessage(1, "Attenzione", "Lunghezza nickname non valida. Il nickname deve"
+					+ "contenere tra i 4 e i 20 caratteri.");
 		else{
 			LoginUtility l = new LoginUtility();
 			if(l.containsUser(nick.getText())) {

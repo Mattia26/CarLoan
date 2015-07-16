@@ -11,14 +11,22 @@ import utility.InputController;
 import entity.Auto;
 import entity.Cliente;
 import entity.Contratto;
+import entity.Ditta;
 import entity.ListinoPrezzi;
 import business.entity.AutoBusiness;
 import business.entity.ClienteBusiness;
 import business.entity.ContrattoBusiness;
 import business.entity.DatabaseInstantiationException;
+import business.entity.DittaBusiness;
 import business.entity.ListinoBusiness;
 
-
+/**
+ * Classe che permette la gestione di tutte le operazioni possibili sui contratti, a livello
+ * di business.
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ *
+ */
 public class GestisciContratto {
 	
 	/**
@@ -243,21 +251,23 @@ public class GestisciContratto {
 	}
 	
 	/**
-	 * 
-	 * @param parameters
-	 * @return
+	 * Metodo per calcolare il saldo in base a: tipo contratto, tipo chilometraggio, chilometri
+	 * percorsi, durata noleggio e fascia dell'auto.
+	 * @param parameters: parametri utili per il calcolo: saranno id del contratto e nuovo
+	 * ultimo chilometraggio dell'auto.
+	 * @return double: il saldo da pagare.
 	 */
 	public Object calcolaImporto(ArrayList<String> parameters) {
-		
+		int importo=-1;
 		if(cb==null)
-			return -1.0;
+			return importo;
 		
 		try {
 			ListinoBusiness lb;	
 			int costoTipo;
 			int costoTipoKm;
 			int kmPercorsi;
-			long durataContratto;
+			int durataContratto;
 			
 			String id=parameters.get(0);
 			int nuovoKm=Integer.parseInt(parameters.get(1));
@@ -265,7 +275,7 @@ public class GestisciContratto {
 			
 			c = (Contratto) getDatiContratto(id);
 			if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
-				return -2.0;
+				return -2;
 			
 			Character tipo = c.getTipologia();
 			Character tipoKm = c.getTipoChilometraggio();
@@ -274,7 +284,7 @@ public class GestisciContratto {
 			Character fascia = a.getFascia();
 			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
 			if(kmPercorsi<0)
-				return -3.0;
+				return -3;
 			
 			lb = new ListinoBusiness();
 		
@@ -288,11 +298,11 @@ public class GestisciContratto {
 				else
 					costoTipoKm=Integer.parseInt(GestioneSessione.getCostoKmLimitato());
 				
-				durataContratto = ChronoUnit.DAYS.between(
+				durataContratto = (int) ChronoUnit.DAYS.between(
 					InputController.getDate(c.getDataInizio()), LocalDate.now() );
 				
 				
-				return costoTipo * durataContratto + 
+				importo = costoTipo * durataContratto + 
 					costoTipoKm * (Integer.divideUnsigned(kmPercorsi,50)) - c.getQuotaAcconto(); 
 			}
 			
@@ -306,10 +316,10 @@ public class GestisciContratto {
 				else
 					costoTipoKm=Integer.parseInt(GestioneSessione.getCostoKmIllimitato());
 				
-				durataContratto = ChronoUnit.DAYS.between(LocalDate.now(),
+				durataContratto = (int) ChronoUnit.DAYS.between(LocalDate.now(),
 					InputController.getDate(c.getDataInizio()));
 			
-				return costoTipo*durataContratto + costoTipoKm*kmPercorsi 
+				importo = costoTipo*durataContratto + costoTipoKm*kmPercorsi 
 							- c.getQuotaAcconto();
 			}
 				
@@ -323,10 +333,10 @@ public class GestisciContratto {
 				else
 					costoTipoKm=Integer.parseInt(GestioneSessione.getCostoKmLimitato());
 				
-				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
+				durataContratto = (int) ChronoUnit.WEEKS.between(LocalDate.now(),
 					InputController.getDate(c.getDataInizio()));
 			
-				return costoTipo*durataContratto + 
+				importo = costoTipo*durataContratto + 
 					costoTipoKm * (Integer.divideUnsigned(kmPercorsi,50)) - c.getQuotaAcconto();	
 			}
 			
@@ -340,15 +350,58 @@ public class GestisciContratto {
 				else
 					costoTipoKm=Integer.parseInt(GestioneSessione.getCostoKmIllimitato());
 				
-				durataContratto = ChronoUnit.WEEKS.between(LocalDate.now(),
+				durataContratto = (int) ChronoUnit.WEEKS.between(LocalDate.now(),
 						InputController.getDate(c.getDataInizio()));
 				
-				return costoTipo*durataContratto + costoTipoKm*kmPercorsi 
+				importo = costoTipo*durataContratto + costoTipoKm*kmPercorsi 
 							- c.getQuotaAcconto();
-				}
+			}
+			
+			if(fascia.equals('a') || fascia.equals('A'))
+				return importo*1.2;
+			else if(fascia.equals('b') || fascia.equals('B'))
+				return importo;
+			else
+				return importo*0.8;
 		} 
+		
+		
 		catch (ObjectNotFoundException e) {
-			return -1.0;
+			return importo;
+		}
+		
+	}
+	
+	/**
+	 * Metodo che restituisce l'insieme delle ditte disponibili in cui poter rilasciare l'auto
+	 * a fine contratto.
+	 * @param s: ditta attuale
+	 * @return insieme delle ditte in cui rilasciare l'auto.
+	 */
+	public Object getDitte(String s) {
+		
+		if(cb==null) 
+			return new ArrayList<String>();
+		
+		DittaBusiness d;
+	
+		try {
+			d = new DittaBusiness();
+			ArrayList<String> città=new ArrayList<String>();
+			ArrayList<Ditta> ditte = new ArrayList<Ditta>();
+			
+			ditte = d.getDitte();
+			Iterator<Ditta> it = ditte.iterator();
+			
+			while(it.hasNext()) {
+				Ditta curr = it.next();
+				città.add(curr.getCittà());	
+			}
+			
+			return città;
+		} catch (DatabaseInstantiationException | NullPointerException e) {
+			// TODO Auto-generated catch block
+			return new ArrayList<String>();
 		}
 		
 	}

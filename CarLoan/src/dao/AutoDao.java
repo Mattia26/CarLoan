@@ -6,6 +6,12 @@ import dao.mySQL.DatabaseConnectionException;
 import dao.mySQL.ExecuteQueryException;
 import entity.Auto;
 
+/**
+ * Interfaccia per le classi che comunicheranno con un certo tipo di database 
+ * per le operazioni sulle auto
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public interface AutoDao {
 	/**
 	 * Inserisce l'auto nel database

@@ -6,6 +6,11 @@ import java.sql.SQLException;
 
 import dao.mySQL.*;
 
+/**
+ * Classe per le operazioni di comunicazione con il database mySQL.
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public class MySQLDaoFactory extends DaoFactory{
 	/**
 	 * Attributo di classe di tipo String indicante il driver di mySQL.
@@ -127,6 +132,17 @@ public ClienteDao getClienteDao() throws InstantiationException,
 	}
 
 /**
+ * Implementa il metodo astratto getDittaDao() della classe DaoFactory.
+ * @return un'istanza di MySQLDittaDao.
+ */
+@Override
+public DittaDao getDittaDao() throws InstantiationException,
+		IllegalAccessException {
+	// TODO Auto-generated method stub
+	return (DittaDao) createDao(MySQLDittaDao.class);
+}
+
+/**
  * Implementa il metodo astratto getOperatoreDao() della classe DaoFactory.
  * @return un'istanza di MySQLOperatoreDao.
  */
@@ -136,5 +152,7 @@ public OperatoreDao getOperatoreDao() throws InstantiationException,
 	// TODO Auto-generated method stub
 	return (OperatoreDao) createDao(MySQLOperatoreDao.class);
 	}
+
+
 }
 

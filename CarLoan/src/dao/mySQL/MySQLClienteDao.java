@@ -12,6 +12,11 @@ import dao.MySQLDaoFactory;
 import entity.Cliente;
 import entity.Contratto;
 
+/**
+ * Classe per l'invio di richieste al database mySQL per le operazioni sui clienti
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public class MySQLClienteDao implements ClienteDao {
 
 	/**

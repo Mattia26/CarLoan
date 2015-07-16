@@ -6,6 +6,12 @@ import dao.DaoFactory;
 import dao.ClienteDao;
 import entity.Cliente;
 
+/**
+ * Classe per la gestione di richieste da livello di business a livello di dao 
+ * sulle operazioni relative ai clienti
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public class ClienteBusiness {
 	/**
 	 * Attributo di classe, private di tipo ClienteDao.

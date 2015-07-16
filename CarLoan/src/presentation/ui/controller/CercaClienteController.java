@@ -61,11 +61,12 @@ public class CercaClienteController {
     		v.showMessage(1, "Errore", "Campo vouto!");
     	}
     	else{
-    		parameter.add(cf.getText());
+    	
     		if(!InputController.codiceFiscaleVerify(cf.getText()))
 				v.showMessage(1, "Errore", "Il codice fiscale non � corretto!");
     		
     		else {
+    			parameter.add(cf.getText());
     			cliente = (ArrayList<String>)fc.handleRequest("CercaCliente",parameter);
     			if(cliente.isEmpty()) {
     				v.showMessage(1, "Errore", "Cliente non trovato, riprovare!");

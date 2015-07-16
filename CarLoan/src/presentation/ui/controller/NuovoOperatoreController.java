@@ -56,6 +56,25 @@ public class NuovoOperatoreController {
 		if(nome.getText().isEmpty() || cognome.getText().isEmpty() || telefono.getText().isEmpty()
 				|| nick.getText().isEmpty() || indirizzo.getText().isEmpty())
 			v.showMessage(1, "Errore", "Riempire tutti i campi");
+		else if(!InputController.nomeVerify(nome.getText()))
+			v.showMessage(1, "Attenzione", "Lunghezza del nome non valida.\n"
+					+ "Il nome deve essere tra 4 e 20 caratteri.");
+		else if(!InputController.cognomeVerify(cognome.getText()))
+			v.showMessage(1, "Attenzione", "Lunghezza del cognome non valida.\n"
+					+ "Il cognome deve essere tra 4 e 30 caratteri.");
+		else if(!InputController.indirizzoVerify(indirizzo.getText()))
+			v.showMessage(1, "Attenzione", "Lunghezza dell'indirizzo non valida.\n"
+					+ "Deve contenere tra i 10 e i 50 caratteri.");
+		else if(!InputController.telVerify(telefono.getText()))
+			v.showMessage(2, "Attenzione", "Formato del numero di telefono non valido");
+		else if(!InputController.usernameVerify(nick.getText()))
+			v.showMessage(1, "Attenzione", "Nickname troppo corto o troppo lungo.\n "
+					+ "Deve contenere da 4 a 20 caratteri!");
+		else if(!InputController.passwordVerify(password.getText())) {
+			v.showMessage(1, "Attenzione", "Password troppo corta o troppo lunga\n"
+					+ "Deve contenere da 5 a 20 caratteri!");
+			}
+		
 		else{
 			LoginUtility l = new LoginUtility();
 			ArrayList<String> parameters = new ArrayList<String>();
@@ -65,13 +84,14 @@ public class NuovoOperatoreController {
 			parameters.add(telefono.getText());
 			parameters.add(nick.getText());
 			
-			if(!InputController.telVerify(telefono.getText()))
-				v.showMessage(1, "Errore", "Formato del numero di telefono non valido");
-			else if(l.insertUser("operatore" + nick.getText(), password.getText())) {
+			
+			if(l.insertUser("operatore" + nick.getText(), password.getText())) {
+				
 				if((boolean)fc.handleRequest("NuovoOperatore",parameters)){
 					fc.handleRequest("MenuAmministratore");
 					v.showMessage(0, "Informazione", "Operazione completata con successo");
 				}
+				
 				else {
 					v.showMessage(1, "Attenzione", "Impossibile inserire correttamente "
 							+ "i dati dell'operatore. Sarà comunque possibile effettuare "
@@ -80,6 +100,7 @@ public class NuovoOperatoreController {
 					fc.handleRequest("MenuAmministratore");
 				}
 			}
+			
 			else
 				v.showMessage(1, "Errore", "Esiste già un utente con tale nickname");
 			

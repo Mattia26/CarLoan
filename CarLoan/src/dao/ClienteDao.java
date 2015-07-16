@@ -6,6 +6,12 @@ import dao.mySQL.DatabaseConnectionException;
 import dao.mySQL.ExecuteQueryException;
 import entity.Cliente;
 
+/**
+ * Interfaccia per le classi che comunicheranno con un certo tipo di database 
+ * per le operazioni sui clienti
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public interface ClienteDao {
 	/**
 	 * Inserisce il cliente ed i relativi dati nel database

@@ -52,6 +52,85 @@ public class InputController {
 		return t.matches(TARGA_PATTERN);
 	}
 	
+	public static boolean idContrattoVerify(String t) {
+		try {
+			if(Integer.parseInt(t)>0)
+			return true;
+		else 
+			return false;
+		}
+		catch(NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static boolean accontoVerify(String t) {
+		try {
+			if(Integer.parseInt(t)>0)
+			return true;
+		else 
+			return false;
+		}
+		catch(NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static boolean ultimoKmVerify(String t) {
+		try {
+			if(Integer.parseInt(t)>0)
+			return true;
+		else 
+			return false;
+		}
+		catch(NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static boolean modelloVerify(String t) {
+		if(t.length()<=20 && t.length()>3)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean nomeVerify(String t) {
+		if(t.length()<=20 && t.length()>3)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean cognomeVerify(String t) {
+		if(t.length()<=30 && t.length()>3)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean indirizzoVerify(String t) {
+		if(t.length()<=50 && t.length()>9)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean usernameVerify(String t) {
+		if(t.length()<=20 && t.length()>3)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean passwordVerify(String t) {
+		if(t.length()<=20 && t.length()>4)
+			return true;
+		else
+			return false;
+	}
+	
+	
 	public static LocalDate getDate(String s) throws DateTimeException{
 		if(s.equals("") || s==null)
 			return null;

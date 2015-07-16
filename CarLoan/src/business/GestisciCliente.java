@@ -7,6 +7,13 @@ import entity.Cliente;
 import business.entity.ClienteBusiness;
 import business.entity.DatabaseInstantiationException;
 
+/**
+ * Classe che permette la gestione di tutte le operazioni possibili sui clienti, a livello
+ * di business.
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ *
+ */
 public class GestisciCliente {
 	/**
 	 * Attributo privato di tipo ClienteBusiness

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import presentation.FrontController;
 import presentation.ViewDispatcher;
+import utility.InputController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,50 +59,39 @@ public class ChiudiContrattoController{
 		}
 		else {
 			
-			try {
-				if(Integer.parseInt(idContratto.getText())<0) {
+			if(!InputController.idContrattoVerify(idContratto.getText())) {
 					v.showMessage(2,"Attenzione!", "Id non valido! Esso deve "
 							+ "essere un intero positivo");
 					return;
-				}
-		
-				try {
-					if(Integer.parseInt(chilometri.getText())<0) {
+			}
+			
+			else if(!InputController.ultimoKmVerify(chilometri.getText())){
 						v.showMessage(2,"Attenzione!", "Ultimo chilometraggio non valido!"
 								+ " Esso deve essere un intero positivo");
 						return;
-					}
+			}
 					
-					parameters = new ArrayList<String>();
-					parameters.add(idContratto.getText());
-					parameters.add(chilometri.getText());
+			parameters = new ArrayList<String>();
+			parameters.add(idContratto.getText());
+			parameters.add(chilometri.getText());
 					
-					double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
+			double conto = (double)fc.handleRequest("CalcolaSaldo",parameters);
 				
-					if(conto == -1)
-						v.showMessage(1, "Errore", "Operazione fallita.\n "
+			if(conto == -1)
+				v.showMessage(1, "Errore", "Operazione fallita.\n "
 								+ "Controllare l'id inserito e riprovare.");
-					else if(conto == -2)
-						v.showMessage(1, "Errore", "Nessun contratto attualmente in corso"
-								+ " ritrovato con tale id.");
-					else if(conto == -3)
-						v.showMessage(1, "Errore", "L'ultimo chilometraggio inserito è errato:"
-								+ "esso è minore dell'ultimo chilometraggio registrato!");
-					else{
+			else if(conto == -2)
+				v.showMessage(1, "Errore", "Nessun contratto attualmente in corso"
+						+ " ritrovato con tale id.");
+			else if(conto == -3)
+				v.showMessage(1, "Errore", "L'ultimo chilometraggio inserito è errato:"
+						+ "esso è minore dell'ultimo chilometraggio registrato!");
+			else{
 						saldo.setText("€ " + Double.toString(conto));
 						conferma.setVisible(true);
-					}
-				}
-				catch(NumberFormatException e) {
-				v.showMessage(2,"Attenzione!", "Nuovo chilometraggio non valido! Esso deve "
-						+ "essere un intero positivo");
-				}
-			}
-			catch(NumberFormatException e) {
-				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero positivo!");
-				}
-			
-			
+						idContratto.setEditable(false);
+						chilometri.setEditable(false);
+			}			
 		}
 	}
 	/**

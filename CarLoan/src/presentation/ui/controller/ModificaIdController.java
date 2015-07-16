@@ -40,13 +40,11 @@ public class ModificaIdController {
 		ViewDispatcher v = new ViewDispatcher();
 		
 		if(id.getText() != null){
-			try {
-				if(Integer.parseInt(id.getText())<0) {
-					v.showMessage(2,"Attenzione!", "Id non valido!"
-							+ " Esso deve essere un intero positivo");
-					return;
-				}
-				
+			if(!InputController.idContrattoVerify(id.getText()))
+				v.showMessage(1, "Attenzione", 
+						"Id inserito non valido. Deve essere un intero positivo");
+			
+			else {
 				parameters.add(id.getText());
 				GestioneSessione.setId(Integer.parseInt(id.getText()));
 				ArrayList<String> datiContratto = 
@@ -68,10 +66,7 @@ public class ModificaIdController {
 				else 
 					fc.handleRequest("ModificaContratto");
 			}
-			
-			catch(NumberFormatException e) {
-				v.showMessage(1,"Errore!", "L'id deve essere un numero intero!");
-			}
+		
 			
 		}
 			

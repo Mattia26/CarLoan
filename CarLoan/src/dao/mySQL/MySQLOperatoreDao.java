@@ -10,6 +10,11 @@ import dao.MySQLDaoFactory;
 import dao.OperatoreDao;
 import entity.Operatore;
 
+/**
+ * Classe per l'invio di richieste al database mySQL per le operazioni sugli operatori
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public class MySQLOperatoreDao implements OperatoreDao{
 
 	/**

@@ -6,7 +6,12 @@ import utility.InputController;
 import dao.DaoFactory;
 import dao.AutoDao;
 import entity.Auto;
-
+/**
+ * Classe per la gestione di richieste da livello di business a livello di dao 
+ * sulle operazioni relative alle auto
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public class AutoBusiness {
 	/**
 	 * Attributo di classe, private di tipo AutoDao.

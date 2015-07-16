@@ -12,6 +12,7 @@ import presentation.command.EliminazioneAuto;
 import presentation.command.EliminazioneOperatore;
 import presentation.command.GetDatiCliente;
 import presentation.command.GetDatiContratto;
+import presentation.command.GetDitte;
 import presentation.command.GetPrezziAttuali;
 import presentation.command.Initialize;
 import presentation.command.InserimentoAuto;
@@ -96,6 +97,10 @@ public class ApplicationController implements ApplicationControllerI {
 		case "GetDatiContratto":
 			command = new GetDatiContratto();
 			ritorno = command.Execute(GestioneSessione.getId());
+		break;
+		case "GetCitt‡Restituzione":
+			command = new GetDitte();
+			ritorno = command.Execute(GestioneSessione.getDitta());
 		break;
 		
 		case "AnnullaContratto":

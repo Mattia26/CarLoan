@@ -8,6 +8,13 @@ import entity.Operatore;
 import business.entity.DatabaseInstantiationException;
 import business.entity.OperatoreBusiness;
 
+/**
+ * Classe che permette la gestione di tutte le operazioni possibili sugli operatori, a livello
+ * di business.
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ *
+ */
 public class GestisciOperatore {
 	
 	/**

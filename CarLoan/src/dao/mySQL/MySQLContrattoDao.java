@@ -14,6 +14,11 @@ import entity.Operatore;
 import dao.ContrattoDao;
 import dao.MySQLDaoFactory;
 
+/**
+ * Classe per l'invio di richieste al database mySQL per le operazioni sui contratti
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public class MySQLContrattoDao implements ContrattoDao{
 
 	

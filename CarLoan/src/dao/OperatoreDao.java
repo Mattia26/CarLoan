@@ -6,6 +6,12 @@ import dao.mySQL.DatabaseConnectionException;
 import dao.mySQL.ExecuteQueryException;
 import entity.Operatore;
 
+/**
+ * Interfaccia per le classi che comunicheranno con un certo tipo di database 
+ * per le operazioni sugli operatori
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public interface OperatoreDao {
 	
 	/**
@@ -50,7 +56,7 @@ public interface OperatoreDao {
 	 * presenti al momento della query.
 	 * @return ArrayList<Operatore>: vuoto se non vi sono operatori nel database
 	 *  o vi sono stati problemi nell'effettuare la query, 
-	 *  altrimenti contenente tutti i clienti presenti nel database.
+	 *  altrimenti contenente tutti gli operatori presenti nel database.
 	 */
 	public ArrayList<Operatore> getOperatori();
 			//throws ExecuteQueryException, DatabaseConnectionException;

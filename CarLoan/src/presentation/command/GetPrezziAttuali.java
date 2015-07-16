@@ -10,6 +10,7 @@ import entity.Contratto;
 import entity.ListinoPrezzi;
 import business.BusinessDelegate;
 import business.ObjectNotFoundException;
+
 /**
  * Classe che pone i prezzi attualmente in vigore in GestioneSessione e li inserisce
  * in un ArrayList che verrà restituito alle classi che richiamano il metodo Execute

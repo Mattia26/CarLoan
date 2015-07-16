@@ -94,6 +94,8 @@ public class GestioneSessione {
 	private static String costoKmLimitato = null;
 	
 	private static String costoKmIllimitato = null;
+	
+	private static String ditta = null;
 	/**
 	 * Flag per l'aggiornamento periodico del database
 	 */
@@ -470,6 +472,16 @@ public class GestioneSessione {
 		aggiornato = a;
 	}
 	
+	public static void setDitta(String città) {
+		// TODO Auto-generated method stub
+		ditta = città;
+	}
+	
+	public static String getDitta() {
+		// TODO Auto-generated method stub
+		return ditta;
+	}
+	
 	/**
 	 * Setta a null tutti i valori di sessione
 	 */
@@ -494,5 +506,7 @@ public class GestioneSessione {
 		aggiornato = false;
 		
 	}
+
+	
 
 }

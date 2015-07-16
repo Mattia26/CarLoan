@@ -3,6 +3,12 @@ package dao;
 import java.util.ArrayList;
 import entity.Contratto;
 
+/**
+ * Interfaccia per le classi che comunicheranno con un certo tipo di database 
+ * per le operazioni sui contratti
+ * @author Giuseppe Onesto
+ * @author Mattia Menna
+ */
 public interface ContrattoDao {
 	
 	/**

@@ -1,5 +1,11 @@
 package dao;
 
+/**
+ * Classe astratta per la comunicazione con il livello Dao. Permette l'istanziazione di una
+ * sottoclasse per la comunicazione con il relativo tipo di database(es. MySQLDaoFactory).
+* @author Giuseppe Onesto
+* @author Mattia Menna
+*/
 public abstract class DaoFactory {
 	/**
 	 * Attributo di classe, final, di tipo intero per istanziare un DaoFactory di MYSQL.
@@ -33,6 +39,19 @@ public abstract class DaoFactory {
 	 * @throws IllegalAccessException
 	 */
 	public abstract ClienteDao getClienteDao() throws InstantiationException, IllegalAccessException;
+	
+	
+	/**
+	 * Metodo astratto da implementare nelle sottoclassi di DaoFactory 
+	 * per ottenere un'istanza di DittaDao
+	 * @return DittaDao 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
+	public abstract DittaDao getDittaDao() throws InstantiationException, IllegalAccessException;
+		// TODO Auto-generated method stub
+		
+	
 	
 	/**
 	 * Metodo astratto da implementare nelle sottoclassi di DaoFactory 
@@ -76,4 +95,5 @@ protected static Object createDao(Class c)
 		throws InstantiationException, IllegalAccessException {
 return c.newInstance();
 	}
+
 }

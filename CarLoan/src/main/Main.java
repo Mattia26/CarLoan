@@ -24,7 +24,8 @@ public class Main extends Application{
 	}
 	public void start(Stage stage) throws IOException{
 		
-		
+        GestioneSessione.setDitta("Bari");
+
 		Parent root = FXMLLoader.load(getClass().getResource
 				("/presentation/ui/Avvio.fxml"));
 		

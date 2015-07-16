@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import presentation.FrontController;
 import presentation.ViewDispatcher;
+import utility.InputController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 /**
@@ -27,28 +28,25 @@ public class NotificaRitiroController {
 		ArrayList<String> parameters = new ArrayList<String>();
 		
 		if(!id.getText().isEmpty()){
-			try {
-				Integer.parseInt(id.getText());
+			if(!InputController.idContrattoVerify(id.getText())) {
+				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero positivo!");
 				parameters.add(id.getText());
+				
 				if((boolean)fc.handleRequest("NotificaRitiro",parameters)) {
 					v.showMessage(0, "Informazione", "Operazione completata con successo");
 					fc.handleRequest("MenuOperatore");
 				}
+
 				else
 					v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
 							+ "Assicurati di aver inserito l'id correttamente.");
+			
 			}
-			catch(NumberFormatException e) {
-				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero!");
-				}
-			
-		}
-		else{
-			
-			v.showMessage(1, "Errore!", "Campo vuoto. Per favore inserisci l'id del contratto");
 			
 		}
 		
+		else
+			v.showMessage(1, "Errore!", "Campo vuoto. Per favore inserisci l'id del contratto");
 		
 	}
 	

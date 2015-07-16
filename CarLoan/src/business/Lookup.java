@@ -4,11 +4,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+
 public class Lookup implements LookupI{
 	
 	String classe,metodo;
 	Class<?> input;
 	
+	/**
+	 * Costruttore.
+	 * Identifica metodo, classe ed input per il metodo da richiamare a livello di business
+	 * @param request: richiesta da livello di presentation.
+	 */
 	public Lookup(String request){
 		switch(request){
 		case "AccessoDatiCliente":
@@ -54,6 +60,11 @@ public class Lookup implements LookupI{
 		case "GetDatiContratto":
 			classe = "business.GestisciContratto";
 			metodo = "getDatiContratto";
+			input = String.class;
+			break;
+		case "GetDitte":
+			classe = "business.GestisciContratto";
+			metodo = "getDitte";
 			input = String.class;
 			break;
 		case "InserisciAuto":
