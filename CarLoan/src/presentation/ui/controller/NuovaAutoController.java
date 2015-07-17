@@ -51,16 +51,16 @@ public class NuovaAutoController implements Initializable{
 		else{
 			
 			if(!InputController.targaVerify(targa.getText()))
-				v.showMessage(1, "Attenzione", "La targa inserita non è valida!");
+				v.showMessage(1, "Attenzione", "La targa inserita non Ã¨ valida!");
 				
 			else if(!InputController.dateVerify(manutenzione.getText()))
-				v.showMessage(1, "Attenzione", "La data di manutenzione inserita non è valida!");
+				v.showMessage(1, "Attenzione", "La data di manutenzione inserita non Ã¨ valida!");
 			else if(InputController.getDate(manutenzione.getText()).isAfter
 					(LocalDate.now().plusYears(1)))
-				v.showMessage(1, "Attenzione", "La data di manutenzione inserita non è valida!"
+				v.showMessage(1, "Attenzione", "La data di manutenzione inserita non Ã¨ valida!"
 					+ "Essa deve essere entro il: " + LocalDate.now().plusYears(1));
 			else if(!InputController.modelloVerify(modello.getText())) 
-				v.showMessage(1, "Attenzione", "La lunghezza del campo modello non è valida\n" +
+				v.showMessage(1, "Attenzione", "La lunghezza del campo modello non Ã¨ valida\n" +
 			"Esso deve contenere tra 4 e 20 caratteri.");
 			else if(!InputController.ultimoKmVerify(km.getText()))
 				v.showMessage(1, "Attenzione", "Ultimo chilometraggio non valido! Deve essere"

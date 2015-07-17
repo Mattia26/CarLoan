@@ -97,7 +97,7 @@ public class ModificaContrattoController implements Initializable{
 							
 					if(TelefonoCliente.getText().equals(GestioneSessione.getTelefonoCliente()))
 						vd.showMessage(2, "Attenzione", "Nessuna modifica apportata al contratto."
-							+ "\n I dati inseriti sono gli stessi gi‡ presenti nel sistema.");
+							+ "\n I dati inseriti sono gli stessi giÔøΩ presenti nel sistema.");
 					else {
 						ArrayList<String> parametersC = new ArrayList<String>();
 						parametersC.add(nomeC.getText());
@@ -177,10 +177,10 @@ public class ModificaContrattoController implements Initializable{
 
 		if(GestioneSessione.getDitta()==null) {
 			
-			ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
-			if(! citt‡.isEmpty())  {
-				sede.setItems(FXCollections.observableArrayList(citt‡));
-				GestioneSessione.setDitta(citt‡);
+			ArrayList<String> citt√† = (ArrayList<String>)(fc.handleRequest("GetCittÔøΩRestituzione"));
+			if(! citt√†.isEmpty())  {
+				sede.setItems(FXCollections.observableArrayList(citt√†));
+				GestioneSessione.setDitta(citt√†);
 			}
 			else
 				sede.setItems(FXCollections.observableArrayList("Bari"));

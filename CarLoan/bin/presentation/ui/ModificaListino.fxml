@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -25,7 +25,7 @@
             <TextField fx:id="ChilometraggioL" layoutX="264.0" layoutY="158.0" promptText="€/50 Km" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="ChilometraggioI" layoutX="264.0" layoutY="116.0" promptText="€/Km" GridPane.columnIndex="1" />
             <TextField fx:id="TariffaS" layoutX="264.0" layoutY="232.0" promptText="€/Settimana" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label layoutX="188.0" layoutY="163.0" text="Chilometraggio limitato" GridPane.rowIndex="1" />
+            <Label layoutX="188.0" layoutY="163.0" text="Chilometraggio limitato(€/50km)" GridPane.rowIndex="1" />
             <Label layoutX="188.0" layoutY="200.0" text="Tariffa giornaliera" GridPane.rowIndex="2" />
          </children>
       </GridPane>

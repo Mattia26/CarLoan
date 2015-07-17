@@ -56,12 +56,12 @@ public class ModificaIdController {
 					+ "\nAssicurati di aver inserito l'id corretto e riprova");	
 				else if(InputController.getDate(datiContratto.get(1)).isBefore(LocalDate.now()))
 					v.showMessage(1, "Errore!" ,
-						"Impossibile modificare il contratto. Esso Ë un contratto gi‡ iniziato");
+						"Impossibile modificare il contratto. Esso √® un contratto gi√† iniziato");
 				else if(InputController.getDate(datiContratto.get(1)).minusDays(3).isBefore
 						(LocalDate.now()))
 					v.showMessage(1, "Errore!" ,
 							"Impossibile modificare il contratto. "
-							+ "\nLa data di inizio Ë: " + datiContratto.get(1) + ". E' possibile "
+							+ "\nLa data di inizio √®: " + datiContratto.get(1) + ". E' possibile "
 							+ "modificare un contratto solo fino a 3 giorni prima del suo inizio");	
 				else 
 					fc.handleRequest("ModificaContratto");

@@ -36,7 +36,7 @@ public class AutoBusiness {
 	/**
 	 * Inserisce l'auto in input, tramite dao
 	 * @param a di tipo auto: indica l'auto da inserire.
-	 * @return true se l'auto è stata inserita, false altrimenti
+	 * @return true se l'auto Ã¨ stata inserita, false altrimenti
 	 */
 	public boolean inserisciAuto(Auto a) {
 		return auto.inserisciAuto(a.getModello(), a.getTarga(),a.getDataManutenzioneOrdinaria(), a.getFascia(), a.getUltimoChilometraggio());
@@ -45,7 +45,7 @@ public class AutoBusiness {
 	/**
 	 * Modifica l'auto in input, tramite dao
 	 * @param a di tipo Auto: indica l'auto da modificare.
-	 * @return true se l'auto è stata modificata correttamente a livello dao, false altrimenti
+	 * @return true se l'auto Ã¨ stata modificata correttamente a livello dao, false altrimenti
 	 */
 	public boolean modificaAuto(Auto a) {
 		return auto.modificaAuto(a.getTarga(), InputController.stringToMySqlDate(
@@ -56,7 +56,7 @@ public class AutoBusiness {
 	/**
 	 * Rimuove l'auto identificata dalla targa in input, tramite dao
 	 * @param targa di tipo String: indica la targa dell'auto da rimuovere.
-	 * @return true se l'auto è stata rimossa a livello dao, false altrimenti
+	 * @return true se l'auto Ã¨ stata rimossa a livello dao, false altrimenti
 	 */
 	public boolean rimuoviAuto(String targa) {
 		return auto.rimuoviAuto(targa);

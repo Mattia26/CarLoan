@@ -98,7 +98,7 @@ public class ApplicationController implements ApplicationControllerI {
 			command = new GetDatiContratto();
 			ritorno = command.Execute(GestioneSessione.getId());
 		break;
-		case "GetCitt‡Restituzione":
+		case "GetCitt√†Restituzione":
 			command = new GetDitte();
 			ritorno = command.Execute("Bari");
 		break;

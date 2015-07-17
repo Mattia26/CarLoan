@@ -94,7 +94,7 @@ public class NuovoOperatoreController {
 				
 				else {
 					v.showMessage(1, "Attenzione", "Impossibile inserire correttamente "
-							+ "i dati dell'operatore. Sar‡ comunque possibile effettuare "
+							+ "i dati dell'operatore. Sar√† comunque possibile effettuare "
 							+ "l'accesso con nickname e password inseriti e cambiare i dati"
 							+ "personali in seguito.");
 					fc.handleRequest("MenuAmministratore");
@@ -102,7 +102,7 @@ public class NuovoOperatoreController {
 			}
 			
 			else
-				v.showMessage(1, "Errore", "Esiste gi‡ un utente con tale nickname");
+				v.showMessage(1, "Errore", "Esiste gi√† un utente con tale nickname");
 			
 		}
 	}

@@ -21,11 +21,11 @@ public class GetDitte implements Command{
 	@Override
 	public Object Execute(String parameter) {
 		// TODO Auto-generated method stub
-		ArrayList<String> citt‡;
+		ArrayList<String> citt√†;
 		BusinessDelegate b = new BusinessDelegate();
 		try {
-			citt‡ = (ArrayList<String>) b.handleRequest("GetDitte", parameter);
-			return citt‡;
+			citt√† = (ArrayList<String>) b.handleRequest("GetDitte", parameter);
+			return citt√†;
 		} catch (ClassNotFoundException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | NoSuchMethodException

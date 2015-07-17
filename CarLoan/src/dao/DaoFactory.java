@@ -64,7 +64,7 @@ public abstract class DaoFactory {
 
 	/**
 	 * Metodo di classe che restituisce un DaoFactory in base all'intero in input. 
-	 * @param i intero indicante il tipo di Dao che verr‡ istanziato.
+	 * @param i intero indicante il tipo di Dao che verr√† istanziato.
 	 * @return DaoFactory 
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
@@ -85,7 +85,7 @@ public static DaoFactory getDaoFactory(int i) {
 /**
  * Metodo di classe, visibile all'esterno solo alle sottoclassi, che restituisce un'istanza 
  * della classe c in input. 
- * @param c di tipo Class. Indica il tipo di Object che verr‡ istanziato.
+ * @param c di tipo Class. Indica il tipo di Object che verr√† istanziato.
  * @return Object : Object o sottoclasse di Object di classe Class in input.
  * @throws InstantiationException
  * @throws IllegalAccessException

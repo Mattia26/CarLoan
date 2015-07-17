@@ -47,11 +47,11 @@ public class GestisciContratto {
 	}
 	
 	/**
-	 * Metodo che verrà richiamato al Login di un Operatore.
-	 * In particolare, se cb è diverso da null: chiude tutti i contratti la cui data di inizio
+	 * Metodo che verrï¿½ richiamato al Login di un Operatore.
+	 * In particolare, se cb ï¿½ diverso da null: chiude tutti i contratti la cui data di inizio
 	 * corrisponde alla data precedente alla data attuale, inoltre restituisce tutti i contratti
 	 *  la cui fine era prevista nel giorno antecedente a quello attuale, in modo da avvisare 
-	 *  l'operatore che procederà con le procedure del caso.
+	 *  l'operatore che procederï¿½ con le procedure del caso.
 	 */
 	public Object Initialize(String s){
 		if(cb==null)
@@ -87,7 +87,7 @@ public class GestisciContratto {
 	 * Metodo per la stipula nuovo contratto
 	 * @param parameters: ArrayList<String> contenente i valori utili per 
 	 * stipulare il contratto
-	 * @return true se il contratto è stato stipulato correttamente; false altrimenti
+	 * @return true se il contratto ï¿½ stato stipulato correttamente; false altrimenti
 	 */
 	public Object nuovoContratto(ArrayList<String> parameters) {
 		
@@ -120,7 +120,7 @@ public class GestisciContratto {
 	 * Metodo per la modifica dei dati di un contratto
 	 * @param parameters: ArrayList<String> contenente i valori utili per 
 	 * la modifica dei dati del contratto
-	 * @return true se il contratto è stato modificato correttamente; false altrimenti
+	 * @return true se il contratto ï¿½ stato modificato correttamente; false altrimenti
 	 */
 	public Object modificaContratto(ArrayList<String> parameters) {
 		
@@ -147,7 +147,7 @@ public class GestisciContratto {
 	/**
 	 * Metodo per l'annullamento(e quindi rimozione) di un contratto
 	 * @param id di tipo String: indica l'id del contratto da annullare
-	 * @return true se il contratto è stato annullato correttamente; false altrimenti
+	 * @return true se il contratto ï¿½ stato annullato correttamente; false altrimenti
 	 */
 	public Object annullaContratto(String id) {
 		
@@ -170,7 +170,7 @@ public class GestisciContratto {
 	/**
 	 * Metodo per la chiusura di un contratto avente id uguale alla String in input.
 	 * @param id di tipo String: indica l'id del contratto da annullare
-	 * @return true se il contratto è stato annullato correttamente; false altrimenti
+	 * @return true se il contratto ï¿½ stato annullato correttamente; false altrimenti
 	 */
 	public Object chiudiContratto(ArrayList<String> parameters) {	
 		
@@ -199,9 +199,9 @@ public class GestisciContratto {
 	
 	/**
 	 * Metodo per segnalare al sistema l'avvenuto ritiro dell'auto.
-	 * @param id di tipo String: indica l'id del contratto, la cui relativa auto è
+	 * @param id di tipo String: indica l'id del contratto, la cui relativa auto ï¿½
 	 * stata correttamente ritirata
-	 * @return true se l'impostazione dell'avvenuto ritiro è avvenuta correttamente; 
+	 * @return true se l'impostazione dell'avvenuto ritiro ï¿½ avvenuta correttamente; 
 	 * false altrimenti
 	 */
 	public Object notificaRitiroAuto(String id) {
@@ -389,7 +389,7 @@ public class GestisciContratto {
 	
 		try {
 			d = new DittaBusiness();
-			ArrayList<String> città=new ArrayList<String>();
+			ArrayList<String> cittÃ =new ArrayList<String>();
 			ArrayList<Ditta> ditte = new ArrayList<Ditta>();
 			
 			ditte = d.getDitte();
@@ -397,10 +397,10 @@ public class GestisciContratto {
 			
 			while(it.hasNext()) {
 				Ditta curr = it.next();
-				città.add(curr.getCittà());	
+				cittÃ .add(curr.getCittÃ ());	
 			}
 			
-			return città;
+			return cittÃ ;
 		} catch (DatabaseInstantiationException | NullPointerException e) {
 			// TODO Auto-generated catch block
 			return new ArrayList<String>();

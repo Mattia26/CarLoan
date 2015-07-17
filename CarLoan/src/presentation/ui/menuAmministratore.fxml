@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.MenuAmministratoreController">
+<Pane fx:id="logout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.ui.controller.MenuAmministratoreController">
    <children>
       <Label fx:id="amministrazione" layoutX="205.0" layoutY="38.0" prefHeight="15.0" prefWidth="269.0" text="Amministrazione" />
       <GridPane layoutX="222.0" layoutY="87.0" prefHeight="249.0" prefWidth="143.0">
@@ -26,5 +26,6 @@
             <Button mnemonicParsing="false" onAction="#modificaPrezzi" prefHeight="25.0" prefWidth="156.0" text="Modifica Prezzi" GridPane.rowIndex="4" />
          </children>
       </GridPane>
+      <Label fx:id="logout" layoutX="14.0" layoutY="7.0" onMouseClicked="#logout" text="Logout" />
    </children>
 </Pane>

@@ -35,7 +35,7 @@ public class OperatoreBusiness {
 	/**
 	 * Inserisce l' operatore in input, tramite dao
 	 * @param c di tipo Operatore: indica l' operatore da inserire.
-	 * @return true se l' operatore è stato inserito, false altrimenti
+	 * @return true se l' operatore Ã¨ stato inserito, false altrimenti
 	 */
 	public boolean inserisciOperatore(Operatore o) {
 		return operatore.inserisciOperatore(o.getNome(), o.getCognome(), o.getIndirizzo(), 
@@ -45,7 +45,7 @@ public class OperatoreBusiness {
 	/**
 	 * Modifica l'operatore in input, tramite dao
 	 * @param a di tipo Operatore: indica l'operatore da modificare.
-	 * @return true se l' operatore è stato modificato a livello dao, false altrimenti
+	 * @return true se l' operatore Ã¨ stato modificato a livello dao, false altrimenti
 	 */
 	public boolean modificaDatiOperatore(Operatore o) {
 		return operatore.modificaDatiOperatore(o.getNome(), o.getCognome(), o.getIndirizzo(), 
@@ -55,7 +55,7 @@ public class OperatoreBusiness {
 	/**
 	 * Rimuove l'operatore identificato dal nickname in input, tramite dao
 	 * @param nickname di tipo String: indica il nickname dell'operatore da rimuovere.
-	 * @return true se l' operatore è stato rimosso a livello dao, false altrimenti
+	 * @return true se l' operatore Ã¨ stato rimosso a livello dao, false altrimenti
 	 */
 	public boolean rimuoviOperatore(String nickname) {
 		return operatore.rimuoviOperatore(nickname);

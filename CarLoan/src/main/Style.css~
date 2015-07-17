@@ -25,6 +25,10 @@
 .text-field {
 	-fx-background-color: linear-gradient(#f5f5f5,#f5fffa);
 }
+#MenuOperatoreLabel{
+	-fx-font-size: 32px;
+	-fx-font-family: "Arial Black";
+}
 #LoginText {
 	-fx-font-size: 32px;
 	-fx-font-family: "Arial Black";
@@ -33,25 +37,26 @@
 #NomeOperatore {
 	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
-	-fx-text-fill: #d3d3d3;
+	-fx-text-fill: #2f4f4f;
 	-fx-effect: null;
+
 }
 
 #CognomeOperatore {
 	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
-	-fx-text-fill: #d3d3d3;
+	-fx-text-fill: #2f4f4f;
 	-fx-effect: null;
 }
 
-#TelefonoOperatore {
+#TelefonoOperatore,#indirizzoC {
 	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
-	-fx-text-fill: #d3d3d3;
+	-fx-text-fill: #2f4f4f;
 	-fx-effect: null;
 }
 
-#ModificaProfilo,#indirizzoC {
+#ModificaProfilo {
 	-fx-font-size: 10px;
 	-fx-font-family: "Consolas";
 	-fx-text-fill: #dc143c;

@@ -38,10 +38,10 @@ public class GestisciAuto {
 	}
 	
 	/**
-	 * Metodo che verr‡ richiamato al Login di un Operatore.
-	 * In particolare, se car Ë diverso da null, toglie dalla manutenzione ordinaria
+	 * Metodo che verr√† richiamato al Login di un Operatore.
+	 * In particolare, se car √® diverso da null, toglie dalla manutenzione ordinaria
 	 * tutte le auto la cui data di inizio manutenzione ordinaria era due giorni prima di oggi
-	 * e f‡ lo stesso per le auto in manutenzione straordinaria da due giorni.
+	 * e fa lo stesso per le auto in manutenzione straordinaria da due giorni.
 	 */
 	public void Initialize(){
 		
@@ -84,7 +84,7 @@ public class GestisciAuto {
 	 * Metodo per l'inserimento di un auto
 	 * @param parameters: ArrayList<String> contenente i valori utili per 
 	 * l'inserimento dell'auto
-	 * @return true se l'auto Ë stata inserita correttamente; false altrimenti
+	 * @return true se l'auto √® stata inserita correttamente; false altrimenti
 	 */
 	public Object inserisciAuto(ArrayList<String> parameters) {
 		
@@ -107,7 +107,7 @@ public class GestisciAuto {
 	 * Metodo per la modifica di un auto
 	 * @param parameters: ArrayList<String> contenente i valori utili per 
 	 * la modifica dell'auto
-	 * @return true se l'auto Ë stata modificata correttamente; false altrimenti
+	 * @return true se l'auto √® stata modificata correttamente; false altrimenti
 	 */
 	public Object modificaAuto(ArrayList<String> parameters) {
 		
@@ -131,7 +131,7 @@ public class GestisciAuto {
 	/**
 	 * Metodo per la rimozione di un auto
 	 * @param parameters: String contenente la targa per l'eliminazione dell'auto
-	 * @return true se l'auto Ë stata rimossa correttamente; false altrimenti
+	 * @return true se l'auto √® stata rimossa correttamente; false altrimenti
 	 */
 	public Object eliminaAuto(String parameter) {
 
@@ -250,11 +250,11 @@ public class GestisciAuto {
 	
 	/**
 	 * Metodo per l'inserimento in manutenzione straordinaria di un'auto.
-	 * Chiaramente non Ë possibile inserire un'auto in manutenzione straordinaria se essa
-	 * Ë attualmente in noleggio. Pertanto il metodo controller‡ che l'auto non sia attualmente
-	 * presente nei contratti attivi, quindi si potr‡ procedere all'inserimento in manutenzione.
+	 * Chiaramente non √® possibile inserire un'auto in manutenzione straordinaria se essa
+	 * √® attualmente in noleggio. Pertanto il metodo controller√† che l'auto non sia attualmente
+	 * presente nei contratti attivi, quindi si potr√† procedere all'inserimento in manutenzione.
 	 * @param parameter: String contenente la targa dell'auto da inserire in manutenzione
-	 * @return true se l'auto Ë stata inserita in manutenzione correttamente; false altrimenti
+	 * @return true se l'auto √® stata inserita in manutenzione correttamente; false altrimenti
 	 */
 	public Object inserisciInManutenzione(String parameter) {
 		
@@ -292,7 +292,7 @@ public class GestisciAuto {
 	 * Metodo per l'inserimento di un nuovo ultimo chilometraggio per l'auto in input
 	 * @param a di tipo Auto: auto da modificare inserendo il nuovo ultimo chilometraggio
 	 * @param ultimoKm di tipo double: valore nuovo ultimo chilometraggio.
-	 * @return true se l'auto Ë stata modificata correttamente inserendo il nuovo
+	 * @return true se l'auto √® stata modificata correttamente inserendo il nuovo
 	 * ultimo chilometraggio; false altrimenti
 	 */
 	public Object inserisciNuovoChilometraggio(Auto a, int ultimoKm) {

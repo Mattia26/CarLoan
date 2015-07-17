@@ -61,11 +61,11 @@ public class AnnullaContrattoController {
 					+ "\nAssicurati di aver inserito l'id corretto e riprova");	
 			else if(InputController.getDate(datiContratto.get(1)).isBefore(LocalDate.now()))
 				v.showMessage(1, "Errore!" ,
-						"Impossibile annullare il contratto. Esso Ë un contratto gi‡ iniziato");
+						"Impossibile annullare il contratto. Esso √® un contratto gi√† iniziato");
 			else if(InputController.getDate(datiContratto.get(1)).minusDays(3).isBefore
 						(LocalDate.now()))
 				v.showMessage(1, "Errore!" , "Impossibile annullare il contratto. "
-						+ "\nLa data di inizio Ë: " + datiContratto.get(1) + ". E' possibile "
+						+ "\nLa data di inizio √®: " + datiContratto.get(1) + ". E' possibile "
 						+ "modificare un contratto solo fino a 3 giorni prima del suo inizio");
 				
 			else {
@@ -79,7 +79,7 @@ public class AnnullaContrattoController {
 						fc.handleRequest("MenuOperatore");
 					}
 					else
-						v.showMessage(1, "Errore", "C'Ë stato un errore nell'operazione. Riprova.");
+						v.showMessage(1, "Errore", "C'√® stato un errore nell'operazione. Riprova.");
 					}
 				
 			}

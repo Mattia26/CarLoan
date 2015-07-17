@@ -42,12 +42,12 @@ public class Contratto {
 	 */
 	private String sedeRestituzione;
 	/**
-	 * Attributo private di tipo boolean: indica se il contratto è stato chiuso o meno
+	 * Attributo private di tipo boolean: indica se il contratto Ã¨ stato chiuso o meno
 	 */
 	private boolean chiuso;
 	/**
 	 * Attributo private di tipo boolean: indica se l'auto da noleggiare per tale 
-	 * contratto è stata ritirata.
+	 * contratto Ã¨ stata ritirata.
 	 */
 	private boolean macchinaRitirata;
 	
@@ -64,9 +64,9 @@ public class Contratto {
 	 * @param tipo di tipo char: indica il tipo di noleggio
 	 * @param tipoKm di tipo char: indica il tipo di chilometraggio
 	 * @param sedeRestituzione di tipo String: indica la sede di restituzione dell'auto
-	 * @param chiuso di tipo boolean: indica se il contratto è stato chiuso o meno
+	 * @param chiuso di tipo boolean: indica se il contratto Ã¨ stato chiuso o meno
 	 * @param macchinaRitirata di tipo boolean: indica se l'auto da noleggiare per tale 
-	 * contratto è stata ritirata.
+	 * contratto Ã¨ stata ritirata.
 	 */
 	public Contratto(int id, String codFiscaleCliente, String targaMacchina, String dataInizio, 
 			String dataFine, int acconto, char tipo, char tipoKm, String sedeRestituzione,
@@ -218,7 +218,7 @@ public class Contratto {
 	
 	/**
 	 * Metodo public che restituisce il valore dell'attributo chiuso legato al contratto
-	 * @return boolean: true se il contratto è chiuso, false altrimenti.
+	 * @return boolean: true se il contratto Ã¨ chiuso, false altrimenti.
 	 */
 	public boolean chiuso() {
 		return chiuso;
@@ -227,7 +227,7 @@ public class Contratto {
 	/**
 	 * Metodo public che restituisce il valore dell'attributo 
 	 * macchinaRitirata legato al contratto
-	 * @return boolean: true se l'auto è stata ritirata per il noleggio relativo 
+	 * @return boolean: true se l'auto Ã¨ stata ritirata per il noleggio relativo 
 	 * a questo contratto, false altrimenti.
 	 */
 	public boolean macchinaRitirata() {

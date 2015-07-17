@@ -151,10 +151,10 @@ public class NuovoContrattoController implements Initializable{
 		dataFine.setText(GestioneSessione.getDataFine());
 		if(GestioneSessione.getDitta()==null) {
 		
-			ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
-			if(! citt‡.isEmpty())  {
-				sede.setItems(FXCollections.observableArrayList(citt‡));
-				GestioneSessione.setDitta(citt‡);
+			ArrayList<String> citt√† = (ArrayList<String>)(fc.handleRequest("GetCittÔøΩRestituzione"));
+			if(! citt√†.isEmpty())  {
+				sede.setItems(FXCollections.observableArrayList(citt√†));
+				GestioneSessione.setDitta(citt√†);
 			}
 			else
 				sede.setItems(FXCollections.observableArrayList("Bari"));

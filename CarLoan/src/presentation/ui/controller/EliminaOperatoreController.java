@@ -52,7 +52,7 @@ public class EliminaOperatoreController {
 						}
 						else {
 							v.showMessage(0, "Attenzione", "Impossibile rimuovere i dati personali"
-									+ " associati al nickname.\n Non sarà comunque più possibile "
+									+ " associati al nickname.\n Non sarÃ  comunque piÃ¹ possibile "
 									+ "effettuare il login con il nickname dell'operatore rimosso!");
 								fc.handleRequest("MenuAmministratore");
 						}

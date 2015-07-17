@@ -21,7 +21,7 @@ public interface OperatoreDao {
 	 * @param indirizzo di tipo String: indica l'indirizzo dell'operatore da inserire
 	 * @param numTelefono di tipo String: indica il numero di telefono dell'operatore da inserire
 	 * @param nickname di tipo String: indica il nickname associato all'operatore da inserire
-	 * @return true se l'inserimento è avvenuto correttamente nel database;
+	 * @return true se l'inserimento Ã¨ avvenuto correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -36,7 +36,7 @@ public interface OperatoreDao {
 	 * @param indirizzo di tipo String: indica l'eventuale nuovo indirizzo dell'operatore
 	 * @param numTelefono di tipo String: indica l'eventuale nuovo numero di telefono dell'operatore
 	 * @param nickname di tipo String: indica il nickname associato all'operatore da modificare
-	 * @return true se la modifica è avvenuto correttamente nel database;
+	 * @return true se la modifica Ã¨ avvenuto correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -46,7 +46,7 @@ public interface OperatoreDao {
 	/**
 	 * Rimuove dal database l'operatore identificato dal nickname in input e i relativi dati
 	 * @param nickname di tipo String: indica il nickname associato all'operatore da rimuovere
-	 * @return true se la rimozione dal database è avvenuta correttamente; false altrimenti
+	 * @return true se la rimozione dal database Ã¨ avvenuta correttamente; false altrimenti
 	 */
 	public boolean rimuoviOperatore(String nickname); 
 			//throws DatabaseConnectionException, ExecuteQueryException;

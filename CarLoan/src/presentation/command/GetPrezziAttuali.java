@@ -13,7 +13,7 @@ import business.ObjectNotFoundException;
 
 /**
  * Classe che pone i prezzi attualmente in vigore in GestioneSessione e li inserisce
- * in un ArrayList che verr‡ restituito alle classi che richiamano il metodo Execute
+ * in un ArrayList che verr√† restituito alle classi che richiamano il metodo Execute
  * @author Giuseppe
  *
  */

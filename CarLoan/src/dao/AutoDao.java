@@ -20,7 +20,7 @@ public interface AutoDao {
 	 * @param data_man_ord di tipo String: indica la data della prossima manutenzione ordinaria
 	 * @param fascia di tipo char: indica la fascia di appartenenza dell'auto
 	 * @param km di tipo double: indica l'ultimo chilometraggio associato all'auto
-	 * @return true se l'inserimento è avvenuto correttamente nel database;
+	 * @return true se l'inserimento Ã¨ avvenuto correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -35,7 +35,7 @@ public interface AutoDao {
 	 * @param dataManutenzioneOrdinaria di tipo String: indica la nuova data di manutenzione
 	 * ordinaria da inserire nel database per l'auto
 	 * @param km di tipo double: indica l'ultimo chilometraggio da inserire per l'auto.
-	 * @return true se la modifica è avvenuta correttamente nel database;
+	 * @return true se la modifica Ã¨ avvenuta correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -45,7 +45,7 @@ public interface AutoDao {
 	/**
 	 * Rimuove dal database l'auto avente targa uguale alla targa in input
 	 * @param targa di tipo String: indica la targa dell'auto da rimuovere
-	 * @return true se l'auto è stata rimossa correttamente dal database;
+	 * @return true se l'auto Ã¨ stata rimossa correttamente dal database;
 	 * false altrimenti
 	 * 
 	 */

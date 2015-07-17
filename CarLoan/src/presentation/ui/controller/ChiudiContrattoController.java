@@ -84,10 +84,10 @@ public class ChiudiContrattoController{
 				v.showMessage(1, "Errore", "Nessun contratto attualmente in corso"
 						+ " ritrovato con tale id.");
 			else if(conto == -3)
-				v.showMessage(1, "Errore", "L'ultimo chilometraggio inserito è errato:"
-						+ "esso è minore dell'ultimo chilometraggio registrato!");
+				v.showMessage(1, "Errore", "L'ultimo chilometraggio inserito Ã¨ errato:"
+						+ "esso Ã¨ minore dell'ultimo chilometraggio registrato!");
 			else{
-						saldo.setText("€ " + Double.toString(conto));
+						saldo.setText("Ã¨ " + Double.toString(conto));
 						conferma.setVisible(true);
 						idContratto.setEditable(false);
 						chilometri.setEditable(false);

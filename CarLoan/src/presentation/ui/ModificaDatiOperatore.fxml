@@ -16,6 +16,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label fx:id="ModificaNome" layoutX="199.0" layoutY="73.0" text="Nome" />
@@ -24,6 +25,8 @@
             <TextField fx:id="CognomeField" layoutX="267.0" layoutY="122.0" prefHeight="15.0" prefWidth="134.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="ModificaTelefono" layoutX="182.0" layoutY="181.0" text="Telefono" GridPane.rowIndex="2" />
             <Label fx:id="ModificaCognome" layoutX="175.0" layoutY="127.0" text="Cognome" GridPane.rowIndex="1" />
+            <Label text="Indirizzo" GridPane.rowIndex="3" />
+            <TextField fx:id="indirizzo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Group layoutX="-7.0" layoutY="8.0">

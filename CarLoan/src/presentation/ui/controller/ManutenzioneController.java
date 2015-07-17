@@ -41,7 +41,7 @@ public class ManutenzioneController {
 						fc.handleRequest("MenuOperatore");
 					}
 					else
-						v.showMessage(1, "Errore", "L'operazione non è stata completata. \n"
+						v.showMessage(1, "Errore", "L'operazione non Ã¨ stata completata. \n"
 								+ "Assicurati di aver inserito ll targa corretta.\n"
 								+ "E' possibile che l'auto identificata da targa: " 
 								+ targa.getText() + " sia in noleggio");

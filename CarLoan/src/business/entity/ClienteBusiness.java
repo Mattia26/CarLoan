@@ -35,7 +35,7 @@ public class ClienteBusiness {
 	/**
 	 * Inserisce il cliente in input, tramite dao
 	 * @param c di tipo Cliente: indica il cliente da inserire.
-	 * @return true se il cliente è stato inserito, false altrimenti
+	 * @return true se il cliente Ã¨ stato inserito, false altrimenti
 	 */
 	public boolean inserisciCliente(Cliente c){
 		return cliente.inserisciCliente(c.getNome(), c.getCognome(), 
@@ -45,7 +45,7 @@ public class ClienteBusiness {
 	/**
 	 * Modifica il cliente in input, tramite dao
 	 * @param c di tipo Cliente: indica il cliente da modificare.
-	 * @return true se il cliente è stato modificato a livello dao, false altrimenti
+	 * @return true se il cliente Ã¨ stato modificato a livello dao, false altrimenti
 	 */
 	public boolean modificaCliente(Cliente c) {
 		return cliente.modificaCliente(c.getCodFiscale(), c.getNumeroTelefono(),
@@ -55,7 +55,7 @@ public class ClienteBusiness {
 	/**
 	 * Rimuove il cliente identificato dal codice fiscale in input, tramite dao
 	 * @param cf di tipo String: indica il codice fiscale del cliente da rimuovere.
-	 * @return true se il cliente è stato rimosso a livello dao, false altrimenti
+	 * @return true se il cliente Ã¨ stato rimosso a livello dao, false altrimenti
 	 */
 	public boolean rimuoviCliente(String cf) {
 		return cliente.rimuoviCliente(cf);

@@ -56,7 +56,7 @@ public class ModificaListinoController implements Initializable{
 						GestioneSessione.getCostoKmLimitato().equals(ChilometraggioL.getText()) &&
 						GestioneSessione.getCostoKmIllimitato().equals(ChilometraggioI.getText())) {
 						v.showMessage(0, "Attenzione", "I prezzi inseriti sono gli stessi "
-								+ "gi‡ registrati nel sistema");
+								+ "gi√† registrati nel sistema");
 						return;
 					}
 					
@@ -106,21 +106,21 @@ public class ModificaListinoController implements Initializable{
 			
 			ArrayList<Integer> prezzi = (ArrayList<Integer>)fc.handleRequest("GetPrezziAttuali");
 			if(! prezzi.isEmpty()) {
-				TariffaG.setText(String.valueOf(prezzi.get(0)) + "Ä/giorno");
-				TariffaS.setText(String.valueOf(prezzi.get(1)) + "Ä/settimana");
-				ChilometraggioL.setText(String.valueOf(prezzi.get(2)) + "Ä/50km");
-				ChilometraggioI.setText(String.valueOf(prezzi.get(3)) + "Ä/km");
+				TariffaG.setText(String.valueOf(prezzi.get(0)) + "‚Ç¨/giorno");
+				TariffaS.setText(String.valueOf(prezzi.get(1)) + "‚Ç¨/settimana");
+				ChilometraggioL.setText(String.valueOf(prezzi.get(2)) + "‚Ç¨/50km");
+				ChilometraggioI.setText(String.valueOf(prezzi.get(3)) + "‚Ç¨/km");
 			}
 			else
-				v.showMessage(1, "Attenzione", "Purtroppo Ë stato impossibile ritrovare i"
+				v.showMessage(1, "Attenzione", "Purtroppo √® stato impossibile ritrovare i"
 						+ "prezzi attualmente in vigore");
 		}
 		
 		else {
-			TariffaG.setText(GestioneSessione.getCostoGiornaliero() + "Ä/giorno");
-			TariffaS.setText(GestioneSessione.getCostoSettimanale() + "Ä/settimana");
-			ChilometraggioL.setText(GestioneSessione.getCostoKmLimitato() + "Ä/50km");
-			ChilometraggioI.setText(GestioneSessione.getCostoKmIllimitato() + "Ä/km");
+			TariffaG.setText(GestioneSessione.getCostoGiornaliero() + "‚Ç¨/giorno");
+			TariffaS.setText(GestioneSessione.getCostoSettimanale() + "‚Ç¨/settimana");
+			ChilometraggioL.setText(GestioneSessione.getCostoKmLimitato() + "‚Ç¨/50km");
+			ChilometraggioI.setText(GestioneSessione.getCostoKmIllimitato() + "‚Ç¨/km");
 		}
 				
 	}

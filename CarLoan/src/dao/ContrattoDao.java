@@ -26,9 +26,9 @@ public interface ContrattoDao {
 	 *  del contratto stipulato da inserire
 	 * @param ditta di tipo String: indica la sede di restituzione scelta 
 	 * per il contratto stipulato
-	 * @param macchinaRitirata di tipo boolean: indica se l'auto Ë stata gi‡ ritirata al momento
+	 * @param macchinaRitirata di tipo boolean: indica se l'auto √® stata gi√† ritirata al momento
 	 * di stipula del contratto(macchinaRitirata=true) o meno(macchinaRitirata=false)
-	 * @return true se l'inserimento Ë avvenuto correttamente nel database;
+	 * @return true se l'inserimento √® avvenuto correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -50,9 +50,9 @@ public interface ContrattoDao {
 	 *  del contratto da modificare
 	 * @param ditta di tipo String: indica la sede di restituzione scelta 
 	 * per il contratto da modificare
-	 * @param macchinaRitirata di tipo boolean: indica se l'auto Ë stata ritirata al momento
+	 * @param macchinaRitirata di tipo boolean: indica se l'auto √® stata ritirata al momento
 	 * della modifica(macchinaRitirata=true) o meno(macchinaRitirata=false)
-	 * @return true se la modifica Ë avvenuta correttamente nel database;
+	 * @return true se la modifica √® avvenuta correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -63,7 +63,7 @@ public interface ContrattoDao {
 	/**
 	 * Rimuove dal database il contratto identificato dall'id in input.
 	 * @param idContratto di tipo int: indica l'id del contratto da rimuovere
-	 * @return true se Ë stato rimosso correttamente il contratto avente id uguale a quello
+	 * @return true se √® stato rimosso correttamente il contratto avente id uguale a quello
 	 * in input, false altrimenti.
 	 */
 	public boolean cancellaContratto(int idContratto);
@@ -93,7 +93,7 @@ public interface ContrattoDao {
 	 * alla stipula del contratto
 	 * @param dataInizio: indica la data di inizio del contratto
 	 * @param dataFine: indica la data di fine del contratto
-	 * @return int: -1 se non vi Ë alcun contratto legato a quei parametri in input o se
+	 * @return int: -1 se non vi √® alcun contratto legato a quei parametri in input o se
 	 * vi sono stati problemi nella query, indicante l'id del contratto altrimenti.
 	 */
 	public int getId(String targaMacchina, String dataInizio, String dataFine);

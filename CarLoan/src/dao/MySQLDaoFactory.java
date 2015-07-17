@@ -37,7 +37,7 @@ public class MySQLDaoFactory extends DaoFactory{
 	private static final String DB="carloan";
 	/**
 	 * Attributo di classe, final e private di tipo String,
-	 *  indicante l'user che si utilizzer‡ per la connessione al database.
+	 *  indicante l'user che si utilizzer√† per la connessione al database.
 	 */
 	private static String USER="admin-carloan";
 	/**
@@ -54,7 +54,7 @@ public class MySQLDaoFactory extends DaoFactory{
 	 * Metodo di classe per inizializzare una connessione tramite: nome driver, dbms,
 	 * indirizzo del server mySQL e relativo numero di porta, database a cui connettersi,
 	 * username e password con cui effettuare la connessione.
-	 * Se la connessione Ë gi‡ stata avviata, restituisce la connessione attuale e non ne 
+	 * Se la connessione √® gi√† stata avviata, restituisce la connessione attuale e non ne 
 	 * inizializza una nuova.
 	 * @return java.sql.Connection
 	 * @throws DatabaseConnectionException
@@ -83,7 +83,7 @@ public class MySQLDaoFactory extends DaoFactory{
 	
 	/**
 	 * Metodo di classe che chiude la connessione con mySQL se essa 
-	 * Ë stata precedentemente aperta.
+	 * √® stata precedentemente aperta.
 	 */
 	public static void closeConnection(){
 		// Chiude la connessione 

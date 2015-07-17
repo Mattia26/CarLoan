@@ -1,16 +1,16 @@
 package entity;
 
 public class Ditta {
-	private final String citt‡;
+	private final String citt√†;
 	private String indirizzo;
 	
-	public Ditta(String citt‡, String indirizzo) {
-		this.citt‡=citt‡;
+	public Ditta(String citt√†, String indirizzo) {
+		this.citt√†=citt√†;
 		this.indirizzo=indirizzo;
 	}
 	
-	public String getCitt‡() {
-		return citt‡;
+	public String getCitt√†() {
+		return citt√†;
 	}
 	
 	public String getIndirizzo() {

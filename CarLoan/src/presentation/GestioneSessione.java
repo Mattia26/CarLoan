@@ -474,9 +474,9 @@ public class GestioneSessione {
 		aggiornato = a;
 	}
 	
-	public static void setDitta(ArrayList<String> citt‡) {
+	public static void setDitta(ArrayList<String> citt√†) {
 		// TODO Auto-generated method stub
-		ditta = citt‡;
+		ditta = citt√†;
 	}
 	
 	public static ArrayList<String> getDitta() {

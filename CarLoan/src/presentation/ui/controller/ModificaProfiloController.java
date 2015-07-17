@@ -74,7 +74,7 @@ public class ModificaProfiloController implements Initializable{
 			indirizzo.getText().equals(GestioneSessione.getIndirizzoOperatore()) ) 
 			
 			v.showMessage(2, "Informazione", 
-					"I dati inseriti sono gli stessi gi‡ presenti nel sistema");
+					"I dati inseriti sono gli stessi gi√† presenti nel sistema");
 		
 		else {
 			parameters.add(NomeField.getText());
@@ -87,7 +87,7 @@ public class ModificaProfiloController implements Initializable{
 				fc.handleRequest("MenuOperatore");
 			}
 			else
-				v.showMessage(1, "Errore", "Purtroppo la modifica dei dati non Ë riuscita");
+				v.showMessage(1, "Errore", "Purtroppo la modifica dei dati non √® riuscita");
 		}
 			
 	}

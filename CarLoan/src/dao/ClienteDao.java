@@ -19,7 +19,7 @@ public interface ClienteDao {
 	 * @param cognome di tipo String: indica il cognome del cliente da inserire
 	 * @param numTel di tipo String: indica il numero di telefono del cliente da inserire
 	 * @param codFiscale di tipo String: indica il codice fiscale del cliente da inserire
-	 * @return true se l'inserimento è avvenuto correttamente nel database;
+	 * @return true se l'inserimento Ã¨ avvenuto correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -34,7 +34,7 @@ public interface ClienteDao {
 	 * @param nome di tipo String: indica il nome del cliente da modificare
 	 * @param cognome di tipo String: indica il cognome del cliente da modificare
 	 
-	 * @return true se la modifica dei dati è avvenuta correttamente nel database;
+	 * @return true se la modifica dei dati Ã¨ avvenuta correttamente nel database;
 	 * false altrimenti
 	 * 
 	 */
@@ -45,7 +45,7 @@ public interface ClienteDao {
 	 * Rimuove dal database il cliente identificato dal codice fiscale uguale a quello in input
 	 * e i relativi dati.
 	 * @param codFiscale di tipo String: indica il codice fiscale del cliente da rimuovere
-	 * @return true se la rimozione è avvenuta correttamente; false altrimenti.
+	 * @return true se la rimozione Ã¨ avvenuta correttamente; false altrimenti.
 	 */
 	public boolean rimuoviCliente(String codFiscale);
 //			throws ExecuteQueryException, DatabaseConnectionException;

@@ -18,7 +18,7 @@ import entity.ListinoPrezzi;
 */
 public class ListinoBusiness {
 	/**
-	 * Attributo final e private di tipo String: indica il nome del file che conterr‡
+	 * Attributo final e private di tipo String: indica il nome del file che conterr√†
 	 * il ListinoPrezzi.
 	 */
 	private final String NAMEFILE="Listino Prezzi Carloan";
@@ -45,7 +45,7 @@ public class ListinoBusiness {
 	 * Metodo che permette la modifica dei prezzi relativi alle varie tipologie di noleggio
 	 * @param parameters di tipo ArrayList<String>: contiene i prezzi da inserire
 	 * nel listino per le varie tipologie di noleggio. Salva quindi il ListinoPrezzi.
-	 * @return true se le modifiche son avvenute correttamente ed il file Ë stato salvato 
+	 * @return true se le modifiche son avvenute correttamente ed il file √® stato salvato 
 	 * correttamente; false altrimenti.
 	 */
 	public boolean modificaPrezzi(ArrayList<String> parameters) {
@@ -67,7 +67,7 @@ public class ListinoBusiness {
 	/**
 	 * Prende i prezzi attualmente in vigore
 	 * @return ListinoPrezzi attualmente salvato nel sistema o un nuovo ListinoPrezzi con i 
-	 * prezzi di default, se non Ë salvato alcun Listino.
+	 * prezzi di default, se non √® salvato alcun Listino.
 	 */
 	public ListinoPrezzi getPrezzi(String s) {
 		

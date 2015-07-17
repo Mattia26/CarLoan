@@ -36,7 +36,7 @@ public class ContrattoBusiness {
 	/**
 	 * Inserisce il contratto in input, tramite dao
 	 * @param c di tipo Contratto: indica il contratto da inserire.
-	 * @return true se il contratto è stato inserito, false altrimenti
+	 * @return true se il contratto Ã¨ stato inserito, false altrimenti
 	 */
 	public int inserisciContratto(Contratto c) {
 		
@@ -50,7 +50,7 @@ public class ContrattoBusiness {
 	/**
 	 * Modifica l'contratto in input, tramite dao
 	 * @param a di tipo Contratto: indica l'contratto da modificare.
-	 * @return true se il contratto è stato modificato a livello dao, false altrimenti
+	 * @return true se il contratto Ã¨ stato modificato a livello dao, false altrimenti
 	 */
 	public  boolean modificaContratto(Contratto c) {
 		
@@ -64,7 +64,7 @@ public class ContrattoBusiness {
 	/**
 	 * Rimuove l'contratto identificata dall'id in input, tramite dao
 	 * @param id di tipo int: indica l'id del contratto da rimuovere.
-	 * @return true se il contratto è stato rimosso a livello dao, false altrimenti
+	 * @return true se il contratto Ã¨ stato rimosso a livello dao, false altrimenti
 	 */
 	public boolean cancellaContratto(int id) {
 		return contratto.cancellaContratto(id);

@@ -38,7 +38,7 @@ public class GestisciOperatore {
 	 * Metodo per l'inserimento di un operatore
 	 * @param parameters: ArrayList<String> contenente i valori utili per 
 	 * l'inserimento dell'operatore
-	 * @return true se l'operatore è stato inserito correttamente; false altrimenti
+	 * @return true se l'operatore Ã¨ stato inserito correttamente; false altrimenti
 	 */
 	public Object inserisciOperatore(ArrayList<String> operatorParameters) {
 		if(ob==null)
@@ -88,7 +88,7 @@ public class GestisciOperatore {
 	/**
 	 * Metodo per la rimozione di un operatore e relativi dati dal sistema.
 	 * @param nickname di tipo String: indica il nickname dell'operatore da rimuovere
-	 * @return true se l'operatore è stato rimosso correttamente; false altrimenti
+	 * @return true se l'operatore Ã¨ stato rimosso correttamente; false altrimenti
 	 */
 	public Object eliminaOperatore(String nickname) {
 		if(ob==null)
@@ -101,7 +101,7 @@ public class GestisciOperatore {
 	 * Metodo che, a partire dalla stringa in input indicante il nickname, 
 	 * restituisce i dati dell'operatore associato a quel nickname.
 	 * @param parameter di tipo String: indica il nickname dell'operatore
-	 * @return Operatore avente nickname uguale alla stringa in input, se è presente 
+	 * @return Operatore avente nickname uguale alla stringa in input, se Ã¨ presente 
 	 * nel sistema; un operatore privo di informazioni relative al profilo altrimenti.
 	 * @throws ObjectNotFoundException
 	 */

@@ -36,7 +36,7 @@ public class GestisciCliente {
 	 * Metodo per l'inserimento di un cliente
 	 * @param parameters: ArrayList<String> contenente i valori utili per 
 	 * l'inserimento del cliente
-	 * @return true se il cliente è stato inserito correttamente; false altrimenti
+	 * @return true se il cliente Ã¨ stato inserito correttamente; false altrimenti
 	 */
 	public Object inserisciCliente(ArrayList<String> parameters) {
 		if(cb==null)
@@ -75,7 +75,7 @@ public class GestisciCliente {
 	 * Metodo che, a partire dalla stringa in input indicante il codice fiscale, 
 	 * restituisce i dati del cliente associato a quel codice fiscale.
 	 * @param parameter di tipo String: indica il codice fiscale del cliente.
-	 * @return Cliente avente codice fiscale uguale alla stringa in input, se è presente
+	 * @return Cliente avente codice fiscale uguale alla stringa in input, se Ã¨ presente
 	 * nel sistema; null altrimenti.
 	 * @throws ObjectNotFoundException
 	 */

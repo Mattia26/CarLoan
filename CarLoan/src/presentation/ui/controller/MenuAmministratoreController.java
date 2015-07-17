@@ -11,6 +11,8 @@ public class MenuAmministratoreController {
 	
 	private FrontController fc = new FrontController();
 	
+
+	
 	/**
 	 * Gestore delle operazioni eseguite alla pressione del tasto Nuovo Operatore
 	 */
@@ -45,6 +47,13 @@ public class MenuAmministratoreController {
 	@FXML
 	public void modificaPrezzi(){
 		fc.handleRequest("ModificaPrezzi");
+	}
+	/**
+	 * Gestore delle operazioni eseguite alla pressione della Label Logout
+	 */
+	@FXML
+	public void logout(){
+		fc.handleRequest("Logout");
 	}
 
 }
