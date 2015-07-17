@@ -67,10 +67,9 @@ public class NuovoContrattoController implements Initializable{
 			ViewDispatcher v = new ViewDispatcher();
 			v.showMessage(1, "Errore", "Completare tutti i campi!");
 		}
+		
 		else{
-			
 			ViewDispatcher w = new ViewDispatcher();
-			
 			
 			if(!InputController.codiceFiscaleVerify(codiceFiscale.getText()))
 				w.showMessage(1, "Errore", "Il codice fiscale non √É≈° corretto!");
@@ -85,56 +84,53 @@ public class NuovoContrattoController implements Initializable{
 			else if(!InputController.cognomeVerify(cognomeC.getText()))
 				w.showMessage(1, "Attenzione", "Lunghezza del nome non valida.\n"
 						+ "Il cognome deve essere tra 4 e 30 caratteri.");
+			
+			
 			else{
-				try {
-					Integer.parseInt(acconto.getText());
-					ArrayList<String> parameters = new ArrayList<String>();
-					parameters.add(targa.getText());
-					parameters.add(dataInizio.getText());
-					parameters.add(dataFine.getText());
-					parameters.add(sede.getValue());
-					parameters.add(tipo.getValue());
-					parameters.add(chilometraggio.getValue());
-					parameters.add(codiceFiscale.getText());
-					parameters.add(acconto.getText());
-					FrontController fc = new FrontController();
-					
-					
-					ArrayList<String> parametersC = new ArrayList<String>();
-					parametersC.add(nomeC.getText());
-					parametersC.add(cognomeC.getText());
-					parametersC.add(telefono.getText());
-					parametersC.add(codiceFiscale.getText());
-					
-					if(!(boolean)fc.handleRequest("InserisciCliente",parametersC)) {
-						Optional<ButtonType> confirm =  w.showMessage(2, "Attenzione", 
-								"C'√® gi√† un cliente con tale codice fiscale.\n "
-								+ "I dati del cliente verranno modificati con quelli inseriti.");
+				FrontController fc = new FrontController();
+				ArrayList<String> parametersC = new ArrayList<String>();
+				parametersC.add(nomeC.getText());
+				parametersC.add(cognomeC.getText());
+				parametersC.add(telefono.getText());
+				parametersC.add(codiceFiscale.getText());
+				
+				if(!(boolean)fc.handleRequest("InserisciCliente",parametersC)) {
+					Optional<ButtonType> confirm =  w.showMessage(2, "Attenzione", 
+							"C'√® gi√† un cliente con tale codice fiscale.\n "
+							+ "I dati del cliente verranno modificati con quelli inseriti.");
 
-						if(confirm.isPresent() && confirm.get() == ButtonType.OK){
-							if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
-								w.showMessage(1, "Errore", 
-										"Impossibile modificare i dati del cliente");
-								return;
-							}
-							
-							int id = (int)fc.handleRequest("NuovoContratto",parameters);
-							if(id != -1){
-									w.showMessage(0, "Avviso","Contratto stipulato con successo. \n"
-										+ "Id contratto: " + id);
-								fc.handleRequest("MenuOperatore");
-							}
-							else{
-								w.showMessage(1, "Errore", "L'operazione non √® stata effettuata");
-							}
-					
+					if(confirm.isPresent() && confirm.get() == ButtonType.OK){
+						if(!(boolean)fc.handleRequest("ModificaDatiCliente",parametersC)) {
+							w.showMessage(1, "Errore", 
+									"Impossibile effettuare l'operazione");
+							return;
 						}
 					}
 				}
-				catch(NumberFormatException e) {
-					w.showMessage(2,"Attenzione!", "L'acconto deve essere un numero intero!");
-					}
+						
+				
+				ArrayList<String> parameters = new ArrayList<String>();
+				parameters.add(targa.getText());
+				parameters.add(dataInizio.getText());
+				parameters.add(dataFine.getText());
+				parameters.add(sede.getValue());
+				parameters.add(tipo.getValue());
+				parameters.add(chilometraggio.getValue());
+				parameters.add(codiceFiscale.getText());
+				parameters.add(acconto.getText());
+				
+				int id = (int)fc.handleRequest("NuovoContratto",parameters);
+				if(id != -1){
+					w.showMessage(0, "Avviso","Contratto stipulato con successo.\n"
+								+ "Id contratto: " + id);
+					fc.handleRequest("MenuOperatore");
+				}
+				
+				else
+					w.showMessage(1, "Errore", "L'operazione non √® stata effettuata");
+							
 			}
+			
 		}
 	}
 	
@@ -153,11 +149,20 @@ public class NuovoContrattoController implements Initializable{
 		targa.setText(GestioneSessione.getTarga());
 		dataInizio.setText(GestioneSessione.getDataInizio());
 		dataFine.setText(GestioneSessione.getDataFine());
-		ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
-		if(! citt‡.isEmpty()) 
-			sede.setItems(FXCollections.observableArrayList(citt‡));
-		else
-			sede.setItems(FXCollections.observableArrayList("Bari"));
+		if(GestioneSessione.getDitta()==null) {
+		
+			ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
+			if(! citt‡.isEmpty())  {
+				sede.setItems(FXCollections.observableArrayList(citt‡));
+				GestioneSessione.setDitta(citt‡);
+			}
+			else
+				sede.setItems(FXCollections.observableArrayList("Bari"));
+		
+		}
+		else 
+			sede.setItems(FXCollections.observableArrayList(GestioneSessione.getDitta()));
+		
 		tipo.setItems(FXCollections.observableArrayList("Giornaliera","Settimanale"));
 		chilometraggio.setItems(FXCollections.observableArrayList("Limitato","Illimitato"));
 		

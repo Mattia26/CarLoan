@@ -174,11 +174,20 @@ public class ModificaContrattoController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		FrontController fc = new FrontController();
 		ArrayList<String> dati = (ArrayList<String>)fc.handleRequest("GetDatiContratto");
-		ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
-		if(! citt‡.isEmpty()) 
-			sede.setItems(FXCollections.observableArrayList(citt‡));
-		else
-			sede.setItems(FXCollections.observableArrayList(dati.get(3)));
+
+		if(GestioneSessione.getDitta()==null) {
+			
+			ArrayList<String> citt‡ = (ArrayList<String>)(fc.handleRequest("GetCitt‡Restituzione"));
+			if(! citt‡.isEmpty())  {
+				sede.setItems(FXCollections.observableArrayList(citt‡));
+				GestioneSessione.setDitta(citt‡);
+			}
+			else
+				sede.setItems(FXCollections.observableArrayList("Bari"));
+		
+		}
+		else 
+			sede.setItems(FXCollections.observableArrayList(GestioneSessione.getDitta()));
 		
 		tipo.setItems(FXCollections.observableArrayList("Giornaliera","Settimanale"));
 		chilometraggio.setItems(FXCollections.observableArrayList("Limitato","Illimitato"));

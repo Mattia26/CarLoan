@@ -28,20 +28,20 @@ public class NotificaRitiroController {
 		ArrayList<String> parameters = new ArrayList<String>();
 		
 		if(!id.getText().isEmpty()){
-			if(!InputController.idContrattoVerify(id.getText())) {
+			if(!InputController.idContrattoVerify(id.getText())) 
 				v.showMessage(2,"Attenzione!", "L'id deve essere un numero intero positivo!");
-				parameters.add(id.getText());
-				
-				if((boolean)fc.handleRequest("NotificaRitiro",parameters)) {
-					v.showMessage(0, "Informazione", "Operazione completata con successo");
-					fc.handleRequest("MenuOperatore");
-				}
-
-				else
-					v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
-							+ "Assicurati di aver inserito l'id correttamente.");
 			
+			parameters.add(id.getText());
+			if((boolean)fc.handleRequest("NotificaRitiro",parameters)) {
+				v.showMessage(0, "Informazione", "Operazione completata con successo");
+				fc.handleRequest("MenuOperatore");
 			}
+
+			else
+				v.showMessage(1, "Errore", "L'operazione non � stata completata. \n"
+						+ "Assicurati di aver inserito l'id correttamente.");
+			
+		
 			
 		}
 		

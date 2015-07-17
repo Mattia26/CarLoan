@@ -212,6 +212,8 @@ public class GestisciContratto {
 		Contratto c;
 		try {
 			c = (Contratto) getDatiContratto(id);
+			if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
+				return false;
 			if(c.macchinaRitirata())
 				return false;
 			
@@ -258,7 +260,7 @@ public class GestisciContratto {
 	 * @return double: il saldo da pagare.
 	 */
 	public Object calcolaImporto(ArrayList<String> parameters) {
-		int importo=-1;
+		double importo=-1.0;
 		if(cb==null)
 			return importo;
 		
@@ -275,7 +277,7 @@ public class GestisciContratto {
 			
 			c = (Contratto) getDatiContratto(id);
 			if(InputController.getDate(c.getDataInizio()).isAfter(LocalDate.now()))
-				return -2;
+				return -2.0;
 			
 			Character tipo = c.getTipologia();
 			Character tipoKm = c.getTipoChilometraggio();
@@ -284,7 +286,7 @@ public class GestisciContratto {
 			Character fascia = a.getFascia();
 			kmPercorsi = nuovoKm - a.getUltimoChilometraggio();
 			if(kmPercorsi<0)
-				return -3;
+				return -3.0;
 			
 			lb = new ListinoBusiness();
 		
@@ -379,7 +381,7 @@ public class GestisciContratto {
 	 * @return insieme delle ditte in cui rilasciare l'auto.
 	 */
 	public Object getDitte(String s) {
-		
+		System.out.println("dasjd");
 		if(cb==null) 
 			return new ArrayList<String>();
 		

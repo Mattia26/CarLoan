@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
  * @author Mattia Menna
  * @author Giuseppe Onesto
  */
-public class CercaAutoController implements Initializable{
+public class CercaAutoController implements Initializable {
 	
 	@FXML
 	private ChoiceBox TipoBox = new ChoiceBox();
@@ -44,13 +44,6 @@ public class CercaAutoController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TipoBox.setItems(FXCollections.observableArrayList("A","B","C", "Qualsiasi"));
 		TipoBox.setValue("Qualsiasi");
-	}
-	
-
-	@SuppressWarnings("unchecked")
-	@FXML
-	public void TipeClick(){
-		TipoBox.setItems(FXCollections.observableArrayList("A","B","C", "Qualsiasi"));
 	}
 	
 	
@@ -86,7 +79,8 @@ public class CercaAutoController implements Initializable{
 						Dal.setText("");
 						Al.setText("");
 						dispatcher.showMessage(1, "Errore", "La data di inizio deve essere "
-							+ "non posteriore rispetto a quella di fine"); 
+							+ "non posteriore rispetto a quella di fine e la data di fine"
+							+ "deve essere al massimo un anno dopo quella di inizio"); 
 					}
 				
 					else {

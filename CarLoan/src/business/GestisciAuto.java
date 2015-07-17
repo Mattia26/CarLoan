@@ -182,50 +182,61 @@ public class GestisciAuto {
 			
 			while(it.hasNext()){
 				Contratto corrente = it.next();
-				LocalDate dataInizioContratto = InputController.getDate(corrente.getDataInizio());
-				LocalDate dataFineContratto = InputController.getDate(corrente.getDataFine());
+				LocalDate dataInizioContratto = InputController.getDate(corrente.getDataInizio()).minusDays(1);
+				LocalDate dataFineContratto = InputController.getDate(corrente.getDataFine()).plusDays(1);
 				
 				if((dataInizio.isAfter(dataInizioContratto) && 
-						dataInizio.isBefore(dataFineContratto)) ||
+						dataInizio.isBefore(dataFineContratto) ) ||
 					(dataFine.isAfter(dataInizioContratto) && 
-							dataFine.isBefore(dataFineContratto)) ||
-					(dataInizio.isBefore(dataInizioContratto) && 
-							dataFine.isAfter(dataFineContratto)) ) {
+							dataFine.isBefore(dataFineContratto) ) ||
+					(dataInizio.isBefore(dataInizioContratto.plusDays(2)) && 
+							dataFine.isAfter(dataFineContratto.minusDays(2)) ) ) {
 					
 					
 					while(itr.hasNext()){
-						Auto corr = itr.next();
-						if(corr.getTarga().equals(corrente.getTargaMacchina())){
-							auto.remove(corr);
+						if(itr.next().getTarga().equals(corrente.getTargaMacchina())){
+							itr.remove();
 							break;
 						}
 					}		
 				}
 			}
 			
-			while(itr.hasNext()) {
-				Auto corr = itr.next();
-				try {
+			Iterator<Auto> iter = auto.iterator();
+			while(iter.hasNext()) {
+				
+				Auto corr = iter.next();
 				LocalDate dataManOrd = InputController.getDate
 						(corr.getDataManutenzioneOrdinaria());
-				LocalDate dataManStr = InputController.getDate
-						(corr.getDataManutenzioneStraordinaria());
-				if(dataInizio.isBefore(dataManOrd) && dataFine.isAfter(dataManOrd))
-					auto.remove(corr);
-				else if(dataInizio.isBefore(dataManStr) && dataFine.isAfter(dataManStr))
-					auto.remove(corr);
-				}
-				catch(NullPointerException e) {
+				
+				if( (dataInizio.isBefore(dataManOrd) && dataFine.isBefore(dataManOrd))
+						||  (dataInizio.isAfter(dataManOrd.plusDays(2))&&
+								dataFine.isAfter(dataManOrd.plusDays(2)))) {
 					
+					try {
+						LocalDate dataManStr = InputController.getDate
+								(corr.getDataManutenzioneStraordinaria());
+						if(! ( (dataInizio.isBefore(dataManStr) && dataFine.isBefore(dataManStr))
+								||  (dataInizio.isAfter(dataManStr.plusDays(2)) &&
+										dataFine.isAfter(dataManStr.plusDays(2)) ) ) )
+					iter.remove();
+					}
+					catch(NullPointerException e) {
+					
+					}
 				}
+				
+				else
+					iter.remove();
+				
+				
 			}
 			
 			if(parameters.get(0) != "Qualsiasi"){
-				Iterator<Auto> iter = auto.iterator();
-				while(iter.hasNext()){
-					Auto current = iter.next();
-					if(current.getFascia() != parameters.get(0).charAt(0))
-						auto.remove(current);
+				Iterator<Auto> iter2 = auto.iterator();
+				while(iter2.hasNext()){
+					if(iter2.next().getFascia() != parameters.get(0).charAt(0))
+						iter2.remove();
 				}
 			}
 				

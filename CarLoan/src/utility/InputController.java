@@ -33,7 +33,7 @@ public class InputController {
 		LocalDate Dal = InputController.getDate(dal);
 		LocalDate Al = InputController.getDate(al);
 		
-		if(Dal.isBefore(Al) || Dal.isEqual(Al))
+		if(Al.isAfter(Dal) && Al.isBefore(Dal.plusYears(1)))
 			ritorno = true;
 		
 		return ritorno;

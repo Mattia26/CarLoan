@@ -100,7 +100,7 @@ public class ApplicationController implements ApplicationControllerI {
 		break;
 		case "GetCitt‡Restituzione":
 			command = new GetDitte();
-			ritorno = command.Execute(GestioneSessione.getDitta());
+			ritorno = command.Execute("Bari");
 		break;
 		
 		case "AnnullaContratto":

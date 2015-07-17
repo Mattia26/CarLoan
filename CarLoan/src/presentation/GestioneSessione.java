@@ -1,5 +1,7 @@
 package presentation;
 
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 /**
  * Classe che mantiene i dati che sono utili durante la durata dell'esecuzione del
@@ -95,7 +97,7 @@ public class GestioneSessione {
 	
 	private static String costoKmIllimitato = null;
 	
-	private static String ditta = null;
+	private static ArrayList<String> ditta = null;
 	/**
 	 * Flag per l'aggiornamento periodico del database
 	 */
@@ -472,12 +474,12 @@ public class GestioneSessione {
 		aggiornato = a;
 	}
 	
-	public static void setDitta(String città) {
+	public static void setDitta(ArrayList<String> città) {
 		// TODO Auto-generated method stub
 		ditta = città;
 	}
 	
-	public static String getDitta() {
+	public static ArrayList<String> getDitta() {
 		// TODO Auto-generated method stub
 		return ditta;
 	}

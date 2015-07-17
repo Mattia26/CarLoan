@@ -131,6 +131,7 @@ public class Lookup implements LookupI{
 			classe = "business.entity.ListinoBusiness";
 			metodo = "getPrezzi";
 			input = String.class;
+			break;
 			
 		}
 		
